@@ -1,0 +1,4 @@
+1- Renommer .env.exemple -> .env
+2- Faire: composer install ou php composer.phar install (Sur linux)
+3- Faire: php artisan key:generate
+4- Faire: php artisan migrate
