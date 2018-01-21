@@ -13,10 +13,10 @@
         </div>
         <div class="row">
             <ul class="list-unstyled list-inline">
-                <li class="list-inline-item"><a href="#">Accueil</a></li>
-                <li class="list-inline-item"><a href="#">Anciens Tournois</a></li>
-                <li class="list-inline-item"><a href="#">Joueurs</a></li>
-                <li class="list-inline-item"><a href="#">Equipes</a></li>
+                <li class="list-inline-item"><a href="/">Accueil</a></li>
+                <li class="list-inline-item"><a href="/tournois">Anciens Tournois</a></li>
+                <li class="list-inline-item"><a href="/joueurs">Joueurs</a></li>
+                <li class="list-inline-item"><a href="/equipes">Equipes</a></li>
                 <li class="list-inline-item"><a href="#">Connexion</a></li>
             </ul>
         </div>

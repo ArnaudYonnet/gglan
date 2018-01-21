@@ -6,5 +6,5 @@
 
 
 @section('content')
-    <h1>News</h1>
+    <h1>Photo + articles</h1>
 @endsection

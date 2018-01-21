@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/tournois', function () {
+    return view('tournois');
+});
+
+Route::get('/joueurs', function () {
+    return view('joueurs');
+});
+
+Route::get('/equipes', function () {
+    return view('equipes');
+});
