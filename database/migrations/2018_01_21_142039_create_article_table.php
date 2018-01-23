@@ -14,7 +14,7 @@ class CreateArticleTable extends Migration
     public function up()
     {
         Schema::create('article', function (Blueprint $table) {
-            $table->increments('id_article');
+            $table->increments('id');
             $table->date('date_article');
             $table->string('titre_article');
             $table->string('contenu_article');
@@ -24,7 +24,7 @@ class CreateArticleTable extends Migration
 
         Schema::table('article', function (Blueprint $table) {
             $table->foreign('id_user')
-                  ->references('id_user')->on('users')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
         });
     }

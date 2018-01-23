@@ -20,11 +20,11 @@ class CreateAppartenanceTable extends Migration
         
         Schema::table('appartenance', function (Blueprint $table) {
             $table->foreign('id_user')
-                  ->references('id_user')->on('users')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
         
             $table->foreign('id_equipe')
-                  ->references('id_equipe')->on('equipe')
+                  ->references('id')->on('equipe')
                   ->onDelete('cascade');
         });
     }

@@ -14,7 +14,7 @@ class CreateTournoisTable extends Migration
     public function up()
     {
         Schema::create('tournois', function (Blueprint $table) {
-            $table->integer('id_tournois', true);
+            $table->integer('id', true);
             $table->string('nom_tournois');
             $table->date('date_deb_tournois');
             $table->date('date_fin_tournois');
@@ -26,7 +26,7 @@ class CreateTournoisTable extends Migration
         
         Schema::table('tournois', function (Blueprint $table) {
             $table->foreign('id_salle')
-                  ->references('id_salle')->on('salle')
+                  ->references('id')->on('salle')
                   ->onDelete('cascade');
         });
     }

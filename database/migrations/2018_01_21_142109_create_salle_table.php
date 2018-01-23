@@ -14,7 +14,7 @@ class CreateSalleTable extends Migration
     public function up()
     {
         Schema::create('salle', function (Blueprint $table) {
-            $table->integer('id_salle', true);
+            $table->integer('id', true);
             $table->string('nom_salle');
             $table->string('adre_salle');
             $table->string('adr_salle');

@@ -14,7 +14,7 @@ class CreateEquipeTable extends Migration
     public function up()
     {
         Schema::create('equipe', function (Blueprint $table) {
-            $table->integer('id_equipe', true);
+            $table->integer('id', true);
             $table->string('nom_equipe');
             $table->string('desc_equipe');
             $table->integer('id_jeu');
@@ -22,7 +22,7 @@ class CreateEquipeTable extends Migration
         
         Schema::table('equipe', function (Blueprint $table) {
             $table->foreign('id_jeu')
-                  ->references('id_jeu')->on('jeu')
+                  ->references('id')->on('jeu')
                   ->onDelete('cascade');
         });
     }

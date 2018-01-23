@@ -20,11 +20,11 @@ class CreateSelectionTable extends Migration
         
         Schema::table('selection', function (Blueprint $table) {
             $table->foreign('id_jeu')
-                  ->references('id_jeu')->on('jeu')
+                  ->references('id')->on('jeu')
                   ->onDelete('cascade');
     
             $table->foreign('id_tournois')
-                  ->references('id_tournois')->on('tournois')
+                  ->references('id')->on('tournois')
                   ->onDelete('cascade');
         });
     }

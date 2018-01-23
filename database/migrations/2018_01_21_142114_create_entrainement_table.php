@@ -21,11 +21,11 @@ class CreateEntrainementTable extends Migration
         
         Schema::table('entrainement', function (Blueprint $table) {
             $table->foreign('id_user')
-                  ->references('id_user')->on('users')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
             
             $table->foreign('id_jeu')
-                  ->references('id_jeu')->on('jeu')
+                  ->references('id')->on('jeu')
                   ->onDelete('cascade');
         });
     }

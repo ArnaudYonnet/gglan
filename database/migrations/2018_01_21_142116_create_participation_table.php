@@ -20,11 +20,11 @@ class CreateParticipationTable extends Migration
         
         Schema::table('participation', function (Blueprint $table) {
             $table->foreign('id_equipe')
-                  ->references('id_equipe')->on('equipe')
+                  ->references('id')->on('equipe')
                   ->onDelete('cascade');
     
             $table->foreign('id_tournois')
-                  ->references('id_tournois')->on('tournois')
+                  ->references('id')->on('tournois')
                   ->onDelete('cascade');
         });
     }
