@@ -17,13 +17,12 @@ class CreateUsersTable extends Migration
             $table->integer('id_user', true);
             $table->string('nom_user');
             $table->string('prenom_user');
-            $table->date('date_ins_user');
+            $table->string('email')->unique();
             $table->date('date_nai_user');
             $table->string('pseudo_user');
-            $table->string('ville_user');
-            $table->string('desc_user');
-            $table->string('adr_user');
-            $table->string('email')->unique();
+            $table->string('ville_user')->nullable();
+            $table->string('desc_user')->default("Aucune description");
+            $table->string('adr_user')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
