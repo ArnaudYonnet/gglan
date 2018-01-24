@@ -23,6 +23,11 @@ Route::get('/joueurs', function () {
     return view('joueurs');
 });
 
-Route::get('/equipes', function () {
-    return view('equipes');
-});
+Route::get('/equipes', 'EquipeController@index');
+Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
+Route::post('/equipes/new', 'EquipeController@postEquipe')->name('postEquipe'); // Pour créer une equipe
+Route::get('/equipes/{id}/edit', 'EquipeController@getEdit');
+
+Route::get('/profil/{id}', 'ProfilController@index')->name('profil');
+
+Auth::routes();
