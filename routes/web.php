@@ -17,9 +17,7 @@ Route::get('/tournois', function () {
     return view('tournois');
 });
 
-Route::get('/joueurs', function () {
-    return view('joueurs');
-});
+Route::get('/joueurs', 'JoueurController@index');
 
 Route::get('/equipes', 'EquipeController@index');
 Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
