@@ -14,7 +14,7 @@
                     <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="/joueurs/{{ $joueur->id }}"> {{ $joueur->pseudo }} </a>
+                            <a href="/joueurs/{{ $joueur->pseudo }}"> {{ $joueur->pseudo }} </a>
                         </h5>
                         <h6 class="card-subtitle mb-2 text-muted">Rank</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Last Team</h6>
