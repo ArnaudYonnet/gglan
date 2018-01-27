@@ -15,8 +15,8 @@ class CreateJeuTable extends Migration
     {
         Schema::create('jeu', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('nom_jeu');
-            $table->string('desc_jeu');
+            $table->string('nom');
+            $table->string('description');
             $table->bigInteger('nb_jeu');
         });
     }
