@@ -11,6 +11,6 @@ class EquipeController extends Controller
     {
         $equipes = DB::table('equipe')->get();
         $joueurs = DB::table('users')->get();
-        return view('joueurs')->with('equipes', $equipes)->with('joueurs', $joueurs);
+        return view('equipes')->with('equipes', $equipes)->with('joueurs', $joueurs);
     }
 }
