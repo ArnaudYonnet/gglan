@@ -56,10 +56,10 @@
                 <b>{{ $profil->ville }}</b>
             @endempty
         </li>
-    </ul>    
+    </ul>
+
+    <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
+
+    
 @endisset
-
-
-
-
 @endsection
