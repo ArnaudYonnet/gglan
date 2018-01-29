@@ -15,8 +15,8 @@ Route::get('/', 'HomeController@index');
 
 
 Route::get('/profil/{id}', 'ProfilController@index');
-Route::get('/profil/{id}/edit', 'ProfilController@getEdit');
-Route::post('/profil/{id}/edit', 'ProfilController@postEdit');
+Route::get('/profil/{id}/edit', 'ProfilController@getEdit'); // Formulaire de modification des informations du joueur
+Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification des informatiosn du joueur
 
 Route::get('/joueurs', 'JoueurController@index')->name('joueurs');
 Route::get('/joueurs/{pseudo}', 'JoueurController@profil');
