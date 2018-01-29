@@ -54,6 +54,9 @@
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $('div.alert').delay(3000).fadeOut(350);
+        </script>
     </footer>
 </body>
 </html>

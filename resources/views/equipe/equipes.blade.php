@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@include('flash::message')
+
 
 @section('title')
     GG-LAN
@@ -7,6 +7,7 @@
 
 
 @section('content')
+    @include('flash::message')
     <ul class="list-unstyled list-inline">
         @foreach ($equipes as $equipe)
             <li class="list-inline-item">
