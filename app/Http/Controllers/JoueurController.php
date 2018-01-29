@@ -21,7 +21,7 @@ class JoueurController extends Controller
         if ($joueur->pseudo != Auth::user()->pseudo) 
         {
             // Si le pseudo n'est pas celui de la personne connectée
-            return view('profil')->with('joueur', $joueur);
+            return view('profil.profil')->with('joueur', $joueur);
         }
         else 
         {

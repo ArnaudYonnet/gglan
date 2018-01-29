@@ -10,17 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', 'HomeController@index');
 
-Route::get('/tournois', function () {
-    return view('tournois');
-});
+
+Route::get('/profil/{id}', 'ProfilController@index');
+Route::get('/profil/{id}/edit', 'ProfilController@getEdit'); // Formulaire de modification des informations du joueur
+Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification des informatiosn du joueur
 
 Route::get('/joueurs', 'JoueurController@index')->name('joueurs');
 Route::get('/joueurs/{pseudo}', 'JoueurController@profil');
-
-
 
 
 Route::get('/equipes', 'EquipeController@index');
@@ -28,6 +27,7 @@ Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de cr
 Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
 Route::get('/equipes/{id}/edit', 'EquipeController@getEdit');
 
-Route::get('/profil/{id}', 'ProfilController@index')->name('profil');
 
-Auth::routes();
+Route::get('/tournois', function () {
+    return view('tournois');
+});
