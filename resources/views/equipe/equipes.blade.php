@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@include('flash::message')
 
 @section('title')
     GG-LAN

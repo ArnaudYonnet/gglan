@@ -44,6 +44,7 @@ class EquipeController extends Controller
 
         $this->ajouteEquipier($id_equipe, Auth::id());
 
+        flash('Votre équipe a bien été créer !')->success()->important();
         return redirect('/equipes');
     }
 
