@@ -16,8 +16,10 @@
                         <h5 class="card-title">
                             <a href="/equipes/"> {{ $equipe->nom }} </a>
                         </h5>
-                         @foreach ($joueurs as $joueur)                         
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $joueur->pseudo }}</h6>                 
+                         @foreach ($joueurs as $joueur)   
+                            @if ($equipe->id == $joueur->id_equipe)
+                                <h6 class="card-subtitle mb-2 text-muted">{{ $joueur->pseudo }}</h6>   
+                            @endif                      
                         @endforeach
                         <p class="card-text"> {{ $equipe->description }} </p>
                     </div>
