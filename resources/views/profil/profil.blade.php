@@ -1,5 +1,4 @@
 @extends('layouts.template')
-@include('flash::message')
 
 @section('title')
     GGLAN
@@ -32,6 +31,7 @@
             </li>
         </ul>
     @else
+        @include('flash::message')
         <ul>
             <li>Nom: 
                 <b> {{ $profil->nom}} </b>
