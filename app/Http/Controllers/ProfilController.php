@@ -48,7 +48,7 @@ class ProfilController extends Controller
             ->where('id', Auth::id())
             ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville]);
 
-        flash('Votre compte a bien été mis à jour !')->success()->important();
+        flash('Votre compte a bien été mis à jour !')->success();
         return redirect('profil/'. Auth::id());
 
     }
