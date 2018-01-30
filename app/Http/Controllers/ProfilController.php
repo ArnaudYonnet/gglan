@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Auth;
+use Softon\SweetAlert\Facades\SWAL; 
 
 class ProfilController extends Controller
 {
@@ -48,7 +49,8 @@ class ProfilController extends Controller
             ->where('id', Auth::id())
             ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville]);
 
-        flash('Votre compte a bien été mis à jour !')->success();
+        // flash('Votre compte a bien été mis à jour !')->success();
+        swal()->autoclose(2000)->success('Mise à jour','Votre compte a bien été mis à jour !',[]);
         return redirect('profil/'. Auth::id());
 
     }
