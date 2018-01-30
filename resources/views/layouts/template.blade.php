@@ -55,7 +55,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         <script>
-            $('div.alert').delay(3000).fadeOut(350);
+            $('div.alert').delay(3000).slideUp(350);
         </script>
     </footer>
 </body>
