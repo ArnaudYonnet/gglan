@@ -1,10 +1,13 @@
 @extends('layouts.template')
 
+
 @section('title')
     GGLAN
 @endsection
 
 @section('content')
+@include('sweetalert::cdn')
+@include('sweetalert::view')
     @isset($joueur) 
         <ul>
             <li>Nom: 
@@ -31,7 +34,8 @@
             </li>
         </ul>
     @else
-        @include('flash::message')
+        {{--  @include('flash::message')  --}}
+        
         <ul>
             <li>Nom: 
                 <b> {{ $profil->nom}} </b>

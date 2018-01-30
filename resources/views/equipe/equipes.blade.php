@@ -7,7 +7,9 @@
 
 
 @section('content')
-    @include('flash::message')
+{{--  @include('flash::message')  --}}
+@include('sweetalert::cdn')
+@include('sweetalert::view')
     <ul class="list-unstyled list-inline">
         @foreach ($equipes as $equipe)
             <li class="list-inline-item">
