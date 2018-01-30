@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\EquipeRequest;
 use Illuminate\Support\Facades\DB;
+use Softon\SweetAlert\Facades\SWAL; 
 use App\Equipe;
 use Auth;
 
@@ -25,6 +26,18 @@ class EquipeController extends Controller
         $jeux = DB::table('jeu')->get();
         return view('equipe.new')->with('jeux', $jeux);
 
+    }
+
+    public function profilEquipe($id)
+    {
+        $equipe = DB::table('equipe')
+                  ->where('id', $id)->first();
+
+        $joueurs = DB::table('users')
+                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
+                   ->where('appartenance.id_equipe', $id)
+                   ->get();
+        return view('equipe.profil')->with('equipe', $equipe)->with('joueurs', $joueurs);
     }
 
     public function postEquipe(EquipeRequest $request)
