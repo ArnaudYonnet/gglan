@@ -57,21 +57,14 @@ class EquipeController extends Controller
                     ->where('id_capitaine', Auth::id())
                     ->value('id');
 
-        $this->ajouteEquipier($id_equipe, Auth::id());
+        DB::table('appartenance')->insert([
+            'id_equipe' => $id_equipe,
+            'id_user' => Auth::id(),
+        ]);
 
         // flash('Votre équipe a bien été créer !')->success();
         swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été créer !',[]);
         return redirect('/equipes');
-    }
-
-    private function ajouteEquipier($id_equipe, $id_joueur)
-    {
-        //TODO: Verification du nombre de joueur dans une équipe
-
-        DB::table('appartenance')->insert([
-            'id_equipe' => $id_equipe,
-            'id_user' => $id_joueur,
-        ]);
     }
 
     public function getEquipier($id)
@@ -88,13 +81,23 @@ class EquipeController extends Controller
 
     public function postEquipier(AppartenanceRequest $request)
     {
-        $joueur = new Appartenance;
-        $joueur->id_user = $request->id_user;
-        $joueur->id_equipe = $request->id_equipe;
+        $joueurs = DB::table('appartenance')->where('id_equipe', $request->id_equipe)->get();
+        $nb_joueurs = count($joueurs);
 
-        $joueur->save();
+        if ($nb_joueurs < 5) 
+        {
+            $joueur = new Appartenance;
+            $joueur->id_user = $request->id_user;
+            $joueur->id_equipe = $request->id_equipe;
 
-        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+            $joueur->save();
+            
+            swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+            return redirect('equipes/'.$request->id_equipe.'/profil');
+        }
+
+
+        swal()->button('Ok, pardon')->error('Limite de 5 joueurs',"Alors comme ça tu veux nous l'a faire à l'envers ? ",[]);
         return redirect('equipes/'.$request->id_equipe.'/profil');
     }
 }
