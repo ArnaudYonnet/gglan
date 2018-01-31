@@ -62,7 +62,7 @@
         <a href="/profil/{{Auth::id()}}/edit" class="btn btn-success">Modifier mes informations</a>
         <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
     </div>
-    <div class="container col-lg-4">
+    <div class="container col-lg-6">
         @isset($equipe)
             <h3>Mon équipe:</h3>
             <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
