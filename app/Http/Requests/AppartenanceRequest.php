@@ -25,7 +25,7 @@ class AppartenanceRequest extends FormRequest
     {
         return [
             'id_equipe' => 'required',
-            'id_user' => 'required|numeric',
+            'id_user' => 'required|numeric|exists:users,id',
         ];
     }
 }
