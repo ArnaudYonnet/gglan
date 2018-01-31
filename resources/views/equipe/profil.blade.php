@@ -24,11 +24,13 @@
             @endforeach
         </li>
         <li>Membres:
-            @foreach ($joueurs as $joueur)
-                @if ($joueur->id != $equipe->id_capitaine)
-                    {{ $joueur->pseudo }}
-                @endif
-            @endforeach
+            <ul>
+                @foreach ($joueurs as $joueur)
+                    @if ($joueur->id != $equipe->id_capitaine)
+                        <li>{{ $joueur->pseudo }}</li>
+                    @endif
+                @endforeach
+            </ul>
         </li>
     </ul>
     @if (count($joueurs) < 5)
