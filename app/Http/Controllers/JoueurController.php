@@ -11,7 +11,12 @@ class JoueurController extends Controller
     public function index()
     {
         $joueurs = DB::table('users')->get();
-        return view('joueurs')->with('joueurs', $joueurs);
+        $equipes = DB::table('appartenance')
+                         ->join('equipe', 'appartenance.id_equipe', '=', 'equipe.id')
+                         ->get();
+
+
+        return view('joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes);
     }
 
     public function profil($pseudo)
