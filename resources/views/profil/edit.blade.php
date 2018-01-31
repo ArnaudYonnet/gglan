@@ -32,6 +32,42 @@
             </div>
         </div>
 
+        <div class="form-group{{ $errors->has('jeu') ? ' has-error' : '' }}">
+                <label for="jeu" class="col-md-4 control-label">Jeu</label>
+                <div class="col-md-6">
+                    <select id="jeu" class="form-control" name="jeu">
+                        <option selected disabled >-- JEU --</option>
+                        @foreach ($jeux as $jeu)
+                            <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('jeu'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('jeu') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+        <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }}">
+                <label for="rank" class="col-md-4 control-label">Rank cs:go</label>
+                <div class="col-md-6">
+                    <select id="rank" class="form-control" name="rank">
+                        <option selected disabled >-- RANK --</option>
+                        @foreach ($ranks as $rank)
+                            <option value="{{ $rank->id }}"> {{ $rank->nom }} </option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('rank'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('rank') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="btn btn-primary">

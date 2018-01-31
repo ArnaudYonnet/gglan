@@ -44,10 +44,12 @@ class ProfilController extends Controller
     public function getEdit($id)
     {
         $profil = DB::table('users')->where('id', $id)->first();
-        return view('profil.edit')->with('profil', $profil);
+        $ranks = DB::table('rank')->get();
+        return view('profil.edit')->with('profil', $profil)->with('ranks', $ranks);
+
+        // Recup id_jeu dans rank et l'insert dans entrainement
     }
     
-
     public function postEdit(UserRequest $request)
     {
         $user = new User;
