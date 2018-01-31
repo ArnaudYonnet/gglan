@@ -18,13 +18,31 @@ class ProfilController extends Controller
                   ->where('id', $id)
                   ->first();
         //        
-        $rank = DB::table('users')
+        $entrainement = DB::table('entrainement')
                 ->whereExists(function ($query) {
                     $query->select(DB::raw(1))
-                          ->from('entrainement')
-                          ->whereRaw('entrainement.id_user = users.id');
+                          ->from('users')
+                          ->whereRaw('users.id = entrainement.id_user');
                 })
+                ->where('id_user', $id)
                 ->first();
+
+        if ($entrainement) 
+        {
+            $rank = DB::table('rank')
+                    ->whereExists(function ($query) {
+                        $query->select(DB::raw(1))
+                              ->from('entrainement')
+                              ->whereRaw('entrainement.id_rank = rank.id');
+                    })
+                    ->where('id', $entrainement->id_rank)
+                    ->first();
+        }
+        else 
+        {
+            $rank = null;
+        }
+
 
         $appartenance = DB::table('appartenance')
                 ->whereExists(function ($query) {
@@ -95,7 +113,7 @@ class ProfilController extends Controller
                         })
                         ->where('id_user', Auth::id())
                         ->first();
-                        
+
         if ($entrainement) 
         {
             DB::table('entrainement')
