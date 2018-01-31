@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-@include('sweetalert::cdn')
 @include('sweetalert::view')
     <ul class="list-unstyled">
         <li>Nom: 

@@ -8,7 +8,6 @@
 
 @section('content')
 {{--  @include('flash::message')  --}}
-@include('sweetalert::cdn')
 @include('sweetalert::view')
     <div class="container col-lg-6">
         <ul class="list-unstyled">

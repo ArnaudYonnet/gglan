@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }} "></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/sweetAlert.js') }}"></script>
     <title> @yield('title') </title>
 </head>
 <body>
@@ -51,9 +55,6 @@
     </div>
 
     <footer>
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
         <script>
             $('div.alert').delay(3000).slideUp(350);
         </script>
