@@ -11,14 +11,14 @@
 @include('sweetalert::cdn')
 @include('sweetalert::view')
     <div class="container col-lg-6">
-        <ul>
+        <ul class="list-unstyled">
             <li>Nom: 
                 <b> {{ $equipe->nom}} </b>
             </li>
             <li>Capitaine:
                 @foreach ($joueurs as $joueur)
                     @if ($joueur->id == $equipe->id_capitaine)
-                        {{ $joueur->pseudo }}
+                        <b> {{ $joueur->pseudo }} </b>
                     @endif
                 @endforeach
             </li>
@@ -26,7 +26,7 @@
                 <ul>
                     @foreach ($joueurs as $joueur)
                         @if ($joueur->id != $equipe->id_capitaine)
-                            <li>{{ $joueur->pseudo }}</li>
+                            <li><b> {{ $joueur->pseudo }} </b></li>
                         @endif
                     @endforeach
                 </ul>
