@@ -60,7 +60,10 @@
             </li>
         </ul>
         <a href="/profil/{{Auth::id()}}/edit" class="btn btn-success">Modifier mes informations</a>
-        <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
+        @isset($equipe)
+        @else
+            <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
+        @endisset
     </div>
     <div class="container col-lg-6">
         @isset($equipe)
