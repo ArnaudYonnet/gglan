@@ -12,6 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $prenoms = ["Paul", "Pierre", "Jacques", "Kévin", "Nicolas", "Alexandre", "Jérémie", "Valentin", "Baptiste", "Batman"];
+
         DB::table('users')->insert([
             'nom' => 'Philippi',
             'prenom' => 'Thibaud',
@@ -22,14 +24,14 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
         ]);
         
-        for ($i=0; $i < 20; $i++)
+        for ($i=0; $i < count($prenoms); $i++)
         {
              DB::table('users')->insert([
             'nom' => str_random(5),
-            'prenom' => 'Baptiste',
+            'prenom' => $prenoms[$i],
             'date_naissance' => '2000-01-01',
             'pseudo' => str_random(5),
-            'email' => str_random(5).'@gmail.com',
+            'email' => $prenoms[$i].'@gmail.com',
             'password' => bcrypt('secret'),
             ]);
         }
