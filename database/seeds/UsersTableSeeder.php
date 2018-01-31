@@ -21,14 +21,18 @@ class UsersTableSeeder extends Seeder
             'admin' => 1,
             'password' => bcrypt('secret'),
         ]);
-
-        DB::table('users')->insert([
-            'nom' => 'Moalic',
+        
+        for ($i=0; $i < 20; $i++)
+        {
+             DB::table('users')->insert([
+            'nom' => str_random(5),
             'prenom' => 'Baptiste',
             'date_naissance' => '2000-01-01',
-            'pseudo' => 'Bapt',
-            'email' => 'bapt@gmail.com',
+            'pseudo' => str_random(5),
+            'email' => str_random(5).'@gmail.com',
             'password' => bcrypt('secret'),
-        ]);
+            ]);
+        }
+       
     }
 }
