@@ -34,9 +34,8 @@
             </li>
         </ul>
     @else
-        {{--  @include('flash::message')  --}}
-        
-        <ul>
+    <div class="container col-lg-6">
+        <ul class="list-unstyled">
             <li>Nom: 
                 <b> {{ $profil->nom}} </b>
             </li>
@@ -62,5 +61,16 @@
         </ul>
         <a href="/profil/{{Auth::id()}}/edit" class="btn btn-success">Modifier mes informations</a>
         <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
+    </div>
+    <div class="container col-lg-4">
+        @isset($equipe)
+            <h3>Mon équipe:</h3>
+            <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
+        @endisset
+            
+    </div>
+        {{--  @include('flash::message')  --}}
+        
+        
     @endisset
 @endsection

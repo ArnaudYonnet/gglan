@@ -17,7 +17,7 @@
                     <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="/equipes/"> {{ $equipe->nom }} </a>
+                            <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom }} </a>
                         </h5>
                          @foreach ($joueurs as $joueur)   
                             @if ($equipe->id == $joueur->id_equipe)

@@ -14,6 +14,7 @@ class CreateAppartenanceTable extends Migration
     public function up()
     {
         Schema::create('appartenance', function (Blueprint $table) {
+            $table->integer('id', true);
             $table->integer('id_equipe');
             $table->integer('id_user');
         });

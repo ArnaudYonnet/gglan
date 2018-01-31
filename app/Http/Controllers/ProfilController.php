@@ -15,12 +15,27 @@ class ProfilController extends Controller
     public function index($id)
     {
         $profil = DB::table('users')->where('id', $id)->first();
+        $appartenances = DB::table('appartenance')->get();
+
+        foreach ($appartenances as $appartenance) 
+        {
+           if ($profil->id == $appartenance->id_user) 
+           {
+               $equipe = DB::table('equipe')->where('id', $appartenance->id_equipe)->first();
+               if ($profil->id == Auth::id()) 
+                {
+                    // Si l'id est celui de la personne connectée
+                    return view('profil.profil')->with('profil', $profil)->with('equipe', $equipe);
+                }
+           }
+        }
+
         if ($profil->id == Auth::id()) 
         {
             // Si l'id est celui de la personne connectée
             return view('profil.profil')->with('profil', $profil);
         }
-
+        
         // Si l'id n'est pas celui de la personne connectée
         $pseudo = DB::table('users')->where('id', $id)->value('pseudo');
         return redirect('joueurs/'. $pseudo);    
