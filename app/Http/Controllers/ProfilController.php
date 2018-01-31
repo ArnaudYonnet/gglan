@@ -14,31 +14,45 @@ class ProfilController extends Controller
     //Recupère l'id de la session de l'utilisateur
     public function index($id)
     {
-        $profil = DB::table('users')->where('id', $id)->first();
-        $appartenances = DB::table('appartenance')->get();
+        $profil = DB::table('users')
+                  ->where('id', $id)
+                  ->first();
+        //        
+        $rank = DB::table('users')
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                          ->from('entrainement')
+                          ->whereRaw('entrainement.id_user = users.id');
+                })
+                ->first();
 
-        foreach ($appartenances as $appartenance) 
-        {
-           if ($profil->id == $appartenance->id_user) 
-           {
-               $equipe = DB::table('equipe')->where('id', $appartenance->id_equipe)->first();
-               if ($profil->id == Auth::id()) 
-                {
-                    // Si l'id est celui de la personne connectée
-                    return view('profil.profil')->with('profil', $profil)->with('equipe', $equipe);
-                }
-           }
-        }
+        $appartenance = DB::table('appartenance')
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                          ->from('users')
+                          ->whereRaw('users.id = appartenance.id_user');
+                })
+                ->where('id_user', $id)
+                ->first();
 
+        $equipe = DB::table('equipe')
+                ->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                          ->from('appartenance')
+                          ->whereRaw('appartenance.id_equipe = equipe.id');
+                })
+                ->where('id', $appartenance->id_equipe)
+                ->first();
+  
         if ($profil->id == Auth::id()) 
         {
             // Si l'id est celui de la personne connectée
-            return view('profil.profil')->with('profil', $profil);
+            return view('profil.profil')->with('profil', $profil)->with('equipe', $equipe)->with('rank', $rank);
         }
         
         // Si l'id n'est pas celui de la personne connectée
         $pseudo = DB::table('users')->where('id', $id)->value('pseudo');
-        return redirect('joueurs/'. $pseudo);    
+        return redirect('joueurs/'. $pseudo);  
     }
 
     public function getEdit($id)
@@ -53,11 +67,6 @@ class ProfilController extends Controller
     public function postEdit(UserRequest $request)
     {
         $user = new User;
-
-        /* $user->nom = Auth::user()->nom;
-        $user->prenom = Auth::user()->prenom;
-        $user->email = Auth::user()->email;
-        $user->date_naissance = Auth::user()->date_naissance; */
 
         $user->pseudo = $request->input('pseudo');
         $user->ville = $request->input('ville');
