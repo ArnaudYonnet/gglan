@@ -17,7 +17,6 @@ class CreateRankTable extends Migration
             $table->integer('id', true);
             $table->integer('id_jeu');
             $table->string('nom');
-            $table->timestamps();
         });
 
         Schema::table('rank', function (Blueprint $table) {
