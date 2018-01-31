@@ -35,7 +35,9 @@ class ProfilController extends Controller
                 ->where('id_user', $id)
                 ->first();
 
-        $equipe = DB::table('equipe')
+        if ($appartenance) 
+        {
+            $equipe = DB::table('equipe')
                 ->whereExists(function ($query) {
                     $query->select(DB::raw(1))
                           ->from('appartenance')
@@ -43,6 +45,11 @@ class ProfilController extends Controller
                 })
                 ->where('id', $appartenance->id_equipe)
                 ->first();
+        }
+        else 
+        {
+            $equipe = null;
+        }
   
         if ($profil->id == Auth::id()) 
         {
