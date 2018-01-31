@@ -16,7 +16,7 @@ class JoueurController extends Controller
                          ->get();
 
 
-        return view('joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes);
+        return view('joueur.joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes);
     }
 
     public function profil($pseudo)
@@ -26,7 +26,7 @@ class JoueurController extends Controller
         if ($joueur->pseudo != Auth::user()->pseudo) 
         {
             // Si le pseudo n'est pas celui de la personne connectée
-            return view('profil.profil')->with('joueur', $joueur);
+            return view('joueur.profil')->with('joueur', $joueur);
         }
         else 
         {
