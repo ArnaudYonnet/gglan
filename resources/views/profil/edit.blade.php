@@ -8,6 +8,8 @@
     <form class="form-horizontal" method="POST" action="/profil/{{Auth::id()}}/edit">
         {{ csrf_field() }}
 
+        <input type="hidden" name="id_jeu" value="{{ $jeu->id }}">
+
         <div class="form-group{{ $errors->has('pseudo') ? ' has-error' : '' }}">
             <label for="pseudo" class="col-md-4 control-label">Pseudo</label>
             <div class="col-md-6">
@@ -31,24 +33,6 @@
                 @endif
             </div>
         </div>
-
-        <div class="form-group{{ $errors->has('jeu') ? ' has-error' : '' }}">
-                <label for="jeu" class="col-md-4 control-label">Jeu</label>
-                <div class="col-md-6">
-                    <select id="jeu" class="form-control" name="jeu">
-                        <option selected disabled >-- JEU --</option>
-                        @foreach ($jeux as $jeu)
-                            <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
-                        @endforeach
-                    </select>
-
-                    @if ($errors->has('jeu'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('jeu') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
 
         <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }}">
                 <label for="rank" class="col-md-4 control-label">Rank cs:go</label>
