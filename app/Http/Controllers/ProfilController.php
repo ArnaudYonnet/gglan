@@ -14,60 +14,14 @@ class ProfilController extends Controller
     //Recupère l'id de la session de l'utilisateur
     public function index($id)
     {
+        $infoJoueur = new InfoController($id);
+
         $profil = DB::table('users')
                   ->where('id', $id)
                   ->first();
-        //        
-        $entrainement = DB::table('entrainement')
-                ->whereExists(function ($query) {
-                    $query->select(DB::raw(1))
-                          ->from('users')
-                          ->whereRaw('users.id = entrainement.id_user');
-                })
-                ->where('id_user', $id)
-                ->first();
 
-        if ($entrainement) 
-        {
-            $rank = DB::table('rank')
-                    ->whereExists(function ($query) {
-                        $query->select(DB::raw(1))
-                              ->from('entrainement')
-                              ->whereRaw('entrainement.id_rank = rank.id');
-                    })
-                    ->where('id', $entrainement->id_rank)
-                    ->first();
-        }
-        else 
-        {
-            $rank = null;
-        }
-
-
-        $appartenance = DB::table('appartenance')
-                ->whereExists(function ($query) {
-                    $query->select(DB::raw(1))
-                          ->from('users')
-                          ->whereRaw('users.id = appartenance.id_user');
-                })
-                ->where('id_user', $id)
-                ->first();
-
-        if ($appartenance) 
-        {
-            $equipe = DB::table('equipe')
-                ->whereExists(function ($query) {
-                    $query->select(DB::raw(1))
-                          ->from('appartenance')
-                          ->whereRaw('appartenance.id_equipe = equipe.id');
-                })
-                ->where('id', $appartenance->id_equipe)
-                ->first();
-        }
-        else 
-        {
-            $equipe = null;
-        }
+        $rank = $infoJoueur->getRank($id);
+        $equipe = $infoJoueur->getEquipe($id);
   
         if ($profil->id == Auth::id()) 
         {
