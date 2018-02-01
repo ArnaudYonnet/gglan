@@ -15,11 +15,11 @@ class UsersTableSeeder extends Seeder
         $prenoms = ["Paul", "Pierre", "Jacques", "Kévin", "Nicolas", "Alexandre", "Jérémie", "Valentin", "Baptiste", "Batman"];
 
         DB::table('users')->insert([
-            'nom' => 'Philippi',
+            'nom' => 'Papel',
             'prenom' => 'Thibaud',
             'date_naissance' => '1997-03-31',
             'pseudo' => 'Tenebreizh',
-            'email' => 'thibaud29@protonmail.com',
+            'email' => 'ptdr@protonmail.com',
             'admin' => 1,
             'password' => bcrypt('secret'),
         ]);

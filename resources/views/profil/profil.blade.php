@@ -31,6 +31,13 @@
                     <b>{{ $profil->ville }}</b>
                 @endempty
             </li>
+            <li>Rank: 
+                @empty($rank->nom)
+                    <b>Non-renseigné</b>
+                @else
+                    <b>{{ $rank->nom }}</b>
+                @endempty
+            </li>
         </ul>
         <a href="/profil/{{Auth::id()}}/edit" class="btn btn-success">Modifier mes informations</a>
         @isset($equipe)

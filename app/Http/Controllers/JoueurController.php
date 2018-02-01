@@ -14,19 +14,26 @@ class JoueurController extends Controller
         $equipes = DB::table('appartenance')
                          ->join('equipe', 'appartenance.id_equipe', '=', 'equipe.id')
                          ->get();
+        $ranks = DB::table('entrainement')
+                 ->join('rank', 'rank.id', '=', 'entrainement.id_rank')
+                 ->get();
 
 
-        return view('joueur.joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes);
+        return view('joueur.joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes)->with('ranks', $ranks);
     }
 
     public function profil($pseudo)
     {
+        $infoJoueur = new InfoController("", $pseudo);
         $joueur = DB::table('users')->where('pseudo', $pseudo)->first();
+
+        $rank = $infoJoueur->getRank();
+        $equipe = $infoJoueur->getEquipe();
 
         if ($joueur->pseudo != Auth::user()->pseudo) 
         {
             // Si le pseudo n'est pas celui de la personne connectée
-            return view('joueur.profil')->with('joueur', $joueur);
+            return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
         }
         else 
         {

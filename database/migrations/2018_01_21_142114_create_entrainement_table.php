@@ -16,7 +16,7 @@ class CreateEntrainementTable extends Migration
         Schema::create('entrainement', function (Blueprint $table) {
             $table->integer('id_jeu');
             $table->integer('id_user');
-            $table->char('niveau_joueur');
+            $table->integer('id_rank');
         });
         
         Schema::table('entrainement', function (Blueprint $table) {
@@ -26,6 +26,10 @@ class CreateEntrainementTable extends Migration
             
             $table->foreign('id_jeu')
                   ->references('id')->on('jeu')
+                  ->onDelete('cascade');
+
+            $table->foreign('id_rank')
+                  ->references('id')->on('rank')
                   ->onDelete('cascade');
         });
     }
