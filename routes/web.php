@@ -46,6 +46,9 @@ Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une e
 
 Route::post('/equipes/{id}/add', 'EquipeController@postEquipier');
 
+Route::get('/admin', function () {
+    return view('admin');
+});
 Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
 
 
