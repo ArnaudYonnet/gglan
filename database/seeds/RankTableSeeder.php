@@ -24,7 +24,7 @@ class RankTableSeeder extends Seeder
             DB::table('rank')->insert([
             'id_jeu' => 1,
             'nom' => $rank,
-            'image' => 'img/'.$images[$key],
+            'image' => '/img/csgo/'.$images[$key],
             ]);
         }          
     }
