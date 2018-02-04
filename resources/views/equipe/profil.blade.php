@@ -43,7 +43,9 @@
                     @if ($joueur->id == $equipe->id_capitaine)
                         <tr class="bg-danger">
                             @if ($ranks[$key] != null)
-                                    <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                    <th scope="row"> {{ $ranks[$key]->nom }} 
+                                        <img src="{{ $ranks[$key]->image }}" alt="">
+                                    </th>
                                 @else
                                     <th scope="row">Non renseigné</th>
                                 @endif
