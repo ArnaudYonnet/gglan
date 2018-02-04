@@ -36,7 +36,7 @@
     </div
     <div class="container col-lg-6">
         @isset($equipe)
-            <h3>Mon équipe:</h3>
+            <h3>Son équipe:</h3>
             <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
         @endisset
     </div>

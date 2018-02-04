@@ -14,32 +14,51 @@ class ProfilController extends Controller
     //Recupère l'id de la session de l'utilisateur
     public function index($id)
     {
-        $infoJoueur = new InfoController($id);
-
-        $profil = DB::table('users')
-                  ->where('id', $id)
-                  ->first();
-
-        $rank = $infoJoueur->getRank($id);
-        $equipe = $infoJoueur->getEquipe($id);
-  
-        if ($profil->id == Auth::id()) 
+        if (Auth::check()) 
         {
-            // Si l'id est celui de la personne connectée
-            return view('profil.profil')->with('profil', $profil)->with('equipe', $equipe)->with('rank', $rank);
+            $infoJoueur = new InfoController($id);
+    
+            $profil = DB::table('users')
+                      ->where('id', $id)
+                      ->first();
+    
+            $rank = $infoJoueur->getRank($id);
+            $equipe = $infoJoueur->getEquipe($id);
+      
+            if ($profil->id == Auth::id()) 
+            {
+                // Si l'id est celui de la personne connectée
+                return view('profil.profil')
+                        ->with('profil', $profil)
+                        ->with('equipe', $equipe)
+                        ->with('rank', $rank);
+            }
+            
+            // Si l'id n'est pas celui de la personne connectée
+            $pseudo = DB::table('users')->where('id', $id)->value('pseudo');
+            return redirect('joueurs/'. $pseudo);  
         }
-        
-        // Si l'id n'est pas celui de la personne connectée
-        $pseudo = DB::table('users')->where('id', $id)->value('pseudo');
-        return redirect('joueurs/'. $pseudo);  
+
+        return redirect()->route('login');
     }
 
     public function getEdit($id)
     {
+        $infoJoueur = new InfoController($id);
+
         $profil = DB::table('users')->where('id', $id)->first();
+        $rank = $infoJoueur->getRank($id);
+        $equipe = $infoJoueur->getEquipe($id);
         $ranks = DB::table('rank')->get();
         $jeu = DB::table('jeu')->where('nom', "CS:GO")->first();
-        return view('profil.edit')->with('profil', $profil)->with('ranks', $ranks)->with('jeu', $jeu);
+
+        return view('profil.profil')
+                ->with('profil', $profil)
+                ->with('equipe', $equipe)
+                ->with('rank', $rank)
+                ->with('jeu', $jeu)
+                ->with('ranks', $ranks)
+                ->with('edit', 1);
 
         // Recup id_jeu dans rank et l'insert dans entrainement
     }

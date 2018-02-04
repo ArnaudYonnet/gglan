@@ -45,6 +45,12 @@
             <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
         @endisset
     </div>
+
+    @isset($edit)
+        <div class="container col-lg-6">
+            @include('profil.edit')
+        </div>
+    @endisset
     <div class="container col-lg-6">
         @isset($equipe)
             <h3>Mon équipe:</h3>

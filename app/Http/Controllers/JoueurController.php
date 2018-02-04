@@ -29,18 +29,22 @@ class JoueurController extends Controller
 
         $rank = $infoJoueur->getRank();
         $equipe = $infoJoueur->getEquipe();
+        if (Auth::check()) 
+        {
+    
+            if ($joueur->pseudo != Auth::user()->pseudo) 
+            {
+                // Si le pseudo n'est pas celui de la personne connectée
+                return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
+            }
 
-        if ($joueur->pseudo != Auth::user()->pseudo) 
-        {
-            // Si le pseudo n'est pas celui de la personne connectée
-            return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
-        }
-        else 
-        {
             // Si le pseudo est celui la personne connectée
             $id = DB::table('users')->where('pseudo', $pseudo)->value('id');
             return redirect('profil/'. $id);  
-            
+        }
+        else
+        {
+            return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
         }
     }
 
