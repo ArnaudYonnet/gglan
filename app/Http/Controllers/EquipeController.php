@@ -20,6 +20,13 @@ class EquipeController extends Controller
                    ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
                    ->get();
 
+        /* foreach ($joueurs as $joueur) 
+        {
+            $info = new InfoController($joueur->id);
+
+            $ranks = $info->getRank();
+        } */
+
         return view('equipe.equipes')->with('equipes', $equipes)->with('joueurs', $joueurs);
     }
 
@@ -32,6 +39,7 @@ class EquipeController extends Controller
 
     public function profilEquipe($id)
     {
+        $ranks = array();
         $equipe = DB::table('equipe')
                   ->where('id', $id)->first();
 
@@ -39,7 +47,14 @@ class EquipeController extends Controller
                    ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
                    ->where('appartenance.id_equipe', $id)
                    ->get();
-        return view('equipe.profil')->with('equipe', $equipe)->with('joueurs', $joueurs);
+
+        foreach ($joueurs as $joueur) 
+        {
+            $info = new InfoController($joueur->id);
+            array_push($ranks, $info->getRank());
+        } 
+        // dd($ranks);
+        return view('equipe.profil')->with('equipe', $equipe)->with('joueurs', $joueurs)->with('ranks', $ranks);
     }
 
     public function postEquipe(EquipeRequest $request)
