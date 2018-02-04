@@ -51,7 +51,7 @@
                                     <th scope="row">Non renseigné</th>
                                 @endif
                             <th scope="row">
-                                <a href="/joueurs/{{$joueur->pseudo}}">{{ $joueur->pseudo }}</a>  
+                                <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
                         </tr>
                     @else
@@ -65,7 +65,7 @@
                                     <td></td>
                                 @endif
                             <th scope="row">
-                                <a href="/joueurs/{{$joueur->pseudo}}">{{ $joueur->pseudo }}</a>  
+                                <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
                         </tr>
                     @endif
