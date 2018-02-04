@@ -36,6 +36,8 @@
                     <b>Non-renseigné</b>
                 @else
                     <b>{{ $rank->nom }}</b>
+                    <br />
+                    <img src="{{ $rank->image }}" alt="Image introuvable...">
                 @endempty
             </li>
         </ul>
