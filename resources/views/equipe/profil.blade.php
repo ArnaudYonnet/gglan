@@ -31,10 +31,11 @@
                 </ul>
             </li>  --}}
         </ul>
-        <table class="table table-striped table-hover table-dark">
+        <table class="table table-hover table-dark">
             <thead>
                 <tr>
                 <th scope="col">Grade</th>
+                <th scope="col"></th>
                 <th scope="col">Pseudo</th>
                 </tr>
             </thead>
@@ -43,22 +44,29 @@
                     @if ($joueur->id == $equipe->id_capitaine)
                         <tr class="bg-danger">
                             @if ($ranks[$key] != null)
-                                    <th scope="row"> {{ $ranks[$key]->nom }} 
-                                        <img src="{{ $ranks[$key]->image }}" alt="">
-                                    </th>
+                                    <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                    <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
                                 @else
+                                    <td></td>
                                     <th scope="row">Non renseigné</th>
                                 @endif
-                            <th scope="row"> {{ $joueur->pseudo }} </th>
+                            <th scope="row">
+                                <a href="/joueurs/{{$joueur->pseudo}}">{{ $joueur->pseudo }}</a>  
+                            </th>
                         </tr>
                     @else
                         <tr>
                             @if ($ranks[$key] != null)
-                                    <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                    <th scope="row"> {{ $ranks[$key]->nom }} 
+                                    </th>
+                                    <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
                                 @else
-                                    <th scope="row">Non renseigné</th>
+                                <th scope="row">Non renseigné</th>
+                                    <td></td>
                                 @endif
-                            <th scope="row"> {{ $joueur->pseudo }} </th>
+                            <th scope="row">
+                                <a href="/joueurs/{{$joueur->pseudo}}">{{ $joueur->pseudo }}</a>  
+                            </th>
                         </tr>
                     @endif
                 @endforeach
