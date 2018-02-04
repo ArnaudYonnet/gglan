@@ -13,17 +13,17 @@
         @foreach ($equipes as $equipe)
             <li class="list-inline-item">
                 <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom }} </a>
                         </h5>
-                         @foreach ($joueurs as $joueur)   
-                            @if ($equipe->id == $joueur->id_equipe)
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $joueur->pseudo }}</h6>   
-                            @endif                      
+                        @foreach ($joueurs as $joueur)   
+                        @if ($equipe->id == $joueur->id_equipe)
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $joueur->pseudo }}</h6>   
+                        @endif                      
                         @endforeach
                         <p class="card-text"> {{ $equipe->description }} </p>
+                        <img class="card-img-top" src="/img/profil.jpg" alt="Card image cap">
                     </div>
                 </div>
             </li>
