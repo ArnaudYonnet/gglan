@@ -75,11 +75,11 @@
             </tbody>
         </table>
 
-
-
-        <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>
-        @if (count($joueurs) < 5)
-            <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
+        @if (Auth::user()->id == $equipe->id_capitaine)
+            <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>
+            @if (count($joueurs) < 5)
+                <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
+            @endif
         @endif
     </div>
 
