@@ -6,35 +6,33 @@
 
 
 @section('content')
-    <h1>Joueurs</h1>
-    <ul class="list-unstyled list-inline">
+    <br />
+    <h2>Joueurs inscrits: <b>{{count($joueurs)}}</b></h2>
+    <div class="card-columns">
         @foreach ($joueurs as $joueur)
-            <li class="list-inline-item">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/joueurs/{{ $joueur->pseudo }}"> {{ $joueur->pseudo }} </a>
-                        </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Rank: 
-                            @foreach ($ranks as $rank)
+            <div class="card" style="width: 20rem;">
+                <h5 class="card-header">
+                    <a href="/joueurs/{{ $joueur->pseudo }}"> {{ $joueur->pseudo }} </a>
+                </h5>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Rank: 
+                        @foreach ($ranks as $rank)
                             @if ($rank->id_user == $joueur->id)
                             {{ $rank->nom }}
                             @endif
-                            @endforeach
-                        </h6>
-                        
-                        @foreach ($equipes as $equipe)
+                        @endforeach
+                    </h6>
+                    @foreach ($equipes as $equipe)
                         @if ($equipe->id_user == $joueur->id)
                         <h6 class="card-subtitle mb-2 text-muted">
                             Equipe:  <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
                         </h6> 
                         @endif
-                        @endforeach
-                        <p class="card-text"> {{ $joueur->description }} </p>
-                        <img class="card-img-top" src="/img/profil.jpg" alt="Card image cap">
-                    </div>
+                    @endforeach
+                    <p class="card-text"> {{ $joueur->description }} </p>
+                    <img class="card-img-top" src="/img/profil.png" alt="Card image cap">
                 </div>
-            </li>
+            </div>
         @endforeach
-    </ul>
+    </div>
 @endsection

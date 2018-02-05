@@ -9,25 +9,25 @@
 @section('content')
 {{--  @include('flash::message')  --}}
 @include('sweetalert::view')
-    <ul class="list-unstyled list-inline">
+    <br />
+    <h2>Equipes inscrites: <b>{{count($equipes)}}</b></h2>
+    <div class="card-columns">
         @foreach ($equipes as $equipe)
-            <li class="list-inline-item">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom }} </a>
-                        </h5>
-                        @foreach ($joueurs as $joueur)   
+            <div class="card" style="width: 20rem;">
+                <h5 class="card-header">
+                    <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom }} </a>
+                </h5>
+                <div class="card-body">
+                    @foreach ($joueurs as $joueur)   
                         @if ($equipe->id == $joueur->id_equipe)
                         <h6 class="card-subtitle mb-2 text-muted">{{ $joueur->pseudo }}</h6>   
                         @endif                      
-                        @endforeach
-                        <p class="card-text"> {{ $equipe->description }} </p>
-                        <img class="card-img-top" src="/img/profil.jpg" alt="Card image cap">
-                    </div>
+                    @endforeach
+                    <p class="card-text"> {{ $equipe->description }} </p>
+                    <img class="card-img-top" src="/img/profil.png" alt="Card image cap">
                 </div>
-            </li>
+            </div>
         @endforeach
-    </ul>
+    </div>
 
 @endsection
