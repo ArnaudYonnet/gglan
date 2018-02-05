@@ -1,0 +1,8 @@
+.dropdown-item:hover {
+    background-color: #D23D43;
+}
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}

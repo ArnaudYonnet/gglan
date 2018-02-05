@@ -29,6 +29,7 @@ class InfoController extends Controller
                              ->first();
         return $this->id_user = $user->id;
     }
+    
     public function getRank()
     {
         $entrainement = DB::table('entrainement')
