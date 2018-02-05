@@ -34,6 +34,12 @@ class EquipeController extends Controller
 
     public function getEquipe()
     {
+        $info = new InfoController(Auth::id());
+        $equipe = $info->getEquipe();
+        if ($equipe) 
+        {
+            return redirect('equipes/'.$equipe->id.'/profil');
+        }
         $jeux = DB::table('jeu')->get();
         return view('equipe.new')->with('jeux', $jeux);
     }
