@@ -20,13 +20,6 @@ class EquipeController extends Controller
                    ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
                    ->get();
 
-        /* foreach ($joueurs as $joueur) 
-        {
-            $info = new InfoController($joueur->id);
-
-            $ranks = $info->getRank();
-        } */
-
         return view('equipe.equipes')
             ->with('equipes', $equipes)
             ->with('joueurs', $joueurs);
@@ -34,14 +27,18 @@ class EquipeController extends Controller
 
     public function getEquipe()
     {
-        $info = new InfoController(Auth::id());
-        $equipe = $info->getEquipe();
-        if ($equipe) 
+        if (Auth::check()) 
         {
-            return redirect('equipes/'.$equipe->id.'/profil');
+            $info = new InfoController(Auth::user()->id_public);
+            $equipe = $info->getEquipe();
+            if ($equipe) 
+            {
+                return redirect('equipes/'.$equipe->id.'/profil');
+            }
+            $jeux = DB::table('jeu')->get();
+            return view('equipe.new')->with('jeux', $jeux);
         }
-        $jeux = DB::table('jeu')->get();
-        return view('equipe.new')->with('jeux', $jeux);
+        return redirect()->route('register');
     }
 
     public function profilEquipe($id)
@@ -56,7 +53,7 @@ class EquipeController extends Controller
                    ->get();
         foreach ($joueurs as $joueur) 
         {
-            $info = new InfoController($joueur->id);
+            $info = new InfoController($joueur->id_public);
             array_push($ranks, $info->getRank());
         } 
 
@@ -102,7 +99,7 @@ class EquipeController extends Controller
                    ->get();
         foreach ($joueurs as $joueur) 
         {
-            $info = new InfoController($joueur->id);
+            $info = new InfoController($joueur->id_public);
             array_push($ranks, $info->getRank());
         } 
                    
