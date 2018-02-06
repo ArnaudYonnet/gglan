@@ -57,8 +57,8 @@
                 <a class="btn btn-danger" href="{{ route('login') }}">Connexion</a>
             </div>
         @else
-            <div class="btn-group right">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ Auth::user()->pseudo }}
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
