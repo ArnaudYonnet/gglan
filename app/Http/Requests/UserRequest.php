@@ -26,7 +26,6 @@ class UserRequest extends FormRequest
         return [
             'pseudo' => 'required|string|max:255',
             'ville' => 'max:255',
-            'rank' => 'required',
             // 'rank'
         ];
     }

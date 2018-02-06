@@ -31,7 +31,11 @@
         <label for="rank" class="col-md-4 control-label">Rank cs:go</label>
         <div class="col-md-6">
             <select id="rank" class="form-control" name="rank">
-                <option selected disabled >-- RANK --</option>
+                @isset($rank->nom)
+                    <option value="{{ $rank->id }}" selected disabled > {{$rank->nom}} </option>
+                @else
+                    <option value="" selected disabled >-- RANK --</option>
+                @endisset
                 @foreach ($ranks as $rank)
                     <option value="{{ $rank->id }}"> {{ $rank->nom }} </option>
                 @endforeach

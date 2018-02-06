@@ -70,35 +70,39 @@ class ProfilController extends Controller
         $user->ville = $request->input('ville');
 
         $user->id_jeu = $request->input('id_jeu');
-        $user->rank = $request->input('rank');
+        
 
         DB::table('users')
             ->where('id', Auth::id())
             ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville]);
 
-        
-        $entrainement = DB::table('entrainement')
-                        ->whereExists(function ($query) {
-                            $query->select(DB::raw(1))
-                                  ->from('users')
-                                  ->whereRaw('entrainement.id_user = users.id');
-                        })
-                        ->where('id_user', Auth::id())
-                        ->first();
-
-        if ($entrainement) 
+            
+        if ($request->input('rank')) 
         {
-            DB::table('entrainement')
-            ->where('id_user', Auth::id())
-            ->update(['id_rank' => $user->rank]);
-        }
-        else 
-        {
-            DB::table('entrainement')->insert([
-                'id_jeu' => $user->id_jeu,
-                'id_user' => Auth::id(),
-                'id_rank' => $user->rank,
-            ]);
+            $user->rank = $request->input('rank');
+            $entrainement = DB::table('entrainement')
+                            ->whereExists(function ($query) {
+                                $query->select(DB::raw(1))
+                                      ->from('users')
+                                      ->whereRaw('entrainement.id_user = users.id');
+                            })
+                            ->where('id_user', Auth::id())
+                            ->first();
+    
+            if ($entrainement) 
+            {
+                DB::table('entrainement')
+                ->where('id_user', Auth::id())
+                ->update(['id_rank' => $user->rank]);
+            }
+            else 
+            {
+                DB::table('entrainement')->insert([
+                    'id_jeu' => $user->id_jeu,
+                    'id_user' => Auth::id(),
+                    'id_rank' => $user->rank,
+                ]);
+            }
         }
 
         // flash('Votre compte a bien été mis à jour !')->success();
