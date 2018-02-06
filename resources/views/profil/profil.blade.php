@@ -42,7 +42,7 @@
                     @endempty
                 </li>
             </ul>
-            <a href="/profil/{{Auth::id()}}/edit" class="btn btn-success">Modifier mes informations</a>
+            <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-success">Modifier mes informations</a>
             @isset($equipe)
             @else
                 <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>

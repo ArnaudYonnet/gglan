@@ -12,18 +12,17 @@ use Softon\SweetAlert\Facades\SWAL;
 class ProfilController extends Controller
 {
     //Recupère l'id de la session de l'utilisateur
-    public function index($id)
+    public function index($id_public)
     {
+        $info = new InfoController($id_public);
         if (Auth::check()) 
         {
-            $infoJoueur = new InfoController($id);
-    
             $profil = DB::table('users')
-                      ->where('id', $id)
+                      ->where('id_public', $id_public)
                       ->first();
     
-            $rank = $infoJoueur->getRank($id);
-            $equipe = $infoJoueur->getEquipe($id);
+            $rank = $info->getRank();
+            $equipe = $info->getEquipe();
       
             if ($profil->id == Auth::id()) 
             {
@@ -35,20 +34,20 @@ class ProfilController extends Controller
             }
             
             // Si l'id n'est pas celui de la personne connectée
-            $pseudo = DB::table('users')->where('id', $id)->value('pseudo');
+            $pseudo = DB::table('users')->where('id', $info->getId())->value('pseudo');
             return redirect('joueurs/'. $pseudo);  
         }
 
         return redirect()->route('login');
     }
 
-    public function getEdit($id)
+    public function getEdit($id_public)
     {
-        $infoJoueur = new InfoController($id);
+        $info = new InfoController($id_public);
 
-        $profil = DB::table('users')->where('id', $id)->first();
-        $rank = $infoJoueur->getRank($id);
-        $equipe = $infoJoueur->getEquipe($id);
+        $profil = DB::table('users')->where('id_public', $id_public)->first();
+        $rank = $info->getRank();
+        $equipe = $info->getEquipe();
         $ranks = DB::table('rank')->get();
         $jeu = DB::table('jeu')->where('nom', "CS:GO")->first();
 
@@ -104,7 +103,7 @@ class ProfilController extends Controller
 
         // flash('Votre compte a bien été mis à jour !')->success();
         swal()->autoclose(2000)->success('Mise à jour','Votre compte a bien été mis à jour !',[]);
-        return redirect('profil/'. Auth::id());
+        return redirect('profil/'. Auth::user()->id_public);
 
     }
 }

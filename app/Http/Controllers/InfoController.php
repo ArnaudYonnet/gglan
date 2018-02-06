@@ -8,26 +8,24 @@ use Auth;
 
 class InfoController extends Controller
 {
-    private $id_user;
-    private $pseudo;
+    public $id_user;
+    public $pseudo;
 
-    public function __construct($id_user, $pseudo="")
+    public function __construct($id_public, $pseudo="")
     {
-        $this->id_user = $id_user;
+        $this->id_user = $id_public;
         $this->pseudo = $pseudo;
 
         if (!$this->id_user) 
         {
-            $this->getID($pseudo);
+            $this->id_user = $this->getId($this->pseudo, 'pseudo');
         }
-    }
+        else
+        {
+            $this->id_user = $this->getId($id_public, 'id');
+        }
 
-    private function getId($pseudo)
-    {
-        $user = DB::table('users')
-                             ->where('pseudo', $this->pseudo)
-                             ->first();
-        return $this->id_user = $user->id;
+        
     }
     
     public function getRank()
@@ -88,5 +86,24 @@ class InfoController extends Controller
         }
 
         return $equipe;
+    }
+    
+    private function getId($info, $mode)
+    {
+        if ($mode == 'id') 
+        {
+            $user = DB::table('users')
+                    ->where('id_public', $info)
+                    ->first();
+            return $user->id;
+        }
+
+        if ($mode == 'pseudo') 
+        {
+            $user = DB::table('users')
+                    ->where('pseudo', $info)
+                    ->first();
+            return $user->id;
+        }
     }
 }

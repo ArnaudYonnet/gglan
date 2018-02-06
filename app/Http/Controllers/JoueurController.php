@@ -24,11 +24,12 @@ class JoueurController extends Controller
 
     public function profil($pseudo)
     {
-        $infoJoueur = new InfoController("", $pseudo);
+        $info = new InfoController("", $pseudo);
         $joueur = DB::table('users')->where('pseudo', $pseudo)->first();
 
-        $rank = $infoJoueur->getRank();
-        $equipe = $infoJoueur->getEquipe();
+        $rank = $info->getRank();
+        $equipe = $info->getEquipe();
+
         if (Auth::check()) 
         {
     
@@ -39,7 +40,7 @@ class JoueurController extends Controller
             }
 
             // Si le pseudo est celui la personne connectée
-            $id = DB::table('users')->where('pseudo', $pseudo)->value('id');
+            $id = DB::table('users')->where('pseudo', $pseudo)->value('id_public');
             return redirect('profil/'. $id);  
         }
         else
