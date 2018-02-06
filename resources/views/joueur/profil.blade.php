@@ -35,6 +35,9 @@
                         <img src="{{ $rank->image }}" alt="Image introuvable...">
                     @endempty
                 </li>
+                <li>Description:
+                    <p><b> {{ $joueur->description }} </b></p>
+                </li>
             </ul>
         </div>
         <div class="col-lg-6">

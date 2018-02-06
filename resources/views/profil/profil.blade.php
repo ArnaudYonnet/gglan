@@ -41,6 +41,9 @@
                         <img src="{{ $rank->image }}" alt="Image introuvable...">
                     @endempty
                 </li>
+                <li>Description:
+                    <p><b> {{ $profil->description }} </b></p>
+                </li>
             </ul>
             <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-success">Modifier mes informations</a>
             @isset($equipe)
