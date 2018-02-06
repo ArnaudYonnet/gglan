@@ -34,10 +34,10 @@
 </nav>  --}}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTarget" aria-controls="navbarTarget" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarTarget">
         <a class="navbar-brand" href="/">Accueil</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
@@ -57,12 +57,12 @@
                 <a class="btn btn-danger" href="{{ route('login') }}">Connexion</a>
             </div>
         @else
-            <div class="btn-group right">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ Auth::user()->pseudo }}
                 </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/profil/{{ Auth::id() }}">Mon Profil</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
                     <a class="dropdown-item" href="/equipes/new">Mon Equipe</a>
                     <div class="dropdown-divider">
                     </div>

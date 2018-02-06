@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="POST" action="/profil/{{Auth::id()}}/edit">
+<form class="form-horizontal" method="POST" action="/profil/{{Auth::user()->id_public}}/edit">
     {{ csrf_field() }}
     
     <input type="hidden" name="id_jeu" value="{{ $jeu->id }}">
