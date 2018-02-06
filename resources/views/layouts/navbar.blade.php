@@ -62,7 +62,7 @@
                     {{ Auth::user()->pseudo }}
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/profil/{{ Auth::id() }}">Mon Profil</a>
+                    <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
                     <a class="dropdown-item" href="/equipes/new">Mon Equipe</a>
                     <div class="dropdown-divider">
                     </div>
