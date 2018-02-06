@@ -18,10 +18,10 @@
         <div class="form-group{{ $errors->has('id_user') ? ' has-error' : '' }}">
             <label for="id_user" class="col-md-4 control-label">ID du joueur</label>
             <div class="col-md-6">
-                <input id="id_user" type="text" class="form-control" name="id_user" value="{{ old('id_user') }}" autofocus>
-                @if ($errors->has('id_user'))
+                <input id="id_public" type="text" class="form-control" name="id_public" value="{{ old('id_public') }}" autofocus>
+                @if ($errors->has('id_public'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('id_user') }}</strong>
+                        <strong>{{ $errors->first('id_public') }}</strong>
                     </span>
                 @endif
             </div>

@@ -117,8 +117,9 @@ class EquipeController extends Controller
 
         if ($nb_joueurs < 5) 
         {
+            $info = new InfoController($request->id_public);
             $joueur = new Appartenance;
-            $joueur->id_user = $request->id_user;
+            $joueur->id_user = $info->getId();
             $joueur->id_equipe = $request->id_equipe;
 
             $joueur->save();

@@ -18,14 +18,17 @@ class InfoController extends Controller
 
         if ($this->id_user) 
         {
-            $this->id_user = $this->getId($id_public, 'id');
+            $this->id_user = $this->getUserId($id_public, 'id');
         }
         else
         {
-            $this->id_user = $this->getId($this->pseudo, 'pseudo');
+            $this->id_user = $this->getUserId($this->pseudo, 'pseudo');
         }
+    }
 
-        
+    public function getId()
+    {
+        return $this->id_user;
     }
     
     public function getRank()
@@ -88,7 +91,7 @@ class InfoController extends Controller
         return $equipe;
     }
     
-    private function getId($info, $mode)
+    private function getUserId($info, $mode)
     {
         if ($mode == 'id') 
         {
