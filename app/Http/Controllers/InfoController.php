@@ -16,13 +16,13 @@ class InfoController extends Controller
         $this->id_user = $id_public;
         $this->pseudo = $pseudo;
 
-        if (!$this->id_user) 
+        if ($this->id_user) 
         {
-            $this->id_user = $this->getId($this->pseudo, 'pseudo');
+            $this->id_user = $this->getId($id_public, 'id');
         }
         else
         {
-            $this->id_user = $this->getId($id_public, 'id');
+            $this->id_user = $this->getId($this->pseudo, 'pseudo');
         }
 
         
