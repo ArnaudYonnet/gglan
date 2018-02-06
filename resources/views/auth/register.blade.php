@@ -8,7 +8,8 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
+                        
+                        <input type="hidden" name="id_public" value="{{ str_random(5) }}">
                         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                             <label for="nom" class="col-md-4 control-label">Nom</label>
 
