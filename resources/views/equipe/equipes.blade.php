@@ -10,7 +10,7 @@
 {{--  @include('flash::message')  --}}
 @include('sweetalert::view')
     <br />
-    <h2>Equipes inscrites: <b>{{count($equipes)}}</b></h2>
+    <h2>Place equipe restantes <b>{{16-count($equipes)}}</b></h2>
     <div class="card-columns">
         @foreach ($equipes as $equipe)
             <div class="card" style="width: 20rem;">
