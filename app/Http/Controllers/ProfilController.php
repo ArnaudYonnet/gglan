@@ -68,15 +68,15 @@ class ProfilController extends Controller
 
         $user->pseudo = $request->input('pseudo');
         $user->ville = $request->input('ville');
-
-        $user->id_jeu = $request->input('id_jeu');
+        $user->description = $request->input('description');
         
-
         DB::table('users')
-            ->where('id', Auth::id())
-            ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville]);
-
-            
+        ->where('id', Auth::id())
+        ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville, 'description' => $user->description]);
+        
+        
+        
+        $user->id_jeu = $request->input('id_jeu');
         if ($request->input('rank')) 
         {
             $user->rank = $request->input('rank');

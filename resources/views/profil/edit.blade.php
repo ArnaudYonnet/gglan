@@ -18,10 +18,22 @@
     <div class="form-group{{ $errors->has('ville') ? ' has-error' : '' }}">
         <label for="ville" class="col-md-4 control-label">Ville</label>
         <div class="col-md-6">
-            <input id="ville" type="text" class="form-control" name="ville" value="{{ $profil->ville }}" autofocus>
+            <input id="ville" type="text" class="form-control" name="ville" value="{{ $profil->ville }}">
             @if ($errors->has('ville'))
                 <span class="help-block">
                     <strong>{{ $errors->first('ville') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+        <label for="description" class="col-md-4 control-label">Description</label>
+        <div class="col-md-6">
+            <textarea name="description" id="description" class="form-control" row="10"> {{ $profil->description }} </textarea>
+            @if ($errors->has('description'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('description') }}</strong>
                 </span>
             @endif
         </div>

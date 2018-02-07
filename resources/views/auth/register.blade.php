@@ -38,6 +38,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label for="description" class="col-md-4 control-label">Description</label>
+                            <div class="col-md-6">
+                                <textarea name="description" id="description" class="form-control" row="10">{{ old('description') }}</textarea>
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('date_naissance') ? ' has-error' : '' }}">
                             <label for="date_naissance" class="col-md-4 control-label">Date de naissance</label>
 
