@@ -82,7 +82,16 @@ class EquipeController extends Controller
         {
             $info = new InfoController($joueur->id_public);
             array_push($ranks, $info->getRank());
-        } 
+        }
+        
+        if ($info->inNextTournois($id)) 
+        {
+            return view('equipe.profil')
+            ->with('equipe', $equipe)
+            ->with('joueurs', $joueurs)
+            ->with('ranks', $ranks)
+            ->with('tournois', 1);
+        }
 
         return view('equipe.profil')
             ->with('equipe', $equipe)

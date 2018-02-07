@@ -77,7 +77,11 @@
                     @include('equipe.add')
                 @endif
                 @if (count($joueurs) == 5)
+                @isset($tournois)
+                    Votre équipe est inscrite pour la prochaine GG-LAN !
+                @else
                     <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success">S'inscrire pour la prochaine LAN</a>
+                @endisset
                 @endif
             @endif
         @endif
