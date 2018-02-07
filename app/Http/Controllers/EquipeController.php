@@ -61,9 +61,11 @@ class EquipeController extends Controller
             'id_user' => Auth::id(),
         ]);
 
+
         // flash('Votre équipe a bien été créer !')->success();
-        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été créer !',[]);
-        return redirect('/equipes');
+        swal()->autoclose(2000)
+              ->success('Mise à jour','Votre équipe a bien été créer !',[]);
+        return redirect('equipes/'. $id_equipe . '/profil');
     }
 
     public function profilEquipe($id)
@@ -120,7 +122,8 @@ class EquipeController extends Controller
             $info = new InfoController($request->id_public);
             if ($info->inEquipe()) 
             {
-                swal()->autoclose(3000)->error('Erreur','Le joueur est déjà dans une autre équipe !',[]);
+                swal()->autoclose(3000)
+                      ->error('Erreur','Le joueur est déjà dans une équipe !',[]);
                 return redirect('equipes/'.$request->id_equipe.'/profil');
             }
             $joueur = new Appartenance;
@@ -129,12 +132,28 @@ class EquipeController extends Controller
 
             $joueur->save();
             
-            swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+            swal()->autoclose(2000)
+                  ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
             return redirect('equipes/'.$request->id_equipe.'/profil');
         }
 
 
-        swal()->button('Ok, pardon')->error('Limite de 5 joueurs',"Alors comme ça tu veux nous l'a faire à l'envers ? ",[]);
+        swal()->button('Ok, pardon')
+              ->error('Limite de 5 joueurs',"Alors comme ça tu veux nous l'a faire à l'envers ? ",[]);
         return redirect('equipes/'.$request->id_equipe.'/profil');
+    }
+
+    public function deleteEquipier($id_equipe, $id_user)
+    {
+        $joueur = DB::table('users')->where('id', $id_user)->first();
+
+        DB::table('appartenance')
+        ->where('id_equipe', $id_equipe)
+        ->where('id_user', $id_user)
+        ->delete();
+
+        swal()->autoclose(2000)
+              ->success('Mise à jour', 'Le joueur '. $joueur->pseudo . " a bien été retiré de l'équipe");
+        return redirect('equipes/'. $id_equipe . '/profil');
     }
 }

@@ -34,9 +34,10 @@
         <table class="table table-hover table-dark">
             <thead>
                 <tr>
-                <th scope="col">Grade</th>
-                <th scope="col"></th>
-                <th scope="col">Pseudo</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col"></th>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,7 @@
                             <th scope="row">
                                 <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
+                            <th></th>
                         </tr>
                     @else
                         <tr>
@@ -66,6 +68,9 @@
                             <th scope="row">
                                 <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
+                            <th>
+                                <a href="/equipes/{{$equipe->id}}/delete/joueur/{{$joueur->id_user}}" class="btn btn-danger">Supprimer</a>
+                            </th>
                         </tr>
                     @endif
                 @endforeach
@@ -75,7 +80,7 @@
         </table>
         @if (Auth::check())
             @if (Auth::user()->id == $equipe->id_capitaine)
-                <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>
+                {{--  <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>  --}}
                 @if (count($joueurs) < 5)
                     <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
                 @endif

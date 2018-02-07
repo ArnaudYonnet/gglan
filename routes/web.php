@@ -11,26 +11,50 @@
 |
 */
 Auth::routes();
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index'); // Accueil
 
+/*
+|--------------------------------------------------------------------------
+| Profil
+|--------------------------------------------------------------------------
+*/
+Route::get('/profil/{id}', 'ProfilController@index'); // Profil personnel
 
-Route::get('/profil/{id}', 'ProfilController@index');
 Route::get('/profil/{id}/edit', 'ProfilController@getEdit'); // Formulaire de modification des informations du joueur
 Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification des informatiosn du joueur
 
-Route::get('/joueurs', 'JoueurController@index')->name('joueurs');
-Route::get('/joueurs/{pseudo}', 'JoueurController@profil');
+
+/*
+|--------------------------------------------------------------------------
+| Joueurs
+|--------------------------------------------------------------------------
+*/
+Route::get('/joueurs', 'JoueurController@index')->name('joueurs'); // Listing des joueurs inscrits
+Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
 
 
-Route::get('/equipes', 'EquipeController@index');
-Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe');
-Route::get('/equipes/{id}/add', 'EquipeController@getEquipier');
-Route::post('/equipes/{id}/add', 'EquipeController@postEquipier');
+/*
+|--------------------------------------------------------------------------
+| Equipes
+|--------------------------------------------------------------------------
+*/
+Route::get('/equipes', 'EquipeController@index'); // Listing des équipes inscrites
+Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe'); // Profil de l'équipe 
+
 Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
 Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
-Route::get('/equipes/{id}/edit', 'EquipeController@getEdit');
+
+Route::get('/equipes/{id}/add', 'EquipeController@getEquipier');
+Route::post('/equipes/{id}/add', 'EquipeController@postEquipier');
+
+Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
 
 
+/*
+|--------------------------------------------------------------------------
+| Tournois
+|--------------------------------------------------------------------------
+*/
 Route::get('/tournois', function () {
     return view('tournois');
 });
