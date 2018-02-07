@@ -91,6 +91,15 @@ class InfoController extends Controller
         return $equipe;
     }
     
+    public function inEquipe()
+    {
+        if ($this->getEquipe()) 
+        {
+            return true;
+        }
+        return false;
+    }
+
     private function getUserId($info, $mode)
     {
         if ($mode == 'id') 

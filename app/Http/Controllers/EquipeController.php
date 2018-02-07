@@ -118,6 +118,11 @@ class EquipeController extends Controller
         if ($nb_joueurs < 5) 
         {
             $info = new InfoController($request->id_public);
+            if ($info->inEquipe()) 
+            {
+                swal()->autoclose(3000)->error('Erreur','Le joueur est déjà dans une autre équipe !',[]);
+                return redirect('equipes/'.$request->id_equipe.'/profil');
+            }
             $joueur = new Appartenance;
             $joueur->id_user = $info->getId();
             $joueur->id_equipe = $request->id_equipe;
