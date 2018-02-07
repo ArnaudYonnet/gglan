@@ -90,28 +90,6 @@ class EquipeController extends Controller
             ->with('ranks', $ranks);
     }
 
-    public function getEquipier($id)
-    {
-        $ranks = array();
-        $equipe = DB::table('equipe')
-                  ->where('id', $id)->first();
-        $joueurs = DB::table('users')
-                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
-                   ->where('appartenance.id_equipe', $id)
-                   ->get();
-        foreach ($joueurs as $joueur) 
-        {
-            $info = new InfoController($joueur->id_public);
-            array_push($ranks, $info->getRank());
-        } 
-                   
-        return view('equipe.profil')
-            ->with('equipe', $equipe)
-            ->with('joueurs', $joueurs)
-            ->with('ranks', $ranks)
-            ->with('add', 1);
-    }
-
     public function postEquipier(AppartenanceRequest $request)
     {
         $joueurs = DB::table('appartenance')->where('id_equipe', $request->id_equipe)->get();
