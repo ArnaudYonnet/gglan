@@ -10,27 +10,7 @@
 {{--  @include('flash::message')  --}}
 @include('sweetalert::view')
     <div class="container col-lg-6">
-        <ul class="list-unstyled">
-            <li>Nom: 
-                <b> {{ $equipe->nom}} </b>
-            </li>
-            {{--  <li>Capitaine:
-                @foreach ($joueurs as $joueur)
-                    @if ($joueur->id == $equipe->id_capitaine)
-                        <b> {{ $joueur->pseudo }} </b>
-                    @endif
-                @endforeach
-            </li>  --}}
-            {{--  <li>Membres:
-                <ul>
-                    @foreach ($joueurs as $joueur)
-                        @if ($joueur->id != $equipe->id_capitaine)
-                            <li><b> {{ $joueur->pseudo }} </b></li>
-                        @endif
-                    @endforeach
-                </ul>
-            </li>  --}}
-        </ul>
+        <legend>{{ $equipe->nom}} </legend>
         <table class="table table-hover table-dark">
             <thead>
                 <tr>
@@ -80,9 +60,8 @@
         </table>
         @if (Auth::check())
             @if (Auth::user()->id == $equipe->id_capitaine)
-                {{--  <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>  --}}
                 @if (count($joueurs) < 5)
-                    <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
+                    @include('equipe.add')
                 @endif
             @endif
         @endif

@@ -44,7 +44,6 @@ Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe'); // Profil d
 Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
 Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
 
-Route::get('/equipes/{id}/add', 'EquipeController@getEquipier');
 Route::post('/equipes/{id}/add', 'EquipeController@postEquipier');
 
 Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
