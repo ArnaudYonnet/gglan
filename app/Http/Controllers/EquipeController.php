@@ -41,28 +41,6 @@ class EquipeController extends Controller
         return redirect()->route('register');
     }
 
-    public function profilEquipe($id)
-    {
-        $ranks = array();
-        $equipe = DB::table('equipe')
-                  ->where('id', $id)->first();
-
-        $joueurs = DB::table('users')
-                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
-                   ->where('appartenance.id_equipe', $id)
-                   ->get();
-        foreach ($joueurs as $joueur) 
-        {
-            $info = new InfoController($joueur->id_public);
-            array_push($ranks, $info->getRank());
-        } 
-
-        return view('equipe.profil')
-            ->with('equipe', $equipe)
-            ->with('joueurs', $joueurs)
-            ->with('ranks', $ranks);
-    }
-
     public function postEquipe(EquipeRequest $request)
     {
         $equipe = new Equipe;
@@ -86,6 +64,28 @@ class EquipeController extends Controller
         // flash('Votre équipe a bien été créer !')->success();
         swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été créer !',[]);
         return redirect('/equipes');
+    }
+
+    public function profilEquipe($id)
+    {
+        $ranks = array();
+        $equipe = DB::table('equipe')
+                  ->where('id', $id)->first();
+
+        $joueurs = DB::table('users')
+                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
+                   ->where('appartenance.id_equipe', $id)
+                   ->get();
+        foreach ($joueurs as $joueur) 
+        {
+            $info = new InfoController($joueur->id_public);
+            array_push($ranks, $info->getRank());
+        } 
+
+        return view('equipe.profil')
+            ->with('equipe', $equipe)
+            ->with('joueurs', $joueurs)
+            ->with('ranks', $ranks);
     }
 
     public function getEquipier($id)

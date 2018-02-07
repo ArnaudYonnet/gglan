@@ -41,15 +41,15 @@
             </thead>
             <tbody>
                 @foreach ($joueurs as $key=>$joueur)
-                    @if ($joueur->id == $equipe->id_capitaine)
+                    @if ($joueur->id_user == $equipe->id_capitaine)
                         <tr class="bg-danger">
                             @if ($ranks[$key] != null)
-                                    <th scope="row"> {{ $ranks[$key]->nom }} </th>
-                                    <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
-                                @else
-                                    <td></td>
-                                    <th scope="row">Non renseigné</th>
-                                @endif
+                                <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
+                            @else
+                                <th scope="row">Non renseigné</th>
+                                <td></td>
+                            @endif
                             <th scope="row">
                                 <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
@@ -57,13 +57,12 @@
                     @else
                         <tr>
                             @if ($ranks[$key] != null)
-                                    <th scope="row"> {{ $ranks[$key]->nom }} 
-                                    </th>
-                                    <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
-                                @else
+                                <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
+                            @else
                                 <th scope="row">Non renseigné</th>
-                                    <td></td>
-                                @endif
+                                <td></td>
+                            @endif
                             <th scope="row">
                                 <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
@@ -74,11 +73,12 @@
                
             </tbody>
         </table>
-
-        @if (Auth::user()->id == $equipe->id_capitaine)
-            <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>
-            @if (count($joueurs) < 5)
-                <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
+        @if (Auth::check())
+            @if (Auth::user()->id == $equipe->id_capitaine)
+                <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-success">Modifier mon équipe</a>
+                @if (count($joueurs) < 5)
+                    <a href="/equipes/{{ $equipe->id }}/add" class="btn btn-success">Ajouter des équipiers</a>
+                @endif
             @endif
         @endif
     </div>
