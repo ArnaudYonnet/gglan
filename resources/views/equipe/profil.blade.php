@@ -76,6 +76,9 @@
                 @if (count($joueurs) < 5)
                     @include('equipe.add')
                 @endif
+                @if (count($joueurs) == 5)
+                    <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success">S'inscrire pour la prochaine LAN</a>
+                @endif
             @endif
         @endif
     </div>

@@ -54,6 +54,5 @@ Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@del
 | Tournois
 |--------------------------------------------------------------------------
 */
-Route::get('/tournois', function () {
-    return view('tournois');
-});
+Route::get('/tournois', 'TournoisController@index'); // Les anciens tournois
+Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // Inscription équipe au prochain tournois
