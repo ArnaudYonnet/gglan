@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             JeuTableSeeder::class,
             RankTableSeeder::class,
-            TournoisTableSeeder::class,
             EquipeTableSeeder::class,
+            TournoisTableSeeder::class,
         ]);
     }
 }
