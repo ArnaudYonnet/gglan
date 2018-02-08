@@ -78,16 +78,31 @@ class EquipeController extends Controller
                    ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
                    ->where('appartenance.id_equipe', $id)
                    ->get();
+        
+        $tournois = DB::table('tournois')
+                    ->orderBy('id', 'desc')
+                    ->first();
+
         foreach ($joueurs as $joueur) 
         {
             $info = new InfoController($joueur->id_public);
             array_push($ranks, $info->getRank());
-        } 
+        }
+        
+        if ($info->inNextTournois($id)) 
+        {
+            return view('equipe.profil')
+            ->with('equipe', $equipe)
+            ->with('joueurs', $joueurs)
+            ->with('ranks', $ranks)
+            ->with('participe', 1);
+        }
 
         return view('equipe.profil')
             ->with('equipe', $equipe)
             ->with('joueurs', $joueurs)
-            ->with('ranks', $ranks);
+            ->with('ranks', $ranks)
+            ->with('tournois', $tournois);
     }
 
     public function postEquipier(AppartenanceRequest $request)

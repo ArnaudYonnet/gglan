@@ -100,6 +100,23 @@ class InfoController extends Controller
         return false;
     }
 
+    public function inNextTournois($id_equipe)
+    {
+        $tournois = DB::table('participation')
+                    ->whereExists(function ($query) {
+                        $query->select(DB::raw(1))
+                          ->from('equipe')
+                          ->whereRaw('equipe.id = participation.id_equipe');
+                    })
+                    ->where('id_equipe', $id_equipe)
+                    ->first();
+        if ($tournois) 
+        {
+            return true;
+        }
+        return false;
+    }
+
     private function getUserId($info, $mode)
     {
         if ($mode == 'id') 

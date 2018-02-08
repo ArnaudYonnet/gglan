@@ -18,10 +18,11 @@ class CreateTournoisTable extends Migration
             $table->string('nom_tournois');
             $table->date('date_deb_tournois');
             $table->date('date_fin_tournois');
-            $table->bigInteger('nb_tournois');
-            $table->integer('nb_max_tournois');
+            // $table->bigInteger('nb_tournois');
+            // $table->integer('nb_max_tournois');
             $table->string('desc_tournois');
-            $table->integer('id_salle');
+            $table->integer('id_salle')->nullable();
+            $table->string('status')->default('ouvert');
         });
         
         Schema::table('tournois', function (Blueprint $table) {

@@ -28,4 +28,12 @@ class AppartenanceRequest extends FormRequest
             'id_public' => 'required|string|exists:users,id_public',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'id_public.required' => "Vous devez entrer un ID valide",
+            'id_public.exists' => "Cet ID n'existe pas...",
+        ];
+    }
 }
