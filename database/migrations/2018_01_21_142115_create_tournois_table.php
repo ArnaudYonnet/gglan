@@ -22,6 +22,7 @@ class CreateTournoisTable extends Migration
             // $table->integer('nb_max_tournois');
             $table->string('desc_tournois');
             $table->integer('id_salle')->nullable();
+            $table->string('status')->default('ouvert');
         });
         
         Schema::table('tournois', function (Blueprint $table) {
