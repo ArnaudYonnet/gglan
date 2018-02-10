@@ -56,6 +56,18 @@ class AdminController extends Controller
                 }
             }
         }
-        return view('admin.tournois')->with('joueurs', $joueurs)->with('tournois', $tournois)->with('jeux', $jeux);
+        return view('admin.tournois.tournois')
+                ->with('joueurs', $joueurs)
+                ->with('tournois', $tournois)
+                ->with('jeux', $jeux);
+    }
+
+    public function getTournois()
+    {
+        $joueurs = DB::table('users')->where('admin', 0)->get();
+        $jeux = DB::table('jeu')->get();
+        return view('admin.tournois.create')
+                ->with('joueurs', $joueurs)
+                ->with('jeux', $jeux);
     }
 }
