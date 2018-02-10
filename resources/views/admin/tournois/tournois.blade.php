@@ -1,6 +1,7 @@
 @extends('layouts.admin.template')
 
 @section('content')
+@include('sweetalert::view')
     <div class="row">
         <div class="col-lg-10">
             <legend>Tournois</legend>

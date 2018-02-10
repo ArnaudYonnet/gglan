@@ -61,17 +61,17 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('jeu') ? ' has-error' : '' }}">
-                <label for="jeu" class="col-md-4 control-label">Jeu</label>
+            <div class="form-group{{ $errors->has('id_jeu') ? ' has-error' : '' }}">
+                <label for="id_jeu" class="col-md-4 control-label">Jeu</label>
                 <div class="col-md-6">
-                    <select id="jeu" class="form-control" name="jeu">
+                    <select id="id_jeu" class="form-control" name="id_jeu">
                         <option selected disabled >-- JEU --</option>
                         @foreach ($jeux as $jeu)
                             <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
                         @endforeach
-                    </select> @if ($errors->has('jeu'))
+                    </select> @if ($errors->has('id_jeu'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('jeu') }}</strong>
+                        <strong>{{ $errors->first('id_jeu') }}</strong>
                     </span> @endif
                 </div>
             </div>

@@ -20,6 +20,8 @@
         folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
 
+        <script type="text/javascript" src="{{ asset('js/sweetAlert.js') }}"></script>
+
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,12 +41,21 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box">
-                    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                    <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Joueur inscrit</span>
-                        <span class="info-box-number"> {{ count($joueurs) }} </span> 
+                        <div class="info-box-content">
+                            <span class="info-box-text">Joueur inscrit</span>
+                            <span class="info-box-number"> {{ count($joueurs) }} </span> 
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Equipe inscrite</span>
+                            <span class="info-box-number"> {{--  {{ count($equipes) }}  --}} </span>
+                        </div>
                     </div>
                 </div>
             </div>
