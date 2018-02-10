@@ -1,7 +1,7 @@
 <header class="main-header">
 
       <!-- Logo -->
-      <a href="/" class="logo">
+      <a href="/admin" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>GGLAN</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -20,7 +20,7 @@
           <ul class="nav navbar-nav">
             <!-- Control Sidebar Toggle Button -->
             <li>
-              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              <a href="/" ><i class="fa fa-arrow-left"></i>Retour au site</a>
             </li>
           </ul>
         </div>
