@@ -39,7 +39,7 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-list-ul"></i>Liste tournois</a></li>
+                <li><a href="/admin/tournois"><i class="fa fa-list-ul"></i>Liste tournois</a></li>
                 <li><a href="#"><i class="fa fa-plus-circle"></i>Créer un tournois</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i>Modifier tournois en cours</a></li>
             </ul>

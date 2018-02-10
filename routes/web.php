@@ -62,5 +62,5 @@ Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // I
 | Admin
 |--------------------------------------------------------------------------
 */
-
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/tournois', 'AdminController@tournois');

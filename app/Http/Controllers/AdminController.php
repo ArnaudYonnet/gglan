@@ -35,4 +35,27 @@ class AdminController extends Controller
         }
         return redirect('/');
     }
+
+    public function tournois()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $tournois = DB::table('tournois')
+                            ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
+                            ->get();
+                $jeux = array();
+                foreach ($tournois as $tournoi) 
+                {
+                    $jeu = DB::table('jeu')
+                            ->where('id', $tournoi->id_jeu)
+                            ->value('nom');
+                    array_push($jeux, $jeu);
+                }
+            }
+        }
+        return view('admin.tournois')->with('joueurs', $joueurs)->with('tournois', $tournois)->with('jeux', $jeux);
+    }
 }
