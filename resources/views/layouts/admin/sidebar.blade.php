@@ -33,7 +33,7 @@
 
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-edit"></i> <span>Tournois</span>
+                <i class="fa fa-trophy"></i> <span>Tournois</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -46,14 +46,14 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Jeux</span>
+            <i class="fa fa-gamepad"></i> <span>Jeux</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Ajouter un jeu</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Ajouter un rank</a></li>
+            <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un jeu</a></li>
+            <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un rank</a></li>
           </ul>
         </li>
 
