@@ -81,6 +81,7 @@ class AdminController extends Controller
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
+        $tournois->status = $request->input('status');
 
         $tournois->save();
 
@@ -98,6 +99,17 @@ class AdminController extends Controller
         return redirect('admin/tournois');
     }
 
+
+    public function deleteTournois($id_tournois)
+    {
+        DB::table('tournois')
+        ->where('id', $id_tournois)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le tournois a bien été supprimé !',[]);
+        return redirect('admin/tournois');
+    }
 
 
 }

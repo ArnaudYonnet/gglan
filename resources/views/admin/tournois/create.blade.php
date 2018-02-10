@@ -75,6 +75,19 @@
                     </span> @endif
                 </div>
             </div>
+
+            <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                <label for="status" class="col-md-4 control-label">Status</label>
+                <div class="col-md-6">
+                    <select id="status" class="form-control" name="status">
+                        <option value="ouvert" selected>Ouvert</option>
+                        <option value="ferme">Fermé</option>
+                    </select> @if ($errors->has('status'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('status') }}</strong>
+                    </span> @endif
+                </div>
+            </div>
             
 
             <div class="form-group">

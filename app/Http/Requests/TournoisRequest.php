@@ -29,6 +29,7 @@ class TournoisRequest extends FormRequest
             'date_fin' => 'required|date',
             'description' => 'required|string|',
             'id_jeu' => 'required',
+            'status' => 'required',
         ];
     }
 }

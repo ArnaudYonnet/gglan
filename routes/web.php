@@ -66,3 +66,5 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/admin/tournois', 'AdminController@tournois');
 Route::get('/admin/tournois/create', 'AdminController@getTournois');
 Route::post('/admin/tournois/create', 'AdminController@postTournois');
+
+Route::get('/admin/delete/tournois/{id}', 'AdminController@deleteTournois');
