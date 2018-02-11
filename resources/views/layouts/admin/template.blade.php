@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Theme style -->
@@ -91,8 +93,31 @@
 
         <script>
             $(function () {
-                $('#joueurs').DataTable();
-                $('#equipes').DataTable();
+                
+                $('#equipes').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+                $('#joueurs').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+                $('#tournois').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
             })
         </script>
     </body>
