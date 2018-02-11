@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Theme style -->
@@ -69,9 +71,14 @@
         @include('layouts.admin.footer')
 
         <!-- jQuery 3 -->
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <!-- Bootstrap 4 -->
-        <script src="{{ asset('js/bootstrap.min.js') }} "></script>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <!-- SlimScroll -->
+        <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <!-- FastClick -->
         <script src="/bower_components/fastclick/lib/fastclick.js"></script>
         <!-- AdminLTE App -->
@@ -81,13 +88,37 @@
         <!-- jvectormap  -->
         <script src="/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- SlimScroll -->
-        <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <!-- ChartJS -->
         <script src="/bower_components/Chart.js/Chart.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="/dist/js/pages/dashboard2.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="/dist/js/demo.js"></script>
+
+        <script>
+            $(function () {
+                
+                $('#equipes').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+                $('#joueurs').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+                $('#tournois').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+            })
+        </script>
     </body>
 </html>

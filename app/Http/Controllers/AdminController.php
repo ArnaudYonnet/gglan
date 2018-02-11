@@ -38,6 +38,12 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Tournois
+    |--------------------------------------------------------------------------
+    */
     public function tournois()
     {
         if (Auth::check()) 
@@ -48,30 +54,40 @@ class AdminController extends Controller
                 $tournois = DB::table('tournois')
                             ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
                             ->get();
-                $jeux = array();
+                $jeu_tournois = array();
                 foreach ($tournois as $tournoi) 
                 {
                     $jeu = DB::table('jeu')
                             ->where('id', $tournoi->id_jeu)
                             ->value('nom');
-                    array_push($jeux, $jeu);
+                    array_push($jeu_tournois, $jeu);
                 }
+                return view('admin.tournois.tournois')
+                        ->with('joueurs', $joueurs)
+                        ->with('tournois', $tournois)
+                        ->with('jeu_tournois', $jeu_tournois);
             }
         }
-        return view('admin.tournois.tournois')
-                ->with('joueurs', $joueurs)
-                ->with('tournois', $tournois)
-                ->with('jeux', $jeux);
+        return redirect('/');
     }
+
 
     public function getTournois()
     {
-        $joueurs = DB::table('users')->where('admin', 0)->get();
-        $jeux = DB::table('jeu')->get();
-        return view('admin.tournois.create')
-                ->with('joueurs', $joueurs)
-                ->with('jeux', $jeux);
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $jeux = DB::table('jeu')->get();
+                return view('admin.tournois.create')
+                        ->with('joueurs', $joueurs)
+                        ->with('jeux', $jeux);
+            }
+        }
+        return redirect('/');
     }
+
 
     public function postTournois(TournoisRequest $request)
     {
@@ -110,6 +126,96 @@ class AdminController extends Controller
               ->success('Mise à jour','Le tournois a bien été supprimé !',[]);
         return redirect('admin/tournois');
     }
+
+
+    public function getEditTournois($id_tournois)
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $tournois = DB::table('tournois')
+                            ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
+                            ->where('id', $id_tournois)
+                            ->first();
+                $jeu_tournois = DB::table('jeu')
+                                ->where('id', $tournois->id_jeu)
+                                ->first();
+                $jeux = DB::table('jeu')->get();
+
+                return view('admin.tournois.edit')
+                        ->with('joueurs', $joueurs)
+                        ->with('tournois', $tournois)
+                        ->with('jeu_tournois', $jeu_tournois)
+                        ->with('jeux', $jeux)
+                        ->with('edit', 1);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function postEditTournois(TournoisRequest $request)
+    {
+        $tournois = new Tournois;
+
+        $tournois->nom = $request->input('nom');
+        $tournois->date_deb = $request->input('date_deb');
+        $tournois->date_fin = $request->input('date_fin');
+        $tournois->description = $request->input('description');
+        $tournois->status = $request->input('status');
+
+        DB::table('tournois')
+        ->where('id', $request->input('id_tournois'))
+        ->update([
+            'nom' => $tournois->nom,
+            'date_deb' => $tournois->date_deb,
+            'date_fin' => $tournois->date_fin,
+            'description' => $tournois->description,
+            'status' => $tournois->status,
+            ]);
+
+        DB::table('selection')
+        ->where('id_tournois', $request->input('id_tournois'))
+        ->update(['id_jeu' => $request->input('id_jeu'),]);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le tournois a bien été modifié',[]);
+        return redirect('admin/tournois');
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Joueurs
+    |--------------------------------------------------------------------------
+    */
+    public function deleteJoueur($id_joueur)
+    {
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
+        return redirect('admin/joueurs');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Jeux
+    |--------------------------------------------------------------------------
+    */
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Equipes
+    |--------------------------------------------------------------------------
+    */
 
 
 }
