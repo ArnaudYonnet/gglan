@@ -56,12 +56,13 @@ class AdminController extends Controller
                             ->value('nom');
                     array_push($jeux, $jeu);
                 }
+                return view('admin.tournois.tournois')
+                        ->with('joueurs', $joueurs)
+                        ->with('tournois', $tournois)
+                        ->with('jeux', $jeux);
             }
         }
-        return view('admin.tournois.tournois')
-                ->with('joueurs', $joueurs)
-                ->with('tournois', $tournois)
-                ->with('jeux', $jeux);
+        return redirect('/');
     }
 
     public function getTournois()
