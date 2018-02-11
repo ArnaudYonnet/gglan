@@ -17,8 +17,10 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
-                $equipes = DB::table('equipe')->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                // $joueurs = DB::table('users')->where('admin', 0)->get();
+                // $equipes = DB::table('equipe')->get();
                 $equipiers = array();
                 foreach ($equipes as $equipe) 
                 {
@@ -50,7 +52,8 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $tournois = DB::table('tournois')
                             ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
                             ->get();
@@ -64,6 +67,7 @@ class AdminController extends Controller
                 }
                 return view('admin.tournois.tournois')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('tournois', $tournois)
                         ->with('jeu_tournois', $jeu_tournois);
             }
@@ -78,10 +82,12 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $jeux = DB::table('jeu')->get();
                 return view('admin.tournois.create')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('jeux', $jeux);
             }
         }
@@ -134,7 +140,8 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $tournois = DB::table('tournois')
                             ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
                             ->where('id', $id_tournois)
@@ -146,6 +153,7 @@ class AdminController extends Controller
 
                 return view('admin.tournois.edit')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('tournois', $tournois)
                         ->with('jeu_tournois', $jeu_tournois)
                         ->with('jeux', $jeux)
@@ -217,5 +225,22 @@ class AdminController extends Controller
     |--------------------------------------------------------------------------
     */
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Info
+    |--------------------------------------------------------------------------
+    */
+    private function infoInscrit()
+    {
+        $joueurs = DB::table('users')->where('admin', 0)->get();
+        $equipes = DB::table('equipe')->get();
+
+        return array(
+            "joueurs" => $joueurs, 
+            "equipes" => $equipes
+        );
+    }
 
 }
