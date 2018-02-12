@@ -199,16 +199,25 @@ class AdminController extends Controller
     | Joueurs
     |--------------------------------------------------------------------------
     */
-    public function deleteJoueur($id_joueur)
-    {
-        DB::table('users')
-        ->where('id', $id_joueur)
-        ->delete();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
-        return redirect('admin/joueurs');
+    public function joueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.joueurs')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
     }
+
+    
+    
 
     /*
     |--------------------------------------------------------------------------

@@ -62,13 +62,17 @@ Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // I
 | Admin
 |--------------------------------------------------------------------------
 */
+//Admin
 Route::get('/admin', 'AdminController@index'); //Page d'accueil du panel admin
 Route::get('/admin/tournois', 'AdminController@tournois'); // Liste des tournois 
 
+//Joueurs
+Route::get('/admin/joueurs', 'AdminController@joueurs'); // Liste des joueurs
+
+
+//Tournois
 Route::get('/admin/tournois/create', 'AdminController@getTournois'); //Formulaire de création d'un tournois
 Route::post('/admin/tournois/create', 'AdminController@postTournois'); // Création du tournois
-
 Route::get('/admin/delete/tournois/{id_tournois}', 'AdminController@deleteTournois'); // Suppression d'un tournois
-
 Route::get('/admin/edit/tournois/{id_tournois}', 'AdminController@getEditTournois'); // Formulaire de modification d'un tournois
 Route::post('/admin/edit/tournois/{id_tournois}', 'AdminController@postEditTournois'); // Modification d'un tournois
