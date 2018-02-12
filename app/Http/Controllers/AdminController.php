@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TournoisRequest;
 use App\Tournois;
+use App\Http\Requests\UserRequest;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -216,8 +218,43 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+    public function getJoueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.create')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function postJoueurs(UserRequest $request)
+    {
+        User::create([
+            'id_public' => $request->input('id_public'),
+            'pseudo' => $request->input('pseudo'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'description' => $request->input('description'),
+            'date_naissance' => $request->input('date_naissance'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été crée !',[]);
+        return redirect('admin/joueurs');
+    }
+
+
     
-    public function deleteJoueur($id_joueur)
+    public function deleteJoueurs($id_joueur)
     {
         DB::table('users')
         ->where('id', $id_joueur)

@@ -24,9 +24,14 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
+            'id_public' => 'string',
             'pseudo' => 'required|string|max:255',
-            'ville' => 'max:255',
-            'description' => "string|max:255",
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'description' => 'string|max:255',
+            'date_naissance' => 'required|date',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ];
     }
 }
