@@ -22,8 +22,8 @@
                             <td> {{ $joueur->id_public }} </td>
                             <td> {{ $joueur->pseudo }} </td>
                             <td> {{ $joueur->email }} </td>
-                            <td> <a href="/admin/edit/joueur/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
-                            <td> <a href="/admin/delete/joueur/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>
+                            <td> <a href="/admin/edit/joueurs/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
+                            <td> <a href="/admin/delete/joueurs/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

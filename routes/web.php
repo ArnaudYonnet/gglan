@@ -68,6 +68,7 @@ Route::get('/admin/tournois', 'AdminController@tournois'); // Liste des tournois
 
 //Joueurs
 Route::get('/admin/joueurs', 'AdminController@joueurs'); // Liste des joueurs
+Route::get('/admin/delete/joueurs/{id_joueur}', 'AdminController@deleteJoueurs'); // Liste des joueurs
 
 
 //Tournois

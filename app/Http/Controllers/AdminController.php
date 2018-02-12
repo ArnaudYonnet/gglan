@@ -217,7 +217,16 @@ class AdminController extends Controller
     }
 
     
-    
+    public function deleteJoueur($id_joueur)
+    {
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
+        return redirect('admin/joueurs');
+    }
 
     /*
     |--------------------------------------------------------------------------
