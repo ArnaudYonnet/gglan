@@ -80,11 +80,15 @@
                 @isset($participe)
                     Votre équipe est inscrite pour la prochaine GG-LAN !
                 @else
-                    @if ($tournois->status == "ouvert")
-                        <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success">S'inscrire pour la prochaine LAN</a>
+                    @isset($tournois)
+                        @if ($tournois->status == "ouvert")
+                            <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success">S'inscrire pour la prochaine LAN</a>
+                        @else
+                            <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled">S'inscrire pour la prochaine LAN</a>
+                        @endif
                     @else
-                        <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled">S'inscrire pour la prochaine LAN</a>
-                    @endif
+                        <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled">S'inscrire pour la prochaine LAN</a>                    
+                    @endisset
                 @endisset
                 @endif
             @endif
