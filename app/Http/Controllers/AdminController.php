@@ -20,24 +20,29 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
+                $info = new InfoController();
                 $joueurs = $this->infoInscrit()["joueurs"];
                 $equipes = $this->infoInscrit()["equipes"];
                 // $joueurs = DB::table('users')->where('admin', 0)->get();
                 // $equipes = DB::table('equipe')->get();
                 $equipiers = array();
+                $inscrits = array();
                 foreach ($equipes as $equipe) 
                 {
                     // Recuperer dans la table 'appartenance' tout les joueurs ayant l'id de l'équipe
                     // Compter le nombre de résultat
                     // Indexer dans un tableau de resultat: "id_equipe" => resultat
                     $equipier = DB::table('appartenance')->where('id_equipe', $equipe->id)->get();
+                    $inscrit = $info->inNextTournois($equipe->id);
                     
+                    array_push($inscrits, $inscrit);
                     array_push($equipiers, count($equipier));
                 }
                 return view('admin.index')
                         ->with('joueurs', $joueurs)
                         ->with('equipes', $equipes)
-                        ->with('equipiers', $equipiers);
+                        ->with('equipiers', $equipiers)
+                        ->with('inscrits', $inscrits);
             }
         }
         return redirect('/');
@@ -202,7 +207,6 @@ class AdminController extends Controller
     | Joueurs
     |--------------------------------------------------------------------------
     */
-
     public function joueurs()
     {
         if (Auth::check()) 

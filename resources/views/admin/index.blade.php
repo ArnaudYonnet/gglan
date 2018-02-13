@@ -42,6 +42,7 @@
                         <thead>
                             <th>Nom</th>
                             <th>Joueurs</th>
+                            <th>Inscrit</th>
                             {{--  <th>Modifier</th>  --}}
                             {{--  <th>Supprimer</th>  --}}
                         </thead>
@@ -50,6 +51,11 @@
                                 <tr>
                                     <td> {{ $equipe->nom }} </td>
                                     <td>{{ $equipiers[$key]}} / 5</td>
+                                    @if ($inscrits[$key])
+                                        <td><span class="label label-success">Inscrit</span></td>
+                                    @else
+                                        <td><span class="label label-danger">Non inscrit</span></td>
+                                    @endif
                                     {{--  <td> <a href="/admin/edit/equipe/{{$equipe->id}}"><i class="fa fa-edit"></i></a> </td>  --}}
                                     {{--  <td> <a href="/admin/delete/equipe/{{$equipe->id}}"><i class="fa fa-trash"></i></a> </td>  --}}
                                 </tr>
