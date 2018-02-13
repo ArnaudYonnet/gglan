@@ -13,8 +13,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list-ul"></i>Liste joueurs</a></li>
-                    <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un joueur</a></li>
+                    <li><a href="/admin/joueurs"><i class="fa fa-list-ul"></i>Liste joueurs</a></li>
+                    <li><a href="/admin/create/joueurs"><i class="fa fa-plus-circle"></i>Ajouter un joueur</a></li>
                 </ul>
           </li>
 

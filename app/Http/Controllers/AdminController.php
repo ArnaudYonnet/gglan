@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TournoisRequest;
 use App\Tournois;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
+use App\User;
 use Auth;
 
 
@@ -163,6 +166,7 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+
     public function postEditTournois(TournoisRequest $request)
     {
         $tournois = new Tournois;
@@ -193,13 +197,109 @@ class AdminController extends Controller
     }
 
 
-
     /*
     |--------------------------------------------------------------------------
     | Joueurs
     |--------------------------------------------------------------------------
     */
-    public function deleteJoueur($id_joueur)
+
+    public function joueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.joueurs')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function getJoueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.create')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function postJoueurs(UserRequest $request)
+    {
+        User::create([
+            'id_public' => $request->input('id_public'),
+            'pseudo' => $request->input('pseudo'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'description' => $request->input('description'),
+            'date_naissance' => $request->input('date_naissance'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été crée !',[]);
+        return redirect('admin/joueurs');
+    }
+
+
+    public function getEditJoueurs($id_joueur)
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                $joueur = DB::table('users')
+                          ->where('id', $id_joueur)
+                          ->first();
+
+                return view('admin.joueurs.edit')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('joueur', $joueur);
+            }
+        }
+    }
+
+
+    public function postEditJoueurs(EditUserRequest $request, $id_joueur)
+    {
+        $joueur = new User;
+
+        $joueur->nom = $request->input('nom');
+        $joueur->prenom = $request->input('prenom');
+        $joueur->description = $request->input('description');
+        $joueur->pseudo = $request->input('pseudo');
+
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->update([
+            'nom' => $joueur->nom,
+            'prenom' => $joueur->prenom,
+            'description' => $joueur->description,
+            'pseudo' => $joueur->pseudo,
+            ]);
+
+        return redirect('admin/joueurs');
+    }
+
+
+    public function deleteJoueurs($id_joueur)
     {
         DB::table('users')
         ->where('id', $id_joueur)
@@ -209,6 +309,7 @@ class AdminController extends Controller
               ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
         return redirect('admin/joueurs');
     }
+
 
     /*
     |--------------------------------------------------------------------------
