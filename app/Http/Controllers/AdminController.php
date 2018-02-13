@@ -165,6 +165,7 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+
     public function postEditTournois(TournoisRequest $request)
     {
         $tournois = new Tournois;
@@ -218,6 +219,7 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+
     public function getJoueurs()
     {
         if (Auth::check()) 
@@ -233,6 +235,7 @@ class AdminController extends Controller
         }
         return redirect('/');
     }
+
 
     public function postJoueurs(UserRequest $request)
     {
@@ -253,7 +256,48 @@ class AdminController extends Controller
     }
 
 
-    
+    public function getEditJoueurs($id_joueur)
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                $joueur = DB::table('users')
+                          ->where('id', $id_joueur)
+                          ->first();
+
+                return view('admin.joueurs.edit')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('joueur', $joueur);
+            }
+        }
+    }
+
+
+    public function postEditJoueurs(UserRequest $request, $id_joueur)
+    {
+        $joueur = DB::table('users')
+                  ->where('id', $id_joueur)
+                  ->first();
+            DB::table('users')
+            ->where('id', $id_joueur)
+            ->update([
+                'id_public' => $joueur['id_public'],
+                'pseudo' => $request->input('pseudo'),
+                'nom' => $request->input('nom'),
+                'prenom' => $request->input('prenom'),
+                'description' => $request->input('description'),
+                'date_naissance' => $joueur['date_naissance'],
+                'email' => $joueur['email'],
+                'password' => $joueur['password'], //Problème de request avec le password (Il faut confirmer)
+                ]);
+        return redirect('admin/joueurs');
+    }
+
+
     public function deleteJoueurs($id_joueur)
     {
         DB::table('users')
