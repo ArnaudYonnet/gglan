@@ -8,9 +8,9 @@
                     <h3 class="box-title">Joueurs</h3>
                 </div>
                 <div class="box-body">
-                    <table id="joueurs" class="table table-bordered table-hover">
+                    <table id="joueurs" class="table table-hover">
                         <thead>
-                            <th>Id</th>
+                            <th>Id publique</th>
                             <th>Pseudo</th>
                             <th>E-mail</th>
                             <th>Modifier</th>
@@ -38,7 +38,7 @@
                     <h3 class="box-title">Equipes</h3>
                 </div>
                 <div class="box-body">
-                    <table id="equipes" class="table table-bordered table-hover">
+                    <table id="equipes" class="table table-hover">
                         <thead>
                             <th>Nom</th>
                             <th>Joueurs</th>
