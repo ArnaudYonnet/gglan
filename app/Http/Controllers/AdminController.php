@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TournoisRequest;
 use App\Tournois;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
+use App\User;
 use Auth;
 
 
@@ -17,8 +20,10 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
-                $equipes = DB::table('equipe')->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                // $joueurs = DB::table('users')->where('admin', 0)->get();
+                // $equipes = DB::table('equipe')->get();
                 $equipiers = array();
                 foreach ($equipes as $equipe) 
                 {
@@ -50,7 +55,8 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $tournois = DB::table('tournois')
                             ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
                             ->get();
@@ -64,6 +70,7 @@ class AdminController extends Controller
                 }
                 return view('admin.tournois.tournois')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('tournois', $tournois)
                         ->with('jeu_tournois', $jeu_tournois);
             }
@@ -78,10 +85,12 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $jeux = DB::table('jeu')->get();
                 return view('admin.tournois.create')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('jeux', $jeux);
             }
         }
@@ -134,7 +143,8 @@ class AdminController extends Controller
         {
             if (Auth::user()->admin) 
             {
-                $joueurs = DB::table('users')->where('admin', 0)->get();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
                 $tournois = DB::table('tournois')
                             ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
                             ->where('id', $id_tournois)
@@ -146,6 +156,7 @@ class AdminController extends Controller
 
                 return view('admin.tournois.edit')
                         ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
                         ->with('tournois', $tournois)
                         ->with('jeu_tournois', $jeu_tournois)
                         ->with('jeux', $jeux)
@@ -154,6 +165,7 @@ class AdminController extends Controller
         }
         return redirect('/');
     }
+
 
     public function postEditTournois(TournoisRequest $request)
     {
@@ -185,13 +197,109 @@ class AdminController extends Controller
     }
 
 
-
     /*
     |--------------------------------------------------------------------------
     | Joueurs
     |--------------------------------------------------------------------------
     */
-    public function deleteJoueur($id_joueur)
+
+    public function joueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.joueurs')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function getJoueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.create')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function postJoueurs(UserRequest $request)
+    {
+        User::create([
+            'id_public' => $request->input('id_public'),
+            'pseudo' => $request->input('pseudo'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'description' => $request->input('description'),
+            'date_naissance' => $request->input('date_naissance'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été crée !',[]);
+        return redirect('admin/joueurs');
+    }
+
+
+    public function getEditJoueurs($id_joueur)
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                $joueur = DB::table('users')
+                          ->where('id', $id_joueur)
+                          ->first();
+
+                return view('admin.joueurs.edit')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('joueur', $joueur);
+            }
+        }
+    }
+
+
+    public function postEditJoueurs(EditUserRequest $request, $id_joueur)
+    {
+        $joueur = new User;
+
+        $joueur->nom = $request->input('nom');
+        $joueur->prenom = $request->input('prenom');
+        $joueur->description = $request->input('description');
+        $joueur->pseudo = $request->input('pseudo');
+
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->update([
+            'nom' => $joueur->nom,
+            'prenom' => $joueur->prenom,
+            'description' => $joueur->description,
+            'pseudo' => $joueur->pseudo,
+            ]);
+
+        return redirect('admin/joueurs');
+    }
+
+
+    public function deleteJoueurs($id_joueur)
     {
         DB::table('users')
         ->where('id', $id_joueur)
@@ -201,6 +309,7 @@ class AdminController extends Controller
               ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
         return redirect('admin/joueurs');
     }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -217,5 +326,22 @@ class AdminController extends Controller
     |--------------------------------------------------------------------------
     */
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Info
+    |--------------------------------------------------------------------------
+    */
+    private function infoInscrit()
+    {
+        $joueurs = DB::table('users')->where('admin', 0)->get();
+        $equipes = DB::table('equipe')->get();
+
+        return array(
+            "joueurs" => $joueurs, 
+            "equipes" => $equipes
+        );
+    }
 
 }

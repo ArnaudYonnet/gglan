@@ -3,9 +3,9 @@
       <!-- Logo -->
       <a href="/admin" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>GGLAN</b></span>
+        <span class="logo-mini"><b>GG-LAN</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>GGLAN</b></span>
+        <span class="logo-lg"><b>GG-LAN</b></span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->

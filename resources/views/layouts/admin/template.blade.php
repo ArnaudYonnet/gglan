@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>GGLAN | Dashboard</title>
+        <title>GG-LAN | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
@@ -46,7 +46,7 @@
                     <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Joueur inscrit</span>
+                            <span class="info-box-text">Joueurs inscrits</span>
                             <span class="info-box-number"> {{ count($joueurs) }} </span> 
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                     <div class="info-box">
                         <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Equipe inscrite</span>
-                            <span class="info-box-number"> {{--  {{ count($equipes) }}  --}} </span>
+                            <span class="info-box-text">Equipes inscrites</span>
+                            <span class="info-box-number"> {{ count($equipes) }} </span>
                         </div>
                     </div>
                 </div>

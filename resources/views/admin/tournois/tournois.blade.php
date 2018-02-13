@@ -9,7 +9,7 @@
                     <h3 class="box-title">Tournois</h3>
                 </div>
                 <div class="box-body">
-                    <table id="tournois" class="table table-bordered table-hover">
+                    <table id="tournois" class="table table-hover">
                         <thead>
                             {{--  <th>#</th>  --}}
                             <th>Etat</th>
