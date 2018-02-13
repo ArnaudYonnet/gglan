@@ -6,8 +6,6 @@
         <form class="form-horizontal" method="POST" action="/admin/edit/joueurs/{{ $joueur->id }}">
             {{ csrf_field() }}
             
-            <input type="hidden" name="id_joueur" value="{{ $joueur->id }}">
-
             <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                 <label for="nom" class="col-md-4 control-label">Nom</label>
                 <div class="col-md-6">
@@ -23,7 +21,7 @@
             <div class="form-group{{ $errors->has('prenom') ? ' has-error' : '' }}">
                 <label for="prenom" class="col-md-4 control-label">Prenom</label>
                 <div class="col-md-6">
-                    <input id="prenom" type="text" class="form-control" name="prenom" value="{{ $joueur->prenom}}" autofocus>
+                    <input id="prenom" type="text" class="form-control" name="prenom" value="{{ $joueur->prenom}}" >
                     @if ($errors->has('prenom'))
                         <span class="help-block">
                             <strong>{{ $errors->first('prenom') }}</strong>
@@ -47,7 +45,7 @@
             <div class="form-group{{ $errors->has('pseudo') ? ' has-error' : '' }}">
                 <label for="pseudo" class="col-md-4 control-label">Pseudo</label>
                 <div class="col-md-6">
-                    <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ $joueur->pseudo}}" autofocus>
+                    <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ $joueur->pseudo}}" >
                     @if ($errors->has('pseudo'))
                         <span class="help-block">
                             <strong>{{ $errors->first('pseudo') }}</strong>
@@ -55,9 +53,6 @@
                     @endif
                 </div>
             </div>
-
-
-
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">

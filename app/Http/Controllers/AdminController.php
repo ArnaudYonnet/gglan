@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TournoisRequest;
 use App\Tournois;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Auth;
 
 
@@ -196,7 +197,6 @@ class AdminController extends Controller
     }
 
 
-
     /*
     |--------------------------------------------------------------------------
     | Joueurs
@@ -277,23 +277,24 @@ class AdminController extends Controller
     }
 
 
-    public function postEditJoueurs(UserRequest $request, $id_joueur)
+    public function postEditJoueurs(EditUserRequest $request, $id_joueur)
     {
-        $joueur = DB::table('users')
-                  ->where('id', $id_joueur)
-                  ->first();
-            DB::table('users')
-            ->where('id', $id_joueur)
-            ->update([
-                'id_public' => $joueur['id_public'],
-                'pseudo' => $request->input('pseudo'),
-                'nom' => $request->input('nom'),
-                'prenom' => $request->input('prenom'),
-                'description' => $request->input('description'),
-                'date_naissance' => $joueur['date_naissance'],
-                'email' => $joueur['email'],
-                'password' => $joueur['password'], //Problème de request avec le password (Il faut confirmer)
-                ]);
+        $joueur = new User;
+
+        $joueur->nom = $request->input('nom');
+        $joueur->prenom = $request->input('prenom');
+        $joueur->description = $request->input('description');
+        $joueur->pseudo = $request->input('pseudo');
+
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->update([
+            'nom' => $joueur->nom,
+            'prenom' => $joueur->prenom,
+            'description' => $joueur->description,
+            'pseudo' => $joueur->pseudo,
+            ]);
+
         return redirect('admin/joueurs');
     }
 
@@ -308,6 +309,7 @@ class AdminController extends Controller
               ->success('Mise à jour','Le joueur a bien été supprimé !',[]);
         return redirect('admin/joueurs');
     }
+
 
     /*
     |--------------------------------------------------------------------------

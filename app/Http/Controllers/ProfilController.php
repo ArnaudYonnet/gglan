@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\User;
 use Auth;
 use Softon\SweetAlert\Facades\SWAL; 
@@ -62,7 +63,7 @@ class ProfilController extends Controller
         // Recup id_jeu dans rank et l'insert dans entrainement
     }
     
-    public function postEdit(UserRequest $request)
+    public function postEdit(EditUserRequest $request)
     {
         $user = new User;
 
