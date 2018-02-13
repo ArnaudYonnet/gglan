@@ -17,5 +17,10 @@ class TournoisTableSeeder extends Seeder
             'date_fin' => "2018-04-06",
             'description' => "La 5ième édition de la GG-LAN, ça va déchiré du poulet au curry",
         ]);
+
+        DB::table('selection')->insert([
+            'id_jeu' => 1,
+            'id_tournois' => 1,
+        ]);
     }
 }
