@@ -11,18 +11,20 @@ class InfoController extends Controller
     public $id_user;
     public $pseudo;
 
-    public function __construct($id_public, $pseudo="")
+    public function __construct($id_public="", $pseudo="")
     {
         $this->id_user = $id_public;
         $this->pseudo = $pseudo;
-
-        if ($this->id_user) 
+        if ($id_public!="" || $pseudo!="") 
         {
-            $this->id_user = $this->getUserId($id_public, 'id');
-        }
-        else
-        {
-            $this->id_user = $this->getUserId($this->pseudo, 'pseudo');
+            if ($this->id_user) 
+            {
+                $this->id_user = $this->getUserId($id_public, 'id');
+            }
+            else
+            {
+                $this->id_user = $this->getUserId($this->pseudo, 'pseudo');
+            }
         }
     }
 
