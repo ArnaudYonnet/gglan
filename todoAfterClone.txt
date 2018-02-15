@@ -1,5 +1,7 @@
-1- Renommer .env.exemple -> .env
-2- Faire: composer install ou php composer.phar install (Sur linux)
-plop
-3- Faire: php artisan key:generate
-4- Faire: php artisan migrate
+1. Activer les extensions requises pour laravel (Doc sur site laravel, version 5.5)
+2. Se mettre à la racine du dossier et faire composer install
+3. mv .env.example .env
+4. php artisan key:generate
+4. Modifier les 3 lignes pour la bdd avec les infos de mysql (Il faut que le moteur de la bdd soit InnoDB et pas MyIsam)
+5. php artisan migrate:install
+6. php artisan migrate --seed 
