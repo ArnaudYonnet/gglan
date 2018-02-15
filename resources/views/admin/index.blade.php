@@ -20,7 +20,7 @@
                             @foreach ($joueurs as $joueur)
                                 <tr>
                                     <td> {{ $joueur->id_public }} </td>
-                                    <td> {{ $joueur->pseudo }} </td>
+                                    <td><a href="/joueurs/{{ $joueur->pseudo }}" target="_blank">{{ $joueur->pseudo }}</a></td>
                                     <td> {{ $joueur->email }} </td>
                                     {{--  <td> <a href="/admin/edit/joueur/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
                                     <td> <a href="/admin/delete/joueur/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>  --}}
