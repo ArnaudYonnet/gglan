@@ -49,7 +49,7 @@
                         <tbody>
                             @foreach ($equipes as $key => $equipe)
                                 <tr>
-                                    <td> {{ $equipe->nom }} </td>
+                                    <td><a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a></td>
                                     <td>{{ $equipiers[$key]}} / 5</td>
                                     @if ($inscrits[$key])
                                         <td><span class="label label-success">Inscrit</span></td>
