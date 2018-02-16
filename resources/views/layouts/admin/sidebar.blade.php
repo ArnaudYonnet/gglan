@@ -26,7 +26,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list-ul"></i>Liste equipes</a></li>
+                    <li><a href="/admin/equipes"><i class="fa fa-list-ul"></i>Liste equipes</a></li>
                     <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter une equipe</a></li>
                 </ul>
             </li>
