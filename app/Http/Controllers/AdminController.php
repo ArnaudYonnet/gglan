@@ -314,22 +314,140 @@ class AdminController extends Controller
         return redirect('admin/joueurs');
     }
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Equipes
+    |--------------------------------------------------------------------------
+    */
+        public function equipes()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $info = new InfoController();
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                $equipiers = array();
+                $inscrits = array();
+                foreach ($equipes as $equipe) 
+                {
+                    $equipier = DB::table('appartenance')->where('id_equipe', $equipe->id)->get();
+                    $inscrit = $info->inNextTournois($equipe->id);
+                    
+                    array_push($inscrits, $inscrit);
+                    array_push($equipiers, count($equipier));
+                }
+                return view('admin.equipes.equipes')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('equipiers', $equipiers)
+                        ->with('inscrits', $inscrits);
+            }
+        }
+        return redirect('/');
+    }
+
+/*
+    public function getJoueurs()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                return view('admin.joueurs.create')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+
+    public function postJoueurs(UserRequest $request)
+    {
+        User::create([
+            'id_public' => $request->input('id_public'),
+            'pseudo' => $request->input('pseudo'),
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'description' => $request->input('description'),
+            'date_naissance' => $request->input('date_naissance'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le joueur a bien été crée !',[]);
+        return redirect('admin/joueurs');
+    }
+
+
+    public function getEditJoueurs($id_joueur)
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+                $joueur = DB::table('users')
+                          ->where('id', $id_joueur)
+                          ->first();
+
+                return view('admin.joueurs.edit')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('joueur', $joueur);
+            }
+        }
+    }
+
+
+    public function postEditJoueurs(EditUserRequest $request, $id_joueur)
+    {
+        $joueur = new User;
+
+        $joueur->nom = $request->input('nom');
+        $joueur->prenom = $request->input('prenom');
+        $joueur->description = $request->input('description');
+        $joueur->pseudo = $request->input('pseudo');
+
+        DB::table('users')
+        ->where('id', $id_joueur)
+        ->update([
+            'nom' => $joueur->nom,
+            'prenom' => $joueur->prenom,
+            'description' => $joueur->description,
+            'pseudo' => $joueur->pseudo,
+            ]);
+
+        return redirect('admin/joueurs');
+    }
+
+*/
+    public function deleteEquipe($id_equipe)
+    {
+        DB::table('equipe')
+        ->where('id', $id_equipe)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'équipe a bien été supprimé !",[]);
+        return redirect('admin/equipes');
+    }
+
+
+
 
     /*
     |--------------------------------------------------------------------------
     | Jeux
     |--------------------------------------------------------------------------
     */
-
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Equipes
-    |--------------------------------------------------------------------------
-    */
-
 
 
     /*
