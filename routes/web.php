@@ -68,11 +68,21 @@ Route::get('/admin/tournois', 'AdminController@tournois'); // Liste des tournois
 
 //Joueurs
 Route::get('/admin/joueurs', 'AdminController@joueurs'); // Liste des joueurs
-Route::get('/admin/delete/joueurs/{id_joueur}', 'AdminController@deleteJoueurs'); // Liste des joueurs
+Route::get('/admin/delete/joueurs/{id_joueur}', 'AdminController@deleteJoueurs'); // Suppression dun joueur
 Route::get('/admin/create/joueurs', 'AdminController@getJoueurs'); // Formulaire de création d'un joueur
 Route::post('/admin/create/joueurs', 'AdminController@postJoueurs'); // Création d'un joueur
 Route::get('/admin/edit/joueurs/{id_joueur}', 'AdminController@getEditJoueurs'); // Formulaire de modification d'un joueur
 Route::post('/admin/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'); // Mdification d'un joueur
+
+
+//Equipes
+Route::get('/admin/equipes', 'AdminController@equipes'); // Liste des joueurs
+Route::get('/admin/delete/equipes/{id_joueur}', 'AdminController@deleteEquipe'); // Suppression d'une equipe
+// Route::get('/admin/create/joueurs', 'AdminController@getJoueurs'); // Formulaire de création d'une equipe
+// Route::post('/admin/create/joueurs', 'AdminController@postJoueurs'); // Création d'une equipe
+// Route::get('/admin/edit/joueurs/{id_joueur}', 'AdminController@getEditJoueurs'); // Formulaire de modification d'une equipe
+// Route::post('/admin/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'); // Mdification d'une equipe
+
 
 //Tournois
 Route::get('/admin/tournois/create', 'AdminController@getTournois'); //Formulaire de création d'un tournois
