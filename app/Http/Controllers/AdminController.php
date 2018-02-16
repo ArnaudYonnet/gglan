@@ -429,6 +429,16 @@ class AdminController extends Controller
     }
 
 */
+    public function deleteEquipe($id_equipe)
+    {
+        DB::table('equipe')
+        ->where('id', $id_equipe)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'équipe a bien été supprimé !",[]);
+        return redirect('admin/equipes');
+    }
 
 
 
