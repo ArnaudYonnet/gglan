@@ -11,3 +11,9 @@
     right: 0;
     left: auto;
 }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    
+}

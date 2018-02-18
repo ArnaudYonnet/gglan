@@ -32,7 +32,9 @@
         </div>
     </div>
 
-    <footer>
+    
+    <footer class="footer">
+        Pour les visiteurs, pièce d'identité obligatoire 
         <script>
             $('div.alert').delay(3000).slideUp(350);
         </script>
