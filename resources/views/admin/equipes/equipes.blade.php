@@ -21,7 +21,7 @@
                         @foreach ($equipes as $key => $equipe)
                         <tr>
                             <td> {{$key+1}} </td>
-                            <td><a href="/equipes/{{ $equipe->id }}/profil" target="_blank">{{ $equipe->nom }}</a></td>
+                            <td><a href="/equipes/{{ $equipe->id }}/profil" target="_blank">{{ $equipe->nom_equipe }}</a></td>
                             <td>{{ $equipiers[$key]}} / 5</td>
                             @if ($inscrits[$key])
                             <td><span class="label label-success">Inscrit</span></td>

@@ -45,14 +45,14 @@ class EquipeController extends Controller
     {
         $equipe = new Equipe;
 
-        $equipe->nom = $request->input('nom');
+        $equipe->nom_equipe = $request->input('nom');
         $equipe->id_capitaine = Auth::id();
         $equipe->id_jeu = $request->input('jeu');
 
         $equipe->save();
 
         $id_equipe = DB::table('equipe')
-                    ->where('nom', $request->input('nom'))
+                    ->where('nom_equipe', $request->input('nom'))
                     ->where('id_capitaine', Auth::id())
                     ->value('id');
 

@@ -25,7 +25,7 @@
                     @foreach ($equipes as $equipe)
                         @if ($equipe->id_user == $joueur->id)
                         <h6 class="card-subtitle mb-2 text-muted">
-                            Equipe:  <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
+                            Equipe:  <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom_equipe }}</a>
                         </h6> 
                         @endif
                     @endforeach

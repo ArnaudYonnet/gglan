@@ -12,7 +12,7 @@ class EquipeTableSeeder extends Seeder
     public function run()
     {
         DB::table('equipe')->insert([
-            'nom' => 'Zigoto',
+            'nom_equipe' => 'Zigoto',
             'id_capitaine' => 1,
             'id_jeu' => 1,
         ]);
