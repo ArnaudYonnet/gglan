@@ -90,6 +90,8 @@
         <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
         <!-- ChartJS -->
         <script src="/bower_components/Chart.js/Chart.js"></script>
+        <!-- CK Editor -->
+        <script src="../../bower_components/ckeditor/ckeditor.js"></script>
 
         <script>
             $(function () {
@@ -118,7 +120,9 @@
                     'info'        : false,
                     'autoWidth'   : true
                     })
-            })
+
+                    CKEDITOR.replace('contenu')
+            });
         </script>
     </body>
 </html>

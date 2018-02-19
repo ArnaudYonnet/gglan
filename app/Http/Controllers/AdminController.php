@@ -8,8 +8,11 @@ use App\Http\Requests\TournoisRequest;
 use App\Tournois;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\ArticlesRequest;
+use App\Articles;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
@@ -337,7 +340,7 @@ class AdminController extends Controller
     | Equipes
     |--------------------------------------------------------------------------
     */
-        public function equipes()
+    public function equipes()
     {
         if (Auth::check()) 
         {
@@ -376,6 +379,62 @@ class AdminController extends Controller
         swal()->autoclose('2000')
               ->success('Mise à jour',"L'équipe a bien été supprimé !",[]);
         return redirect('admin/equipes');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Articles
+    |--------------------------------------------------------------------------
+    */
+    public function articles()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+
+                return view('admin.articles.articles')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function getArticles()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+
+                return view('admin.articles.new')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function postArticles(ArticlesRequest $request)
+    {
+        $article = new Articles;
+        
+        $article->date_article = Carbon::now()->format('Y-m-d');
+        $article->titre_article = $request->input('titre');
+        $article->contenu_article = $request->input('contenu');
+        $article->id_user = Auth::id();
+
+        $article->save();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article à bien été rédigé !",[]);
+        return redirect('admin');
     }
 
 
