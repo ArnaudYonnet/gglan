@@ -4,7 +4,7 @@
 @include('sweetalert::view')
     <div class="row">
         <div class="col-lg-10">
-            <legend>Modification de {{ $tournois->nom }} </legend>
+            <legend>Modification de {{ $tournois->nom_tournois }} </legend>
             <form class="form-horizontal" method="POST" action="/admin/edit/tournois/{{ $tournois->id }}">
                 {{ csrf_field() }}
                 
@@ -15,7 +15,7 @@
                 <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                     <label for="nom" class="col-md-4 control-label">Nom</label>
                     <div class="col-md-6">
-                        <input id="nom" type="text" class="form-control" name="nom" value="{{ $tournois->nom }}" autofocus>                
+                        <input id="nom" type="text" class="form-control" name="nom" value="{{ $tournois->nom_tournois }}" autofocus>                
                         @if ($errors->has('nom'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nom') }}</strong>

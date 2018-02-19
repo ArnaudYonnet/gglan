@@ -10,7 +10,7 @@
 {{--  @include('flash::message')  --}}
 @include('sweetalert::view')
     <div class="container col-lg-6">
-        <legend>{{ $equipe->nom}} </legend>
+        <legend>{{ $equipe->nom_equipe}} </legend>
         <table class="table table-hover table-dark">
             <thead>
                 <tr>
@@ -29,7 +29,7 @@
                     @if ($joueur->id_user == $equipe->id_capitaine)
                         <tr class="bg-danger">
                             @if ($ranks[$key] != null)
-                                <th scope="row"> {{ $ranks[$key]->nom }} </th>
+                                <th scope="row"> {{ $ranks[$key]->nom_equipe }} </th>
                                 <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
                             @else
                                 <th scope="row">Non renseigné</th>

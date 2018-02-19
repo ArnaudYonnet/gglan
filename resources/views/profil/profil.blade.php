@@ -60,7 +60,7 @@
         @isset($equipe)
             <div class="col-lg-6">
                 <h3>Mon équipe:</h3>
-                <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom }}</a>
+                <a href="/equipes/{{ $equipe->id }}/profil">{{ $equipe->nom_equipe }}</a>
             </div>
         @endisset
             

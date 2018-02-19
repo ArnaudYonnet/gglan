@@ -15,7 +15,7 @@
         @foreach ($equipes as $equipe)
             <div class="card" style="width: 20rem;">
                 <h5 class="card-header">
-                    <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom }} </a>
+                    <a href="/equipes/{{ $equipe->id }}/profil"> {{ $equipe->nom_equipe }} </a>
                 </h5>
                 <div class="card-body">
                     @foreach ($joueurs as $joueur)   
