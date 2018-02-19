@@ -107,7 +107,7 @@ class AdminController extends Controller
     {
         $tournois = new Tournois;
 
-        $tournois->nom = $request->input('nom');
+        $tournois->nom_tournois = $request->input('nom');
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
@@ -176,7 +176,7 @@ class AdminController extends Controller
     {
         $tournois = new Tournois;
 
-        $tournois->nom = $request->input('nom');
+        $tournois->nom_tournois = $request->input('nom');
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
@@ -185,7 +185,7 @@ class AdminController extends Controller
         DB::table('tournois')
         ->where('id', $request->input('id_tournois'))
         ->update([
-            'nom' => $tournois->nom,
+            'nom_tournois' => $tournois->nom_tournois,
             'date_deb' => $tournois->date_deb,
             'date_fin' => $tournois->date_fin,
             'description' => $tournois->description,

@@ -36,7 +36,7 @@
                                         {{ \Carbon\Carbon::parse($tournoi->date_deb)->diffInDays(\Carbon\Carbon::parse($tournoi->date_fin))+1 }} 
                                         jour(s)
                                     </td>
-                                    <td> {{ $tournoi->nom }} </td>
+                                    <td> {{ $tournoi->nom_tournois }} </td>
                                     <td> {{ $tournoi->description }} </td>
                                    {{--   <td> 
                                         {{ \Carbon\Carbon::parse($tournoi->date_deb)->format('d/m/Y') }} 

@@ -10,15 +10,15 @@
     <div class="row">
         <div class="col-lg-6">
             <ul class="list-unstyled">
-                <li>Prenom: 
+                {{--  <li>Prenom: 
                     <b> {{ $joueur->prenom}} </b>
-                </li>
+                </li>  --}}
                 <li>Pseudo: 
                     <b> {{ $joueur->pseudo}} </b>
                 </li>
-                <li>Âge:
+                {{--  <li>Âge:
                     <b> {{ \Carbon\Carbon::parse($joueur->date_naissance)->age }} ans</b> 
-                </li>
+                </li>  --}}
                 <li>Ville:
                     @empty($joueur->ville)
                         <b>Non-renseigné</b>
