@@ -396,9 +396,14 @@ class AdminController extends Controller
                 $joueurs = $this->infoInscrit()["joueurs"];
                 $equipes = $this->infoInscrit()["equipes"];
 
+                $articles = DB::table('article')
+                            ->join('users', 'users.id', '=', 'article.id_user')
+                            ->get();
+
                 return view('admin.articles.articles')
                         ->with('joueurs', $joueurs)
-                        ->with('equipes', $equipes);
+                        ->with('equipes', $equipes)
+                        ->with('articles', $articles);
             }
         }
         return redirect('/');
