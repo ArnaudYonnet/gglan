@@ -97,3 +97,10 @@ Route::get('/admin/delete/tournois/{id_tournois}', 'AdminController@deleteTourno
 Route::get('/admin/edit/tournois/{id_tournois}', 'AdminController@getEditTournois'); // Formulaire de modification d'un tournois
 
 Route::post('/admin/edit/tournois/{id_tournois}', 'AdminController@postEditTournois'); // Modification d'un tournois
+
+
+//Articles
+Route::get('/admin/articles', 'AdminController@articles'); //Liste d'articles
+
+Route::get('/admin/articles/new', 'AdminController@getArticles'); //Formulaire d'écriture d'un article
+Route::post('/admin/articles/new', 'AdminController@postArticles'); // Ecriture d'un article

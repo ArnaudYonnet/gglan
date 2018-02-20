@@ -5,31 +5,31 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         <li class="header">GGLAN</li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-user"></i><span>Joueurs</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/admin/joueurs"><i class="fa fa-list-ul"></i>Liste joueurs</a></li>
-                    <li><a href="/admin/create/joueurs"><i class="fa fa-plus-circle"></i>Ajouter un joueur</a></li>
-                </ul>
-          </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-user"></i><span>Joueurs</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/admin/joueurs"><i class="fa fa-list-ul"></i>Liste joueurs</a></li>
+                <li><a href="/admin/create/joueurs"><i class="fa fa-plus-circle"></i>Ajouter un joueur</a></li>
+            </ul>
+        </li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users"></i><span>Equipes</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/admin/equipes"><i class="fa fa-list-ul"></i>Liste equipes</a></li>
-                    <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter une equipe</a></li>
-                </ul>
-            </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-users"></i><span>Equipes</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/admin/equipes"><i class="fa fa-list-ul"></i>Liste equipes</a></li>
+                <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter une equipe</a></li>
+            </ul>
+        </li>
 
         <li class="treeview">
             <a href="#">
@@ -44,6 +44,7 @@
                 <li><a href="/admin/tournois/inscrits"><i class="fa fa-edit"></i>Liste des inscrits</a></li>
             </ul>
         </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-gamepad"></i> <span>Jeux</span>
@@ -51,10 +52,25 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un jeu</a></li>
             <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un rank</a></li>
           </ul>
+        </li>
+
+        <li class="treeview">
+            <a href="#">
+                    <i class="fa fa-newspaper-o"></i> <span>Articles</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+        
+            <ul class="treeview-menu">
+                <li><a href="/admin/articles"><i class="fa fa-list-ul"></i>Liste d'articles</a></li>
+                <li><a href="/admin/articles/new"><i class="fa fa-plus-circle"></i>Ecrire un article</a></li>
+            </ul>
         </li>
 
 

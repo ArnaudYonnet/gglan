@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>GG-LAN | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
@@ -90,6 +91,8 @@
         <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
         <!-- ChartJS -->
         <script src="/bower_components/Chart.js/Chart.js"></script>
+        <!-- CK Editor -->
+        <script src="../../bower_components/ckeditor/ckeditor.js"></script>
 
         <script>
             $(function () {
@@ -118,7 +121,9 @@
                     'info'        : false,
                     'autoWidth'   : true
                     })
-            })
+
+                    CKEDITOR.replace('contenu')
+            });
         </script>
     </body>
 </html>
