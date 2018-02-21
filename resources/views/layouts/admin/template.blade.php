@@ -14,7 +14,7 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
         <!-- DataTables -->
-        <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Theme style -->
@@ -92,7 +92,7 @@
         <!-- ChartJS -->
         <script src="/bower_components/Chart.js/Chart.js"></script>
         <!-- CK Editor -->
-        <script src="../../bower_components/ckeditor/ckeditor.js"></script>
+        <script src="/bower_components/ckeditor/ckeditor.js"></script>
 
         <script>
             $(function () {

@@ -9,7 +9,7 @@
     <h1>News</h1>
     <ul>
         @foreach ($articles as $article)
-            <li> {{ $article->id  }} </li>
+            <li> {{ $article->id_article  }} </li>
         @endforeach
     </ul>
     
