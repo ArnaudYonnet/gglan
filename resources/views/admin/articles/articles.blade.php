@@ -25,7 +25,7 @@
                             <td> <a href="/admin/articles/{{ $article->id_article }}"> {{ $article->titre_article }} </a> </td>
                             <td> {{ \Carbon\Carbon::parse($article->date_article)->format('d/m/Y') }} </td>
                             <td> {{ $article->prenom }} </td>
-                            <td> <a href="#"><i class="fa fa-edit"></i></a> </td>
+                            <td> <a href="/admin/articles/edit/{{ $article->id_article }}"><i class="fa fa-edit"></i></a> </td>
                             <td> <a href="/admin/articles/delete/{{ $article->id_article }}"><i class="fa fa-trash"></i></a> </td>
                         </tr>
                         @endforeach

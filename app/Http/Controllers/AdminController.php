@@ -454,6 +454,38 @@ class AdminController extends Controller
         return redirect('admin/articles');
     }
 
+    public function getEditArticle($id_article)
+    {
+        $joueurs = $this->infoInscrit()["joueurs"];
+        $equipes = $this->infoInscrit()["equipes"];
+        $article = DB::table('article')
+                  ->where('id_article', $id_article)
+                  ->first();
+
+        return view('admin.articles.edit')
+                ->with('joueurs', $joueurs)
+                ->with('equipes', $equipes)
+                ->with('article', $article);
+    }
+    
+    public function postEditArticle(ArticlesRequest $request, $id_article)
+    {
+        $article = new Articles;
+
+        $article->titre_article = $request->input('titre');
+        $article->contenu_article = $request->input('contenu');
+
+        DB::table('article')
+        ->where('id_article', $id_article)
+        ->update([
+            'titre_article' => $article->titre_article,
+            'contenu_article' => $article->contenu_article,
+            ]);
+        
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article à bien été modifié !",[]);
+        return redirect('admin/articles');
+    }
 
 
 

@@ -106,3 +106,6 @@ Route::get('/admin/articles/new', 'AdminController@getArticles'); //Formulaire d
 Route::post('/admin/articles/new', 'AdminController@postArticles'); // Ecriture d'un article
 
 Route::get('/admin/articles/delete/{id_article}', 'AdminController@deleteArticle'); // Suppression d'un article
+
+Route::get('/admin/articles/edit/{id_article}', 'AdminController@getEditArticle'); //Formulaire de modification d'un article
+Route::post('/admin/articles/edit/{id_article}', 'AdminController@postEditArticle'); // Modification d'un article
