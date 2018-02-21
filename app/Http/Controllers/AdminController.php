@@ -372,6 +372,7 @@ class AdminController extends Controller
 
     public function deleteEquipe($id_equipe)
     {
+
         DB::table('equipe')
         ->where('id', $id_equipe)
         ->delete();
@@ -438,8 +439,19 @@ class AdminController extends Controller
         $article->save();
 
         swal()->autoclose('2000')
-              ->success('Mise à jour',"L'article à bien été rédigé !",[]);
-        return redirect('admin');
+              ->success('Mise à jour',"L'article à bien été écrit !",[]);
+        return redirect('admin/articles');
+    }
+
+    public function deleteArticle($id_article)
+    {
+        DB::table('article')
+        ->where('id_article', $id_article)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article a bien été supprimé !",[]);
+        return redirect('admin/articles');
     }
 
 
