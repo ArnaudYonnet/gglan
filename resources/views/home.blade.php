@@ -8,8 +8,8 @@
 @section('content')
     <h1>News</h1>
     <ul>
-        @foreach ($articles as $articles)
-            <li> {{ $article->id  }} </li>
+        @foreach ($articles as $article)
+            <li> {{ $article->id_article  }} </li>
         @endforeach
     </ul>
     

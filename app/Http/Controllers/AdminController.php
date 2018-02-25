@@ -8,8 +8,11 @@ use App\Http\Requests\TournoisRequest;
 use App\Tournois;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\ArticlesRequest;
+use App\Articles;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
@@ -337,7 +340,7 @@ class AdminController extends Controller
     | Equipes
     |--------------------------------------------------------------------------
     */
-        public function equipes()
+    public function equipes()
     {
         if (Auth::check()) 
         {
@@ -369,6 +372,7 @@ class AdminController extends Controller
 
     public function deleteEquipe($id_equipe)
     {
+
         DB::table('equipe')
         ->where('id', $id_equipe)
         ->delete();
@@ -379,6 +383,124 @@ class AdminController extends Controller
     }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Articles
+    |--------------------------------------------------------------------------
+    */
+    public function articles()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+
+                $articles = DB::table('article')
+                            ->join('users', 'users.id', '=', 'article.id_user')
+                            ->get();
+
+                return view('admin.articles.articles')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes)
+                        ->with('articles', $articles);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function getArticles()
+    {
+        if (Auth::check()) 
+        {
+            if (Auth::user()->admin) 
+            {
+                $joueurs = $this->infoInscrit()["joueurs"];
+                $equipes = $this->infoInscrit()["equipes"];
+
+                return view('admin.articles.new')
+                        ->with('joueurs', $joueurs)
+                        ->with('equipes', $equipes);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function postArticles(ArticlesRequest $request)
+    {
+        $article = new Articles;
+        
+        $article->date_article = Carbon::now()->format('Y-m-d');
+        $article->titre_article = $request->input('titre');
+        $article->contenu_article = $request->input('contenu');
+        $article->id_user = Auth::id();
+
+        $article->save();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article à bien été écrit !",[]);
+        return redirect('admin/articles');
+    }
+
+    public function deleteArticle($id_article)
+    {
+        DB::table('article')
+        ->where('id_article', $id_article)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article a bien été supprimé !",[]);
+        return redirect('admin/articles');
+    }
+
+    public function getEditArticle($id_article)
+    {
+        $joueurs = $this->infoInscrit()["joueurs"];
+        $equipes = $this->infoInscrit()["equipes"];
+        $article = DB::table('article')
+                  ->where('id_article', $id_article)
+                  ->first();
+
+        return view('admin.articles.edit')
+                ->with('joueurs', $joueurs)
+                ->with('equipes', $equipes)
+                ->with('article', $article);
+    }
+    
+    public function postEditArticle(ArticlesRequest $request, $id_article)
+    {
+        $article = new Articles;
+
+        $article->titre_article = $request->input('titre');
+        $article->contenu_article = $request->input('contenu');
+
+        DB::table('article')
+        ->where('id_article', $id_article)
+        ->update([
+            'titre_article' => $article->titre_article,
+            'contenu_article' => $article->contenu_article,
+            ]);
+        
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"L'article à bien été modifié !",[]);
+        return redirect('admin/articles');
+    }
+
+    public function previewArticle($id_article)
+    {
+        $joueurs = $this->infoInscrit()["joueurs"];
+        $equipes = $this->infoInscrit()["equipes"];
+
+        $article = DB::table('article')
+                  ->where('id_article', $id_article)
+                  ->first();
+
+        return view('admin.articles.preview')
+                ->with('joueurs', $joueurs)
+                ->with('equipes', $equipes)
+                ->with('article', $article); 
+    }
 
 
     /*

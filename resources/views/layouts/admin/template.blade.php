@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
         <title>GG-LAN | Dashboard</title>
@@ -14,7 +15,7 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="/bower_components/Ionicons/css/ionicons.min.css">
         <!-- DataTables -->
-        <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         <!-- jvectormap -->
         <link rel="stylesheet" href="/bower_components/jvectormap/jquery-jvectormap.css">
         <!-- Theme style -->
@@ -91,6 +92,8 @@
         <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
         <!-- ChartJS -->
         <script src="/bower_components/Chart.js/Chart.js"></script>
+        <!-- CK Editor -->
+        <script src="/bower_components/ckeditor/ckeditor.js"></script>
 
         <script>
             $(function () {
@@ -119,7 +122,9 @@
                     'info'        : false,
                     'autoWidth'   : true
                     })
-            })
+
+                    CKEDITOR.replace('contenu')
+            });
         </script>
     </body>
 </html>
