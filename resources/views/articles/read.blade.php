@@ -6,6 +6,7 @@
 
 
 @section('content')
-    <h1>News</h1>
-    @include('articles.articles')
+    <h1> {{ $article->titre_article }} </h1>
+    {!! $article->contenu_article !!}
+    
 @endsection

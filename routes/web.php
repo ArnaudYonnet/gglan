@@ -13,6 +13,8 @@
 Auth::routes();
 Route::get('/', 'HomeController@index'); // Accueil
 
+Route::get('/articles/{id_article}', 'ArticleController@readArticle'); // Affiche un article
+
 /*
 |--------------------------------------------------------------------------
 | Profil
