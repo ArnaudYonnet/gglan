@@ -487,6 +487,20 @@ class AdminController extends Controller
         return redirect('admin/articles');
     }
 
+    public function previewArticle($id_article)
+    {
+        $joueurs = $this->infoInscrit()["joueurs"];
+        $equipes = $this->infoInscrit()["equipes"];
+
+        $article = DB::table('article')
+                  ->where('id_article', $id_article)
+                  ->first();
+
+        return view('admin.articles.preview')
+                ->with('joueurs', $joueurs)
+                ->with('equipes', $equipes)
+                ->with('article', $article); 
+    }
 
 
     /*
