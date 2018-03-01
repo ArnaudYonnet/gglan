@@ -116,3 +116,6 @@ Route::post('/admin/articles/edit/{id_article}', 'AdminController@postEditArticl
 
 //Partenaires
 Route::get('/admin/partenaires', 'AdminController@partenaires'); // Liste des partenaires
+
+Route::get('/admin/partenaires/new', 'AdminController@getPartenaire'); // Formulaires d'ajout de partenaire
+Route::post('/admin/partenaires/new', 'AdminController@postPartenaire'); // Ajout de partenaire
