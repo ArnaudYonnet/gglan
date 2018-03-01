@@ -8,7 +8,7 @@
 @section('content')
 @include('sweetalert::view')
     
-    @if ($profil->type == "joueur")
+    @if ($profil->type == "Joueur")
         <div class="row">
             <div class="col-lg-6">
                 <ul class="list-unstyled">

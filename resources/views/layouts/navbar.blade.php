@@ -59,14 +59,14 @@
         @else
             <div class="btn-group">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if (Auth::user()->type == "joueur")
+                    @if (Auth::user()->type == "Joueur")
                         {{ Auth::user()->pseudo }}
                     @else
                         {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
                     @endif
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    @if (Auth::user()->type == "joueur")
+                    @if (Auth::user()->type == "Joueur")
                         <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
                         <a class="dropdown-item" href="/equipes/new">Mon Equipe</a>
                     @else
