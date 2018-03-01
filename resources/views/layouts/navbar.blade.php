@@ -60,10 +60,19 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ Auth::user()->pseudo }}
+                    @if (Auth::user()->type == "joueur")
+                        {{ Auth::user()->pseudo }}
+                    @else
+                        {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
+                    @endif
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
-                    <a class="dropdown-item" href="/equipes/new">Mon Equipe</a>
+                    @if (Auth::user()->type == "joueur")
+                        <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
+                        <a class="dropdown-item" href="/equipes/new">Mon Equipe</a>
+                    @else
+                        <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
+                    @endif
                     <div class="dropdown-divider">
                     </div>
                     @if (Auth::user()->admin)
