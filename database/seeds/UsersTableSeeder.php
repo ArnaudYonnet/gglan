@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'test@gmail.com',
             'admin' => 1,
             'password' => bcrypt('secret'),
-            'type' => 'joueur',
+            'type' => 'Joueur',
         ]);
         
         for ($i=0; $i < count($prenoms); $i++)
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
                 'pseudo' => str_random(5),
                 'email' => $prenoms[$i].'@gmail.com',
                 'password' => bcrypt('secret'),
-                'type' => 'joueur',
+                'type' => 'Joueur',
             ]);
         }
        

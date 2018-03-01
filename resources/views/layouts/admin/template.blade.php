@@ -49,7 +49,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Joueurs inscrits</span>
-                            <span class="info-box-number"> {{ count($joueurs) }} </span> 
+                            <span class="info-box-number"> {{ count($inscrits) }} </span> 
                         </div>
                     </div>
                 </div>

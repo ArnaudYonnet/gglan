@@ -17,13 +17,13 @@
                             <th>Supprimer</th>
                         </thead>
                         <tbody>
-                            @foreach ($joueurs as $joueur)
+                            @foreach ($inscrits as $inscrit)
                             <tr>
-                                <td> {{ $joueur->id_public }} </td>
-                                <td> {{ $joueur->pseudo }} </td>
-                                <td> {{ $joueur->email }} </td>
-                                <td> <a href="/admin/edit/joueurs/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
-                                <td> <a href="/admin/delete/joueurs/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>
+                                <td> {{ $inscrit->id_public }} </td>
+                                <td> {{ $inscrit->pseudo }} </td>
+                                <td> {{ $inscrit->email }} </td>
+                                <td> <a href="/admin/edit/joueurs/{{$inscrit->id}}"><i class="fa fa-edit"></i></a> </td>
+                                <td> <a href="/admin/delete/joueurs/{{$inscrit->id}}"><i class="fa fa-trash"></i></a> </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -13,17 +13,19 @@
                             <th>Id publique</th>
                             <th>Pseudo</th>
                             <th>E-mail</th>
+                            <th>Type</th>
                             {{--  <th>Modifier</th>
                             <th>Supprimer</th>  --}}
                         </thead>
                         <tbody>
-                            @foreach ($joueurs as $joueur)
+                            @foreach ($inscrits as $inscrit)
                                 <tr>
-                                    <td> {{ $joueur->id_public }} </td>
-                                    <td><a href="/joueurs/{{ $joueur->pseudo }}" target="_blank">{{ $joueur->pseudo }}</a></td>
-                                    <td> {{ $joueur->email }} </td>
-                                    {{--  <td> <a href="/admin/edit/joueur/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
-                                    <td> <a href="/admin/delete/joueur/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>  --}}
+                                    <td> {{ $inscrit->id_public }} </td>
+                                    <td><a href="/joueurs/{{ $inscrit->pseudo }}" target="_blank">{{ $inscrit->pseudo }}</a></td>
+                                    <td> {{ $inscrit->email }} </td>
+                                    <td> {{ $inscrit->type }} </td>
+                                    {{--  <td> <a href="/admin/edit/joueur/{{$inscrit->id}}"><i class="fa fa-edit"></i></a> </td>
+                                    <td> <a href="/admin/delete/joueur/{{$inscrit->id}}"><i class="fa fa-trash"></i></a> </td>  --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -51,7 +53,7 @@
                                 <tr>
                                     <td><a href="/equipes/{{ $equipe->id }}/profil" target="_blank">{{ $equipe->nom_equipe }}</a></td>
                                     <td>{{ $equipiers[$key]}} / 5</td>
-                                    @if ($inscrits[$key])
+                                    @if ($inscritsTournois[$key])
                                         <td><span class="label label-success">Inscrit</span></td>
                                     @else
                                         <td><span class="label label-danger">Non inscrit</span></td>

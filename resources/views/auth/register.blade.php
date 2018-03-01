@@ -60,8 +60,8 @@
                             <div class="col-md-6">
                                 <select name="type" id="type" class="custom-select">
                                     <option disabled selected>-- Type d'inscription --</option>
-                                    <option value="joueur">Joueur</option>
-                                    <option value="visiteur">Visiteur</option>
+                                    <option value="Joueur">Joueur</option>
+                                    <option value="Visiteur">Visiteur</option>
                                 </select>
 
                                 @if ($errors->has('type'))
