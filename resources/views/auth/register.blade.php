@@ -8,14 +8,15 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+                        <h5>* <u>Champ obligatoire uniquement pour les joueurs</u></h5>
                         
                         <input type="hidden" name="id_public" value="{{ str_random(5) }}">
 
                         <div class="form-group{{ $errors->has('pseudo') ? ' has-error' : '' }}">
-                            <label for="pseudo" class="col-md-4 control-label">Pseudo</label>
+                            <label for="pseudo" class="col-md-4 control-label">Pseudo *</label>
 
                             <div class="col-md-6">
-                                <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ old('pseudo') }}" required autofocus>
+                                <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ old('pseudo') }}" autofocus>
 
                                 @if ($errors->has('pseudo'))
                                     <span class="help-block">
@@ -24,13 +25,12 @@
                                 @endif
                             </div>
                         </div>
-
                         
                         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                             <label for="nom" class="col-md-4 control-label">Nom</label>
 
                             <div class="col-md-6">
-                                <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" required autofocus>
+                                <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" required >
 
                                 @if ($errors->has('nom'))
                                     <span class="help-block">
@@ -44,11 +44,29 @@
                             <label for="prenom" class="col-md-4 control-label">Prenom</label>
 
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" required autofocus>
+                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" required >
 
                                 @if ($errors->has('prenom'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('prenom') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Type</label>
+
+                            <div class="col-md-6">
+                                <select name="type" id="type" class="custom-select">
+                                    <option disabled selected>-- Type d'inscription --</option>
+                                    <option value="joueur">Joueur</option>
+                                    <option value="visiteur">Visiteur</option>
+                                </select>
+
+                                @if ($errors->has('type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('type') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -70,7 +88,7 @@
                             <label for="date_naissance" class="col-md-4 control-label">Date de naissance</label>
 
                             <div class="col-md-6">
-                                <input id="date_naissance" type="date" class="form-control" name="date_naissance" value="{{ old('date_naissance') }}" required autofocus>
+                                <input id="date_naissance" type="date" class="form-control" name="date_naissance" value="{{ old('date_naissance') }}" required >
 
                                 @if ($errors->has('date_naissance'))
                                     <span class="help-block">
@@ -80,10 +98,8 @@
                             </div>
                         </div>
 
-                        
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail *</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
