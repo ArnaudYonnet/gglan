@@ -47,16 +47,35 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'id_public' => 'string',
-            'pseudo' => 'required|string|max:255',
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'description' => 'string|max:255',
-            'date_naissance' => 'required|date',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+
+        if ($data['type'] == "joueur") 
+        {
+            return Validator::make($data, [
+                'id_public' => 'string',
+                'pseudo' => 'required|string|max:255',
+                'nom' => 'required|string|max:255',
+                'prenom' => 'required|string|max:255',
+                'description' => 'string|max:255',
+                'date_naissance' => 'required|date',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+                'type' => 'required|string',
+            ]);
+        }
+        else
+        {
+            return Validator::make($data, [
+                'id_public' => 'string',
+                'pseudo' => 'max:255',
+                'nom' => 'required|string|max:255',
+                'prenom' => 'required|string|max:255',
+                'description' => 'max:255',
+                'date_naissance' => 'required|date',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+                'type' => 'required|string',
+            ]);
+        }
     }
 
     /**
@@ -67,15 +86,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'id_public' => $data['id_public'],
-            'pseudo' => $data['pseudo'],
-            'nom' => $data['nom'],
-            'prenom' => $data['prenom'],
-            'description' => $data['description'],
-            'date_naissance' => $data['date_naissance'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if ($data['type'] == "joueur") 
+        {
+            return User::create([
+                'id_public' => $data['id_public'],
+                'pseudo' => $data['pseudo'],
+                'nom' => $data['nom'],
+                'prenom' => $data['prenom'],
+                'description' => $data['description'],
+                'date_naissance' => $data['date_naissance'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'type' => $data['type']
+            ]);
+        }
+        else
+        {
+            return User::create([
+                'id_public' => $data['id_public'],
+                'pseudo' => $data['pseudo'],
+                'nom' => $data['nom'],
+                'prenom' => $data['prenom'],
+                'description' => $data['description'],
+                'date_naissance' => $data['date_naissance'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'type' => $data['type']
+            ]);
+        }
+        
     }
 }
