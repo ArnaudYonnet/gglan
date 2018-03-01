@@ -505,9 +505,23 @@ class AdminController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Jeux
+    | Partenaires
     |--------------------------------------------------------------------------
     */
+    public function partenaires()
+    {
+        $inscrits = $this->infoInscrit()["inscrits"];
+        $equipes = $this->infoInscrit()["equipes"];
+
+        $partenaires = DB::table('partenaires')->get();
+
+        return view('admin.partenaires.partenaires')
+                ->with('inscrits', $inscrits)
+                ->with('equipes', $equipes)
+                ->with('partenaires', $partenaires); 
+    }
+
+    
 
 
     /*

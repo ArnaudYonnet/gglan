@@ -113,3 +113,6 @@ Route::get('/admin/articles/delete/{id_article}', 'AdminController@deleteArticle
 
 Route::get('/admin/articles/edit/{id_article}', 'AdminController@getEditArticle'); // Formulaire de modification d'un article
 Route::post('/admin/articles/edit/{id_article}', 'AdminController@postEditArticle'); // Modification d'un article
+
+//Partenaires
+Route::get('/admin/partenaires', 'AdminController@partenaires'); // Liste des partenaires
