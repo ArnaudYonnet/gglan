@@ -73,6 +73,20 @@
             </ul>
         </li>
 
+        <li class="treeview">
+            <a href="#">
+                    <i class="fa fa-globe"></i> <span>Partenaires</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+        
+            <ul class="treeview-menu">
+                <li><a href="/admin/partenaires"><i class="fa fa-list-ul"></i>Liste des partenaires</a></li>
+                <li><a href="/admin/partenaires/new"><i class="fa fa-plus-circle"></i>Ajouter un partenaire</a></li>
+            </ul>
+        </li>
+
 
 
 
