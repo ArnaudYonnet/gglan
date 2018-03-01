@@ -10,7 +10,7 @@
     <h2>Joueurs inscrits: <b>{{count($joueurs)}}</b></h2>
     <div class="card-columns">
         @foreach ($joueurs as $joueur)
-            <div class="card" style="width: 20rem;">
+            <div class="card" style="max-width: 20rem">
                 <h5 class="card-header">
                     <a href="/joueurs/{{ $joueur->pseudo }}"> {{ $joueur->pseudo }} </a>
                 </h5>

@@ -10,7 +10,9 @@ class JoueurController extends Controller
 {
     public function index()
     {
-        $joueurs = DB::table('users')->get();
+        $joueurs = DB::table('users')
+                   ->where('type', 'joueur')
+                   ->get();
         $equipes = DB::table('appartenance')
                          ->join('equipe', 'appartenance.id_equipe', '=', 'equipe.id')
                          ->get();
