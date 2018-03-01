@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->date('date_naissance');
             $table->string('pseudo')->nullable();
             $table->string('ville')->nullable();
-            $table->string('description')->default("Aucune description...");
+            $table->string('description')->nullable()->default("Aucune description...");
             $table->string('adresse')->nullable();
             $table->string('password');
             $table->string('type');

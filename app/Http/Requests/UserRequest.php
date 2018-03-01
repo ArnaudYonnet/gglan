@@ -32,6 +32,7 @@ class UserRequest extends FormRequest
             'date_naissance' => 'required|date',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'type' => 'required',
         ];
     }
 }
