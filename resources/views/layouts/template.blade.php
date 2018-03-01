@@ -36,7 +36,10 @@
     
     <footer class="footer">
         <div class="container">
-            Pour les visiteurs, pièce d'identité obligatoire
+            <p>
+                Toutes personnes non-inscrites ne sera pas accepté à l'entrée de la lan.
+                <br /> Pour les visiteurs, pièce d'identité obligatoire.
+            </p>
         </div>
         
         <script>

@@ -142,6 +142,7 @@
                             </div>
                         </div>
                     </form>
+                    <h5>Le prix de l'inscription est de 10€, repas non fournis, payable en espèce sur le site de la lan <u>uniquement</u></h5>
                 </div>
             </div>
         </div>
