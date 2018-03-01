@@ -17,6 +17,7 @@ class CreatePartenairesTable extends Migration
             $table->integer('id_partenaire', true);
             $table->string('nom_partenaire');
             $table->text('site_partenaire');
+            $table->text('img_partenaire');
         });
     }
 
