@@ -28,8 +28,21 @@
         </div>
 
         <div class="container float-right col-lg-2">
-            <div class="row">Prochaine LAN</div>
-            <div class="row">Partenaires</div>
+            <div class="row bg-dark"><p class="text-white">Prochaine LAN</p></div>
+            <div class="row bg-dark">
+                <ul class="list-inline">
+                    @foreach ($partenaires as $partenaire)
+                        <li>
+                            <a href="{{ $partenaire->site_partenaire }}" target="_blank">
+                                <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
+                                     alt="{{ $partenaire->nom_partenaire }}" 
+                                     title="{{ $partenaire->nom_partenaire }}">
+                            </a>
+                        </li>
+                        <br />
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 
