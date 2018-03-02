@@ -15,12 +15,14 @@ class EquipeController extends Controller
 {
     public function index()
     {
+        $partenaires = DB::table('partenaires')->get();
         $equipes = DB::table('equipe')->get();
         $joueurs = DB::table('users')
                    ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
                    ->get();
 
         return view('equipe.equipes')
+            ->with('partenaires', $partenaires)
             ->with('equipes', $equipes)
             ->with('joueurs', $joueurs);
     }
@@ -29,6 +31,7 @@ class EquipeController extends Controller
     {
         if (Auth::check()) 
         {
+            $partenaires = DB::table('partenaires')->get();
             $info = new InfoController(Auth::user()->id_public);
             $equipe = $info->getEquipe();
             if ($equipe) 
@@ -36,7 +39,9 @@ class EquipeController extends Controller
                 return redirect('equipes/'.$equipe->id.'/profil');
             }
             $jeux = DB::table('jeu')->get();
-            return view('equipe.new')->with('jeux', $jeux);
+            return view('equipe.new')
+                    ->with('partenaires', $partenaires)
+                    ->with('jeux', $jeux);
         }
         return redirect()->route('register');
     }
@@ -70,6 +75,7 @@ class EquipeController extends Controller
 
     public function profilEquipe($id)
     {
+        $partenaires = DB::table('partenaires')->get();
         $ranks = array();
         $equipe = DB::table('equipe')
                   ->where('id', $id)->first();
@@ -92,17 +98,19 @@ class EquipeController extends Controller
         if ($info->inNextTournois($id)) 
         {
             return view('equipe.profil')
-            ->with('equipe', $equipe)
-            ->with('joueurs', $joueurs)
-            ->with('ranks', $ranks)
-            ->with('participe', 1);
+                    ->with('partenaires', $partenaires)
+                    ->with('equipe', $equipe)
+                    ->with('joueurs', $joueurs)
+                    ->with('ranks', $ranks)
+                    ->with('participe', 1);
         }
 
         return view('equipe.profil')
-            ->with('equipe', $equipe)
-            ->with('joueurs', $joueurs)
-            ->with('ranks', $ranks)
-            ->with('tournois', $tournois);
+                ->with('partenaires', $partenaires)
+                ->with('equipe', $equipe)
+                ->with('joueurs', $joueurs)
+                ->with('ranks', $ranks)
+                ->with('tournois', $tournois);
     }
 
     public function postEquipier(AppartenanceRequest $request)

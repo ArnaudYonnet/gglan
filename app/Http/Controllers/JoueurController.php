@@ -10,6 +10,7 @@ class JoueurController extends Controller
 {
     public function index()
     {
+        $partenaires = DB::table('partenaires')->get();
         $joueurs = DB::table('users')
                    ->where('type', 'joueur')
                    ->get();
@@ -21,13 +22,20 @@ class JoueurController extends Controller
                  ->get();
 
 
-        return view('joueur.joueurs')->with('joueurs', $joueurs)->with('equipes', $equipes)->with('ranks', $ranks);
+        return view('joueur.joueurs')
+                ->with('partenaires', $partenaires)
+                ->with('joueurs', $joueurs)
+                ->with('equipes', $equipes)
+                ->with('ranks', $ranks);
     }
 
     public function profil($pseudo)
     {
+        $partenaires = DB::table('partenaires')->get();
         $info = new InfoController("", $pseudo);
-        $joueur = DB::table('users')->where('pseudo', $pseudo)->first();
+        $joueur = DB::table('users')
+                  ->where('pseudo', $pseudo)
+                  ->first();
 
         $rank = $info->getRank();
         $equipe = $info->getEquipe();
@@ -38,16 +46,26 @@ class JoueurController extends Controller
             if ($joueur->pseudo != Auth::user()->pseudo) 
             {
                 // Si le pseudo n'est pas celui de la personne connectée
-                return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
+                return view('joueur.profil')
+                        ->with('partenaires', $partenaires)
+                        ->with('joueur', $joueur)
+                        ->with('equipe', $equipe)
+                        ->with('rank', $rank);
             }
 
             // Si le pseudo est celui la personne connectée
-            $id = DB::table('users')->where('pseudo', $pseudo)->value('id_public');
+            $id = DB::table('users')
+                  ->where('pseudo', $pseudo)
+                  ->value('id_public');
             return redirect('profil/'. $id);  
         }
         else
         {
-            return view('joueur.profil')->with('joueur', $joueur)->with('equipe', $equipe)->with('rank', $rank);
+            return view('joueur.profil')
+                    ->with('partenaires', $partenaires)
+                    ->with('joueur', $joueur)
+                    ->with('equipe', $equipe)
+                    ->with('rank', $rank);
         }
     }
 

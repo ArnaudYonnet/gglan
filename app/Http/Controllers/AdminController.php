@@ -551,7 +551,16 @@ class AdminController extends Controller
         return redirect('admin/partenaires');
     }
     
+    public function deletePartenaire($id_partenaire)
+    {
+        DB::table('partenaires')
+        ->where('id_partenaire', $id_partenaire)
+        ->delete();
 
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le partenaire a bien été supprimé !',[]);
+        return redirect('admin/partenaires');
+    }
 
     /*
     |--------------------------------------------------------------------------

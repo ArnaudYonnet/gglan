@@ -15,6 +15,7 @@ class ProfilController extends Controller
     //Recupère l'id de la session de l'utilisateur
     public function index($id_public)
     {
+        $partenaires = DB::table('partenaires')->get();
         $info = new InfoController($id_public);
         if (Auth::check()) 
         {
@@ -29,6 +30,7 @@ class ProfilController extends Controller
             {
                 // Si l'id est celui de la personne connectée
                 return view('profil.profil')
+                        ->with('partenaires', $partenaires)
                         ->with('profil', $profil)
                         ->with('equipe', $equipe)
                         ->with('rank', $rank);
@@ -44,6 +46,7 @@ class ProfilController extends Controller
 
     public function getEdit($id_public)
     {
+        $partenaires = DB::table('partenaires')->get();
         $info = new InfoController($id_public);
 
         $profil = DB::table('users')->where('id_public', $id_public)->first();
@@ -53,6 +56,7 @@ class ProfilController extends Controller
         $jeu = DB::table('jeu')->where('nom', "CS:GO")->first();
 
         return view('profil.profil')
+                ->with('partenaires', $partenaires)
                 ->with('profil', $profil)
                 ->with('equipe', $equipe)
                 ->with('rank', $rank)
