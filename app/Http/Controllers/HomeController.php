@@ -10,6 +10,10 @@ class HomeController extends Controller
     public function index()
     {
         $articles = DB::table('article')->get();
-        return view('home')->with('articles', $articles);
+        $partenaires = DB::table('partenaires')->get();
+
+        return view('home')
+                ->with('partenaires', $partenaires)
+                ->with('articles', $articles);
     }
 }

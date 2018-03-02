@@ -9,7 +9,10 @@ use App\Tournois;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\ArticlesRequest;
+use App\Http\Requests\PartenairesRequest;
+
 use App\Articles;
+use App\Partenaires;
 use App\User;
 use Auth;
 use Carbon\Carbon;
@@ -505,10 +508,59 @@ class AdminController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Jeux
+    | Partenaires
     |--------------------------------------------------------------------------
     */
+    public function partenaires()
+    {
+        $inscrits = $this->infoInscrit()["inscrits"];
+        $equipes = $this->infoInscrit()["equipes"];
 
+        $partenaires = DB::table('partenaires')->get();
+
+        return view('admin.partenaires.partenaires')
+                ->with('inscrits', $inscrits)
+                ->with('equipes', $equipes)
+                ->with('partenaires', $partenaires); 
+    }
+
+
+    public function getPartenaire()
+    {
+        $inscrits = $this->infoInscrit()["inscrits"];
+        $equipes = $this->infoInscrit()["equipes"];
+
+        return view('admin.partenaires.new')
+                ->with('inscrits', $inscrits)
+                ->with('equipes', $equipes);
+    }
+
+    public function postPartenaire(PartenairesRequest $request)
+    {
+        $partenaire = new Partenaires();
+
+        $partenaire->nom_partenaire = $request->input('nom_partenaire');
+        $partenaire->site_partenaire = $request->input('site_partenaire');
+        $partenaire->img_partenaire = $request->input('img_partenaire');
+
+        $partenaire->save();
+
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour',"Le partenaire à bien été ajouté",[]);
+        return redirect('admin/partenaires');
+    }
+    
+    public function deletePartenaire($id_partenaire)
+    {
+        DB::table('partenaires')
+        ->where('id_partenaire', $id_partenaire)
+        ->delete();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le partenaire a bien été supprimé !',[]);
+        return redirect('admin/partenaires');
+    }
 
     /*
     |--------------------------------------------------------------------------
