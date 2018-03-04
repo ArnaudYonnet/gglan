@@ -15,6 +15,18 @@
         </div>
     </div>
 
+    <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+        <label for="avatar" class="col-md-4 control-label">avatar</label>
+        <div class="col-md-6">
+            <input id="avatar" type="text" class="form-control" name="avatar" value="{{ $profil->avatar }}" >
+            @if ($errors->has('avatar'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('avatar') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
     <div class="form-group{{ $errors->has('ville') ? ' has-error' : '' }}">
         <label for="ville" class="col-md-4 control-label">Ville</label>
         <div class="col-md-6">

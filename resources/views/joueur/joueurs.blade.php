@@ -30,7 +30,7 @@
                         @endif
                     @endforeach
                     <p class="card-text"> {{ $joueur->description }} </p>
-                    <img class="card-img-top" src="/img/profil.png" alt="Card image cap">
+                    <img class="card-img-top" src="{{ $joueur->avatar }}" alt="Avatar introuvable...">
                 </div>
             </div>
         @endforeach
