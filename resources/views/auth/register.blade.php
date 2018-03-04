@@ -58,7 +58,7 @@
                             <label for="avatar" class="col-md-4 control-label">Avatar *</label>
 
                             <div class="col-md-6">
-                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ old('avatar') }}" placeholder="Ex: https://imgur.com" required>
+                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ old('avatar') }}" placeholder="Ex: https://imgur.com" >
 
                                 @if ($errors->has('avatar'))
                                     <span class="help-block">
