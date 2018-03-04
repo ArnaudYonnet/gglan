@@ -48,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        if ($data['type'] == "joueur") 
+        if ($data['type'] == "Joueur") 
         {
             return Validator::make($data, [
                 'id_public' => 'string',
@@ -88,13 +88,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['type'] == "joueur") 
+        if ($data['type'] == "Joueur") 
         {
             return User::create([
                 'id_public' => $data['id_public'],
                 'pseudo' => $data['pseudo'],
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
+                'avatar' => $data['avatar'],
                 'description' => $data['description'],
                 'date_naissance' => $data['date_naissance'],
                 'email' => $data['email'],
@@ -109,6 +110,7 @@ class RegisterController extends Controller
                 'pseudo' => $data['pseudo'],
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
+                'avatar' => $data['avatar'],
                 'description' => $data['description'],
                 'date_naissance' => $data['date_naissance'],
                 'email' => $data['email'],
