@@ -18,7 +18,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Rank: 
                         @foreach ($ranks as $rank)
                             @if ($rank->id_user == $joueur->id)
-                            {{ $rank->nom }}
+                                {{ $rank->nom }}
                             @endif
                         @endforeach
                     </h6>
