@@ -22,7 +22,7 @@ class JoueurController extends Controller
                  ->get();
 
 
-        return view('joueur.joueurs')
+        return view('joueur.joueursv2')
                 ->with('partenaires', $partenaires)
                 ->with('joueurs', $joueurs)
                 ->with('equipes', $equipes)
