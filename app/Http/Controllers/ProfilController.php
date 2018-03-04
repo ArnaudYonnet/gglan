@@ -74,10 +74,11 @@ class ProfilController extends Controller
         $user->pseudo = $request->input('pseudo');
         $user->ville = $request->input('ville');
         $user->description = $request->input('description');
+        $user->avatar = $request->input('avatar');
         
         DB::table('users')
         ->where('id', Auth::id())
-        ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville, 'description' => $user->description]);
+        ->update(['pseudo' => $user->pseudo, 'ville' => $user->ville, 'description' => $user->description, 'avatar' => $user->avatar]);
         
         
         
