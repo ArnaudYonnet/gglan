@@ -38,7 +38,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTarget">
-        <a class="navbar-brand" href="/">Accueil</a>
+        <a class="navbar-brand" href="/">
+            <img src="/img/logo.png" alt="GG-LAN">
+        </a>
+        
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 {{--  <li class="nav-item">
                     <a class="nav-link active" href="/tournois">Anciens Tournois</a>
@@ -48,6 +51,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/equipes">Equipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/reglement">Réglement</a>
                 </li>
             </ul>
         @guest

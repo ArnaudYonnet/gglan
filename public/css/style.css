@@ -21,7 +21,10 @@
     
 }
 
-
+li.nav-item:not(:last-child) >a.nav-link:after
+{
+	content: ' \00A0 |';
+}
 
 
 /* Joueurs */
