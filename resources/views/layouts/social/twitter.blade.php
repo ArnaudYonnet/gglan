@@ -1,0 +1,2 @@
+<a class="twitter-timeline" data-lang="fr" data-width="500" data-height="300" data-theme="dark" href="https://twitter.com/GGLanBrest?ref_src=twsrc%5Etfw">Tweets by GGLanBrest</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

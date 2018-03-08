@@ -16,48 +16,50 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-            {{--  Banniere  --}}
-        </div>
         @include('layouts.navbar')
     </div>
 
     <div class="container-fluid">
-        <div class="container float-left col-lg-10">
-            @yield('content')
+        <div class="container float-left col-lg-10 main">
+                @yield('content')
         </div>
-
+        
         <div class="container float-right col-lg-2">
-            <div class="row bg-dark"><p class="text-white">Prochaine LAN</p></div>
-            <div class="row bg-dark">
-                <ul class="list-inline">
-                    @foreach ($partenaires as $partenaire)
+                <div class="row bg-dark">
+                    <p class="text-white">Prochaine LAN</p>
+                </div>
+                <div class="row bg-dark">
+                    <ul class="list-inline">
+                        @foreach ($partenaires as $partenaire)
                         <li>
                             <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
-                                     alt="{{ $partenaire->nom_partenaire }}" 
-                                     title="{{ $partenaire->nom_partenaire }}">
-                            </a>
+                                        <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
+                                             alt="{{ $partenaire->nom_partenaire }}" 
+                                             title="{{ $partenaire->nom_partenaire }}">
+                                    </a>
                         </li>
-                        <br />
-                    @endforeach
-                </ul>
-            </div>
+                        <br /> @endforeach
+                    </ul>
+                </div>
         </div>
     </div>
 
-    
-    <footer class="footer">
-        <div class="container">
-            <p>
+
+    <div class="container-fluid">
+        <footer class="footer bg-dark">
+            <p class="text-white">
                 Toutes personnes non-inscrites ne sera pas accepté à l'entrée de la lan.
                 <br /> Pour les visiteurs, pièce d'identité obligatoire.
             </p>
-        </div>
-        
-        <script>
-            $('div.alert').delay(3000).slideUp(350);
-        </script>
-    </footer>
+        </footer>
+    </div>
+
+
+
+
+
+    <script>
+        $('div.alert').delay(3000).slideUp(350);
+    </script>
 </body>
 </html>
