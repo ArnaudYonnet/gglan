@@ -11,7 +11,7 @@
 @include('sweetalert::view')
     <div class="container col-lg-6">
         <legend>{{ $equipe->nom_equipe}} </legend>
-        <table class="table table-hover table-dark">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Grade</th>
@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($joueurs as $key=>$joueur)
                     @if ($joueur->id_user == $equipe->id_capitaine)
-                        <tr class="bg-danger">
+                        <tr class="table-danger">
                             @if ($ranks[$key] != null)
                                 <th scope="row"> {{ $ranks[$key]->nom }} </th>
                                 <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
