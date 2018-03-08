@@ -5,7 +5,7 @@
     <title> @yield('title') </title>
     
     <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/darkly.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/fontawesome/fontawesome-all.min.css') }}">
 
@@ -51,10 +51,10 @@
         </div>
 
         <div class="container float-right col-lg-2">
-            <div class="row bg-dark">
+            <div class="row bg-danger">
                 <p class="text-white">Prochaine LAN</p>
             </div>
-            <div class="row bg-dark">
+            <div class="row bg-danger">
                 <ul class="list-inline">
                     @foreach ($partenaires as $partenaire)
                         <li>
@@ -80,7 +80,7 @@
 
     {{--  Footer  --}}
     <div class="container-fluid">
-        <footer class="footer bg-dark">
+        <footer class="footer bg-danger">
             <p class="text-white">
                 Toutes personnes non-inscrites ne sera pas accepté à l'entrée de la lan.
                 <br /> Pour les visiteurs, pièce d'identité obligatoire.
