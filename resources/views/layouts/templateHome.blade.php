@@ -2,16 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title> @yield('title') </title>
+    
     <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> {{--
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/fontawesome-all.min.css') }}">
+
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }} "></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sweetAlert.js') }}"></script>
-    <title> @yield('title') </title>
 </head>
 <body>
     {{--  Menu  --}}
