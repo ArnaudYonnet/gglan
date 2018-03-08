@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-lg-8 mx-auto">
                 <h2>Reglement de GG-LAN</h2>
             <p>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 {{--  <div class="panel-heading">Connexion</div>  --}}
@@ -51,18 +51,18 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     Connexion
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link text-danger" href="{{ route('password.request') }}">
                                     Mot de passe oublié ?
                                 </a>
                             </div>
                             
                             <div class="col-md-8 col-md-offset-4">
                                 <br />
-                                <a class="btn btn-primary" href="{{ route('register') }}">
+                                <a class="btn btn-danger" href="{{ route('register') }}">
                                     Créer un compte
                                 </a>
                             </div>

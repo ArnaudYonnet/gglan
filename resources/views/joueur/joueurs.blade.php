@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-lg-12">
-            <h4 class="description">Joueurs inscrits: <b>{{count($joueurs)}}</b></h4>
-            <div class="row pt-md">
+            <h2>Joueurs inscrits: <b>{{count($joueurs)}}</b></h2>
+            <div class="row ml-4 mx-auto">
                 @foreach ($joueurs as $joueur)
                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
                         <a href="/joueurs/{{ $joueur->pseudo }}">
