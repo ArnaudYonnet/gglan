@@ -104,10 +104,10 @@ Route::post('/admin/edit/tournois/{id_tournois}', 'AdminController@postEditTourn
 //Articles
 Route::get('/admin/articles', 'AdminController@articles'); // Liste d'articles
 
-Route::get('/admin/articles/{id_article}', 'AdminController@previewArticle'); // Preview d'un article
-
 Route::get('/admin/articles/new', 'AdminController@getArticles'); // Formulaire d'écriture d'un article
 Route::post('/admin/articles/new', 'AdminController@postArticles'); // Ecriture d'un article
+
+Route::get('/admin/articles/{id_article}', 'AdminController@previewArticle'); // Preview d'un article
 
 Route::get('/admin/articles/delete/{id_article}', 'AdminController@deleteArticle'); // Suppression d'un article
 
