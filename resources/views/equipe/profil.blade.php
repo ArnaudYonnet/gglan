@@ -60,7 +60,9 @@
                             @if (Auth::check())
                                 @if (Auth::user()->id == $equipe->id_capitaine)
                                     <th>
-                                        <a href="/equipes/{{$equipe->id}}/delete/joueur/{{$joueur->id_user}}" class="btn btn-danger">Supprimer</a>
+                                        <a href="/equipes/{{$equipe->id}}/delete/joueur/{{$joueur->id_user}}" class="btn btn-danger">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
                                     </th>
                                 @endif
                             @endif
