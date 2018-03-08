@@ -21,8 +21,33 @@
     
 }
 
+li.nav-item:not(:last-child) >a.nav-link:after
+{
+	content: ' \00A0 |';
+}
 
+.background {
+	/* #5a5d67 */
+	/* #484b56 */
+	/* #6c6f78 */
+	background-color: #484b56;
+}
 
+.text-white {
+	margin: 0px;
+}
+
+img.logo {
+	width: 85px;
+}
+
+img.partenaires {
+	width: 150px;
+}
+
+div.main {
+	min-height: 100vh;
+}
 
 /* Joueurs */
 

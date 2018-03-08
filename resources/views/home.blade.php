@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templateHome')
 
 @section('title')
     GG-LAN
