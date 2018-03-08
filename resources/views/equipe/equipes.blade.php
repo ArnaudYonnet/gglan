@@ -8,9 +8,9 @@
 
 @section('content')
 @include('sweetalert::view')
-<div class="row mt-4">
-    <div class="col-lg-8">
-        <h2>Place equipe restantes <b>{{16-count($equipes)}}</b></h2>
+<div class="row">
+    <h2>Place equipe restantes <b>{{16-count($equipes)}}</b></h2>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
         <div class="card-columns">
             @foreach ($equipes as $equipe)
             <div class="card" style="width: 20rem;">
