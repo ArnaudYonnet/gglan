@@ -6,6 +6,6 @@
 
 
 @section('content')
-    <h1>News</h1>
+    <h2>News</h2>
     @include('articles.articles')
 @endsection

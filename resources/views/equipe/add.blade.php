@@ -1,23 +1,9 @@
 <form class="form-horizontal" method="POST" action="/equipes/{{ $equipe->id }}/add">
         {{ csrf_field() }}
-
-       {{--   @for ($i = count($joueurs); $i < 5; $i++)
-            <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
-                <label for="nom" class="col-md-4 control-label">Nom</label>
-                <div class="col-md-6">
-                    <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" autofocus>
-                    @if ($errors->has('nom'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('nom') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        @endfor  --}}
         <input type="hidden" name="id_equipe" value="{{ $equipe->id }}" />
         <div class="form-group{{ $errors->has('id_user') ? ' has-error' : '' }}">
             <label for="id_user" class="col-md-4 control-label">ID du joueur</label>
-            <div class="col-md-6">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                 <input id="id_public" type="text" class="form-control" name="id_public" value="{{ old('id_public') }}" autofocus>
                 @if ($errors->has('id_public'))
                     <span class="help-block">
@@ -29,7 +15,7 @@
         
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-danger">
                     Ajouter à mon équipe
                 </button>
             </div>
