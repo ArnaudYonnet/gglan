@@ -16,4 +16,12 @@ class HomeController extends Controller
                 ->with('partenaires', $partenaires)
                 ->with('articles', $articles);
     }
+
+    public function reglement()
+    {
+        $partenaires = DB::table('partenaires')->get();
+
+        return view('reglement')
+                ->with('partenaires', $partenaires);
+    }
 }

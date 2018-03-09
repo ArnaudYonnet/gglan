@@ -103,6 +103,10 @@ class RegisterController extends Controller
         }
         else
         {
+            if (trim($data['avatar']) == null)  
+            {
+                $data['avatar'] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdFBZbl_qSONKU9QF_c_hIIpEJON0YLUnbLWQy78kLfa_rwZs_g";
+            }
             return User::create([
                 'id_public' => $data['id_public'],
                 'pseudo' => $data['pseudo'],

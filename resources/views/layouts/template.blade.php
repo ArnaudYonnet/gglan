@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> @yield('title') </title>
+    <title>GG-LAN</title>
     
     <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
     <link rel="stylesheet" href="{{ asset('css/darkly.min.css') }}">
@@ -21,27 +21,28 @@
     </div>
 
     <div class="container-fluid">
-        <div class="container float-left col-lg-10 main">
-                @yield('content')
+        <div class="container float-left col-lg-10 col-md-10 col-sm-12 pl-4 pt-4 main">
+            @yield('content')
         </div>
         
-        <div class="container float-right col-lg-2">
-                <div class="row bg-danger">
-                    <p class="text-white">Prochaine LAN</p>
-                </div>
-                <div class="row bg-danger">
-                    <ul class="list-inline">
-                        @foreach ($partenaires as $partenaire)
+        <div class="container float-right col-lg-2 col-md-2 col-sm-12">
+            <div class="row bg-danger">
+                <p class="text-white">Prochaine LAN</p>
+            </div>
+            <div class="row bg-danger">
+                <ul class="list-inline">
+                    @foreach ($partenaires as $partenaire)
                         <li>
                             <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                        <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
-                                             alt="{{ $partenaire->nom_partenaire }}" 
-                                             title="{{ $partenaire->nom_partenaire }}">
-                                    </a>
+                                <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
+                                    alt="{{ $partenaire->nom_partenaire }}" 
+                                    title="{{ $partenaire->nom_partenaire }}">
+                            </a>
                         </li>
-                        <br /> @endforeach
-                    </ul>
-                </div>
+                        <br /> 
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 
