@@ -25,7 +25,7 @@
     {{--  Partenaires  --}}
     <div class="container-fluid pt-4 pl-4 pr-4">
         <div class="row">
-            <div class="container col-lg-9 bg-danger rounded">
+            <div class="container col-lg-9 col-md-9 col-sm-9 bg-danger rounded">
                 <div class="row">
                     <div class="col-lg-2 mx-auto">
                         <p class="text-white">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             
-            <div class="container col-lg-2 mt-lg-0 mt-md-2 mt-sm-2 mt-2 bg-secondary rounded">
+            <div class="container col-lg-2 col-md-2 col-sm-9  mt-lg-0 mt-md-0 mt-sm-2 mt-2 bg-secondary rounded">
                 <div class="row">
                     <div class="col-lg-12">
                         @isset($tournois)

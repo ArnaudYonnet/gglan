@@ -1,11 +1,4 @@
 @extends('layouts.template')
-
-
-@section('title')
-    GG-LAN
-@endsection
-
-
 @section('content')
 @include('sweetalert::view')
     <h2>Place equipe restantes <b>{{16-count($equipes)}}</b></h2>
@@ -26,7 +19,7 @@
                         <img class="card-img-top" src="/img/profil.png" alt="Card image cap">
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 @endsection

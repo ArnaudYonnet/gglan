@@ -1,10 +1,6 @@
 @extends('layouts.template')
-
-@section('title')
-    GG-LAN
-@endsection
-
 @section('content')
+@include('sweetalert::view')
     <h2>Joueurs inscrit: <b>{{count($joueurs)}}</b></h2>
     <div class="row">
         @foreach ($joueurs as $joueur)
@@ -13,7 +9,6 @@
                     <h5 class="card-header">
                         <a href="/joueurs/{{ $joueur->pseudo }}" class="text-danger">{{ $joueur->pseudo }}</a>
                     </h5>
-        
                     <div class="card-body">
                         <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
                         <p></p>
