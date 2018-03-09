@@ -25,23 +25,20 @@
             @yield('content')
         </div>
         
-        <div class="container float-right col-lg-2 col-md-2 col-sm-12">
-            <div class="row bg-danger">
-                <p class="text-white">Prochaine LAN</p>
-            </div>
-            <div class="row bg-danger">
-                <ul class="list-inline">
+        <div class="container float-right col-lg-2 col-md-2 col-sm-12 pt-4 pr-4">
+            <div class="row bg-secondary rounded">
+                <div class="col-lg-12 text-white">Prochaine LAN</div>
+
+                <p>Nos partenaires</p>
                     @foreach ($partenaires as $partenaire)
-                        <li>
+                        <div class="col-lg-6 col-md-12 col-sm-2">
                             <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                <img style="width: 75px" src="{{ $partenaire->img_partenaire }}" 
+                                <img style="max-width: 75px" src="{{ $partenaire->img_partenaire }}" 
                                     alt="{{ $partenaire->nom_partenaire }}" 
                                     title="{{ $partenaire->nom_partenaire }}">
                             </a>
-                        </li>
-                        <br /> 
+                        </div>
                     @endforeach
-                </ul>
             </div>
         </div>
     </div>

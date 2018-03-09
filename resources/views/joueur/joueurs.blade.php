@@ -15,7 +15,7 @@
                     </h5>
         
                     <div class="card-body">
-                        <img src="{{ $joueur->avatar }}" style="max-width: 250px" class="card-img img-fluid">
+                        <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
                         <p></p>
                         @foreach ($ranks as $rank)
                             @if ($rank->id_user == $joueur->id)
