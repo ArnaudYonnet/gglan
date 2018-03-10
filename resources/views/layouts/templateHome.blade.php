@@ -71,7 +71,7 @@
                                 </u>
                             </p>
                         @else
-                            <p class="text-white">Pas de LAN annoncée pour le moment...</p>
+                            <p class="text-white">Pas de LAN annoncé pour le moment...</p>
                         @endisset
                     </div>
 
