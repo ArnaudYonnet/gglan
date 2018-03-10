@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/reglement">Réglement</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/infos">Infos Pratiques</a>
+                </li>
             </ul>
         @guest
             <div class="btn-group">
