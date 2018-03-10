@@ -119,6 +119,19 @@ class InfoController extends Controller
         return false;
     }
 
+    public function isJoueur()
+    {
+        $user = DB::table('users')
+                    ->where('id', $this->id_user)
+                    ->first();
+        
+        if ($user->type == "Joueur") 
+        {
+           return true;
+        }
+        return false;
+    }
+
     private function getUserId($info, $mode)
     {
         if ($mode == 'id') 
@@ -137,4 +150,5 @@ class InfoController extends Controller
             return $user->id;
         }
     }
+    
 }

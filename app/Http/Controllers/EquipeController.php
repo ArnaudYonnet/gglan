@@ -136,15 +136,25 @@ class EquipeController extends Controller
                       ->error('Erreur','Le joueur est déjà dans une équipe !',[]);
                 return redirect('equipes/'.$request->id_equipe.'/profil');
             }
-            $joueur = new Appartenance;
-            $joueur->id_user = $info->getId();
-            $joueur->id_equipe = $request->id_equipe;
-
-            $joueur->save();
             
-            swal()->autoclose(2000)
-                  ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
-            return redirect('equipes/'.$request->id_equipe.'/profil');
+            if ($info->isJoueur()) 
+            {
+                $joueur = new Appartenance;
+                $joueur->id_user = $info->getId();
+                $joueur->id_equipe = $request->id_equipe;
+    
+                $joueur->save();
+                
+                swal()->autoclose(2000)
+                      ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+                return redirect('equipes/'.$request->id_equipe.'/profil');
+            }
+            else
+            {
+                swal()->autoclose(2000)
+                      ->error('Erreur',"Cette personne n'est pas un joueur",[]);
+                return redirect('equipes/'.$request->id_equipe.'/profil');
+            }
         }
 
 
