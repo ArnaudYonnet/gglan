@@ -6,7 +6,7 @@
     
     <link rel="icon" type="image/png" href=" {{ asset('/img/favicon.png') }} ">
     <link rel="stylesheet" href="{{ asset('css/darkly.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/style.scss') }}"> 
     <link rel="stylesheet" href="{{ asset('css/fontawesome/fontawesome-all.min.css') }}">
 
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
@@ -28,7 +28,7 @@
             <div class="container col-lg-9 col-md-9 col-sm-9 bg-secondary rounded">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-12">
-                        <p class="text-white">
+                        <p class="text-white text-center">
                             MERCI A NOS PARTENAIRES
                         </p>
                     </div>
