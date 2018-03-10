@@ -89,12 +89,17 @@
 
     {{--  Footer  --}}
     <div class="container-fluid">
-        <footer class="footer bg-danger">
-            <p class="text-white">
+        <div class="footer">
+            <p class="text-white bg-secondary">
                 Toutes personnes non-inscrites ne sera pas accepté à l'entrée de la lan.
                 <br /> Pour les visiteurs, pièce d'identité obligatoire.
+                <br />
+                <div style="text-align: center;">
+                    <i class="far fa-copyright"></i> 
+                    Copyright GG-LAN 2018 | Code by <a href="https://thibaud-philippi.com">Thibaud Philippi</a>
+                </div>
             </p>
-        </footer>
+        </div>
     </div>
 
 
