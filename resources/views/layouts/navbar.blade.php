@@ -4,7 +4,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTarget">
         <a class="navbar-brand" href="/">
-            <img src="/img/logov2.png" alt="GG-LAN" style='width: 130px;'>
+            <img src="/img/logov3.png" alt="GG-LAN" style='width: 130px;'>
         </a>
         
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
