@@ -27,7 +27,7 @@
         <div class="row">
             <div class="container col-lg-9 col-md-9 col-sm-9 bg-danger rounded">
                 <div class="row">
-                    <div class="col-lg-2 mx-auto">
+                    <div class="col-lg-2 mx-auto px-auto">
                         <p class="text-white">
                             MERCI A NOS
                             <br />PARTENAIRES
@@ -40,9 +40,6 @@
                             </li>
                             <li class="list-inline-item">
                                 <img class="partenaires" src="/img/partenaires/xankom.png" alt="Xankom">
-                            </li>
-                            <li class="list-inline-item">
-                                <img class="partenaires" src="/img/partenaires/villedebrest.png" alt="Ville de Brest">
                             </li>
                         </ul>
                     </div>
@@ -60,18 +57,20 @@
                                 au 
                                 {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
                             </p>
+                        @else
+                            <p class="text-white">Pas de LAN annoncée pour le moment...</p>
                         @endisset
                     </div>
-                        <p>Nos partenaires</p>
-                        @foreach ($partenaires as $partenaire)
-                            <div class="col-lg-6 col-md-12 col-sm-2">
-                                <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                    <img style="width: 75px" class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
-                                        alt="{{ $partenaire->nom_partenaire }}" 
-                                        title="{{ $partenaire->nom_partenaire }}">
-                                </a>
-                            </div>
-                        @endforeach
+                    @foreach ($partenaires as $partenaire)
+                        <div class="col-lg-6 col-md-12 col-sm-2">
+                            <p>Nos partenaires</p>
+                            <a href="{{ $partenaire->site_partenaire }}" target="_blank">
+                                <img style="width: 75px" class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
+                                    alt="{{ $partenaire->nom_partenaire }}" 
+                                    title="{{ $partenaire->nom_partenaire }}">
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

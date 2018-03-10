@@ -16,6 +16,7 @@ class ProfilController extends Controller
     public function index($id_public)
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $info = new InfoController($id_public);
         if (Auth::check()) 
         {
@@ -33,6 +34,7 @@ class ProfilController extends Controller
                         ->with('partenaires', $partenaires)
                         ->with('profil', $profil)
                         ->with('equipe', $equipe)
+                        ->with('tournois', $tournois)
                         ->with('rank', $rank);
             }
             
@@ -47,6 +49,7 @@ class ProfilController extends Controller
     public function getEdit($id_public)
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $info = new InfoController($id_public);
 
         $profil = DB::table('users')->where('id_public', $id_public)->first();
@@ -62,6 +65,7 @@ class ProfilController extends Controller
                 ->with('rank', $rank)
                 ->with('jeu', $jeu)
                 ->with('ranks', $ranks)
+                ->with('tournois', $tournois)
                 ->with('edit', 1);
 
         // Recup id_jeu dans rank et l'insert dans entrainement
