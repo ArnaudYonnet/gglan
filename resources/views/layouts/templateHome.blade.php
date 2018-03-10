@@ -105,7 +105,7 @@
                 <br />
                 <div style="text-align: center;">
                     <i class="far fa-copyright"></i> 
-                    Copyright GG-LAN 2018 | Code by <a href="https://thibaud-philippi.com" class="text-danger">Thibaud Philippi</a>
+                    GG-LAN 2018 | Code by <a href="https://thibaud-philippi.com" class="text-danger">Thibaud Philippi</a>
                 </div>
             </p>
         </div>

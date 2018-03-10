@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index'); // Accueil
 
 Route::get('/articles/{id_article}', 'ArticleController@readArticle'); // Affiche un article
 Route::get('/reglement', 'HomeController@reglement');
+Route::get('/infos', 'HomeController@infos');
 
 /*
 |--------------------------------------------------------------------------

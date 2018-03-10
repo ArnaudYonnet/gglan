@@ -28,4 +28,14 @@ class HomeController extends Controller
                 ->with('partenaires', $partenaires)
                 ->with('tournois', $tournois);
     }
+
+    public function infos()
+    {
+        $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+
+        return view('infos')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois);
+    }
 }

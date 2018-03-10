@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-8 mx-auto">
-                <h2>Reglement de GG-LAN</h2>
+            <h2><u>Reglement de GG-LAN</u></h2>
             <p>
                 Cet événement est organisé par l’association GOOD GAME - LAN (GG-LAN), régie par la loi du 1er juillet 1901.
                 C’est une compétition de jeux vidéo, telle expliquée par l’article L321-8 : “Une compétition de jeux vidéo confronte, à partir d'un jeu vidéo, 
