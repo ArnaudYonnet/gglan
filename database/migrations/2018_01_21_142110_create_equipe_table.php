@@ -18,6 +18,7 @@ class CreateEquipeTable extends Migration
             $table->string('nom_equipe');
             $table->integer('id_capitaine');
             $table->string('description')->default('Aucune description...');
+            $table->string('avatar_equipe')->nullable();
             $table->integer('id_jeu');
         });
         
