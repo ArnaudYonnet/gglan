@@ -30,11 +30,13 @@
                 <div class="col-lg-12">
                         @isset($tournois)
                             <p class="text-white">
-                                La <b>{{ $tournois->nom_tournois }}</b> 
-                                aura lieu du 
-                                {{ \Carbon\Carbon::parse($tournois->date_deb)->format('d/m/Y') }} 
-                                au 
-                                {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
+                                <u>
+                                    La <b>{{ $tournois->nom_tournois }}</b> 
+                                    aura lieu du 
+                                    {{ \Carbon\Carbon::parse($tournois->date_deb)->format('d/m/Y') }} 
+                                    au 
+                                    {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
+                                </u>
                             </p>
                         @else
                             <p class="text-white">Pas de LAN annoncée pour le moment...</p>

@@ -27,39 +27,48 @@
         <div class="row">
             <div class="container col-lg-9 col-md-9 col-sm-9 bg-secondary rounded">
                 <div class="row">
-                    <div class="col-lg-2 mx-auto px-auto">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         <p class="text-white">
-                            MERCI A NOS
-                            <br />PARTENAIRES
+                            MERCI A NOS PARTENAIRES
                         </p>
                     </div>
-                    <div class="col-lg-10">
-                        <ul class="list-inline">
+                        {{--  <ul class="list-inline">
                             @foreach ($partenaires as $partenaire)
                                 <li class="list-inline-item">
                                     <a href="{{ $partenaire->site_partenaire }}" target="_blank">
                                         <img src="{{ $partenaire->img_partenaire }}" 
                                             alt="{{ $partenaire->nom_partenaire }}" 
                                             title="{{ $partenaire->nom_partenaire }}"
-                                            class="img-fluid partenaires">
+                                            class="img-fluid  partenaires">
                                     </a>
                                 </li>
                             @endforeach
-                        </ul>
-                    </div>
+                        </ul>  --}}
+                        @foreach ($partenaires as $partenaire)
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <a href="{{ $partenaire->site_partenaire }}" target="_blank">
+                                    <img src="{{ $partenaire->img_partenaire }}" 
+                                        alt="{{ $partenaire->nom_partenaire }}" 
+                                        title="{{ $partenaire->nom_partenaire }}"
+                                        class="img-fluid">
+                                </a>
+                            </div>
+                        @endforeach
                 </div>
             </div>
             
-            <div class="container col-lg-2 col-md-2 col-sm-9  mt-lg-0 mt-md-0 mt-sm-2 mt-2 bg-secondary rounded">
+            <div class="container col-lg-2 col-md-2 col-sm-9  mt-lg-0 mt-md-0 mt-sm-2 mt-2 rounded">
                 <div class="row">
                     <div class="col-lg-12">
                         @isset($tournois)
                             <p class="text-white">
-                                La <b>{{ $tournois->nom_tournois }}</b> 
-                                aura lieu du 
-                                {{ \Carbon\Carbon::parse($tournois->date_deb)->format('d/m/Y') }} 
-                                au 
-                                {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
+                                <u>
+                                    La <b>{{ $tournois->nom_tournois }}</b> 
+                                    aura lieu du 
+                                    {{ \Carbon\Carbon::parse($tournois->date_deb)->format('d/m/Y') }} 
+                                    au 
+                                    {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
+                                </u>
                             </p>
                         @else
                             <p class="text-white">Pas de LAN annoncée pour le moment...</p>
