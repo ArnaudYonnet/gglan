@@ -23,7 +23,15 @@
             </div>
 
             <div class="col">
-
+                <h5>S'inscrire pour la prochaine LAN</h5>
+                <p class="text-justify">
+                    Pour pouvoir s'inscrire à la prochaine il faut <u>obligatoirement</u> que votre équipe soit complète (5 Joueurs).
+                    Une fois fait, vous verrez sur le profil de votre équipe un bouton comme ci-dessous: <br/> 
+                    <button class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</button>
+                    <br/>
+                    Si une LAN est programmé et est ouverte aux inscriptions vous pourrez cliquer dessus et ainsi enregistré votre équipe.<br/>
+                    Si vous avez inscrit votre équipe mais que vous voulez vous désister veuillez contacter le staff sur le discord <a href="#">GG-LAN</a> (Le bureau, Membre de l'association ou encore Dev Web).
+                </p>
             </div>
 
         </div>
