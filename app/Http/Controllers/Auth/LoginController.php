@@ -41,7 +41,10 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        
         return view('auth.login')
-               ->with('partenaires', $partenaires);
+               ->with('partenaires', $partenaires)
+               ->with('article', $article);
     }
 }

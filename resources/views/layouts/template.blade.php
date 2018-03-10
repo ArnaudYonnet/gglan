@@ -44,7 +44,7 @@
                     </div>
                     
                     @foreach ($partenaires as $partenaire)
-                        <div class="col-lg-6 col-md-12 col-sm-2">
+                        <div class="col-lg-6 col-md-12 col-sm-2 pt-2">
                             <a href="{{ $partenaire->site_partenaire }}" target="_blank">
                                 <img class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
                                     alt="{{ $partenaire->nom_partenaire }}" 
