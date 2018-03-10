@@ -60,7 +60,7 @@
     <div class="container-fluid">
         <div class="footer">
             <p class="text-white bg-secondary">
-                Toutes personnes non-inscrites ne sera pas accepté à l'entrée de la lan.
+                Toute personne non-inscrite ne sera pas acceptée à l'entrée de la lan.
                 <br /> Pour les visiteurs, pièce d'identité obligatoire.
                 <br />
                 <div style="text-align: center;">
