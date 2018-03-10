@@ -11,6 +11,8 @@ class JoueurController extends Controller
     public function index()
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        
         $joueurs = DB::table('users')
                    ->where('type', 'joueur')
                    ->get();
@@ -26,12 +28,15 @@ class JoueurController extends Controller
                 ->with('partenaires', $partenaires)
                 ->with('joueurs', $joueurs)
                 ->with('equipes', $equipes)
+                ->with('tournois', $tournois)
                 ->with('ranks', $ranks);
     }
 
     public function profil($pseudo)
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        
         $info = new InfoController("", $pseudo);
         $joueur = DB::table('users')
                   ->where('pseudo', $pseudo)
@@ -50,6 +55,7 @@ class JoueurController extends Controller
                         ->with('partenaires', $partenaires)
                         ->with('joueur', $joueur)
                         ->with('equipe', $equipe)
+                        ->with('tournois', $tournois)
                         ->with('rank', $rank);
             }
 
@@ -65,6 +71,7 @@ class JoueurController extends Controller
                     ->with('partenaires', $partenaires)
                     ->with('joueur', $joueur)
                     ->with('equipe', $equipe)
+                    ->with('tournois', $tournois)
                     ->with('rank', $rank);
         }
     }

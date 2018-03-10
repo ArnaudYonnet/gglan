@@ -16,15 +16,17 @@ class EquipeController extends Controller
     public function index()
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $equipes = DB::table('equipe')->get();
         $joueurs = DB::table('users')
-                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
-                   ->get();
-
+        ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
+        ->get();
+        
         return view('equipe.equipes')
-            ->with('partenaires', $partenaires)
-            ->with('equipes', $equipes)
-            ->with('joueurs', $joueurs);
+                ->with('partenaires', $partenaires)
+                ->with('equipes', $equipes)
+                ->with('joueurs', $joueurs)
+                ->with('tournois', $tournois);
     }
 
     public function getEquipe()
@@ -32,6 +34,7 @@ class EquipeController extends Controller
         if (Auth::check()) 
         {
             $partenaires = DB::table('partenaires')->get();
+            $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
             $info = new InfoController(Auth::user()->id_public);
             $equipe = $info->getEquipe();
             if ($equipe) 
@@ -41,7 +44,8 @@ class EquipeController extends Controller
             $jeux = DB::table('jeu')->get();
             return view('equipe.new')
                     ->with('partenaires', $partenaires)
-                    ->with('jeux', $jeux);
+                    ->with('jeux', $jeux)
+                    ->with('tournois', $tournois);
         }
         return redirect()->route('register');
     }
@@ -76,6 +80,8 @@ class EquipeController extends Controller
     public function profilEquipe($id)
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        
         $ranks = array();
         $equipe = DB::table('equipe')
                   ->where('id', $id)->first();
@@ -85,7 +91,7 @@ class EquipeController extends Controller
                    ->where('appartenance.id_equipe', $id)
                    ->get();
         
-        $tournois = DB::table('tournois')
+        $next_tournois = DB::table('tournois')
                     ->orderBy('id', 'desc')
                     ->first();
 
@@ -102,7 +108,8 @@ class EquipeController extends Controller
                     ->with('equipe', $equipe)
                     ->with('joueurs', $joueurs)
                     ->with('ranks', $ranks)
-                    ->with('participe', 1);
+                    ->with('participe', 1)
+                    ->with('tournois', $tournois);
         }
 
         return view('equipe.profil')
@@ -110,6 +117,7 @@ class EquipeController extends Controller
                 ->with('equipe', $equipe)
                 ->with('joueurs', $joueurs)
                 ->with('ranks', $ranks)
+                ->with('next_tournois', $next_tournois)
                 ->with('tournois', $tournois);
     }
 
