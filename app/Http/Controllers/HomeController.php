@@ -22,8 +22,10 @@ class HomeController extends Controller
     public function reglement()
     {
         $partenaires = DB::table('partenaires')->get();
+        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
 
         return view('reglement')
-                ->with('partenaires', $partenaires);
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois);
     }
 }
