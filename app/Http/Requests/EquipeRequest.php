@@ -25,7 +25,8 @@ class EquipeRequest extends FormRequest
     {
         return [
             'nom' => 'required|string|max:255',
-            'jeu' => 'required'
+            'avatar_equipe' => 'required|url',
+            'jeu' => 'required',
         ];
     }
 }
