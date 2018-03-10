@@ -56,6 +56,7 @@ class EquipeController extends Controller
 
         $equipe->nom_equipe = $request->input('nom');
         $equipe->id_capitaine = Auth::id();
+        $equipe->avatar_equipe = $request->input('avatar_equipe');
         $equipe->id_jeu = $request->input('jeu');
 
         $equipe->save();
