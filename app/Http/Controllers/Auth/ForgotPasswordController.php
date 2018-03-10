@@ -38,6 +38,6 @@ class ForgotPasswordController extends Controller
         
         return view('auth.passwords.email')
                ->with('partenaires', $partenaires)
-               ->with('article', $article);
+               ->with('tournois', $tournois);
     }
 }

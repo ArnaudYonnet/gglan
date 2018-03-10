@@ -47,7 +47,7 @@ class RegisterController extends Controller
         
         return view('auth.register')
                 ->with('partenaires', $partenaires)
-                ->with('article', $article);
+                ->with('tournois', $tournois);
     }
 
     /**

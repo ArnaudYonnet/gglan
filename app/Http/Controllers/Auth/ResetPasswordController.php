@@ -46,6 +46,6 @@ class ResetPasswordController extends Controller
         return view('auth.passwords.reset')
                 ->with(['token' => $token, 'email' => $request->email])
                 ->with('partenaires', $partenaires)
-                ->with('article', $article);
+                ->with('tournois', $tournois);
     }
 }

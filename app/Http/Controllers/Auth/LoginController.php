@@ -45,6 +45,6 @@ class LoginController extends Controller
         
         return view('auth.login')
                ->with('partenaires', $partenaires)
-               ->with('article', $article);
+               ->with('tournois', $tournois);
     }
 }
