@@ -25,8 +25,8 @@ class PartenairesRequest extends FormRequest
     {
         return [
             'nom_partenaire' => 'required|string|max:255',
-            'site_partenaire' => 'required|url',
-            'img_partenaire' => 'required|url',
+            'site_partenaire' => 'required',
+            'img_partenaire' => 'required',
         ];
     }
 }

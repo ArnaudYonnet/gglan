@@ -25,7 +25,7 @@
     {{--  Partenaires  --}}
     <div class="container-fluid pt-4 pl-4 pr-4">
         <div class="row">
-            <div class="container col-lg-9 col-md-9 col-sm-9 bg-danger rounded">
+            <div class="container col-lg-9 col-md-9 col-sm-9 bg-secondary rounded">
                 <div class="row">
                     <div class="col-lg-2 mx-auto px-auto">
                         <p class="text-white">
@@ -34,13 +34,17 @@
                         </p>
                     </div>
                     <div class="col-lg-10">
-                        <ul class="list-inline text-white">
-                            <li class="list-inline-item">
-                                <img class="partenaires" src="/img/partenaires/brestopencampus.png" alt="Brest Open Campus">
-                            </li>
-                            <li class="list-inline-item">
-                                <img class="partenaires" src="/img/partenaires/xankom.png" alt="Xankom">
-                            </li>
+                        <ul class="list-inline">
+                            @foreach ($partenaires as $partenaire)
+                                <li class="list-inline-item">
+                                    <a href="{{ $partenaire->site_partenaire }}" target="_blank">
+                                        <img src="{{ $partenaire->img_partenaire }}" 
+                                            alt="{{ $partenaire->nom_partenaire }}" 
+                                            title="{{ $partenaire->nom_partenaire }}"
+                                            class="img-fluid partenaires">
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -61,16 +65,16 @@
                             <p class="text-white">Pas de LAN annoncée pour le moment...</p>
                         @endisset
                     </div>
-                    @foreach ($partenaires as $partenaire)
+
+                    {{--  @foreach ($partenaires as $partenaire)
                         <div class="col-lg-6 col-md-12 col-sm-2">
-                            <p>Nos partenaires</p>
                             <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                <img style="width: 75px" class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
+                                <img class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
                                     alt="{{ $partenaire->nom_partenaire }}" 
                                     title="{{ $partenaire->nom_partenaire }}">
                             </a>
                         </div>
-                    @endforeach
+                    @endforeach  --}}
                 </div>
             </div>
         </div>
