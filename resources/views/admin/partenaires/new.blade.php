@@ -20,7 +20,7 @@
         <div class="form-group{{ $errors->has('site_partenaire') ? ' has-error' : '' }}">
             <label for="site_partenaire" class="col-md-4 control-label">Site Partenaire</label>
             <div class="col-md-6">
-                <input id="site_partenaire" type="url" class="form-control" name="site_partenaire" placeholder="Ex: https://site.partenaire.com"> 
+                <input id="site_partenaire" type="text" class="form-control" name="site_partenaire" placeholder="Ex: https://site.partenaire.com"> 
                 @if ($errors->has('site_partenaire'))
                     <span class="help-block">
                         <strong>{{ $errors->first('site_partenaire') }}</strong>
@@ -32,7 +32,7 @@
         <div class="form-group{{ $errors->has('img_partenaire') ? ' has-error' : '' }}">
             <label for="img_partenaire" class="col-md-4 control-label">Logo Partenaire</label>
             <div class="col-md-6">
-                <input id="img_partenaire" type="url" class="form-control" name="img_partenaire" placeholder="Ex: https://imgur.com/"> 
+                <input id="img_partenaire" type="text" class="form-control" name="img_partenaire" placeholder="Ex: https://imgur.com/"> 
                 @if ($errors->has('img_partenaire'))
                     <span class="help-block">
                         <strong>{{ $errors->first('img_partenaire') }}</strong>

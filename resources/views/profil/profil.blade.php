@@ -14,13 +14,17 @@
 
                 <br />
 
-                <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-danger" style="margin-top: 4vh;">
+                <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-danger" style="margin-top: 2vh;">
                     Modifier mes informations
                 </a>
 
                 <br />
 
-                <a href="/equipes/{{ $equipe->id }}/profil" class="btn btn-danger" style="margin-top: 2vh;">Mon Equipe</a>
+                @isset($equipe)
+                    <a href="/equipes/{{ $equipe->id }}/profil" class="btn btn-danger" style="margin-top: 2vh;">Mon Equipe</a>
+                @else
+                    <a href="/equipes/new" class="btn btn-danger" style="margin-top: 2vh;">Créer mon équipe</a>
+                @endisset
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-8">
@@ -60,10 +64,7 @@
                         <p><b> {{ $profil->description }} </b></p>
                     </li>
                 </ul>
-                @isset($equipe)
-                @else
-                    <a href="/equipes/new" class="btn btn-success">Créer mon équipe</a>
-                @endisset
+                
             </div>
 
             @isset($edit)
