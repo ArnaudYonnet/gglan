@@ -9,9 +9,40 @@
 @section('content')
 {{--  @include('flash::message')  --}}
 @include('sweetalert::view')
-    <div class="row justify-content-center">
+    <div class="row">
+        <div class="col-lg-4 col-md-5 col-sm-5">
+                <img src="{{ $equipe->avatar_equipe }}" class="img-fluid" style="max-width: 250px" alt="">
+
+                <h3>{{ $equipe->nom_equipe}} </h3>
+                @if (count($joueurs) < 5)
+                    @include('equipe.add')
+                @endif
+
+                @auth
+                @if (Auth::user()->id == $equipe->id_capitaine)
+                    @if (count($joueurs) == 5)
+                        @isset($participe)
+                            Votre équipe est inscrite pour la prochaine GG-LAN !
+                        @else
+                            @isset($next_tournois)
+                                @if ($next_tournois->status == "ouvert")
+                                    <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</a>
+                                @else
+                                    <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger disabled mb-4">S'inscrire pour la prochaine LAN</a>
+                                @endif
+                            @else
+                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled mb-4">S'inscrire pour la prochaine LAN</a>                    
+                            @endisset
+                        @endisset
+                    @endif
+                @endif
+            @endauth
+
+                {{--  <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-danger" style="margin-top: 2vh;">
+                    Modifier mes informations
+                </a>  --}}
+            </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
-            <h3>{{ $equipe->nom_equipe}} </h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -33,7 +64,7 @@
                                     <th scope="row"> {{ $ranks[$key]->nom }} </th>
                                     <td><img src="{{ $ranks[$key]->image }}" alt=""></td>
                                 @else
-                                    <th scope="row">Non renseigné</th>
+                                    <th scope="row">Non renseigné...</th>
                                     <td></td>
                                 @endif
                                 <th scope="row">
@@ -72,31 +103,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-
-        <div class="col-lg-8 col-md-8 col-sm-8">
-            @auth
-                @if (Auth::user()->id == $equipe->id_capitaine)
-                    @if (count($joueurs) < 5)
-                        @include('equipe.add')
-                    @endif
-                    @if (count($joueurs) == 5)
-                    @isset($participe)
-                        Votre équipe est inscrite pour la prochaine GG-LAN !
-                    @else
-                        @isset($next_tournois)
-                            @if ($tournois->status == "ouvert")
-                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success">S'inscrire pour la prochaine LAN</a>
-                            @else
-                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled">S'inscrire pour la prochaine LAN</a>
-                            @endif
-                        @else
-                            <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled">S'inscrire pour la prochaine LAN</a>                    
-                        @endisset
-                    @endisset
-                    @endif
-                @endif
-            @endauth
         </div>
     </div>
 @endsection
