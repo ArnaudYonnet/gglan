@@ -132,6 +132,15 @@ Route::get('/admin/partenaires/delete/{id_partenaires}', 'AdminController@delete
 Route::get('/admin/jeux', 'JeuxController@index'); // Liste des jeux
 Route::get('/admin/jeux/new', 'JeuxController@create'); // Formulaire ajout jeu
 Route::post('/admin/jeux/new', 'JeuxController@store'); // Ajout jeu
-Route::get('/admin/jeux/edit/{id_jeux}', 'JeuxController@edit'); // Formulaire ajout jeu
-Route::post('/admin/jeux/edit/{id_jeux}', 'JeuxController@update'); // Ajout jeu
-Route::get('/admin/jeux/delete/{id_jeux}', 'JeuxController@destroy'); // Formulaire ajout jeu
+Route::get('/admin/jeux/edit/{id_jeux}', 'JeuxController@edit'); // Formulaire modif jeu
+Route::post('/admin/jeux/edit/{id_jeux}', 'JeuxController@update'); // Modif jeu
+Route::get('/admin/jeux/delete/{id_jeux}', 'JeuxController@destroy'); // Supprime jeu
+
+
+//Ranks
+Route::get('/admin/ranks', 'RankController@index'); // Liste des ranks
+Route::get('/admin/ranks/create', 'RankController@create'); // Formulaire ajout rank
+Route::post('/admin/ranks/create', 'RankController@store'); // Ajout rank
+Route::get('/admin/ranks/edit/{id_ranks}', 'RankController@edit'); // FFormulaire modif rank
+Route::post('/admin/ranks/edit/{id_ranks}', 'RankController@update'); // Modif rank
+Route::get('/admin/ranks/delete/{id_ranks}', 'RankController@destroy'); // Supprime rank
