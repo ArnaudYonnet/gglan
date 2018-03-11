@@ -14,7 +14,7 @@ class CreatePartenairesTable extends Migration
     public function up()
     {
         Schema::create('partenaires', function (Blueprint $table) {
-            $table->integer('id_partenaire', true);
+            $table->integer('id', true);
             $table->string('nom_partenaire');
             $table->text('site_partenaire');
             $table->text('img_partenaire');

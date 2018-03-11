@@ -554,11 +554,41 @@ class AdminController extends Controller
     public function deletePartenaire($id_partenaire)
     {
         DB::table('partenaires')
-        ->where('id_partenaire', $id_partenaire)
+        ->where('id', $id_partenaire)
         ->delete();
 
         swal()->autoclose('2000')
               ->success('Mise à jour','Le partenaire a bien été supprimé !',[]);
+        return redirect('admin/partenaires');
+    }
+
+    public function getEditPartenaire($id_partenaire)
+    {
+        $partenaire = DB::table('partenaires')
+        ->where('id', $id_partenaire)
+        ->first();
+
+        $inscrits = $this->infoInscrit()["inscrits"];
+        $equipes = $this->infoInscrit()["equipes"];
+
+        return view('admin.partenaires.edit')
+                ->with('inscrits', $inscrits)
+                ->with('equipes', $equipes)
+                ->with('partenaire', $partenaire);
+    }
+
+    public function postEditPartenaire(PartenairesRequest $request, $id_partenaire)
+    {
+        $partenaire = Partenaires::find($id_partenaire);
+
+        $partenaire->nom_partenaire = $request->input('nom_partenaire');
+        $partenaire->site_partenaire = $request->input('site_partenaire');
+        $partenaire->img_partenaire = $request->input('img_partenaire');
+
+        $partenaire->save();
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Le partenaire a bien été mis à jour !',[]);
         return redirect('admin/partenaires');
     }
 

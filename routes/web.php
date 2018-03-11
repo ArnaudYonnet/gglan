@@ -122,4 +122,7 @@ Route::get('/admin/partenaires', 'AdminController@partenaires'); // Liste des pa
 Route::get('/admin/partenaires/new', 'AdminController@getPartenaire'); // Formulaires d'ajout de partenaire
 Route::post('/admin/partenaires/new', 'AdminController@postPartenaire'); // Ajout de partenaire
 
+Route::get('/admin/partenaires/edit/{id_partenaire}', 'AdminController@getEditPartenaire'); // Formulaires d'ajout de partenaire
+Route::post('/admin/partenaires/edit/{id_partenaire}', 'AdminController@postEditPartenaire'); // Ajout de partenaire
+
 Route::get('/admin/partenaires/delete/{id_partenaires}', 'AdminController@deletePartenaire'); // Suppression d'un partenaire
