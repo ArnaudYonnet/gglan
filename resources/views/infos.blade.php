@@ -30,7 +30,7 @@
                     <button class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</button>
                     <br/>
                     Si une LAN est programmé et est ouverte aux inscriptions vous pourrez cliquer dessus et ainsi enregistré votre équipe.<br/>
-                    Si vous avez inscrit votre équipe mais que vous voulez vous désister veuillez contacter le staff sur le discord <a href="#">GG-LAN</a> (Le bureau, Membre de l'association ou encore Dev Web).
+                    Si vous avez inscrit votre équipe mais que vous voulez vous désister veuillez contacter le staff sur le discord <a href="https://discord.gg/mApqnDW" target="_blank">GG-LAN</a> (Le bureau, Membre de l'association ou encore Dev Web).
                 </p>
             </div>
 
