@@ -15,7 +15,7 @@ class EquipeController extends Controller
 {
     public function index()
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $equipes = DB::table('equipe')->get();
         $joueurs = DB::table('users')
@@ -33,7 +33,7 @@ class EquipeController extends Controller
     {
         if (Auth::check()) 
         {
-            $partenaires = DB::table('partenaires')->get();
+            $partenaires = DB::table('partenaire')->get();
             $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
             $info = new InfoController(Auth::user()->id_public);
             $equipe = $info->getEquipe();
@@ -80,7 +80,7 @@ class EquipeController extends Controller
 
     public function profilEquipe($id)
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         
         $ranks = array();

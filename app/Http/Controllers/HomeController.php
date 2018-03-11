@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles = DB::table('article')->get();
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
 
         return view('home')
@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function reglement()
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
 
         return view('reglement')
@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function infos()
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
 
         return view('infos')

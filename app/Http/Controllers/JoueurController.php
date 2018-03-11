@@ -10,7 +10,7 @@ class JoueurController extends Controller
 {
     public function index()
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         
         $joueurs = DB::table('users')
@@ -34,7 +34,7 @@ class JoueurController extends Controller
 
     public function profil($pseudo)
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         
         $info = new InfoController("", $pseudo);

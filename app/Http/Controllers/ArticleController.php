@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function readArticle($id_article)
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         
         $article = DB::table('article')

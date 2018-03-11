@@ -15,7 +15,7 @@ class ProfilController extends Controller
     //Recupère l'id de la session de l'utilisateur
     public function index($id_public)
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $info = new InfoController($id_public);
         if (Auth::check()) 
@@ -48,7 +48,7 @@ class ProfilController extends Controller
 
     public function getEdit($id_public)
     {
-        $partenaires = DB::table('partenaires')->get();
+        $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
         $info = new InfoController($id_public);
 
