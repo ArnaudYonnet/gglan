@@ -9,7 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = DB::table('article')->get();
+        $articles = \App\Article::orderBy('id', 'desc')
+                            ->take(4)
+                            ->get();
+
         $partenaires = DB::table('partenaire')->get();
         $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
 
