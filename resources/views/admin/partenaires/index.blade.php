@@ -23,8 +23,8 @@
                             <td> {{$key+1}} </td>
                             <td> <a href="/admin/partenaires/{{ $partenaire->id }}"> {{ $partenaire->nom_partenaire }} </a> </td>
                             <td> <a href="{{ $partenaire->site_partenaire }}" target="_blank">{{ $partenaire->site_partenaire }}</a> </td>
-                            <td> <a href="/admin/partenaires/edit/{{ $partenaire->id }}"><i class="fa fa-edit"></i></a> </td>
-                            <td> <a href="/admin/partenaires/delete/{{ $partenaire->id }}"><i class="fa fa-trash"></i></a> </td>
+                            <td> <a href="/admin/partenaires/{{ $partenaire->id }}/edit"><i class="fa fa-edit"></i></a> </td>
+                            <td> <a href="/admin/partenaires/{{ $partenaire->id }}/delete"><i class="fa fa-trash"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

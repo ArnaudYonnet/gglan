@@ -2,7 +2,7 @@
 @section('content')
     @include('sweetalert::view')
 <div class="row">
-    <form class="form-horizontal" method="POST" action="/admin/partenaires/new">
+    <form class="form-horizontal" method="POST" action="/admin/partenaires">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('nom_partenaire') ? ' has-error' : '' }}">

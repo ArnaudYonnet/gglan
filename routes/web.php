@@ -116,16 +116,13 @@ Route::get('/admin/articles/delete/{id_article}', 'AdminController@deleteArticle
 Route::get('/admin/articles/edit/{id_article}', 'AdminController@getEditArticle'); // Formulaire de modification d'un article
 Route::post('/admin/articles/edit/{id_article}', 'AdminController@postEditArticle'); // Modification d'un article
 
+
 //Partenaires
-Route::get('/admin/partenaires', 'AdminController@partenaires'); // Liste des partenaires
-
-Route::get('/admin/partenaires/new', 'AdminController@getPartenaire'); // Formulaires d'ajout de partenaire
-Route::post('/admin/partenaires/new', 'AdminController@postPartenaire'); // Ajout de partenaire
-
-Route::get('/admin/partenaires/edit/{id_partenaire}', 'AdminController@getEditPartenaire'); // Formulaires d'ajout de partenaire
-Route::post('/admin/partenaires/edit/{id_partenaire}', 'AdminController@postEditPartenaire'); // Ajout de partenaire
-
-Route::get('/admin/partenaires/delete/{id_partenaires}', 'AdminController@deletePartenaire'); // Suppression d'un partenaire
+Route::resource('/admin/partenaires', 'PartenaireController', ['except' =>[
+    'update', 'destroy', 'show'
+]]);
+Route::post('/admin/partenaires/{id_partenaire}/edit', 'PartenaireController@update');
+Route::get('/admin/partenaires/{id_partenaire}/delete', 'PartenaireController@destroy');
 
 
 //Jeux

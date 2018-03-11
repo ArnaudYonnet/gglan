@@ -123,6 +123,15 @@
                     'autoWidth'   : true
                     })
 
+                    $('#table').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+
                     CKEDITOR.replace('contenu')
             });
         </script>
