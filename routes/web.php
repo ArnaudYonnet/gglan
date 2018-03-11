@@ -126,3 +126,12 @@ Route::get('/admin/partenaires/edit/{id_partenaire}', 'AdminController@getEditPa
 Route::post('/admin/partenaires/edit/{id_partenaire}', 'AdminController@postEditPartenaire'); // Ajout de partenaire
 
 Route::get('/admin/partenaires/delete/{id_partenaires}', 'AdminController@deletePartenaire'); // Suppression d'un partenaire
+
+
+//Jeux
+Route::get('/admin/jeux', 'JeuxController@index'); // Liste des jeux
+Route::get('/admin/jeux/new', 'JeuxController@create'); // Formulaire ajout jeu
+Route::post('/admin/jeux/new', 'JeuxController@store'); // Ajout jeu
+Route::get('/admin/jeux/edit/{id_jeux}', 'JeuxController@edit'); // Formulaire ajout jeu
+Route::post('/admin/jeux/edit/{id_jeux}', 'JeuxController@update'); // Ajout jeu
+Route::get('/admin/jeux/delete/{id_jeux}', 'JeuxController@destroy'); // Formulaire ajout jeu

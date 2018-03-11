@@ -597,7 +597,7 @@ class AdminController extends Controller
     | Info
     |--------------------------------------------------------------------------
     */
-    private function infoInscrit()
+    public function infoInscrit()
     {
         $inscrits = DB::table('users')->where('admin', 0)->get();
         $equipes = DB::table('equipe')->get();
