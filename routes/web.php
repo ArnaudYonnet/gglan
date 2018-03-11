@@ -13,7 +13,7 @@
 Auth::routes();
 Route::get('/', 'HomeController@index'); // Accueil
 
-Route::get('/articles/{id_article}', 'ArticleController@readArticle'); // Affiche un article
+Route::get('/articles/{id_article}', 'ArticleController@showHome'); // Affiche un article
 Route::get('/reglement', 'HomeController@reglement');
 Route::get('/infos', 'HomeController@infos');
 
@@ -85,10 +85,7 @@ Route::post('/admin/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'
 //Equipes
 Route::get('/admin/equipes', 'AdminController@equipes'); // Liste des joueurs
 Route::get('/admin/delete/equipes/{id_joueur}', 'AdminController@deleteEquipe'); // Suppression d'une equipe
-// Route::get('/admin/create/joueurs', 'AdminController@getJoueurs'); // Formulaire de création d'une equipe
-// Route::post('/admin/create/joueurs', 'AdminController@postJoueurs'); // Création d'une equipe
-// Route::get('/admin/edit/joueurs/{id_joueur}', 'AdminController@getEditJoueurs'); // Formulaire de modification d'une equipe
-// Route::post('/admin/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'); // Mdification d'une equipe
+
 
 
 //Tournois
@@ -103,21 +100,23 @@ Route::get('/admin/edit/tournois/{id_tournois}', 'AdminController@getEditTournoi
 Route::post('/admin/edit/tournois/{id_tournois}', 'AdminController@postEditTournois'); // Modification d'un tournois
 
 
-//Articles
-Route::get('/admin/articles', 'AdminController@articles'); // Liste d'articles
-
-Route::get('/admin/articles/new', 'AdminController@getArticles'); // Formulaire d'écriture d'un article
-Route::post('/admin/articles/new', 'AdminController@postArticles'); // Ecriture d'un article
-
-Route::get('/admin/articles/{id_article}', 'AdminController@previewArticle'); // Preview d'un article
-
-Route::get('/admin/articles/delete/{id_article}', 'AdminController@deleteArticle'); // Suppression d'un article
-
-Route::get('/admin/articles/edit/{id_article}', 'AdminController@getEditArticle'); // Formulaire de modification d'un article
-Route::post('/admin/articles/edit/{id_article}', 'AdminController@postEditArticle'); // Modification d'un article
+/*
+|--------------------------------------------------------------------------
+| Articles
+|--------------------------------------------------------------------------
+*/
+Route::resource('/admin/articles', 'ArticleController', ['except' =>[
+    'update', 'destroy'
+]]);
+Route::post('/admin/articles/{id_article}/edit', 'ArticleController@update');
+Route::get('/admin/articles/{id_article}/delete', 'ArticleController@destroy');
 
 
-//Partenaires
+/*
+|--------------------------------------------------------------------------
+| Partenaires
+|--------------------------------------------------------------------------
+*/
 Route::resource('/admin/partenaires', 'PartenaireController', ['except' =>[
     'update', 'destroy', 'show'
 ]]);
@@ -125,7 +124,11 @@ Route::post('/admin/partenaires/{id_partenaire}/edit', 'PartenaireController@upd
 Route::get('/admin/partenaires/{id_partenaire}/delete', 'PartenaireController@destroy');
 
 
-//Jeux
+/*
+|--------------------------------------------------------------------------
+| Jeux
+|--------------------------------------------------------------------------
+*/
 Route::resource('/admin/jeux', 'JeuController', ['except' =>[
     'update', 'destroy', 'show'
 ]]);
@@ -133,7 +136,11 @@ Route::post('/admin/jeux/{id_jeu}/edit', 'JeuController@update');
 Route::get('/admin/jeux/{id_jeu}/delete', 'JeuController@destroy');
 
 
-//Ranks
+/*
+|--------------------------------------------------------------------------
+| Ranks
+|--------------------------------------------------------------------------
+*/
 Route::resource('admin/ranks', 'RankController', ['except' =>[
     'update', 'destroy', 'show'
 ]]);

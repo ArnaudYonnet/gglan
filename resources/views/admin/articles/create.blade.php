@@ -12,7 +12,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-                <form class="form-horizontal" method="POST" action="/admin/articles/new">
+                <form class="form-horizontal" method="POST" action="/admin/articles">
                     {{ csrf_field() }}
 
                     <div class="form-group{{ $errors->has('titre') ? ' has-error' : '' }}">

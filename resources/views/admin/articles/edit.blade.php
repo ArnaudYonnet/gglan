@@ -11,7 +11,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-                <form class="form-horizontal" method="POST" action="/admin/articles/edit/{{ $article->id_article }}">
+                <form class="form-horizontal" method="POST" action="/admin/articles/{{ $article->id }}/edit">
                     {{ csrf_field() }}
                     
                     <div class="form-group{{ $errors->has('titre') ? ' has-error' : '' }}">

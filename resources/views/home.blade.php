@@ -7,5 +7,5 @@
 
 @section('content')
     <h2>News</h2>
-    @include('articles.articles')
+    @include('articles.index')
 @endsection
