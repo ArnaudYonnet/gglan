@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-10">
         <legend>Ajouter un jeu</legend>
-        <form class="form-horizontal" method="POST" action="/admin/ranks/create">
+        <form class="form-horizontal" method="POST" action="/admin/ranks">
             {{ csrf_field() }}
             
             <div class="form-group{{ $errors->has('id_jeu') ? ' has-error' : '' }}">

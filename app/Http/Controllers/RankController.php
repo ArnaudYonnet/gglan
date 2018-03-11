@@ -31,7 +31,7 @@ class RankController extends Controller
      */
     public function create()
     {
-        $jeux = \App\Jeux::all();
+        $jeux = \App\Jeu::all();
         $info = new AdminController();
 
         return view('admin.ranks.create')
@@ -82,7 +82,7 @@ class RankController extends Controller
     public function edit($id_rank)
     {
         $rank = Rank::find($id_rank);
-        $jeux = \App\Jeux::all();
+        $jeux = \App\Jeu::all();
         $info = new AdminController();
 
         return view('admin.ranks.edit')

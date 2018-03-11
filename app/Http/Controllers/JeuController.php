@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Jeux;
+use App\Jeu;
 use Illuminate\Http\Request;
 
-class JeuxController extends Controller
+class JeuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class JeuxController extends Controller
     {
         $info = new AdminController();
 
-        $jeux = Jeux::all();
+        $jeux = Jeu::all();
 
-        return view('admin.jeux.jeux')
+        return view('admin.jeux.index')
                 ->with('inscrits', $info->infoInscrit()["inscrits"])
                 ->with('equipes', $info->infoInscrit()["equipes"])
                 ->with('jeux', $jeux);
@@ -33,7 +33,7 @@ class JeuxController extends Controller
     {
         $info = new AdminController();
 
-        return view('admin.jeux.new')
+        return view('admin.jeux.create')
                 ->with('inscrits', $info->infoInscrit()["inscrits"])
                 ->with('equipes', $info->infoInscrit()["equipes"]);
     }
@@ -46,7 +46,7 @@ class JeuxController extends Controller
      */
     public function store(Request $request)
     {
-        $jeu = New Jeux;
+        $jeu = New Jeu;
 
         $jeu->nom = $request->input('nom');
         $jeu->description = $request->input('description');
@@ -62,10 +62,10 @@ class JeuxController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Jeux  $jeux
+     * @param  \App\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function show(Jeux $jeux)
+    public function show(Jeu $jeu)
     {
         //
     }
@@ -73,12 +73,12 @@ class JeuxController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Jeux  $jeux
+     * @param  \App\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_jeux)
+    public function edit($id_jeu)
     {
-        $jeu = Jeux::find($id_jeux);
+        $jeu = Jeu::find($id_jeu);
 
         $info = new AdminController();
 
@@ -93,13 +93,13 @@ class JeuxController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jeux  $jeux
+     * @param  \App\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_jeux)
+    public function update(Request $request, $id_jeu)
     {
-        $jeu = Jeux::find($id_jeux);
-        
+        $jeu = Jeu::find($id_jeu);
+
         $jeu->nom = $request->input('nom');
         $jeu->description = $request->input('description');
         $jeu->nb_jeu = $request->input('nb_jeu');
@@ -107,19 +107,19 @@ class JeuxController extends Controller
         $jeu->save();
 
         swal()->autoclose('2000')
-              ->success('Mise à jour','Le jeu à bien été ajouté !',[]);
+              ->success('Mise à jour','Le jeu à bien été mis à jour !',[]);
         return redirect('admin/jeux');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Jeux  $jeux
+     * @param  \App\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_jeux)
+    public function destroy($id_jeu)
     {
-        Jeux::destroy($id_jeux);
+        Jeu::destroy($id_jeu);
 
         swal()->autoclose('2000')
               ->success('Mise à jour','Le jeu à bien été supprimé !',[]);

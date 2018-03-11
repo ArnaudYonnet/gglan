@@ -21,10 +21,10 @@
                         @foreach ($ranks as $key => $rank)
                         <tr>
                             <td> {{$key+1}} </td>
-                            <td> {{ \App\Jeux::find($rank->id_jeu)->nom }} </td>
+                            <td> {{ \App\Jeu::find($rank->id_jeu)->nom }} </td>
                             <td> {{ $rank->nom }} </td>
-                            <td> <a href="/admin/ranks/edit/{{ $rank->id }}"><i class="fa fa-edit"></i></a> </td>
-                            <td> <a href="/admin/ranks/delete/{{ $rank->id }}"><i class="fa fa-trash"></i></a> </td>
+                            <td> <a href="/admin/ranks/{{ $rank->id }}/edit"><i class="fa fa-edit"></i></a> </td>
+                            <td> <a href="/admin/ranks/{{ $rank->id }}/delete"><i class="fa fa-trash"></i></a> </td>
                         </tr>
                         @endforeach
                     </tbody>

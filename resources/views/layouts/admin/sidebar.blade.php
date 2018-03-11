@@ -55,8 +55,9 @@
 
           <ul class="treeview-menu">
             <li><a href="/admin/jeux"><i class="fa fa-list-ul"></i>Liste des jeux</a></li>
-            <li><a href="/admin/jeux/new"><i class="fa fa-plus-circle"></i>Ajouter un jeu</a></li>
-            <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter un rank</a></li>
+            <li><a href="/admin/jeux/create"><i class="fa fa-plus-circle"></i>Ajouter un jeu</a></li>
+            <li><a href="/admin/ranks"><i class="fa fa-list-ul"></i>Liste des ranks</a></li>
+            <li><a href="/admin/ranks/create"><i class="fa fa-plus-circle"></i>Ajouter un rank</a></li>
           </ul>
         </li>
 

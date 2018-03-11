@@ -25,8 +25,8 @@
                                 <td> {{ $jeu->nom }} </td>
                                 <td> {{ $jeu->description }} </td>
                                 <td> {{ $jeu->nb_jeu }} </td>
-                                <td> <a href="/admin/jeux/edit/{{ $jeu->id }}"><i class="fa fa-edit"></i></a> </td>
-                                <td> <a href="/admin/jeux/delete/{{ $jeu->id }}"><i class="fa fa-trash"></i></a> </td>
+                                <td> <a href="/admin/jeux/{{ $jeu->id }}/edit"><i class="fa fa-edit"></i></a> </td>
+                                <td> <a href="/admin/jeux/{{ $jeu->id }}/delete"><i class="fa fa-trash"></i></a> </td>
                             </tr>
                             @endforeach
                         </tbody>

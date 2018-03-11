@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-10">
             <legend>Modification du rank: <b>{{ $rank->nom }}</b> </legend>
-            <form class="form-horizontal" method="POST" action="/admin/ranks/edit/{{ $rank->id }}">
+            <form class="form-horizontal" method="POST" action="/admin/ranks/{{ $rank->id }}/edit">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
@@ -24,7 +24,7 @@
                     <label for="id_jeu" class="col-md-4 control-label">Jeu</label>
                     <div class="col-md-6">
                         <select id="id_jeu" class="form-control" name="id_jeu">
-                            <option value="{{ $rank->id_jeu }}" selected> {{ \App\Jeux::find($rank->id_jeu)->nom }} </option>
+                            <option value="{{ $rank->id_jeu }}" selected> {{ \App\Jeu::find($rank->id_jeu)->nom }} </option>
                             @foreach ($jeux as $jeu)
                                 <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
                             @endforeach
