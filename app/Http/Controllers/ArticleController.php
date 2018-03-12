@@ -67,6 +67,7 @@ class ArticleController extends Controller
         $article->date_article = \Carbon\Carbon::now()->format('Y-m-d');
         $article->titre_article = $request->input('titre');
         $article->contenu_article = $request->input('contenu');
+        $article->image_article = $request->input('image');
         $article->id_user = Auth::id();
 
         $article->save();
