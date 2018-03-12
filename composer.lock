@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e4aa7f7ec504d9cd27a9c99227eb6ca",
+    "content-hash": "0fd10cf820158031a3d7e86b4e3eb846",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1001,6 +1001,57 @@
                 "psysh"
             ],
             "time": "2018-03-06T17:34:36+00:00"
+        },
+        {
+            "name": "larsjanssen6/underconstruction",
+            "version": "2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/larsjanssen6/underconstruction.git",
+                "reference": "00193f25d3afa71edddc1308783da766ccde0afe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/larsjanssen6/underconstruction/zipball/00193f25d3afa71edddc1308783da766ccde0afe",
+                "reference": "00193f25d3afa71edddc1308783da766ccde0afe",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.5.0|~5.5.5|~5.6.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0@dev",
+                "orchestra/testbench": "~3.5.3|~3.6.0",
+                "phpunit/phpunit": "^6.3|^7.0",
+                "symfony/thanks": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LarsJanssen\\UnderConstruction\\UnderConstructionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LarsJanssen\\UnderConstruction\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Janssen",
+                    "email": "mail@larsjanssen.net",
+                    "role": "Developer"
+                }
+            ],
+            "homepage": "https://github.com/larsjanssen6/underconstruction",
+            "time": "2018-03-08T09:12:21+00:00"
         },
         {
             "name": "league/flysystem",

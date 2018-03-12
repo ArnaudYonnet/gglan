@@ -11,6 +11,7 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "larsjanssen6/underconstruction": "^2.8",
         "softon/sweetalert": "^1.0"
     },
     "require-dev": {
