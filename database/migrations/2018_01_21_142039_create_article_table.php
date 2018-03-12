@@ -18,6 +18,7 @@ class CreateArticleTable extends Migration
             $table->date('date_article');
             $table->string('titre_article');
             $table->text('contenu_article');
+            $table->text('image_article');
             $table->integer('id_user');
             $table->timestamps();
         });

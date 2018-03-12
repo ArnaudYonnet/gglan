@@ -67,6 +67,7 @@ class ArticleController extends Controller
         $article->date_article = \Carbon\Carbon::now()->format('Y-m-d');
         $article->titre_article = $request->input('titre');
         $article->contenu_article = $request->input('contenu');
+        $article->image_article = $request->input('image');
         $article->id_user = Auth::id();
 
         $article->save();
@@ -108,19 +109,12 @@ class ArticleController extends Controller
      */
     public function showHome($id_article)
     {
-        if (Auth::check()) 
-        {
-            if (Auth::user()->admin) 
-            {
-                $article = Article::find($id_article);
-                $partenaires = DB::table('partenaire')->get();
+        $article = Article::find($id_article);
+        $partenaires = DB::table('partenaire')->get();
 
-                return view('articles.show')
-                        ->with('partenaires', $partenaires)
-                        ->with('article', $article);
-            }
-        }
-        return redirect('/');
+        return view('articles.show')
+                ->with('partenaires', $partenaires)
+                ->with('article', $article);
     }
 
     /**
