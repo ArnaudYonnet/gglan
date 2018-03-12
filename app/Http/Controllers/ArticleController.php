@@ -109,19 +109,12 @@ class ArticleController extends Controller
      */
     public function showHome($id_article)
     {
-        if (Auth::check()) 
-        {
-            if (Auth::user()->admin) 
-            {
-                $article = Article::find($id_article);
-                $partenaires = DB::table('partenaire')->get();
+        $article = Article::find($id_article);
+        $partenaires = DB::table('partenaire')->get();
 
-                return view('articles.show')
-                        ->with('partenaires', $partenaires)
-                        ->with('article', $article);
-            }
-        }
-        return redirect('/');
+        return view('articles.show')
+                ->with('partenaires', $partenaires)
+                ->with('article', $article);
     }
 
     /**
