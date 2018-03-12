@@ -72,7 +72,7 @@
                             <label for="type" class="col-md-4 control-label">Type</label>
 
                             <div class="col-md-6">
-                                <select name="type" id="type" class="custom-select">
+                                <select name="type" id="type" class="custom-select" required>
                                     <option disabled selected>-- Type d'inscription --</option>
                                     <option value="Joueur">Joueur</option>
                                     <option value="Visiteur">Visiteur</option>
