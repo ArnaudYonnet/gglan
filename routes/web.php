@@ -42,14 +42,20 @@ Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
 | Equipes
 |--------------------------------------------------------------------------
 */
-Route::get('/equipes', 'EquipeController@index'); // Listing des équipes inscrites
+// Route::get('/equipes', 'EquipeController@index'); // Listing des équipes inscrites
 Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe'); // Profil de l'équipe 
 
-Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
-Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
+// Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
+// Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
 
 Route::post('/equipes/{id}/add', 'EquipeController@postEquipier'); // Ajoute un joueur à l'équipe
 Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
+
+Route::resource('/equipes', 'EquipeController', ['except' =>[
+        'update', 'destroy'
+    ]]);
+Route::post('/equipes/{id_equipe}/edit', 'EquipeController@update');
+Route::get('/equipes/{id_equipe}/delete', 'EquipeController@destroy');
 
 
 /*
@@ -60,7 +66,15 @@ Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@del
 Route::get('/tournois', 'TournoisController@index'); // Les anciens tournois
 Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // Inscription équipe au prochain tournois
 
-
+Route::get('/test', function() {
+        // $equipe = \App\User::find(Auth::id())->getEquipe();
+        $isInscrit = \App\Equipe::find(1)->isInscrit();
+        if ($isInscrit) 
+        {
+            return "Equipe inscrite !";
+        }
+        return "Equipe non-inscrite";
+});
 /*
 |--------------------------------------------------------------------------
 | Admin
