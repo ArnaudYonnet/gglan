@@ -84,7 +84,7 @@
 
                             @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)
                                 <th scope="row">
-                                    <a href="/equipes/{{$equipe->id}}/delete/joueur/{{$joueur->id_user}}" class="btn btn-danger">
+                                    <a href="/equipes/{{$equipe->id}}/joueur/{{$joueur->id}}/delete" class="btn btn-danger">
                                         <i class="far fa-trash-alt"></i>
                                     </a>
                                 </th>

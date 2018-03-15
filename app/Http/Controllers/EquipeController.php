@@ -121,4 +121,23 @@ class EquipeController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyJoueur($id_equipe, $id_joueur)
+    {
+        \App\Appartenance::where('id_equipe', $id_equipe)
+                         ->where('id_user', $id_joueur)
+                         ->delete();
+                         
+        $joueur = \App\User::find($id_joueur);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour', $joueur->pseudo.' à bien été supprimé !',[]);
+        return redirect('equipes/'.$id_equipe);
+    }
 }
