@@ -11,7 +11,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card">
                     <h5 class="card-header">
-                        <a href="/equipes/{{ $equipe->id }}/profil" class="text-danger"> {{ $equipe->nom_equipe }} </a>
+                        <a href="/equipes/{{ $equipe->id }}" class="text-danger"> {{ $equipe->nom_equipe }} </a>
                     </h5>
                     <div class="card-body">
                         <img class="card-img-top" src="{{ $equipe->avatar_equipe }}" alt="Pas d'image trouvé :/">
