@@ -26,4 +26,33 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function getRank()
+    {
+        try {
+            $rank = \App\Entrainement::where('id_user', $this->id)->firstOrFail();
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }
+        
+        return $rank;
+    }
+
+    public function getEquipe()
+    {
+        try {
+            $equipe = \App\Appartenance::where('id_user', $this->id)->firstOrFail();
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }
+        
+        return $equipe;
+    }
+
+    
 }
