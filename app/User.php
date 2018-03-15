@@ -40,4 +40,19 @@ class User extends Authenticatable
         
         return $rank;
     }
+
+    public function getEquipe()
+    {
+        try {
+            $equipe = \App\Appartenance::where('id_user', $this->id)->firstOrFail();
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }
+        
+        return $equipe;
+    }
+
+    
 }
