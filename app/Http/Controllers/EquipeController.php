@@ -63,7 +63,7 @@ class EquipeController extends Controller
             $equipe->id_jeu = $request->input('jeu');
         $equipe->save();
 
-        $id_equipe = Equipe::where('nom_equipe', $request->input('nom'))->value('id');
+        $id_equipe = Equipe::where('nom_equipe', $request->input('nom'));
 
         swal()->autoclose(2000)
               ->success('Mise à jour','Votre équipe a bien été créer !',[]);
