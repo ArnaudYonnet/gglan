@@ -31,7 +31,9 @@ class User extends Authenticatable
     public function getRank()
     {
         try {
-            $rank = \App\Entrainement::where('id_user', $this->id)->firstOrFail();
+            $entrainement = \App\Entrainement::where('id_user', $this->id)->firstOrFail();
+            $rank = \App\Rank::find($entrainement->id_rank);
+
         }
         catch (\Exception $e)
         {

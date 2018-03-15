@@ -63,15 +63,6 @@ Route::middleware('auth')->group(function(){
 Route::get('/tournois', 'TournoisController@index'); // Les anciens tournois
 Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // Inscription équipe au prochain tournois
 
-Route::get('/test', function() {
-        // $equipe = \App\User::find(Auth::id())->getEquipe();
-        $isInscrit = \App\Equipe::find(1)->isInscrit();
-        if ($isInscrit) 
-        {
-            return "Equipe inscrite !";
-        }
-        return "Equipe non-inscrite";
-});
 /*
 |--------------------------------------------------------------------------
 | Admin
