@@ -42,20 +42,17 @@ Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
 | Equipes
 |--------------------------------------------------------------------------
 */
-// Route::get('/equipes', 'EquipeController@index'); // Listing des équipes inscrites
-Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe'); // Profil de l'équipe 
+Route::resource('/equipes', 'EquipeController', ['only' => 'index']);
+    
 
-// Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
-// Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
-
-Route::post('/equipes/{id}/add', 'EquipeController@postEquipier'); // Ajoute un joueur à l'équipe
-Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
-
-Route::resource('/equipes', 'EquipeController', ['except' =>[
-        'update', 'destroy'
-    ]]);
-Route::post('/equipes/{id_equipe}/edit', 'EquipeController@update');
-Route::get('/equipes/{id_equipe}/delete', 'EquipeController@destroy');
+Route::middleware('auth')->group(function(){
+    Route::resource('/equipes', 'EquipeController', ['except' =>[
+            'index', 'update', 'destroy'
+        ]]);
+    
+    Route::post('/equipes/{id}/edit', 'EquipeController@update');
+    Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
+});
 
 
 /*
