@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function(){
         ]]);
     
     Route::post('/equipes/{id}/edit', 'EquipeController@update');
-    Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
+    Route::get('/equipes/{id}/joueur/{id_joueur}/delete', 'EquipeController@destroyJoueur');
 });
 
 
