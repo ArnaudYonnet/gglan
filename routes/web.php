@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function(){
             'index', 'update', 'destroy'
         ]]);
     
-    Route::post('/equipes/{id}/edit', 'EquipeController@update');
+    Route::post('/equipes/{id}/add', 'EquipeController@updateJoueur');
     Route::get('/equipes/{id}/joueur/{id_joueur}/delete', 'EquipeController@destroyJoueur');
 });
 

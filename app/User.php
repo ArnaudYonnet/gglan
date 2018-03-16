@@ -46,14 +46,20 @@ class User extends Authenticatable
     public function getEquipe()
     {
         try {
-            $equipe = \App\Appartenance::where('id_user', $this->id)->firstOrFail();
+            $appartenance = \App\Appartenance::where('id_user', $this->id)->firstOrFail();
+            $equipe = \App\Equipe::find($appartenance->id_equipe);
+            return $equipe;
         }
         catch (\Exception $e)
         {
-            return false;
+            try {
+                $capitaine = \App\Equipe::where('id_capitaine', $this->id)->firstOrFail();
+                return $capitaine;
+            }
+            catch (\Exception $e){
+            }
         }
-        
-        return $equipe;
+        return false;
     }
 
     
