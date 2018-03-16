@@ -160,7 +160,11 @@ class EquipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Equipe::destroy($id);
+
+        swal()->autoclose(2000)
+              ->success('Mise à jour',"L'équipe à bien été supprimé !",[]);
+            return redirect('/admin/equipes');
     }
 
     /**
