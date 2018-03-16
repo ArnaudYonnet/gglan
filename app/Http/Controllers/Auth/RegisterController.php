@@ -42,8 +42,8 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::getTournois();
         
         return view('auth.register')
                 ->with('partenaires', $partenaires)
