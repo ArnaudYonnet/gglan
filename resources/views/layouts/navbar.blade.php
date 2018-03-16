@@ -41,10 +41,10 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     @if (Auth::user()->type == "Joueur")
-                        <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
+                        <a class="dropdown-item" href="/joueurs/{{ Auth::user()->id }}">Mon Profil</a>
                         <a class="dropdown-item" href="/equipes/create">Mon Equipe</a>
                     @else
-                        <a class="dropdown-item" href="/profil/{{ Auth::user()->id_public }}">Mon Profil</a>
+                        <a class="dropdown-item" href="/joueurs/{{ Auth::user()->id }}">Mon Profil</a>
                     @endif
                     <div class="dropdown-divider">
                     </div>
