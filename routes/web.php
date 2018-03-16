@@ -86,7 +86,7 @@ Route::prefix('/admin')->middleware('admin')->group(function(){
 
 
     Route::get('/equipes', 'AdminController@equipes'); // Liste des joueurs
-    Route::get('/delete/equipes/{id_joueur}', 'AdminController@deleteEquipe'); // Suppression d'une equipe
+    Route::get('/equipes/{id_joueur}/delete', 'EquipeController@destroy'); // Suppression d'une equipe
 
     Route::get('/tournois', 'AdminController@tournois'); // Liste des tournois 
     Route::get('/tournois/inscrits', 'AdminController@listeInscrits'); // Liste des équipes inscrites pour la prochaine LAN
