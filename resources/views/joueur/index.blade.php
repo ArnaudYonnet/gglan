@@ -12,20 +12,18 @@
                     <div class="card-body">
                         <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
                         <p></p>
-                        @foreach ($ranks as $rank)
-                            @if ($rank->id_user == $joueur->id)
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    Rank: {{ $rank->nom }}
-                                </h6>
-                            @endif
-                        @endforeach
-                        @foreach ($equipes as $equipe)
-                            @if ($equipe->id_user == $joueur->id)
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    Equipe:  <a href="/equipes/{{ $equipe->id }}/profil" class="text-danger">{{ $equipe->nom_equipe }}</a>
-                                </h6> 
-                            @endif
-                        @endforeach 
+                        @if ($joueur->getRank())
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Rank: {{ $joueur->getRank()->nom }}
+                            </h6>
+                        @endif
+                        
+                        @if ($joueur->getEquipe())
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Equipe: <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="text-danger">{{ $joueur->getEquipe()->nom_equipe }}</a>
+                            </h6>
+                        @endif
+                        
                         <p class="card-text"> {{ $joueur->description }} </p>
                     </div>
                 </div>
