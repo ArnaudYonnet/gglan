@@ -45,7 +45,7 @@
                         <th scope="col"></th>
                         <th scope="col">Pseudo</th>
                         @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)
-                            <th scope="col"></th>
+                            <th scope="col">Modifier</th>
                         @endif
                     </tr>
                 </thead>
@@ -62,10 +62,12 @@
                         @endif
 
                         <th scope="row">
-                            <a href="/joueurs/{{ $equipe->getCapitaine()->pseudo }}" class="text-white">{{ $equipe->getCapitaine()->pseudo }}</a>
+                            <a href="/joueurs/{{ $equipe->getCapitaine()->id }}" class="text-white">{{ $equipe->getCapitaine()->pseudo }}</a>
                         </th>
 
-                        <th scope="row"></th>
+                        @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)
+                            <th scope="row"></th>
+                        @endif
                     </tr>
 
                     {{--  Lignes joueurs  --}}
@@ -80,7 +82,7 @@
                             @endif
 
                             <th scope="row">
-                                <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
+                                <a href="/joueurs/{{$joueur->id}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
 
                             @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)

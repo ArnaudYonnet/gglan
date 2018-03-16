@@ -33,9 +33,13 @@ Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification d
 | Joueurs
 |--------------------------------------------------------------------------
 */
-Route::get('/joueurs', 'JoueurController@index')->name('joueurs'); // Listing des joueurs inscrits
-Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
-
+Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
+    
+Route::middleware('auth')->group(function(){
+        Route::get('/joueurs/{id}/edit', 'JoueurController@edit');
+        Route::post('/joueurs/{id}', 'JoueurController@update');
+        Route::get('/joueurs/{id}/joueur/{id_joueur}/delete', 'JoueurController@destroy');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +47,6 @@ Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
 |--------------------------------------------------------------------------
 */
 Route::resource('/equipes', 'EquipeController', ['only' => 'index']);
-    
 
 Route::middleware('auth')->group(function(){
     Route::resource('/equipes', 'EquipeController', ['except' =>[

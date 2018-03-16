@@ -18,7 +18,7 @@ class EquipeController extends Controller
     public function index()
     {
         $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $tournois = \App\Tournois::getTournois();
         $equipes = Equipe::all();
 
         return view('equipe.index')
@@ -35,7 +35,7 @@ class EquipeController extends Controller
     public function create()
     {
         $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $tournois = \App\Tournois::getTournois();
         $jeux = \App\Jeu::all();
 
         if (Auth::user()->getEquipe()) 
@@ -80,7 +80,7 @@ class EquipeController extends Controller
     public function show($id)
     {
         $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $tournois = \App\Tournois::getTournois();
         $equipe = Equipe::find($id);
 
         return view('equipe.show')

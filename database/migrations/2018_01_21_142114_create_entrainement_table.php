@@ -14,6 +14,7 @@ class CreateEntrainementTable extends Migration
     public function up()
     {
         Schema::create('entrainement', function (Blueprint $table) {
+            $table->integer('id', true);
             $table->integer('id_jeu');
             $table->integer('id_user');
             $table->integer('id_rank');
