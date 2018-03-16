@@ -33,11 +33,11 @@ Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification d
 | Joueurs
 |--------------------------------------------------------------------------
 */
-Route::resource('/joueurs', 'JoueurController', ['only' => 'index']);
+Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
     
 Route::middleware('auth')->group(function(){
     Route::resource('/joueurs', 'JoueurController', ['except' =>[
-            'index', 'update', 'destroy'
+            'index', 'update', 'destroy', 'show'
         ]]);
     
     Route::post('/joueurs/{id}/add', 'JoueurController@update');
