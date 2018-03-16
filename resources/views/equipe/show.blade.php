@@ -6,7 +6,7 @@
                 <img src="{{ $equipe->avatar_equipe }}" class="img-fluid" style="max-width: 250px" alt="">
 
                 <h3>{{ $equipe->nom_equipe}} </h3>
-                @if (count($equipe->getJoueurs()) < 4)
+                @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id && count($equipe->getJoueurs()) < 4)
                     @include('equipe.add')
                 @endif
 
@@ -15,18 +15,19 @@
                     @if (count($equipe->getJoueurs()) == 4)
 
                         {{--  Refaire cette partie là en utilisant Equipe::isInscrit()  --}}
-                        @isset($participe)
+                        @if ($equipe->isInscrit())
                             Votre équipe est inscrite pour la prochaine LAN !
-                        @else
-                            @isset($next_tournois)
-                                @if ($next_tournois->status == "ouvert")
-                                    <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</a>
-                                @else
-                                    <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger disabled mb-4">S'inscrire pour la prochaine LAN</a>
-                                @endif
+
+                        @endif
+
+                        @isset($next_tournois)
+                            @if ($next_tournois->status == "ouvert")
+                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</a>
                             @else
-                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled mb-4">S'inscrire pour la prochaine LAN</a>                    
-                            @endisset
+                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger disabled mb-4">S'inscrire pour la prochaine LAN</a>
+                            @endif
+                        @else
+                            <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled mb-4">S'inscrire pour la prochaine LAN</a>                    
                         @endisset
                     @endif
                 @endif

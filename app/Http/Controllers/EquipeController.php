@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EquipeRequest;
+use App\Http\Requests\AppartenanceRequest;
 use \App\Equipe;
 use Auth;
 
@@ -112,6 +113,46 @@ class EquipeController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateJoueur(AppartenanceRequest $request, $id_equipe)
+    {
+        $search = \App\User::where('id_public', $request->input('id_public'))->first();
+        if ($search->getEquipe()) 
+        {
+            swal()->autoclose(2000)
+                  ->error('Erreur','Le joueur appartient déjà à une équipe...',[]);
+            return redirect('equipes/'. $id_equipe );
+        }
+        else
+        {
+            $joueur = new \App\Appartenance;
+    
+            $joueur->id_equipe = $id_equipe;
+            $joueur->id_user = $search->id;
+    
+            $joueur->save();
+    
+            swal()->autoclose(2000)
+                  ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+            return redirect('equipes/'. $id_equipe );
+        }
+
+        if (count(Equipe::find($id_equipe)->getJoueurs()) == 4) 
+        {
+            swal()->button('Ok, pardon')
+              ->error('Limite de 5 joueurs',"Alors comme ça tu veux nous l'a faire à l'envers ? ",[]);
+            return redirect('equipes/'.$request->id_equipe.'/profil');
+        }
+
+        return $search->getEquipe();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -133,7 +174,7 @@ class EquipeController extends Controller
         \App\Appartenance::where('id_equipe', $id_equipe)
                          ->where('id_user', $id_joueur)
                          ->delete();
-                         
+
         $joueur = \App\User::find($id_joueur);
 
         swal()->autoclose('2000')
