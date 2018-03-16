@@ -33,8 +33,8 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::getTournois();
         
         return view('auth.passwords.email')
                ->with('partenaires', $partenaires)
