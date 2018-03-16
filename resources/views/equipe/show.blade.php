@@ -62,7 +62,7 @@
                         @endif
 
                         <th scope="row">
-                            <a href="/joueurs/{{ $equipe->getCapitaine()->pseudo }}" class="text-white">{{ $equipe->getCapitaine()->pseudo }}</a>
+                            <a href="/joueurs/{{ $equipe->getCapitaine()->id }}" class="text-white">{{ $equipe->getCapitaine()->pseudo }}</a>
                         </th>
 
                         <th scope="row"></th>
@@ -80,7 +80,7 @@
                             @endif
 
                             <th scope="row">
-                                <a href="/joueurs/{{$joueur->pseudo}}" class="text-white">{{ $joueur->pseudo }}</a>  
+                                <a href="/joueurs/{{$joueur->id}}" class="text-white">{{ $joueur->pseudo }}</a>  
                             </th>
 
                             @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)

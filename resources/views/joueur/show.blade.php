@@ -88,8 +88,14 @@
     @else
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
-                <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
-            </div>
+                    <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
+        
+                    <br />
+        
+                    @if ($joueur->getEquipe())
+                        <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger" style="margin-top: 2vh;">Son Equipe</a>
+                    @endif
+                </div>
         
             <div class="col-lg-3 col-md-4 col-sm-8">
                 <ul class="list-unstyled">
@@ -114,7 +120,7 @@
                             <b>Non-renseigné...</b>
                         @endif
                     </li>
-                    
+
                     <li>Description:
                         <p><b> {{ $joueur->description }} </b></p>
                     </li>

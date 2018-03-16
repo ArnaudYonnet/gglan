@@ -19,11 +19,11 @@
                         <p></p>
 
                         <h6 class="card-subtitle mb-2">
-                            <a href="/joueurs/{{ $equipe->getCapitaine()->pseudo }}" class="text-danger">{{ $equipe->getCapitaine()->pseudo }}</a>
+                            <a href="/joueurs/{{ $equipe->getCapitaine()->id }}" class="text-danger">{{ $equipe->getCapitaine()->pseudo }}</a>
                         </h6>
                         @foreach ($equipe->getJoueurs() as $joueur) 
                             <h6 class="card-subtitle mb-2">
-                                <a href="/joueurs/{{ $joueur->pseudo }}" class="text-danger">{{ $joueur->pseudo }}</a>
+                                <a href="/joueurs/{{ $joueur->id }}" class="text-danger">{{ $joueur->pseudo }}</a>
                             </h6>
                         @endforeach
                         <p class="card-text"> {{ $equipe->description }} </p>
