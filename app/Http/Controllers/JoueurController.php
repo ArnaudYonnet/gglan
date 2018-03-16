@@ -16,7 +16,7 @@ class JoueurController extends Controller
     {
         $partenaires = \App\Partenaire::all();
         $tournois = \App\Tournois::getTournois();
-        $joueurs = User::where('admin', 0)->get();
+        $joueurs = User::where('type', '!=', 'visiteur')->get();
 
         return view('joueur.index')
                 ->with('partenaires', $partenaires)
@@ -53,7 +53,16 @@ class JoueurController extends Controller
      */
     public function show($id)
     {
-        //
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::getTournois();
+
+        $joueur = User::find($id);
+
+        return view('joueur.show')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
+                ->with('joueur', $joueur);
+
     }
 
     /**
