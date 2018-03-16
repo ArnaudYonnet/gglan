@@ -28,19 +28,21 @@
         <div class="container float-right col-lg-2 col-md-2 col-sm-12       pt-lg-4 pt-md-4 pr-lg-4 pr-md-4">
             <div class="row  rounded">
                 <div class="col-lg-12">
-                        @isset($tournois)
+                    @if($tournois)
+                        @foreach ($tournois as $tournoi)
                             <p class="text-white">
                                 <u>
-                                    La <b>{{ $tournois->nom_tournois }}</b> 
+                                    La <b>{{ $tournoi->nom_tournois }}</b> 
                                     aura lieu du 
-                                    {{ \Carbon\Carbon::parse($tournois->date_deb)->format('d/m/Y') }} 
+                                    {{ \Carbon\Carbon::parse($tournoi->date_deb)->format('d/m/Y') }} 
                                     au 
-                                    {{ \Carbon\Carbon::parse($tournois->date_fin)->format('d/m/Y') }}
+                                    {{ \Carbon\Carbon::parse($tournoi->date_fin)->format('d/m/Y') }}
                                 </u>
                             </p>
-                        @else
-                            <p class="text-white">Pas de LAN annoncé pour le moment...</p>
-                        @endisset
+                        @endforeach
+                    @else
+                        <p class="text-white">Pas de LAN annoncé pour le moment...</p>
+                    @endif
                     </div>
                     
                     @foreach ($partenaires as $partenaire)

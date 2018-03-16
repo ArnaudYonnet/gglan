@@ -14,8 +14,8 @@ class HomeController extends Controller
                             ->get();
 
         $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-
+        $tournois = \App\Tournois::getTournois();
+        
         return view('home')
                 ->with('partenaires', $partenaires)
                 ->with('articles', $articles)
@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function reglement()
     {
         $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-
+        $tournois = \App\Tournois::getTournois();
+        
         return view('reglement')
                 ->with('partenaires', $partenaires)
                 ->with('tournois', $tournois);
@@ -35,8 +35,8 @@ class HomeController extends Controller
     public function infos()
     {
         $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-
+        $tournois = \App\Tournois::getTournois();
+        
         return view('infos')
                 ->with('partenaires', $partenaires)
                 ->with('tournois', $tournois);
