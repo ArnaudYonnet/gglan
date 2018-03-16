@@ -39,7 +39,7 @@
                             <li class="list-item">
                                 @isset($equipe)
                                     <b>Son équipe:</b>
-                                    <a href="/equipes/{{ $equipe->id }}/profil" class="btn btn-danger">{{ $equipe->nom_equipe }}</a> 
+                                    <a href="/equipes/{{ $equipe->id }}" class="btn btn-danger">{{ $equipe->nom_equipe }}</a> 
                                 @endisset
                             </li>
                         </ul>
