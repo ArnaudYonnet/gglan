@@ -25,8 +25,6 @@ class EditUserRequest extends FormRequest
     {
         return [
             'pseudo' => 'required|string|max:255',
-            'nom' => 'string|max:255',
-            'prenom' => 'string|max:255',
             'description' => 'string|max:255',
         ];
     }

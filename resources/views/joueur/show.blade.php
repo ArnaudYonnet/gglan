@@ -1,10 +1,4 @@
 @extends('layouts.template')
-
-
-@section('title')
-    GGLAN
-@endsection
-
 @section('content')
 @include('sweetalert::view')
 
@@ -78,7 +72,7 @@
         
                 @isset($edit)
                     <div class="col-lg-5 col-md-10 col-sm-12">
-                        @include('profil.edit')
+                        @include('joueur.edit')
                     </div>
                 @endisset
             </div>

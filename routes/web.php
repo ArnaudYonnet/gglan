@@ -36,12 +36,9 @@ Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification d
 Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
     
 Route::middleware('auth')->group(function(){
-    Route::resource('/joueurs', 'JoueurController', ['except' =>[
-            'index', 'update', 'destroy', 'show'
-        ]]);
-    
-    Route::post('/joueurs/{id}/add', 'JoueurController@update');
-    Route::get('/joueurs/{id}/joueur/{id_joueur}/delete', 'JoueurController@destroy');
+        Route::get('/joueurs/{id}/edit', 'JoueurController@edit');
+        Route::post('/joueurs/{id}', 'JoueurController@update');
+        Route::get('/joueurs/{id}/joueur/{id_joueur}/delete', 'JoueurController@destroy');
 });
 
 /*

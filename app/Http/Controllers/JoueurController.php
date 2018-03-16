@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EditUserRequest;
+
 use \App\User;
 
 class JoueurController extends Controller
@@ -73,7 +75,20 @@ class JoueurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::getTournois();
+        $jeux = \App\Jeu::all();
+        $ranks = \App\Rank::all();
+
+        $joueur = User::find($id);
+
+        return view('joueur.show')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
+                ->with('jeux', $jeux)
+                ->with('ranks', $ranks)
+                ->with('joueur', $joueur)
+                ->with('edit', true);
     }
 
     /**
@@ -83,10 +98,36 @@ class JoueurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
-        //
+        $joueur = User::find($id);
+            $joueur->pseudo = $request->input('pseudo');
+            $joueur->avatar = $request->input('avatar');
+            $joueur->ville = $request->input('ville');
+            $joueur->description = $request->input('description');
+        $joueur->save();
+
+        if ($joueur->getRank()) 
+        {
+            $entrainement = \App\Entrainement::where('id_user', $id)->first();
+                $entrainement->id_rank = $request->input('rank');
+            $entrainement->save();
+        }
+        else
+        {
+            $rank = \App\Rank::find($request->input('rank'));
+            $entrainement = new \App\Entrainement;
+                $entrainement->id_jeu = $rank->id_jeu;
+                $entrainement->id_user = $id;
+                $entrainement->id_rank = $request->input('rank');
+            $entrainement->save();
+        }
+
+        swal()->autoclose(2000)
+              ->success('Mise à jour','Votre profil a bien été mis à jour !',[]);
+        return redirect('joueurs/'. $id);
     }
+    
 
     /**
      * Remove the specified resource from storage.
