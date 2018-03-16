@@ -5,175 +5,184 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\EquipeRequest;
 use App\Http\Requests\AppartenanceRequest;
-use Illuminate\Support\Facades\DB;
-use Softon\SweetAlert\Facades\SWAL; 
-use App\Equipe;
-use App\Appartenance;
+use \App\Equipe;
 use Auth;
 
 class EquipeController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-        $equipes = DB::table('equipe')->get();
-        $joueurs = DB::table('users')
-        ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
-        ->get();
-        
-        return view('equipe.equipes')
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $equipes = Equipe::all();
+
+        return view('equipe.index')
                 ->with('partenaires', $partenaires)
-                ->with('equipes', $equipes)
-                ->with('joueurs', $joueurs)
-                ->with('tournois', $tournois);
+                ->with('tournois', $tournois)
+                ->with('equipes', $equipes);
     }
 
-    public function getEquipe()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        if (Auth::check()) 
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $jeux = \App\Jeu::all();
+
+        if (Auth::user()->getEquipe()) 
         {
-            $partenaires = DB::table('partenaire')->get();
-            $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-            $info = new InfoController(Auth::user()->id_public);
-            $equipe = $info->getEquipe();
-            if ($equipe) 
-            {
-                return redirect('equipes/'.$equipe->id.'/profil');
-            }
-            $jeux = DB::table('jeu')->get();
-            return view('equipe.new')
-                    ->with('partenaires', $partenaires)
-                    ->with('jeux', $jeux)
-                    ->with('tournois', $tournois);
+            return redirect('equipes/'.Auth::user()->getEquipe()->id);
         }
-        return redirect()->route('register');
+
+        return view('equipe.create')
+                    ->with('partenaires', $partenaires)
+                    ->with('tournois', $tournois)
+                    ->with('jeux', $jeux);
     }
 
-    public function postEquipe(EquipeRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(EquipeRequest $request)
     {
-        $equipe = new Equipe;
-
-        $equipe->nom_equipe = $request->input('nom');
-        $equipe->id_capitaine = Auth::id();
-        $equipe->avatar_equipe = $request->input('avatar_equipe');
-        $equipe->id_jeu = $request->input('jeu');
-
+        $equipe = New Equipe;
+            $equipe->nom_equipe = $request->input('nom');
+            $equipe->id_capitaine = Auth::id();
+            $equipe->avatar_equipe = $request->input('avatar_equipe');
+            $equipe->id_jeu = $request->input('jeu');
         $equipe->save();
 
-        $id_equipe = DB::table('equipe')
-                    ->where('nom_equipe', $request->input('nom'))
-                    ->where('id_capitaine', Auth::id())
-                    ->value('id');
+        $id_equipe = Equipe::where('nom_equipe', $request->input('nom'))->value('id');
 
-        DB::table('appartenance')->insert([
-            'id_equipe' => $id_equipe,
-            'id_user' => Auth::id(),
-        ]);
-
-
-        // flash('Votre équipe a bien été créer !')->success();
         swal()->autoclose(2000)
               ->success('Mise à jour','Votre équipe a bien été créer !',[]);
-        return redirect('equipes/'. $id_equipe . '/profil');
+        return redirect('equipes/'. $id_equipe );
     }
 
-    public function profilEquipe($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $partenaires = DB::table('partenaire')->get();
-        $tournois = DB::table('tournois')->where('status', '=', 'ouvert')->first();
-        
-        $ranks = array();
-        $equipe = DB::table('equipe')
-                  ->where('id', $id)->first();
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::where('status', 'ouvert')->first();
+        $equipe = Equipe::find($id);
 
-        $joueurs = DB::table('users')
-                   ->join('appartenance', 'users.id', '=', 'appartenance.id_user')
-                   ->where('appartenance.id_equipe', $id)
-                   ->get();
-        
-        $next_tournois = DB::table('tournois')
-                    ->orderBy('id', 'desc')
-                    ->first();
-
-        foreach ($joueurs as $joueur) 
-        {
-            $info = new InfoController($joueur->id_public);
-            array_push($ranks, $info->getRank());
-        }
-        
-        if ($info->inNextTournois($id)) 
-        {
-            return view('equipe.profil')
-                    ->with('partenaires', $partenaires)
-                    ->with('equipe', $equipe)
-                    ->with('joueurs', $joueurs)
-                    ->with('ranks', $ranks)
-                    ->with('participe', 1)
-                    ->with('tournois', $tournois);
-        }
-
-        return view('equipe.profil')
+        return view('equipe.show')
                 ->with('partenaires', $partenaires)
-                ->with('equipe', $equipe)
-                ->with('joueurs', $joueurs)
-                ->with('ranks', $ranks)
-                ->with('next_tournois', $next_tournois)
-                ->with('tournois', $tournois);
+                ->with('tournois', $tournois)
+                ->with('equipe', $equipe);
     }
 
-    public function postEquipier(AppartenanceRequest $request)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $joueurs = DB::table('appartenance')->where('id_equipe', $request->id_equipe)->get();
-        $nb_joueurs = count($joueurs);
+        //
+    }
 
-        if ($nb_joueurs < 5) 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateJoueur(AppartenanceRequest $request, $id_equipe)
+    {
+        $search = \App\User::where('id_public', $request->input('id_public'))->first();
+        if ($search->getEquipe()) 
         {
-            $info = new InfoController($request->id_public);
-            if ($info->inEquipe()) 
-            {
-                swal()->autoclose(3000)
-                      ->error('Erreur','Le joueur est déjà dans une équipe !',[]);
-                return redirect('equipes/'.$request->id_equipe.'/profil');
-            }
-            
-            if ($info->isJoueur()) 
-            {
-                $joueur = new Appartenance;
-                $joueur->id_user = $info->getId();
-                $joueur->id_equipe = $request->id_equipe;
+            swal()->autoclose(2000)
+                  ->error('Erreur','Le joueur appartient déjà à une équipe...',[]);
+            return redirect('equipes/'. $id_equipe );
+        }
+        else
+        {
+            $joueur = new \App\Appartenance;
     
-                $joueur->save();
-                
-                swal()->autoclose(2000)
-                      ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
-                return redirect('equipes/'.$request->id_equipe.'/profil');
-            }
-            else
-            {
-                swal()->autoclose(2000)
-                      ->error('Erreur',"Cette personne n'est pas un joueur",[]);
-                return redirect('equipes/'.$request->id_equipe.'/profil');
-            }
+            $joueur->id_equipe = $id_equipe;
+            $joueur->id_user = $search->id;
+    
+            $joueur->save();
+    
+            swal()->autoclose(2000)
+                  ->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+            return redirect('equipes/'. $id_equipe );
         }
 
-
-        swal()->button('Ok, pardon')
+        if (count(Equipe::find($id_equipe)->getJoueurs()) == 4) 
+        {
+            swal()->button('Ok, pardon')
               ->error('Limite de 5 joueurs',"Alors comme ça tu veux nous l'a faire à l'envers ? ",[]);
-        return redirect('equipes/'.$request->id_equipe.'/profil');
+            return redirect('equipes/'.$request->id_equipe.'/profil');
+        }
+
+        return $search->getEquipe();
     }
 
-    public function deleteEquipier($id_equipe, $id_user)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $joueur = DB::table('users')->where('id', $id_user)->first();
-
-        DB::table('appartenance')
-        ->where('id_equipe', $id_equipe)
-        ->where('id_user', $id_user)
-        ->delete();
+        Equipe::destroy($id);
 
         swal()->autoclose(2000)
-              ->success('Mise à jour', 'Le joueur '. $joueur->pseudo . " a bien été retiré de l'équipe");
-        return redirect('equipes/'. $id_equipe . '/profil');
+              ->success('Mise à jour',"L'équipe à bien été supprimé !",[]);
+            return redirect('/admin/equipes');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyJoueur($id_equipe, $id_joueur)
+    {
+        \App\Appartenance::where('id_equipe', $id_equipe)
+                         ->where('id_user', $id_joueur)
+                         ->delete();
+
+        $joueur = \App\User::find($id_joueur);
+
+        swal()->autoclose('2000')
+              ->success('Mise à jour', $joueur->pseudo.' à bien été supprimé !',[]);
+        return redirect('equipes/'.$id_equipe);
     }
 }

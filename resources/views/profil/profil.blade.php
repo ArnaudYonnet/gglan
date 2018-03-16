@@ -21,7 +21,7 @@
                 <br />
 
                 @isset($equipe)
-                    <a href="/equipes/{{ $equipe->id }}/profil" class="btn btn-danger" style="margin-top: 2vh;">Mon Equipe</a>
+                    <a href="/equipes/{{ $equipe->id }}" class="btn btn-danger" style="margin-top: 2vh;">Mon Equipe</a>
                 @else
                     <a href="/equipes/new" class="btn btn-danger" style="margin-top: 2vh;">Créer mon équipe</a>
                 @endisset

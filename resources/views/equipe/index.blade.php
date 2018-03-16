@@ -11,17 +11,20 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card">
                     <h5 class="card-header">
-                        <a href="/equipes/{{ $equipe->id }}/profil" class="text-danger"> {{ $equipe->nom_equipe }} </a>
+                        <a href="/equipes/{{ $equipe->id }}" class="text-danger"> {{ $equipe->nom_equipe }} </a>
                     </h5>
                     <div class="card-body">
                         <img class="card-img-top" src="{{ $equipe->avatar_equipe }}" alt="Pas d'image trouvé :/">
+
                         <p></p>
-                        @foreach ($joueurs as $joueur) 
-                            @if ($equipe->id == $joueur->id_equipe)
-                                <h6 class="card-subtitle mb-2">
+
+                        <h6 class="card-subtitle mb-2">
+                            <a href="/joueurs/{{ $equipe->getCapitaine()->pseudo }}" class="text-danger">{{ $equipe->getCapitaine()->pseudo }}</a>
+                        </h6>
+                        @foreach ($equipe->getJoueurs() as $joueur) 
+                            <h6 class="card-subtitle mb-2">
                                 <a href="/joueurs/{{ $joueur->pseudo }}" class="text-danger">{{ $joueur->pseudo }}</a>
-                                </h6>
-                            @endif 
+                            </h6>
                         @endforeach
                         <p class="card-text"> {{ $equipe->description }} </p>
                     </div>

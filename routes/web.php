@@ -42,14 +42,17 @@ Route::get('/joueurs/{pseudo}', 'JoueurController@profil'); // Profil du joueur
 | Equipes
 |--------------------------------------------------------------------------
 */
-Route::get('/equipes', 'EquipeController@index'); // Listing des équipes inscrites
-Route::get('/equipes/{id}/profil', 'EquipeController@profilEquipe'); // Profil de l'équipe 
+Route::resource('/equipes', 'EquipeController', ['only' => 'index']);
+    
 
-Route::get('/equipes/new', 'EquipeController@getEquipe'); // Le formulaire de création d'une équipe
-Route::post('/equipes/new', 'EquipeController@postEquipe'); // Pour créer une equipe
-
-Route::post('/equipes/{id}/add', 'EquipeController@postEquipier'); // Ajoute un joueur à l'équipe
-Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@deleteEquipier'); // Supprime le joueur de l'équipe
+Route::middleware('auth')->group(function(){
+    Route::resource('/equipes', 'EquipeController', ['except' =>[
+            'index', 'update', 'destroy'
+        ]]);
+    
+    Route::post('/equipes/{id}/add', 'EquipeController@updateJoueur');
+    Route::get('/equipes/{id}/joueur/{id_joueur}/delete', 'EquipeController@destroyJoueur');
+});
 
 
 /*
@@ -59,7 +62,6 @@ Route::get('/equipes/{id_equipe}/delete/joueur/{id_user}', 'EquipeController@del
 */
 Route::get('/tournois', 'TournoisController@index'); // Les anciens tournois
 Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // Inscription équipe au prochain tournois
-
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +86,7 @@ Route::prefix('/admin')->middleware('admin')->group(function(){
 
 
     Route::get('/equipes', 'AdminController@equipes'); // Liste des joueurs
-    Route::get('/delete/equipes/{id_joueur}', 'AdminController@deleteEquipe'); // Suppression d'une equipe
+    Route::get('/equipes/{id_joueur}/delete', 'EquipeController@destroy'); // Suppression d'une equipe
 
     Route::get('/tournois', 'AdminController@tournois'); // Liste des tournois 
     Route::get('/tournois/inscrits', 'AdminController@listeInscrits'); // Liste des équipes inscrites pour la prochaine LAN

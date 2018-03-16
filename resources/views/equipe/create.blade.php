@@ -6,7 +6,7 @@
 
 @section('content')
     @auth
-        <form class="form-horizontal" method="POST" action="/equipes/new">
+        <form class="form-horizontal" method="POST" action="/equipes">
             {{ csrf_field() }}
             <legend>Créer votre equipe</legend>
 
