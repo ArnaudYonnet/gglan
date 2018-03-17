@@ -55,9 +55,9 @@
                                     Connexion
                                 </button>
 
-                                <a class="btn btn-link text-danger" href="{{ route('password.request') }}">
+                                {{--  <a class="btn btn-link text-danger" href="{{ route('password.request') }}">
                                     Mot de passe oublié ?
-                                </a>
+                                </a>  --}}
                             </div>
                             
                             <div class="col-md-8 col-md-offset-4">
