@@ -6,6 +6,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Jeux</h3>
+                    <a href="/admin/jeux/create" class="btn btn-primary">Ajouter un jeu</a>
                 </div>
                 {{--
                 <div class="box-body"> --}}

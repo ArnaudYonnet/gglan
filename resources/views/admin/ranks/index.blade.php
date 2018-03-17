@@ -6,6 +6,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Ranks</h3>
+                <a href="/admin/ranks/create" class="btn btn-primary">Ajouter un rank</a>
             </div>
             {{--
             <div class="box-body"> --}}
