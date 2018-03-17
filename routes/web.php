@@ -11,22 +11,11 @@
 |
 */
 Auth::routes();
-Route::get('/', 'HomeController@index'); // Accueil
 
+Route::get('/', 'HomeController@index'); // Accueil
 Route::get('/articles/{id_article}', 'ArticleController@showHome'); // Affiche un article
 Route::get('/reglement', 'HomeController@reglement');
 Route::get('/infos', 'HomeController@infos');
-
-/*
-|--------------------------------------------------------------------------
-| Profil
-|--------------------------------------------------------------------------
-*/
-Route::get('/profil/{id}', 'ProfilController@index'); // Profil personnel
-
-Route::get('/profil/{id}/edit', 'ProfilController@getEdit'); // Formulaire de modification des informations du joueur
-Route::post('/profil/{id}/edit', 'ProfilController@postEdit'); // Modification des informatiosn du joueur
-
 
 /*
 |--------------------------------------------------------------------------
@@ -59,8 +48,12 @@ Route::middleware('auth')->group(function(){
 | Tournois
 |--------------------------------------------------------------------------
 */
-Route::get('/tournois', 'TournoisController@index'); // Les anciens tournois
-Route::get('/tournois/inscription/{id}', 'TournoisController@inscription'); // Inscription équipe au prochain tournois
+Route::resource('/tournois', 'TournoisController', ['index', 'show']);
+
+Route::middleware('auth')->group(function(){
+    Route::post('/tournois/{id_tournois}/equipe/{id_equipe}/inscription', 'TournoisController@update');
+    Route::get('/tournois/{id_tournois}/equipe/{id_equipe}/delete', 'TournoisController@destroy');
+});
 
 /*
 |--------------------------------------------------------------------------
