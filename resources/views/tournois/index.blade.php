@@ -37,12 +37,18 @@
                                 </p>
                             @endif
                         @else
-                                @if (Auth::check() && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id)
+                                @if (Auth::check() 
+                                && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id
+                                && count(\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getJoueurs()) == 4  )
                                     <p class="lead">
                                         <a class="btn btn-info btn-lg" 
                                             href="/tournois/{{ $tournoi->id }}/equipe/{{ App\User::find(Auth::id())->getEquipe()->id }}/inscription" 
                                             role="button">Nous inscrire !
                                         </a>
+                                    </p>
+                                @else
+                                    <p class="lead">
+                                        <a class="btn btn-info btn-lg disabled" role="button">Votre équipe n'est pas complète !</a>
                                     </p>
                                 @endif
                         @endif
