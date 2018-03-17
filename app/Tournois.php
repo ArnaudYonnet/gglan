@@ -24,12 +24,11 @@ class Tournois extends Model
     }
 
 
-    public function isInscrit($id_equipe)
+    public static function isInscrit($id_equipe)
     {
         try
         {
-            $inscrit = Participation::where('id_tournois', $this->id)
-                                    ->where('id_equipe', $id_equipe)
+            $inscrit = Participation::where('id_equipe', $id_equipe)
                                     ->firstOrFail();
             return $inscrit;
         }

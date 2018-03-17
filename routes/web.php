@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function(){
 Route::resource('/tournois', 'TournoisController', ['index', 'show']);
 
 Route::middleware('auth')->group(function(){
-    Route::post('/tournois/{id_tournois}/equipe/{id_equipe}/inscription', 'TournoisController@update');
+    Route::get('/tournois/{id_tournois}/equipe/{id_equipe}/inscription', 'TournoisController@update');
     Route::get('/tournois/{id_tournois}/equipe/{id_equipe}/delete', 'TournoisController@destroy');
 });
 

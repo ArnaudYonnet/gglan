@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tournois;
+use App\Participation;
 use Illuminate\Http\Request;
 
 class TournoisController extends Controller
@@ -68,13 +69,24 @@ class TournoisController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tournois  $tournois
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tournois $tournois)
+    public function update($id_tournois, $id_equipe)
     {
-        //
+        if (!Tournois::isInscrit($id_equipe)) 
+        {
+            $participation = New Participation;
+                $participation->id_equipe = $id_equipe;
+                $participation->id_tournois = $id_tournois;
+            $participation->save();
+
+            swal()->autoclose('2000')
+              ->success('Mise à jour','Votre équipe est bien inscrite pour'. Tournois::find($id_tournois)->nom_tournois   ,[]);
+            return redirect('tournois');
+        }
+        swal()->autoclose('2000')
+              ->error('Erreur', 'Votre équipe est déjà inscrite pour un tournois...', []);
+        return redirect('tournois');
     }
 
     /**
