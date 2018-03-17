@@ -57,22 +57,12 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = DB::table('tournois')
-                    ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
-                    ->get();
-        $jeu_tournois = array();
-        foreach ($tournois as $tournoi) 
-        {
-            $jeu = DB::table('jeu')
-                    ->where('id', $tournoi->id_jeu)
-                    ->value('nom');
-            array_push($jeu_tournois, $jeu);
-        }
+        $tournois = \App\Tournois::all();
+
         return view('admin.tournois.tournois')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
-                ->with('tournois', $tournois)
-                ->with('jeu_tournois', $jeu_tournois);
+                ->with('tournois', $tournois);
     }
 
 
@@ -80,7 +70,7 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $jeux = DB::table('jeu')->get();
+        $jeux = \App\Jeu::all();
         return view('admin.tournois.create')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
@@ -96,18 +86,11 @@ class AdminController extends Controller
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
+        $tournois->place_equipe = $request->input('place_equipe');
+        $tournois->id_jeu = $request->input('id_jeu');
         $tournois->status = $request->input('status');
 
         $tournois->save();
-
-        $lastTournois = DB::table('tournois')
-                        ->orderBy('id', 'desc')
-                        ->value('id');
-
-        DB::table('selection')->insert([
-            'id_jeu' => $request->input('id_jeu'),
-            'id_tournois' => $lastTournois,
-        ]);
         
         swal()->autoclose(2000)
               ->success('Mise à jour','Le tournois a bien été créer !',[]);
@@ -131,47 +114,29 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = DB::table('tournois')
-                    ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
-                    ->where('id', $id_tournois)
-                    ->first();
-        $jeu_tournois = DB::table('jeu')
-                        ->where('id', $tournois->id_jeu)
-                        ->first();
-        $jeux = DB::table('jeu')->get();
+        $tournois = \App\Tournois::find($id_tournois);
+        $jeux = \App\Jeu::all();
         return view('admin.tournois.edit')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
                 ->with('tournois', $tournois)
-                ->with('jeu_tournois', $jeu_tournois)
-                ->with('jeux', $jeux)
-                ->with('edit', 1);
+                ->with('jeux', $jeux);
     }
 
 
-    public function postEditTournois(TournoisRequest $request)
+    public function postEditTournois(TournoisRequest $request, $id_tournois)
     {
-        $tournois = new Tournois;
+        $tournois = \App\Tournois::find($id_tournois);
 
         $tournois->nom_tournois = $request->input('nom');
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
+        $tournois->place_equipe = $request->input('place_equipe');
+        $tournois->id_jeu = $request->input('id_jeu');
         $tournois->status = $request->input('status');
 
-        DB::table('tournois')
-        ->where('id', $request->input('id_tournois'))
-        ->update([
-            'nom_tournois' => $tournois->nom_tournois,
-            'date_deb' => $tournois->date_deb,
-            'date_fin' => $tournois->date_fin,
-            'description' => $tournois->description,
-            'status' => $tournois->status,
-            ]);
-
-        DB::table('selection')
-        ->where('id_tournois', $request->input('id_tournois'))
-        ->update(['id_jeu' => $request->input('id_jeu'),]);
+        $tournois->save();
 
         swal()->autoclose('2000')
               ->success('Mise à jour','Le tournois a bien été modifié',[]);
@@ -313,18 +278,6 @@ class AdminController extends Controller
                 ->with('equipes', $equipes)
                 ->with('equipiers', $equipiers)
                 ->with('inscrits', $inscrits);
-    }
-
-
-    public function deleteEquipe($id_equipe)
-    {
-        DB::table('equipe')
-        ->where('id', $id_equipe)
-        ->delete();
-
-        swal()->autoclose('2000')
-              ->success('Mise à jour',"L'équipe a bien été supprimé !",[]);
-        return redirect('admin/equipes');
     }
 
     /*

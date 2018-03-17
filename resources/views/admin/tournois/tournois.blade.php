@@ -11,13 +11,12 @@
                 <div class="box-body">
                     <table id="tournois" class="table table-hover">
                         <thead>
-                            {{--  <th>#</th>  --}}
+                            <th>#</th>
                             <th>Etat</th>
                             <th>Date</th>
                             <th>Tournois</th>
                             <th>Description</th>
-                            {{--  <th>Début</th>  --}}
-                            {{--  <th>Fin</th>  --}}
+                            <th>Place Equipe</th>
                             <th>Jeu</th>
                             <th>Modifier</th>
                             <th>Supprimer</th>
@@ -25,7 +24,7 @@
                         <tbody>
                             @foreach ($tournois as $key => $tournoi)
                                 <tr>
-                                    {{--  <td> {{ $key+1 }} </td>  --}}
+                                    <td> {{ $key+1 }} </td>
                                     @if ($tournoi->status == "ouvert")
                                         <td><span class="label label-success">Ouvert</span></td>
                                     @else
@@ -38,13 +37,8 @@
                                     </td>
                                     <td> {{ $tournoi->nom_tournois }} </td>
                                     <td> {{ $tournoi->description }} </td>
-                                   {{--   <td> 
-                                        {{ \Carbon\Carbon::parse($tournoi->date_deb)->format('d/m/Y') }} 
-                                         au 
-                                        {{ \Carbon\Carbon::parse($tournoi->date_fin)->format('d/m/Y') }}
-                                    </td>  --}}
-                                    {{--  <td> {{ \Carbon\Carbon::parse($tournoi->date_fin)->format('d/m/Y') }} </td>  --}}
-                                    <td> {{ $jeu_tournois[$key] }} </td>
+                                    <td> {{ $tournoi->place_equipe }} </td>
+                                    <td> {{ \App\Jeu::find($tournoi->id_jeu)->nom }} </td>
                                     <td>
                                         <a id="edit" href="/admin/edit/tournois/{{$tournoi->id}}"><i class="fa fa-edit"></i></a>
                                     </td>

@@ -28,6 +28,7 @@ class TournoisRequest extends FormRequest
             'date_deb' => 'required|date',
             'date_fin' => 'required|date',
             'description' => 'required|string|',
+            'place_equipe' => 'required',
             'id_jeu' => 'required',
             'status' => 'required',
         ];

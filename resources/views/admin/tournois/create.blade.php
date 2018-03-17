@@ -10,7 +10,7 @@
             <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                 <label for="nom" class="col-md-4 control-label">Nom</label>
                 <div class="col-md-6">
-                    <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" autofocus>                
+                    <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" autofocus required>                
                     @if ($errors->has('nom'))
                         <span class="help-block">
                             <strong>{{ $errors->first('nom') }}</strong>
@@ -52,7 +52,7 @@
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="col-md-4 control-label">Description</label>
                 <div class="col-md-6">
-                    <textarea name="description" id="description" class="form-control" row="10" spellcheck="true">{{ old('description') }}</textarea>            
+                    <textarea name="description" id="description" class="form-control" row="10" spellcheck="true" required>{{ old('description') }}</textarea>            
                     @if ($errors->has('description'))
                         <span class="help-block">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -61,10 +61,22 @@
                 </div>
             </div>
 
+             <div class="form-group{{ $errors->has('place_equipe') ? ' has-error' : '' }}">
+                <label for="place_equipe" class="col-md-4 control-label">Place équipe</label>
+                <div class="col-md-6">
+                    <input id="place_equipe" type="number" min="0" class="form-control" name="place_equipe" value="{{ old('place_equipe') }}" required>           
+                    @if ($errors->has('place_equipe'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('place_equipe') }}</strong>
+                        </span> 
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('id_jeu') ? ' has-error' : '' }}">
                 <label for="id_jeu" class="col-md-4 control-label">Jeu</label>
                 <div class="col-md-6">
-                    <select id="id_jeu" class="form-control" name="id_jeu">
+                    <select id="id_jeu" class="form-control" name="id_jeu" required>
                         <option selected disabled >-- JEU --</option>
                         @foreach ($jeux as $jeu)
                             <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
@@ -79,7 +91,7 @@
             <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                 <label for="status" class="col-md-4 control-label">Status</label>
                 <div class="col-md-6">
-                    <select id="status" class="form-control" name="status">
+                    <select id="status" class="form-control" name="status" required>
                         <option value="ouvert" selected>Ouvert</option>
                         <option value="ferme">Fermé</option>
                     </select> @if ($errors->has('status'))
