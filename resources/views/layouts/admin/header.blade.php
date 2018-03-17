@@ -20,7 +20,7 @@
           <ul class="nav navbar-nav">
             <!-- Control Sidebar Toggle Button -->
             <li>
-              <a href="/" ><i class="fa fa-arrow-left"></i>Retour au site</a>
+              <a href="/" >Retour au site</a>
             </li>
           </ul>
         </div>
