@@ -57,22 +57,12 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = DB::table('tournois')
-                    ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
-                    ->get();
-        $jeu_tournois = array();
-        foreach ($tournois as $tournoi) 
-        {
-            $jeu = DB::table('jeu')
-                    ->where('id', $tournoi->id_jeu)
-                    ->value('nom');
-            array_push($jeu_tournois, $jeu);
-        }
+        $tournois = \App\Tournois::all();
+
         return view('admin.tournois.tournois')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
-                ->with('tournois', $tournois)
-                ->with('jeu_tournois', $jeu_tournois);
+                ->with('tournois', $tournois);
     }
 
 
@@ -313,18 +303,6 @@ class AdminController extends Controller
                 ->with('equipes', $equipes)
                 ->with('equipiers', $equipiers)
                 ->with('inscrits', $inscrits);
-    }
-
-
-    public function deleteEquipe($id_equipe)
-    {
-        DB::table('equipe')
-        ->where('id', $id_equipe)
-        ->delete();
-
-        swal()->autoclose('2000')
-              ->success('Mise à jour',"L'équipe a bien été supprimé !",[]);
-        return redirect('admin/equipes');
     }
 
     /*
