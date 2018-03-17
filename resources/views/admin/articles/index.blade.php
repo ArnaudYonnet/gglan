@@ -6,6 +6,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Articles</h3>
+                <a href="/admin/articles/create" class="btn btn-primary">Ecrire un article</a>
             </div>
             {{--
             <div class="box-body"> --}}

@@ -6,6 +6,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Partenaires</h3>
+                <a href="/admin/partenaires/create" class="btn btn-primary">Ajouter un partenaire</a>
             </div>
             {{--
             <div class="box-body"> --}}
