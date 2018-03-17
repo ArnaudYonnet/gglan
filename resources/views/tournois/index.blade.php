@@ -15,28 +15,33 @@
                     <hr class="my-4">
                     <p>Jeux: <b>{{ \App\Jeu::find($tournoi->id_jeu)->nom }}</b> </p>
 
-                    @if (count($tournoi->getInscrits()) == $tournoi->place_equipe)
-                        <p class="lead">
-                            <a class="btn btn-info btn-lg disabled" role="button">Complet !</a>
-                        </p>
+                    @guest
                     @else
-                        @if (Auth::check() 
-                        && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id
-                        &&  \App\Tournois::isInscrit(\App\User::find(Auth::id())->getEquipe()->id) )
-
-                            @if (\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getInscription()->id_tournois == $tournoi->id)
-                                <p class="lead">
-                                    <a class="btn btn-info btn-lg" 
-                                        href="/tournois/{{ $tournoi->id }}/equipe/{{ App\User::find(Auth::id())->getEquipe()->id }}/delete" 
-                                        role="button">Nous désinscrire...
-                                    </a>
-                                </p>                            
-                            @else
-                                <p class="lead">
-                                    <a class="btn btn-info btn-lg disabled" role="button">Nous inscrire !</a>
-                                </p>
-                            @endif
+                        {{--  Tournois complet  --}}
+                        @if (count($tournoi->getInscrits()) == $tournoi->place_equipe)
+                            <p class="lead">
+                                <a class="btn btn-info btn-lg disabled" role="button">Complet !</a>
+                            </p>
                         @else
+                            {{--  Equipe inscrite & capitaine  --}}
+                            @if (Auth::check() 
+                            && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id
+                            &&  \App\Tournois::isInscrit(\App\User::find(Auth::id())->getEquipe()->id) )
+
+                                @if (\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getInscription()->id_tournois == $tournoi->id)
+                                    <p class="lead">
+                                        <a class="btn btn-info btn-lg" 
+                                            href="/tournois/{{ $tournoi->id }}/equipe/{{ App\User::find(Auth::id())->getEquipe()->id }}/delete" 
+                                            role="button">Nous désinscrire...
+                                        </a>
+                                    </p>                            
+                                @else
+                                    <p class="lead">
+                                        <a class="btn btn-info btn-lg disabled" role="button">Nous inscrire !</a>
+                                    </p>
+                                @endif
+                            @else
+                            {{--  Equipe non-complète  --}}
                                 @if (Auth::check() 
                                 && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id
                                 && count(\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getJoueurs()) == 4  )
@@ -51,8 +56,9 @@
                                         <a class="btn btn-info btn-lg disabled" role="button">Votre équipe n'est pas complète !</a>
                                     </p>
                                 @endif
+                            @endif
                         @endif
-                    @endif
+                    @endguest
 
                 </div>
             @endforeach
