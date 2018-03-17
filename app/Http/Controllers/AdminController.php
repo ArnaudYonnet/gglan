@@ -70,7 +70,7 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $jeux = DB::table('jeu')->get();
+        $jeux = \App\Jeu::all();
         return view('admin.tournois.create')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
@@ -86,18 +86,11 @@ class AdminController extends Controller
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
+        $tournois->place_equipe = $request->input('place_equipe');
+        $tournois->id_jeu = $request->input('id_jeu');
         $tournois->status = $request->input('status');
 
         $tournois->save();
-
-        $lastTournois = DB::table('tournois')
-                        ->orderBy('id', 'desc')
-                        ->value('id');
-
-        DB::table('selection')->insert([
-            'id_jeu' => $request->input('id_jeu'),
-            'id_tournois' => $lastTournois,
-        ]);
         
         swal()->autoclose(2000)
               ->success('Mise à jour','Le tournois a bien été créer !',[]);

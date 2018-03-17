@@ -16,6 +16,7 @@
                             <th>Date</th>
                             <th>Tournois</th>
                             <th>Description</th>
+                            <th>Place Equipe</th>
                             <th>Jeu</th>
                             <th>Modifier</th>
                             <th>Supprimer</th>
@@ -36,6 +37,7 @@
                                     </td>
                                     <td> {{ $tournoi->nom_tournois }} </td>
                                     <td> {{ $tournoi->description }} </td>
+                                    <td> {{ $tournoi->place_equipe }} </td>
                                     <td> {{ \App\Jeu::find($tournoi->id_jeu)->nom }} </td>
                                     <td>
                                         <a id="edit" href="/admin/edit/tournois/{{$tournoi->id}}"><i class="fa fa-edit"></i></a>
