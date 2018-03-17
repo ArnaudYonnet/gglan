@@ -30,20 +30,17 @@ class Equipe extends Model
         return \App\User::where('id', $this->id_capitaine)->first();
     }
 
-    public function isInscrit()
+    public function getInscription()
     {
         try {
-            $tournois = \App\Tournois::where('status', 'ouvert')->firstOrFail();
 
-            $inscrit = \App\Participation::where('id_tournois', $tournois->id)
-                                          ->where('id_equipe', $this->id)
-                                          ->firstOrFail();
+            $inscrit = \App\Participation::where('id_equipe', $this->id)->firstOrFail();
         }
         catch (\Exception $e)
         {
             return false;
         }
         
-        return true;
+        return $inscrit;
     }
 }

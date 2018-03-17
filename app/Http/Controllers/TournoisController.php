@@ -81,7 +81,7 @@ class TournoisController extends Controller
             $participation->save();
 
             swal()->autoclose('2000')
-              ->success('Mise à jour','Votre équipe est bien inscrite pour'. Tournois::find($id_tournois)->nom_tournois   ,[]);
+              ->success('Mise à jour','Votre équipe est bien inscrite pour '. Tournois::find($id_tournois)->nom_tournois   ,[]);
             return redirect('tournois');
         }
         swal()->autoclose('2000')
@@ -95,8 +95,13 @@ class TournoisController extends Controller
      * @param  \App\Tournois  $tournois
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tournois $tournois)
+    public function destroy($id_tournois, $id_equipe)
     {
-        //
+        $participation = Participation::where('id_tournois', $id_tournois)
+                                      ->where('id_equipe', $id_equipe)
+                                      ->delete();
+        swal()->autoclose('2000')
+              ->success('Mise à jour','Votre équipe est bien désinscrite du tournois !',[]);
+        return redirect('tournois');
     }
 }
