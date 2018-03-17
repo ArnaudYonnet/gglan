@@ -46,13 +46,9 @@ Route::middleware('auth')->group(function(){
 | Equipes
 |--------------------------------------------------------------------------
 */
-Route::resource('/equipes', 'EquipeController', ['only' => 'index']);
+Route::resource('/equipes', 'EquipeController', ['index', 'show']);
 
 Route::middleware('auth')->group(function(){
-    Route::resource('/equipes', 'EquipeController', ['except' =>[
-            'index', 'update', 'destroy'
-        ]]);
-    
     Route::post('/equipes/{id}/add', 'EquipeController@updateJoueur');
     Route::get('/equipes/{id}/joueur/{id_joueur}/delete', 'EquipeController@destroyJoueur');
 });
