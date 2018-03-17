@@ -18,6 +18,9 @@
                     <a class="nav-link active" href="/equipes">Equipes</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" href="/tournois">Tournois</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" href="/reglement">Réglement</a>
                 </li>
                 <li class="nav-item">

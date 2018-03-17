@@ -9,33 +9,6 @@
                 @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id && count($equipe->getJoueurs()) < 4)
                     @include('equipe.add')
                 @endif
-
-                @auth
-                @if (Auth::user()->id == $equipe->getCapitaine()->id)
-                    @if (count($equipe->getJoueurs()) == 4)
-
-                        {{--  Refaire cette partie là en utilisant Equipe::isInscrit()  --}}
-                        @if ($equipe->isInscrit())
-                            Votre équipe est inscrite pour la prochaine LAN !
-
-                        @endif
-
-                        @isset($next_tournois)
-                            @if ($next_tournois->status == "ouvert")
-                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger mb-4">S'inscrire pour la prochaine LAN</a>
-                            @else
-                                <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-danger disabled mb-4">S'inscrire pour la prochaine LAN</a>
-                            @endif
-                        @else
-                            <a href="/tournois/inscription/{{$equipe->id}}" class="btn btn-success disabled mb-4">S'inscrire pour la prochaine LAN</a>                    
-                        @endisset
-                    @endif
-                @endif
-            @endauth
-
-                {{--  <a href="/profil/{{Auth::user()->id_public}}/edit" class="btn btn-danger" style="margin-top: 2vh;">
-                    Modifier mes informations
-                </a>  --}}
             </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
             <table class="table table-hover">
