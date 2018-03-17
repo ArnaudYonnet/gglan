@@ -28,7 +28,7 @@
         <div class="container float-right col-lg-2 col-md-2 col-sm-12       pt-lg-4 pt-md-4 pr-lg-4 pr-md-4">
             <div class="row  rounded">
                 <div class="col-lg-12">
-                    @if(!$tournois)
+                    @if($tournois)
                         @foreach ($tournois as $tournoi)
                             <p class="text-white">
                                 <u>
