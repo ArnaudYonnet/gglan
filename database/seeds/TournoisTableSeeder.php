@@ -12,15 +12,12 @@ class TournoisTableSeeder extends Seeder
     public function run()
     {
         DB::table('tournois')->insert([
-            'nom_tournois' => 'GG-LAN 5',
-            'date_deb' => "2018-04-05",
+            'nom_tournois' => 'GG-LAN 7',
+            'date_deb' => "2018-05-05",
             'date_fin' => "2018-04-06",
-            'description' => "La 5ième édition de la GG-LAN, ça va déchiré du poulet au curry",
-        ]);
-
-        DB::table('selection')->insert([
+            'description' => "LAN organisé par les étudiants du BOC",
+            'place_equipe' => 16,
             'id_jeu' => 1,
-            'id_tournois' => 1,
         ]);
     }
 }
