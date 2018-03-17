@@ -114,47 +114,29 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = DB::table('tournois')
-                    ->join('selection', 'selection.id_tournois', '=', 'tournois.id')
-                    ->where('id', $id_tournois)
-                    ->first();
-        $jeu_tournois = DB::table('jeu')
-                        ->where('id', $tournois->id_jeu)
-                        ->first();
-        $jeux = DB::table('jeu')->get();
+        $tournois = \App\Tournois::find($id_tournois);
+        $jeux = \App\Jeu::all();
         return view('admin.tournois.edit')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
                 ->with('tournois', $tournois)
-                ->with('jeu_tournois', $jeu_tournois)
-                ->with('jeux', $jeux)
-                ->with('edit', 1);
+                ->with('jeux', $jeux);
     }
 
 
-    public function postEditTournois(TournoisRequest $request)
+    public function postEditTournois(TournoisRequest $request, $id_tournois)
     {
-        $tournois = new Tournois;
+        $tournois = \App\Tournois::find($id_tournois);
 
         $tournois->nom_tournois = $request->input('nom');
         $tournois->date_deb = $request->input('date_deb');
         $tournois->date_fin = $request->input('date_fin');
         $tournois->description = $request->input('description');
+        $tournois->place_equipe = $request->input('place_equipe');
+        $tournois->id_jeu = $request->input('id_jeu');
         $tournois->status = $request->input('status');
 
-        DB::table('tournois')
-        ->where('id', $request->input('id_tournois'))
-        ->update([
-            'nom_tournois' => $tournois->nom_tournois,
-            'date_deb' => $tournois->date_deb,
-            'date_fin' => $tournois->date_fin,
-            'description' => $tournois->description,
-            'status' => $tournois->status,
-            ]);
-
-        DB::table('selection')
-        ->where('id_tournois', $request->input('id_tournois'))
-        ->update(['id_jeu' => $request->input('id_jeu'),]);
+        $tournois->save();
 
         swal()->autoclose('2000')
               ->success('Mise à jour','Le tournois a bien été modifié',[]);
