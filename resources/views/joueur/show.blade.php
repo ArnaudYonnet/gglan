@@ -6,6 +6,10 @@
         @if ($joueur->type == "Joueur")
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
+                    <h2>
+                        <span class="text-danger">{{ $joueur->pseudo}}</span> 
+                        <span class="text-secondary">#{{ $joueur->id_public }}</span>
+                    </h2>
                     <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
         
                     <br />
@@ -28,14 +32,14 @@
                         <li>Nom: 
                             <b> {{ $joueur->nom}} </b>
                         </li>
-
-                        <li>Prenom: 
+                        
+                        <li>Prénom:
                             <b> {{ $joueur->prenom}} </b>
                         </li>
 
-                        <li>Pseudo: 
-                            <b> {{ $joueur->pseudo}} </b>
-                        </li>
+                        {{--  <li>Pseudo: 
+                            <b> {{ $joueur->pseudo}}</b>
+                        </li>  --}}
 
                         <li>E-Mail: 
                             <b> {{ $joueur->email}} </b>
@@ -82,20 +86,25 @@
     @else
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
-                    <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
+                <h2>
+                    <span class="text-danger">{{ $joueur->pseudo}}</span>
+                    <span class="text-secondary">#{{ $joueur->id_public }}</span>
+                </h2>
+
+                <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
         
-                    <br />
+                <br />
         
-                    @if ($joueur->getEquipe())
-                        <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger" style="margin-top: 2vh;">Son Equipe</a>
-                    @endif
-                </div>
+                @if ($joueur->getEquipe())
+                    <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger" style="margin-top: 2vh;">Son Equipe</a>
+                @endif
+            </div>
         
             <div class="col-lg-3 col-md-4 col-sm-8">
                 <ul class="list-unstyled">
-                    <li>Pseudo:
-                        <b> {{ $joueur->pseudo}} </b>
-                    </li>
+                    {{--  <li>Pseudo:
+                        <b> {{ $joueur->pseudo}}</b>
+                    </li>  --}}
 
                     <li>Ville:
                         @if ($joueur->ville)
