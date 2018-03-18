@@ -1,7 +1,6 @@
 @extends('layouts.template')
 @section('content')
 @include('sweetalert::view')
-    <h2>Joueurs inscrit: <b class="text-danger">{{count($joueurs)}}</b></h2>
     <div class="row">
         @foreach ($joueurs as $joueur)
             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
