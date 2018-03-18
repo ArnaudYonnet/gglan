@@ -13,7 +13,7 @@
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }} "></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--  <script src="{{ asset('js/app.js') }}"></script>  --}}
     <script type="text/javascript" src="{{ asset('js/sweetAlert.js') }}"></script>
 </head>
 <body>
@@ -33,18 +33,6 @@
                             MERCI A NOS PARTENAIRES
                         </p>
                     </div>
-                        {{--  <ul class="list-inline">
-                            @foreach ($partenaires as $partenaire)
-                                <li class="list-inline-item">
-                                    <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                        <img src="{{ $partenaire->img_partenaire }}" 
-                                            alt="{{ $partenaire->nom_partenaire }}" 
-                                            title="{{ $partenaire->nom_partenaire }}"
-                                            class="img-fluid  partenaires">
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>  --}}
                         @foreach ($partenaires as $partenaire)
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <a href="{{ $partenaire->site_partenaire }}" target="_blank">
@@ -77,16 +65,6 @@
                             <p class="text-white">Pas de LAN annoncé pour le moment...</p>
                         @endif
                     </div>
-
-                    {{--  @foreach ($partenaires as $partenaire)
-                        <div class="col-lg-6 col-md-12 col-sm-2">
-                            <a href="{{ $partenaire->site_partenaire }}" target="_blank">
-                                <img class="img-fluid" src="{{ $partenaire->img_partenaire }}" 
-                                    alt="{{ $partenaire->nom_partenaire }}" 
-                                    title="{{ $partenaire->nom_partenaire }}">
-                            </a>
-                        </div>
-                    @endforeach  --}}
                 </div>
             </div>
         </div>

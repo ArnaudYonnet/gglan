@@ -1,32 +1,30 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTarget" aria-controls="navbarTarget" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logov3.png" alt="GG-LAN" style='width: 130px;'>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTarget" aria-controls="navbarTarget" aria-expanded="false" aria-label="Toggle navigation" style="">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+    
     <div class="collapse navbar-collapse" id="navbarTarget">
-        <a class="navbar-brand" href="/">
-            <img src="/img/logov3.png" alt="GG-LAN" style='width: 130px;'>
-        </a>
-        
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                {{--  <li class="nav-item">
-                    <a class="nav-link active" href="/tournois">Anciens Tournois</a>
-                </li>  --}}
-                <li class="nav-item">
-                    <a class="nav-link active" href="/joueurs">Joueurs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/equipes">Equipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/tournois">Tournois</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/reglement">Réglement</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/infos">Infos Pratiques</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/joueurs">Joueurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/equipes">Equipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tournois">Tournois</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reglement">Réglement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/infos">Infos Pratiques</a>
+            </li>
+        </ul>
         @guest
             <div class="btn-group">
                 <a class="btn btn-danger" href="{{ route('register') }}">Inscription</a>
