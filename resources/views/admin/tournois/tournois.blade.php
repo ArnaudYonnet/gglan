@@ -7,6 +7,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Tournois</h3>
+                    <a href="/admin/tournois/create" class="btn btn-primary">Ajouter un tournois</a>
                 </div>
                 <div class="box-body">
                     <table id="tournois" class="table table-hover">
