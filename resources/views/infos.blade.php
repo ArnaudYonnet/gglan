@@ -11,16 +11,20 @@
                 <h5>Rajouter des joueurs à mon équipe</h5>
                 <p class="text-justify">
                     Pour rajouter des joueurs à son équipe il faut se munir de son id publique.<br />
-                    L'id publique d'un joueur n'est visible que par celui-ci. <u><b>Personne d'autre ne peux le voir.</b></u>
+                    Il s'agit du code gris se trouvant à coté de son pseudo sur son profil <b>(Ne pas prendre en compte le '#')</b>. 
                     <br />
                     <img src="/img/info/info_id_publique.png" class="img-fluid">
                     <br />
-                    L'id publique correspond aux 5 derniers caractères contenu dans l'url lorsque le joueur est sur son propre profil.
-                    Une fois cela fait, il suffit tout simplement de le copier dans le champ accessible sur le profil de votre équipe.
+                    Une fois en possession de l'id publique du joueur à rajouter à votre équipe,
+                    il suffit de le copier dans le champ prévue accessible sur votre page équipe.
+                    <br />
+                    <b>Seul le capitaine de l'équipe peut rajouter des joueurs à son équipe.</b>
                     <br />
                     <img src="/img/info/info_ajout_joueur.png" class="img-fluid">
                 </p>
             </div>
+
+            <hr />
 
             <div class="col">
                 <h5>S'inscrire pour la prochaine LAN</h5>
