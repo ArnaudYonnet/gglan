@@ -3,12 +3,11 @@
 @include('sweetalert::view')
     <div class="row">
         <div class="col-lg-4 col-md-5 col-sm-5">
+                <h2>
+                    <span class="text-danger">{{ $equipe->nom_equipe }}</span>
+                </h2>
                 <img src="{{ $equipe->avatar_equipe }}" class="img-fluid" style="max-width: 250px" alt="">
 
-                <h3>{{ $equipe->nom_equipe}} </h3>
-                @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id && count($equipe->getJoueurs()) < 4)
-                    @include('equipe.add')
-                @endif
             </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
             <table class="table table-hover">
