@@ -96,7 +96,14 @@
                 <br />
         
                 @if ($joueur->getEquipe())
-                    <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger" style="margin-top: 2vh;">Son Equipe</a>
+                    <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger mt-2" >Son Equipe</a>
+                @else
+                    @if (Auth::check() 
+                    && \App\User::find(Auth::id())->getEquipe()->id_capitaine == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->id_capitaine
+                    &&  count(\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getJoueurs()) < 4   )
+                        <a href="/equipes/{{ App\User::find(Auth::id())->getEquipe()->id }}/joueur/{{ $joueur->id }}/add" 
+                            class="btn btn-danger mt-2">Ajouter à mon équipe</a>
+                    @endif
                 @endif
             </div>
         
