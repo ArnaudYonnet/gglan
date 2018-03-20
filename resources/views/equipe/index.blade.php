@@ -9,8 +9,9 @@
                         <a href="/equipes/{{ $equipe->id }}" class="text-danger"> {{ $equipe->nom_equipe }} </a>
                     </h5>
                     <div class="card-body">
-                        <img class="card-img-top" src="{{ $equipe->avatar_equipe }}" alt="Pas d'image trouvé :/">
-
+                        <a href="/equipes/{{ $equipe->id }}" >
+                            <img class="card-img-top" src="{{ $equipe->avatar_equipe }}" alt="Pas d'image trouvé :/">
+                        </a>
                         <p></p>
 
                         <h6 class="card-subtitle mb-2">
