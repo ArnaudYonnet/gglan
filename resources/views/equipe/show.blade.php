@@ -8,8 +8,14 @@
                 </h2>
                 <img src="{{ $equipe->avatar_equipe }}" class="img-fluid" style="max-width: 250px" alt="">
 
+                <p class="mt-1">{{ $equipe->description }}</p>
+
+                @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)
+                    <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-danger mt-2 mb-4">Modifer les informations</a>
+                @endif
+
             </div>
-        <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="col-lg-8 col-md-8 col-sm-8 table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -70,5 +76,11 @@
                 </tbody>
             </table>
         </div>
+
+        @isset($edit)
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                @include('equipe.edit')
+            </div>
+        @endisset
     </div>
 @endsection

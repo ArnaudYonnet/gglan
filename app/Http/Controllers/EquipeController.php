@@ -66,8 +66,7 @@ class EquipeController extends Controller
 
         $id_equipe = Equipe::where('nom_equipe', $request->input('nom'))->value('id');
 
-        swal()->autoclose(2000)
-              ->success('Mise à jour','Votre équipe a bien été créer !',[]);
+        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été créer !',[]);
         return redirect('equipes/'. $id_equipe );
     }
 
@@ -97,7 +96,15 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partenaires = \App\Partenaire::all();
+        $tournois = \App\Tournois::getTournois();
+        $equipe = Equipe::find($id);
+
+        return view('equipe.show')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
+                ->with('equipe', $equipe)
+                ->with('edit', true);
     }
 
     /**
@@ -109,7 +116,13 @@ class EquipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipe = Equipe::find($id);
+            $equipe->description = $request->input('description');
+            $equipe->avatar_equipe = $request->input('avatar_equipe');
+        $equipe->save();
+
+        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
+        return redirect('equipes/'. $id);
     }
 
     /**
