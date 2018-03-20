@@ -150,9 +150,9 @@ class EquipeController extends Controller
                                   ->where('id_tournois', $tournois->id)
                                   ->delete();
                 
-                swal()->autoclose('2000')->success('Mise à jour', \App\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
-                return redirect('equipes/'.$id_equipe);
             }
         }        
+        swal()->autoclose('2000')->success('Mise à jour', \App\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
+        return redirect('equipes/'.$id_equipe);
     }
 }
