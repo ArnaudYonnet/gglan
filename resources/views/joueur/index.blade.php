@@ -9,7 +9,9 @@
                         <a href="/joueurs/{{ $joueur->id }}" class="text-danger">{{ $joueur->pseudo }}</a>
                     </h5>
                     <div class="card-body">
-                        <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
+                        <a href="/joueurs/{{ $joueur->id }}">
+                            <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
+                        </a>
                         <p></p>
                         @if ($joueur->getRank())
                             <h6 class="card-subtitle mb-2 text-muted">
