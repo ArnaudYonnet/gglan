@@ -3,14 +3,14 @@
 @include('sweetalert::view')
     <div class="row">
         @foreach ($joueurs as $joueur)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
                 <div class="card" >
                     <h5 class="card-header">
                         <a href="/joueurs/{{ $joueur->id }}" class="text-danger">{{ $joueur->pseudo }}</a>
                     </h5>
                     <div class="card-body">
                         <a href="/joueurs/{{ $joueur->id }}">
-                            <img src="{{ $joueur->avatar }}"  class="mw-85 card-img img-fluid">
+                            <img src="{{ $joueur->avatar }}"  class="card-img-top">
                         </a>
                         <p></p>
                         @if ($joueur->getRank())
