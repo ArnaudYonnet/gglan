@@ -65,7 +65,7 @@
                                 @endif
                             @endif
 =                       @endif
-                    @endguest
+                        @endguest
 
                 </div>
             @endforeach
