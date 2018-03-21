@@ -3,7 +3,7 @@
 @include('sweetalert::view')
     <div class="row">
         @foreach ($equipes as $equipe)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
                 <div class="card">
                     <h5 class="card-header">
                         <a href="/equipes/{{ $equipe->id }}" class="text-danger"> {{ $equipe->nom_equipe }} </a>
