@@ -165,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         LarsJanssen\UnderConstruction\UnderConstructionServiceProvider::class,
+        \Ecrmnn\LaravelHttps\Providers\ServiceProvider::class,
 
         /*
          * Package Service Providers...
