@@ -91,12 +91,12 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     
     //Ranks
     Route::resource('/ranks', 'RankController', ['only' => ['index', 'edit', 'store']]);
-    Route::post('/ranks/{id_rank}/edit', 'RankController@update');
-    Route::get('/ranks/{id_rank}/delete', 'RankController@destroy');
+    Route::post('/ranks/{id}/edit', 'RankController@update');
+    Route::get('/ranks/{id}/delete', 'RankController@destroy');
 
-    
+
     //Articles
-    Route::resource('/articles', 'ArticleController', ['only' => ['index', 'edit', 'store']]);
+    Route::resource('/articles', 'ArticleController', ['except' => ['update', 'destroy']]);
     Route::post('/articles/{id}/edit', 'ArticleController@update');
     Route::get('/articles/{id}/delete', 'ArticleController@destroy');
     
@@ -105,7 +105,5 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     Route::resource('/partenaires', 'PartenaireController', ['only' => ['index', 'edit', 'store']]);
     Route::post('/partenaires/{id}/edit', 'PartenaireController@update');
     Route::get('/partenaires/{id}/delete', 'PartenaireController@destroy');
-    
-    
-
 });
+

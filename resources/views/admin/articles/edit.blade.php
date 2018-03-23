@@ -1,4 +1,11 @@
-@extends('layouts.admin.template') 
+@extends('layouts.admin.template')
+@section('title')
+    {{ $article->titre_article }}
+@endsection
+@section('subtitle')
+    Article n° {{ $article->id }} 
+@endsection 
+ 
 @section('content')
     @include('sweetalert::view')
 <div class="row">
