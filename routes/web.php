@@ -27,7 +27,6 @@ Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
 Route::middleware('auth')->group(function(){
         Route::get('/joueurs/{id}/edit', 'JoueurController@edit');
         Route::post('/joueurs/{id}', 'JoueurController@update');
-        Route::get('/joueurs/{id}/joueur/{id_joueur}/delete', 'JoueurController@destroy');
 });
 
 /*
@@ -67,16 +66,12 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     
     
     //Joueurs
-    Route::get('/joueurs', 'AdminController@joueurs'); // Liste des joueurs
+    Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'edit']]);
     
-    Route::get('/delete/joueurs/{id_joueur}', 'AdminController@deleteJoueurs'); // Suppression dun joueur
-    
-    Route::get('/create/joueurs', 'AdminController@getJoueurs'); // Formulaire de création d'un joueur
-    Route::post('/create/joueurs', 'AdminController@postJoueurs'); // Création d'un joueur
-    
-    Route::get('/edit/joueurs/{id_joueur}', 'AdminController@getEditJoueurs'); // Formulaire de modification d'un joueur
-    Route::post('/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'); // Mdification d'un joueur
-
+    Route::middleware('auth')->group(function(){
+            Route::post('/joueurs/{id}', 'JoueurController@update');
+            Route::get('/joueurs/{id}/delete', 'JoueurController@destroy');
+    });
 
     Route::get('/equipes', 'AdminController@equipes'); // Liste des joueurs
     Route::get('/equipes/{id_joueur}/delete', 'EquipeController@destroy'); // Suppression d'une equipe

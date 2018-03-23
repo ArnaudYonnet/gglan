@@ -42,27 +42,10 @@
 
         <div class="content-wrapper">
         <section class="content-header">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                    <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Joueurs inscrits</span>
-                            <span class="info-box-number"> {{ count($inscrits) }} </span> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Equipes inscrites</span>
-                            <span class="info-box-number"> {{ count($equipes) }} </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h1>
+                @yield('title')
+                <small>@yield('subtitle')</small>
+            </h1>
         </section>
 
         <section class="content">
@@ -114,6 +97,7 @@
                     'info'        : false,
                     'autoWidth'   : true
                     })
+                    
                 $('#tournois').DataTable({
                     'paging'      : true,
                     'lengthChange': true,
