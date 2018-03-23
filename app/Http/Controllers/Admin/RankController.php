@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Rank;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
+use App\Models\Rank;
 
 class RankController extends Controller
 {
@@ -14,14 +16,12 @@ class RankController extends Controller
      */
     public function index()
     {
-        $info = new AdminController();
-
         $ranks = Rank::all();
+        $jeux = \App\Models\Jeu::all();
 
-        return view('admin.ranks.index')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
-                ->with('ranks', $ranks);
+        return view('admin.rank.index')
+                ->with('ranks', $ranks)
+                ->with('jeux', $jeux);
     }
 
     /**
@@ -31,14 +31,7 @@ class RankController extends Controller
      */
     public function create()
     {
-        $jeux = \App\Models\Jeu::all();
-        $info = new AdminController();
-
-        return view('admin.ranks.create')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
-                ->with('jeux', $jeux);
-
+        //
     }
 
     /**
@@ -50,22 +43,19 @@ class RankController extends Controller
     public function store(Request $request)
     {
         $rank = New Rank;
-
-        $rank->id_jeu = $request->input('id_jeu');
-        $rank->nom = $request->input('nom');
-        $rank->image = $request->input('image');
-
+            $rank->id_jeu = $request->input('id_jeu');
+            $rank->nom = $request->input('nom');
+            $rank->image = $request->input('image');
         $rank->save();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le rank à bien été ajouté !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été ajouté !',[]);
         return redirect('admin/ranks');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rank  $rank
+     * @param  \App\Models\Rank  $rank
      * @return \Illuminate\Http\Response
      */
     public function show(Rank $rank)
@@ -76,18 +66,15 @@ class RankController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rank  $rank
+     * @param  \App\Models\Rank  $rank
      * @return \Illuminate\Http\Response
      */
     public function edit($id_rank)
     {
         $rank = Rank::find($id_rank);
         $jeux = \App\Models\Jeu::all();
-        $info = new AdminController();
 
-        return view('admin.ranks.edit')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
+        return view('admin.rank.edit')
                 ->with('rank', $rank)
                 ->with('jeux', $jeux);
     }
@@ -96,36 +83,32 @@ class RankController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rank  $rank
+     * @param  \App\Models\Rank  $rank
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id_rank)
     {
         $rank = Rank::find($id_rank);
-
-        $rank->id_jeu = $request->input('id_jeu');
-        $rank->nom = $request->input('nom');
-        $rank->image = $request->input('image');
-
+            $rank->id_jeu = $request->input('id_jeu');
+            $rank->nom = $request->input('nom');
+            $rank->image = $request->input('image');
         $rank->save();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le rank à bien été mis à jour !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été mis à jour !',[]);
         return redirect('admin/ranks');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rank  $rank
+     * @param  \App\Models\Rank  $rank
      * @return \Illuminate\Http\Response
      */
     public function destroy($id_rank)
     {
         Rank::destroy($id_rank);
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le rank à bien été supprimé !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été supprimé !',[]);
         return redirect('admin/ranks');
     }
 }

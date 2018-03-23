@@ -6,13 +6,14 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Ranks</h3>
-                <a href="/admin/ranks/create" class="btn btn-primary">Ajouter un rank</a>
+                &nbsp &nbsp
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                    Ajouter un rank
+                </button>
             </div>
-            {{--
-            <div class="box-body"> --}}
+            <div class="box-body table-responsive">
                 <table id="table" class="table table-hover">
                     <thead>
-                        <th>#</th>
                         <th>Jeu</th>
                         <th>Nom</th>
                         <th>Modifier</th>
@@ -21,7 +22,6 @@
                     <tbody>
                         @foreach ($ranks as $key => $rank)
                         <tr>
-                            <td> {{$key+1}} </td>
                             <td> {{ \App\Models\Jeu::find($rank->id_jeu)->nom }} </td>
                             <td> {{ $rank->nom }} </td>
                             <td> <a href="/admin/ranks/{{ $rank->id }}/edit"><i class="fa fa-edit"></i></a> </td>
@@ -34,4 +34,6 @@
         </div>
     </div>
 </div>
+
+@include('admin.rank.create')
 @endsection

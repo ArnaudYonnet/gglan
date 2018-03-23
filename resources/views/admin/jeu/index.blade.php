@@ -17,7 +17,7 @@
                         Ajouter un jeu
                     </button>
                 </div>
-                <div class="box-body">
+                <div class="box-body table-responsive">
                     <table id="jeux" class="table table-hover">
                         <thead>
                             <th>Nom</th>
