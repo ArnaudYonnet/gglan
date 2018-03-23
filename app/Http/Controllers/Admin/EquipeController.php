@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\EquipeRequest;
-use App\Http\Requests\AppartenanceRequest;
 use \App\Models\Equipe;
 use Auth;
 
@@ -17,13 +16,9 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
         $equipes = Equipe::all();
 
-        return view('equipe.index')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
+        return view('admin.equipe.index')
                 ->with('equipes', $equipes);
     }
 
