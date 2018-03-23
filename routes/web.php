@@ -27,7 +27,6 @@ Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
 Route::middleware('auth')->group(function(){
         Route::get('/joueurs/{id}/edit', 'JoueurController@edit');
         Route::post('/joueurs/{id}', 'JoueurController@update');
-        Route::get('/joueurs/{id}/joueur/{id_joueur}/delete', 'JoueurController@destroy');
 });
 
 /*
@@ -61,80 +60,50 @@ Route::middleware('auth')->group(function(){
 | Admin
 |--------------------------------------------------------------------------
 */
-Route::prefix('/admin')->middleware('admin')->group(function(){
+Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function(){
     
     Route::get('/', 'AdminController@index'); //Page d'accueil du panel admin
     
     
     //Joueurs
-    Route::get('/joueurs', 'AdminController@joueurs'); // Liste des joueurs
-    
-    Route::get('/delete/joueurs/{id_joueur}', 'AdminController@deleteJoueurs'); // Suppression dun joueur
-    
-    Route::get('/create/joueurs', 'AdminController@getJoueurs'); // Formulaire de création d'un joueur
-    Route::post('/create/joueurs', 'AdminController@postJoueurs'); // Création d'un joueur
-    
-    Route::get('/edit/joueurs/{id_joueur}', 'AdminController@getEditJoueurs'); // Formulaire de modification d'un joueur
-    Route::post('/edit/joueurs/{id_joueur}', 'AdminController@postEditJoueurs'); // Mdification d'un joueur
+    Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/joueurs/{id}', 'JoueurController@update');
+    Route::get('/joueurs/{id}/delete', 'JoueurController@destroy');
 
 
-    Route::get('/equipes', 'AdminController@equipes'); // Liste des joueurs
-    Route::get('/equipes/{id_joueur}/delete', 'EquipeController@destroy'); // Suppression d'une equipe
-
-    Route::get('/tournois', 'AdminController@tournois'); // Liste des tournois 
-    Route::get('/tournois/inscrits', 'AdminController@listeInscrits'); // Liste des équipes inscrites pour la prochaine LAN
-    Route::get('/tournois/create', 'AdminController@getTournois'); //Formulaire de création d'un tournois
-    Route::post('/tournois/create', 'AdminController@postTournois'); // Création du tournois
-    Route::get('/delete/tournois/{id_tournois}', 'AdminController@deleteTournois'); // Suppression d'un tournois
-    Route::get('/edit/tournois/{id_tournois}', 'AdminController@getEditTournois'); // Formulaire de modification d'un tournois
-    Route::post('/edit/tournois/{id_tournois}', 'AdminController@postEditTournois'); // Modification d'un tournois
+    //Equipes
+    Route::resource('/equipes', 'EquipeController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/equipes/{id}', 'EquipeController@update');
+    Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Articles
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/articles', 'ArticleController', ['except' =>[
-        'update', 'destroy'
-    ]]);
-    Route::post('/articles/{id_article}/edit', 'ArticleController@update');
-    Route::get('/articles/{id_article}/delete', 'ArticleController@destroy');
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Partenaires
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/partenaires', 'PartenaireController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
-    Route::post('/partenaires/{id_partenaire}/edit', 'PartenaireController@update');
-    Route::get('/partenaires/{id_partenaire}/delete', 'PartenaireController@destroy');
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Jeux
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/jeux', 'JeuController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
-    Route::post('/jeux/{id_jeu}/edit', 'JeuController@update');
-    Route::get('/jeux/{id_jeu}/delete', 'JeuController@destroy');
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Ranks
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/ranks', 'RankController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
-    Route::post('/ranks/{id_rank}/edit', 'RankController@update');
-    Route::get('/ranks/{id_rank}/delete', 'RankController@destroy');
+    //Tournois
+    Route::resource('/tournois', 'TournoisController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/tournois/{id}', 'TournoisController@update');
+    Route::get('/tournois/{id}/delete', 'TournoisController@destroy');
 
+
+    //Jeux
+    Route::resource('/jeux', 'JeuController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/jeux/{id}/edit', 'JeuController@update');
+    Route::get('/jeux/{id}/delete', 'JeuController@destroy');
+    
+    
+    //Ranks
+    Route::resource('/ranks', 'RankController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/ranks/{id}/edit', 'RankController@update');
+    Route::get('/ranks/{id}/delete', 'RankController@destroy');
+
+
+    //Articles
+    Route::resource('/articles', 'ArticleController', ['except' => ['update', 'destroy']]);
+    Route::post('/articles/{id}/edit', 'ArticleController@update');
+    Route::get('/articles/{id}/delete', 'ArticleController@destroy');
+    
+    
+    //Partenaires
+    Route::resource('/partenaires', 'PartenaireController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/partenaires/{id}/edit', 'PartenaireController@update');
+    Route::get('/partenaires/{id}/delete', 'PartenaireController@destroy');
 });
+
