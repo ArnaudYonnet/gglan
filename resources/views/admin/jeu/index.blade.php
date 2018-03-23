@@ -6,7 +6,10 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Jeux</h3>
-                    <a href="/admin/jeux/create" class="btn btn-primary">Ajouter un jeu</a>
+                    &nbsp &nbsp
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                        Ajouter un jeu
+                    </button>
                 </div>
                 {{--
                 <div class="box-body"> --}}
@@ -36,4 +39,5 @@
             </div>
         </div>
     </div>
+    @include('admin.jeu.create')
 @endsection
