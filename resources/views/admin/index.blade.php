@@ -16,12 +16,12 @@
                             <th>Type</th>
                         </thead>
                         <tbody>
-                            @foreach ($inscrits as $inscrit)
+                            @foreach ($joueurs as $joueur)
                                 <tr>
-                                    <td> {{ $inscrit->id_public }} </td>
-                                    <td><a href="/joueurs/{{ $inscrit->id }}" target="_blank">{{ $inscrit->pseudo }}</a></td>
-                                    <td> {{ $inscrit->email }} </td>
-                                    <td> {{ $inscrit->type }} </td>
+                                    <td> {{ $joueur->id_public }} </td>
+                                    <td><a href="/joueurs/{{ $joueur->id }}" target="_blank">{{ $joueur->pseudo }}</a></td>
+                                    <td> {{ $joueur->email }} </td>
+                                    <td> {{ $joueur->type }} </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -46,12 +46,16 @@
                             @foreach ($equipes as $key => $equipe)
                                 <tr>
                                     <td><a href="/equipes/{{ $equipe->id }}" target="_blank">{{ $equipe->nom_equipe }}</a></td>
-                                    <td>{{ $equipiers[$key]}} / 5</td>
-                                    @if ($inscritsTournois[$key])
-                                        <td><span class="label label-success">Inscrit</span></td>
+                                    <td>{{ $equipe->description }}</td>
+                                    <td>{{ count($equipe->getJoueurs())+1 }} / 5</td>
+                                    @if (\App\Models\Tournois::isInscrit($equipe->id))
+                                    <td><span class="label label-success">Inscrit</span></td>
                                     @else
-                                        <td><span class="label label-danger">Non inscrit</span></td>
+                                    <td><span class="label label-danger">Non inscrit</span></td>
                                     @endif
+                                    <td> <a href="/admin/equipes/{{$equipe->id}}/edit"><i class="fa fa-edit"></i></a> </td>
+                                    <td>
+                                        <a href="/admin/equipes/{{$equipe->id}}/delete"><i class="fa fa-trash"></i></a> </td>
                                 </tr>
                             @endforeach
                         </tbody>
