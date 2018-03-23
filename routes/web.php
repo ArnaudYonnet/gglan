@@ -67,76 +67,45 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     
     //Joueurs
     Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'edit', 'store']]);
-    
-    Route::middleware('auth')->group(function(){
-            Route::post('/joueurs/{id}', 'JoueurController@update');
-            Route::get('/joueurs/{id}/delete', 'JoueurController@destroy');
-    });
+    Route::post('/joueurs/{id}', 'JoueurController@update');
+    Route::get('/joueurs/{id}/delete', 'JoueurController@destroy');
 
 
     //Equipes
     Route::resource('/equipes', 'EquipeController', ['only' => ['index', 'edit', 'store']]);
-    
-    Route::middleware('auth')->group(function(){
-            Route::post('/equipes/{id}', 'EquipeController@update');
-            Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
-    });
+    Route::post('/equipes/{id}', 'EquipeController@update');
+    Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
 
 
     //Tournois
     Route::resource('/tournois', 'TournoisController', ['only' => ['index', 'edit', 'store']]);
-    
-    Route::middleware('auth')->group(function(){
-            Route::post('/tournois/{id}', 'TournoisController@update');
-            Route::get('/tournois/{id}/delete', 'TournoisController@destroy');
-    });
+    Route::post('/tournois/{id}', 'TournoisController@update');
+    Route::get('/tournois/{id}/delete', 'TournoisController@destroy');
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Articles
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/articles', 'ArticleController', ['except' =>[
-        'update', 'destroy'
-    ]]);
-    Route::post('/articles/{id_article}/edit', 'ArticleController@update');
-    Route::get('/articles/{id_article}/delete', 'ArticleController@destroy');
+    //Jeux
+    Route::resource('/jeux', 'JeuController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/jeux/{id}/edit', 'JeuController@update');
+    Route::get('/jeux/{id}/delete', 'JeuController@destroy');
     
     
-    /*
-    |--------------------------------------------------------------------------
-    | Partenaires
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/partenaires', 'PartenaireController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
-    Route::post('/partenaires/{id_partenaire}/edit', 'PartenaireController@update');
-    Route::get('/partenaires/{id_partenaire}/delete', 'PartenaireController@destroy');
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Jeux
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/jeux', 'JeuController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
-    Route::post('/jeux/{id_jeu}/edit', 'JeuController@update');
-    Route::get('/jeux/{id_jeu}/delete', 'JeuController@destroy');
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Ranks
-    |--------------------------------------------------------------------------
-    */
-    Route::resource('/ranks', 'RankController', ['except' =>[
-        'update', 'destroy', 'show'
-    ]]);
+    //Ranks
+    Route::resource('/ranks', 'RankController', ['only' => ['index', 'edit', 'store']]);
     Route::post('/ranks/{id_rank}/edit', 'RankController@update');
     Route::get('/ranks/{id_rank}/delete', 'RankController@destroy');
+
+    
+    //Articles
+    Route::resource('/articles', 'ArticleController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/articles/{id}/edit', 'ArticleController@update');
+    Route::get('/articles/{id}/delete', 'ArticleController@destroy');
+    
+    
+    //Partenaires
+    Route::resource('/partenaires', 'PartenaireController', ['only' => ['index', 'edit', 'store']]);
+    Route::post('/partenaires/{id}/edit', 'PartenaireController@update');
+    Route::get('/partenaires/{id}/delete', 'PartenaireController@destroy');
+    
+    
 
 });
