@@ -5,18 +5,7 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         <li class="header">GGLAN</li>
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-user"></i><span>Joueurs</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="/admin/joueurs"><i class="fa fa-list-ul"></i>Liste joueurs</a></li>
-                <li><a href="/admin/create/joueurs"><i class="fa fa-plus-circle"></i>Ajouter un joueur</a></li>
-            </ul>
-        </li>
+        <li><a href="/admin/joueurs"><i class="fa fa-user"></i>Joueurs</a></li>
 
         <li class="treeview">
             <a href="#">
