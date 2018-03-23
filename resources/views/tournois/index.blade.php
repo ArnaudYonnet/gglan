@@ -13,7 +13,7 @@
                     </h1>
                     <p class="lead">{{ $tournoi->description }}</p>
                     <hr class="my-4">
-                    <p>Jeux: <b>{{ \App\Jeu::find($tournoi->id_jeu)->nom }}</b> </p>
+                    <p>Jeux: <b>{{ \App\Models\Jeu::find($tournoi->id_jeu)->nom }}</b> </p>
 
                     @guest
                     @else
@@ -23,13 +23,7 @@
                                 <a class="btn btn-info btn-lg disabled" role="button">Complet !</a>
                             </p>
                         @else
-                        {{--  
-                            Si Equipe inscrite & capitaine
-                            Si Equipe non-complète & capitaine
-                            Si pas d'équipe
-                            
-                            
-                            --}}
+
                             {{--  Si une équipe & capitaine  --}}
                             @if (Auth::check() 
                             && \App\Models\Equipe::find(\App\Models\User::find(Auth::id())->getEquipe())
@@ -37,10 +31,10 @@
 
                                 @if (\App\Models\Tournois::isInscrit(\App\Models\User::find(Auth::id())->getEquipe()->id))
 
-                                    @if (\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getInscription()->id_tournois == $tournoi->id)
+                                    @if (\App\Models\Equipe::find(\App\Models\User::find(Auth::id())->getEquipe()->id)->getInscription()->id_tournois == $tournoi->id)
                                         <p class="lead">
                                             <a class="btn btn-info btn-lg" 
-                                                href="/tournois/{{ $tournoi->id }}/equipe/{{ App\User::find(Auth::id())->getEquipe()->id }}/delete" 
+                                                href="/tournois/{{ $tournoi->id }}/equipe/{{ App\Models\User::find(Auth::id())->getEquipe()->id }}/delete" 
                                                 role="button">Nous désinscrire...
                                             </a>
                                         </p>                            
@@ -50,10 +44,10 @@
                                         </p>
                                     @endif
                                 @else
-                                    @if (count(\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getJoueurs()) == 4)
+                                    @if (count(\App\Models\Equipe::find(\App\Models\User::find(Auth::id())->getEquipe()->id)->getJoueurs()) == 4)
                                         <p class="lead">
                                             <a class="btn btn-info btn-lg" 
-                                                href="/tournois/{{ $tournoi->id }}/equipe/{{ App\User::find(Auth::id())->getEquipe()->id }}/inscription" 
+                                                href="/tournois/{{ $tournoi->id }}/equipe/{{ App\Models\User::find(Auth::id())->getEquipe()->id }}/inscription" 
                                                 role="button">Nous inscrire !
                                             </a>
                                         </p>
@@ -64,8 +58,8 @@
                                     @endif
                                 @endif
                             @endif
-=                       @endif
-                        @endguest
+                        @endif
+                    @endguest
 
                 </div>
             @endforeach
