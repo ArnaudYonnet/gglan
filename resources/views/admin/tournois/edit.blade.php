@@ -5,20 +5,20 @@
     <div class="row">
         <div class="col-lg-10">
             <legend>Modification de {{ $tournois->nom_tournois }} </legend>
-            <form class="form-horizontal" method="POST" action="/admin/edit/tournois/{{ $tournois->id }}">
+            <form class="form-horizontal" method="POST" action="/admin/tournois/{{ $tournois->id }}">
                 {{ csrf_field() }}
                 
                 <input type="hidden" name="id" value="{{ $tournois->id }}">
                 <input type="hidden" name="id_jeu" value="{{ $tournois->id_jeu }}">
 
 
-                <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
-                    <label for="nom" class="col-md-4 control-label">Nom</label>
+                <div class="form-group{{ $errors->has('nom_tournois') ? ' has-error' : '' }}">
+                    <label for="nom_tournois" class="col-md-4 control-label">Nom</label>
                     <div class="col-md-6">
-                        <input id="nom" type="text" class="form-control" name="nom" value="{{ $tournois->nom_tournois }}" autofocus>                
-                        @if ($errors->has('nom'))
+                        <input id="nom_tournois" type="text" class="form-control" name="nom_tournois" value="{{ $tournois->nom_tournois }}" autofocus>                
+                        @if ($errors->has('nom_tournois'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('nom') }}</strong>
+                                <strong>{{ $errors->first('nom_tournois') }}</strong>
                             </span> 
                         @endif
                     </div>
