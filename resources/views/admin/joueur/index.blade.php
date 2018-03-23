@@ -13,6 +13,10 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Joueurs</h3>
+                    &nbsp &nbsp
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                        Ajouter un joueur
+                    </button>
                 </div>
                 <div class="box-body table-responsive">
                     <table id="joueurs" class="table table-hover">
@@ -41,4 +45,5 @@
             </div>
         </div>
     </div>
+    @include('admin.joueur.create')
 @endsection

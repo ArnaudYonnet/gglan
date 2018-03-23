@@ -66,7 +66,7 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     
     
     //Joueurs
-    Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'edit']]);
+    Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'edit', 'store']]);
     
     Route::middleware('auth')->group(function(){
             Route::post('/joueurs/{id}', 'JoueurController@update');

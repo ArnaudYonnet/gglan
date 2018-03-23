@@ -1,16 +1,20 @@
-@extends('layouts.admin.template')
-@section('content')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/admin/create/joueurs">
-                        {{ csrf_field() }}
+<div class="modal fade" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Ajouter un joueur</h4>
+            </div>
+            <form class="form-horizontal" method="POST" action="/admin/joueurs">
+                <div class="modal-body">
+                    {{ csrf_field() }}
                         <input type="hidden" name="id_public" value="{{ str_random(5) }}">
                         <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
                             <label for="nom" class="col-md-4 control-label">Nom</label>
                             <div class="col-md-6">
-                                <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" required autofocus>                                @if ($errors->has('nom'))
+                                <input id="nom" type="text" class="form-control" name="nom" value="{{ old('nom') }}" required autofocus>                                
+                                @if ($errors->has('nom'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('nom') }}</strong>
                                     </span> @endif
@@ -19,16 +23,29 @@
                         <div class="form-group{{ $errors->has('prenom') ? ' has-error' : '' }}">
                             <label for="prenom" class="col-md-4 control-label">Prenom</label>
                             <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" required autofocus>                                @if ($errors->has('prenom'))
+                                <input id="prenom" type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" required autofocus>                                
+                                @if ($errors->has('prenom'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('prenom') }}</strong>
                                     </span> @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+                            <div class="col-md-6">
+                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ old('avatar') }}" placeholder="Ex: https://imgur.com" >
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
-                                <textarea name="description" id="description" class="form-control" row="10">{{ old('description') }}</textarea>                                @if ($errors->has('description'))
+                                <textarea name="description" id="description" class="form-control" row="10">{{ old('description') }}</textarea>                                
+                                @if ($errors->has('description'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span> @endif
@@ -47,7 +64,8 @@
                         <div class="form-group{{ $errors->has('pseudo') ? ' has-error' : '' }}">
                             <label for="pseudo" class="col-md-4 control-label">Pseudo</label>
                             <div class="col-md-6">
-                                <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ old('pseudo') }}" required autofocus>                                @if ($errors->has('pseudo'))
+                                <input id="pseudo" type="text" class="form-control" name="pseudo" value="{{ old('pseudo') }}" required autofocus>                                
+                                @if ($errors->has('pseudo'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('pseudo') }}</strong>
                                     </span> @endif
@@ -56,7 +74,8 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>                                @if ($errors->has('email'))
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>                                
+                                @if ($errors->has('email'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span> @endif
@@ -77,16 +96,25 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Créer le joueur
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-success">Créer</button>
+                </div>
+            </form>
         </div>
     </div>
-@endsection
+</div>

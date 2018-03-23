@@ -39,7 +39,21 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+                'id_public' => $request['id_public'],
+                'pseudo' => $request['pseudo'],
+                'nom' => $request['nom'],
+                'prenom' => $request['prenom'],
+                'avatar' => $request['avatar'],
+                'description' => $request['description'],
+                'date_naissance' => $request['date_naissance'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password']),
+                'type' => "Joueur",
+            ]);
+        
+        swal()->autoclose(2000)->success('Mise à jour', "Le joueur à bien été crée !", []);
+        return redirect('admin/joueurs');
     }
 
     /**
