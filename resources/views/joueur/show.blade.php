@@ -13,15 +13,15 @@
                     <img src="{{ $joueur->avatar }}" class="img-fluid" style="max-width: 250px" alt="">
         
                     <br />
-        
-                    <a href="/joueurs/{{ $joueur->id}}/edit" class="btn btn-danger" style="margin-top: 2vh;">
+                    
+                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#modal">
                         Modifier mes informations
-                    </a>
+                    </button>
         
                     <br />
         
                     @if ($joueur->getEquipe())
-                        <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger" style="margin-top: 2vh;">Mon Equipe</a>
+                        <a href="/equipes/{{ $joueur->getEquipe()->id }}" class="btn btn-danger mt-2">Mon Equipe</a>
                     @else
                         <a href="/equipes/create" class="btn btn-danger" style="margin-top: 2vh;">Créer mon équipe</a>
                     @endif
@@ -74,11 +74,9 @@
                     
                 </div>
         
-                @isset($edit)
-                    <div class="col-lg-5 col-md-10 col-sm-12">
-                        @include('joueur.edit')
-                    </div>
-                @endisset
+                <div class="col-lg-5 col-md-10 col-sm-12">
+                    @include('joueur.edit')
+                </div>
             </div>
         @else
             Compte visiteur
