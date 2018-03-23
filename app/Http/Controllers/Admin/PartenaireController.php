@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Partenaire;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Partenaire;
 
 class PartenaireController extends Controller
 {
@@ -14,13 +15,9 @@ class PartenaireController extends Controller
      */
     public function index()
     {
-        $info = new AdminController();
-
         $partenaires = Partenaire::all();
 
-        return view('admin.partenaires.index')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
+        return view('admin.partenaire.index')
                 ->with('partenaires', $partenaires);
     }
 
@@ -31,11 +28,7 @@ class PartenaireController extends Controller
      */
     public function create()
     {
-        $info = new AdminController();
-
-        return view('admin.partenaires.create')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"]);
+        //
     }
 
     /**
@@ -47,16 +40,12 @@ class PartenaireController extends Controller
     public function store(Request $request)
     {
         $partenaire = new Partenaire();
-
-        $partenaire->nom_partenaire = $request->input('nom_partenaire');
-        $partenaire->site_partenaire = $request->input('site_partenaire');
-        $partenaire->img_partenaire = $request->input('img_partenaire');
-
+            $partenaire->nom_partenaire = $request->input('nom_partenaire');
+            $partenaire->site_partenaire = $request->input('site_partenaire');
+            $partenaire->img_partenaire = $request->input('img_partenaire');
         $partenaire->save();
 
-
-        swal()->autoclose('2000')
-              ->success('Mise à jour',"Le partenaire à bien été ajouté",[]);
+        swal()->autoclose('2000')->success('Mise à jour',"Le partenaire à bien été ajouté",[]);
         return redirect('admin/partenaires');
     }
 
@@ -77,15 +66,11 @@ class PartenaireController extends Controller
      * @param  \App\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_partenaire)
+    public function edit($id)
     {
-        $info = new AdminController();
+        $partenaire = Partenaire::find($id);
 
-        $partenaire = Partenaire::find($id_partenaire);
-
-        return view('admin.partenaires.edit')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
+        return view('admin.partenaire.edit')
                 ->with('partenaire', $partenaire);
     }
 
@@ -96,18 +81,15 @@ class PartenaireController extends Controller
      * @param  \App\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_partenaire)
+    public function update(Request $request, $id)
     {
-        $partenaire = Partenaire::find($id_partenaire);
-
-        $partenaire->nom_partenaire = $request->input('nom_partenaire');
-        $partenaire->site_partenaire = $request->input('site_partenaire');
-        $partenaire->img_partenaire = $request->input('img_partenaire');
-
+        $partenaire = Partenaire::find($id);
+            $partenaire->nom_partenaire = $request->input('nom_partenaire');
+            $partenaire->site_partenaire = $request->input('site_partenaire');
+            $partenaire->img_partenaire = $request->input('img_partenaire');
         $partenaire->save();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le partenaire à bien été mis à jour !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le partenaire à bien été mis à jour !',[]);
         return redirect('admin/partenaires');
     }
 
@@ -117,12 +99,11 @@ class PartenaireController extends Controller
      * @param  \App\Partenaire  $partenaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_partenaire)
+    public function destroy($id)
     {
-        Partenaire::destroy($id_partenaire);
+        Partenaire::destroy($id);
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le partenaire à bien été supprimé !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le partenaire à bien été supprimé !',[]);
         return redirect('admin/partenaires');
     }
 }

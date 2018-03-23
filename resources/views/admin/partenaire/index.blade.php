@@ -1,4 +1,11 @@
-@extends('layouts.admin.template') 
+@extends('layouts.admin.template')
+@section('title')
+    Partenaires
+@endsection
+@section('subtitle')
+    Gestion des partenaires 
+@endsection 
+ 
 @section('content')
     @include('sweetalert::view')
 <div class="row">
@@ -6,13 +13,14 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Partenaires</h3>
-                <a href="/admin/partenaires/create" class="btn btn-primary">Ajouter un partenaire</a>
+                &nbsp &nbsp
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                    Ajouter un partenaire
+                </button>
             </div>
-            {{--
-            <div class="box-body"> --}}
+            <div class="box-body table-responsive">
                 <table id="equipes" class="table table-hover">
                     <thead>
-                        <th>#</th>
                         <th>Nom</th>
                         <th>Site</th>
                         <th>Modifier</th>
@@ -21,7 +29,6 @@
                     <tbody>
                         @foreach ($partenaires as $key => $partenaire)
                         <tr>
-                            <td> {{$key+1}} </td>
                             <td> <a href="/admin/partenaires/{{ $partenaire->id }}"> {{ $partenaire->nom_partenaire }} </a> </td>
                             <td> <a href="{{ $partenaire->site_partenaire }}" target="_blank">{{ $partenaire->site_partenaire }}</a> </td>
                             <td> <a href="/admin/partenaires/{{ $partenaire->id }}/edit"><i class="fa fa-edit"></i></a> </td>
@@ -34,4 +41,5 @@
         </div>
     </div>
 </div>
+@include('admin.partenaire.create')
 @endsection
