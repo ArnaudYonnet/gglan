@@ -16,8 +16,7 @@
                     <small>Advanced and full of features</small>
                 </h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body pad">
+            <div class="box-body">
                 <form class="form-horizontal" method="POST" action="/admin/articles/{{ $article->id }}/edit">
                     {{ csrf_field() }}
                     

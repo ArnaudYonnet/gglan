@@ -74,9 +74,10 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        $article = Article::find($id);
+    {        
+        $article = Article::find($id);
 
-        return view('admin.articles.edit')
+        return view('admin.article.edit')
                 ->with('article', $article);
     }
 
