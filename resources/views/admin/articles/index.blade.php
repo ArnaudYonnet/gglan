@@ -1,6 +1,13 @@
 @extends('layouts.admin.template') 
+@section('title')
+    Articles
+@endsection
+@section('subtitle')
+    Gestion des articles 
+@endsection
+
 @section('content')
-    @include('sweetalert::view')
+@include('sweetalert::view')
 <div class="row">
     <div class="col-lg-12">
         <div class="box">
@@ -8,11 +15,9 @@
                 <h3 class="box-title">Articles</h3>
                 <a href="/admin/articles/create" class="btn btn-primary">Ecrire un article</a>
             </div>
-            {{--
-            <div class="box-body"> --}}
+            <div class="box-body table-responsive">
                 <table id="equipes" class="table table-hover">
                     <thead>
-                        <th>#</th>
                         <th>Titre</th>
                         <th>Ecrit le</th>
                         <th>Auteur</th>
@@ -22,7 +27,6 @@
                     <tbody>
                         @foreach ($articles as $key => $article)
                         <tr>
-                            <td> {{$key+1}} </td>
                             <td> <a href="/admin/articles/{{ $article->id }}"> {{ $article->titre_article }} </a> </td>
                             <td> {{ \Carbon\Carbon::parse($article->date_article)->format('d/m/Y') }} </td>
                             <td> {{ \App\Models\User::find($article->id_user)->prenom }} </td>

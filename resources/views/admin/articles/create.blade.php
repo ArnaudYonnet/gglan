@@ -1,4 +1,11 @@
-@extends('layouts.admin.template') 
+@extends('layouts.admin.template')
+@section('title')
+    Articles
+@endsection
+@section('subtitle')
+    Gestion des articles
+@endsection 
+
 @section('content')
     @include('sweetalert::view')
 <div class="row">
@@ -8,9 +15,7 @@
                 <h3 class="box-title">CK Editor
                     <small>Advanced and full of features</small>
                 </h3>
-
             </div>
-            <!-- /.box-header -->
             <div class="box-body pad">
                 <form class="form-horizontal" method="POST" action="/admin/articles">
                     {{ csrf_field() }}
