@@ -40,8 +40,8 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         
         return view('auth.login')
                ->with('partenaires', $partenaires)

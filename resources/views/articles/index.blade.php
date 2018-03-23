@@ -7,7 +7,7 @@
                     </a>
                     <div class="block-title">
                         <h2>{{ $articles[0]->titre_article }}</h2>
-                        <p class="by-author"><small>By {{ \App\User::find($articles[0]->id_user)->pseudo }}</small></p>
+                        <p class="by-author"><small>By {{ \App\Models\User::find($articles[0]->id_user)->pseudo }}</small></p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{ $articles[1]->titre_article }}</h4>
-                        <p class="by-author">By {{ \App\User::find($articles[1]->id_user)->pseudo }}</p>
+                        <p class="by-author">By {{ \App\Models\User::find($articles[1]->id_user)->pseudo }}</p>
                     </div>
                     </li>
                 @endisset
@@ -33,7 +33,7 @@
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{ $articles[2]->titre_article }}</h4>
-                        <p class="by-author">By {{ \App\User::find($articles[2]->id_user)->pseudo }}</p>
+                        <p class="by-author">By {{ \App\Models\User::find($articles[2]->id_user)->pseudo }}</p>
                     </div>
                     </li>
                 @endisset
@@ -45,7 +45,7 @@
                         </a>
                         <div class="media-body">
                         <h4 class="media-heading">{{ $articles[3]->titre_article }}</h4>
-                        <p class="by-author">By {{ \App\User::find($articles[3]->id_user)->pseudo }}</p>
+                        <p class="by-author">By {{ \App\Models\User::find($articles[3]->id_user)->pseudo }}</p>
                         </div>
                     </li>
                 @endisset

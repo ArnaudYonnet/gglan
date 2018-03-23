@@ -9,12 +9,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = \App\Article::orderBy('id', 'desc')
+        $articles = \App\Models\Article::orderBy('id', 'desc')
                             ->take(4)
                             ->get();
 
         $partenaires = DB::table('partenaire')->get();
-        $tournois = \App\Tournois::getTournois();
+        $tournois = \App\Models\Tournois::getTournois();
         
         return view('home')
                 ->with('partenaires', $partenaires)
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function reglement()
     {
         $partenaires = DB::table('partenaire')->get();
-        $tournois = \App\Tournois::getTournois();
+        $tournois = \App\Models\Tournois::getTournois();
         
         return view('reglement')
                 ->with('partenaires', $partenaires)
@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function infos()
     {
         $partenaires = DB::table('partenaire')->get();
-        $tournois = \App\Tournois::getTournois();
+        $tournois = \App\Models\Tournois::getTournois();
         
         return view('infos')
                 ->with('partenaires', $partenaires)

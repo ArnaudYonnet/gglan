@@ -40,8 +40,8 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         
         return view('auth.passwords.reset')
                 ->with(['token' => $token, 'email' => $request->email])

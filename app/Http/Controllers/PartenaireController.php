@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Partenaire;
+use App\Models\Partenaire;
 use Illuminate\Http\Request;
 
 class PartenaireController extends Controller

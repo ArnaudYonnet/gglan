@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\User;
-use \App\Equipe;
+use \App\Models\User;
+use \App\Models\Equipe;
 
 class InscriptionController extends Controller
 {
@@ -14,7 +14,7 @@ class InscriptionController extends Controller
         {
             if (count(Equipe::find($id_equipe)->getJoueurs()) < 4) 
             {
-                $joueur = New \App\Appartenance;
+                $joueur = New \App\Models\Appartenance;
                     $joueur->id_equipe = $id_equipe;
                     $joueur->id_user = $id_joueur;
                 $joueur->save();

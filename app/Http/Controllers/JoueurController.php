@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditUserRequest;
 
-use \App\User;
+use \App\Models\User;
 
 class JoueurController extends Controller
 {
@@ -16,8 +16,8 @@ class JoueurController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         $joueurs = User::where('type', '!=', 'visiteur')->get();
 
         return view('joueur.index')
@@ -55,8 +55,8 @@ class JoueurController extends Controller
      */
     public function show($id)
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
 
         $joueur = User::find($id);
 
@@ -75,10 +75,10 @@ class JoueurController extends Controller
      */
     public function edit($id)
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
-        $jeux = \App\Jeu::all();
-        $ranks = \App\Rank::all();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
+        $jeux = \App\Models\Jeu::all();
+        $ranks = \App\Models\Rank::all();
 
         $joueur = User::find($id);
 
@@ -109,14 +109,14 @@ class JoueurController extends Controller
 
         if ($joueur->getRank()) 
         {
-            $entrainement = \App\Entrainement::where('id_user', $id)->first();
+            $entrainement = \App\Models\Entrainement::where('id_user', $id)->first();
                 $entrainement->id_rank = $request->input('rank');
             $entrainement->save();
         }
         else
         {
             $rank = \App\Rank::find($request->input('rank'));
-            $entrainement = new \App\Entrainement;
+            $entrainement = new \App\Models\Entrainement;
                 $entrainement->id_jeu = $rank->id_jeu;
                 $entrainement->id_user = $id;
                 $entrainement->id_rank = $request->input('rank');

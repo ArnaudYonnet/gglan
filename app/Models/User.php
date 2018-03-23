@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,8 +31,8 @@ class User extends Authenticatable
     public function getRank()
     {
         try {
-            $entrainement = \App\Entrainement::where('id_user', $this->id)->firstOrFail();
-            $rank = \App\Rank::find($entrainement->id_rank);
+            $entrainement = \App\Models\Entrainement::where('id_user', $this->id)->firstOrFail();
+            $rank = \App\Models\Rank::find($entrainement->id_rank);
 
         }
         catch (\Exception $e)
@@ -46,14 +46,14 @@ class User extends Authenticatable
     public function getEquipe()
     {
         try {
-            $appartenance = \App\Appartenance::where('id_user', $this->id)->firstOrFail();
-            $equipe = \App\Equipe::find($appartenance->id_equipe);
+            $appartenance = \App\Models\Appartenance::where('id_user', $this->id)->firstOrFail();
+            $equipe = \App\Models\Equipe::find($appartenance->id_equipe);
             return $equipe;
         }
         catch (\Exception $e)
         {
             try {
-                $capitaine = \App\Equipe::where('id_capitaine', $this->id)->firstOrFail();
+                $capitaine = \App\Models\Equipe::where('id_capitaine', $this->id)->firstOrFail();
                 return $capitaine;
             }
             catch (\Exception $e){

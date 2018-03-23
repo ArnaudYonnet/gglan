@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Tournois;
-use App\Participation;
+use App\Models\Tournois;
+use App\Models\Participation;
 use Illuminate\Http\Request;
 
 class TournoisController extends Controller
@@ -15,7 +15,7 @@ class TournoisController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Partenaire::all();
+        $partenaires = \App\Models\Partenaire::all();
         $tournois = Tournois::getTournois();
 
         return view('tournois.index')
