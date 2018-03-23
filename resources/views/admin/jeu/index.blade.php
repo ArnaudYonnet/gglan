@@ -1,4 +1,10 @@
-@extends('layouts.admin.template') 
+@extends('layouts.admin.template')
+@section('title')
+    Jeux
+@endsection
+@section('subtitle')
+    Gestion des jeux 
+@endsection 
 @section('content')
 @include('sweetalert::view')
     <div class="row">
@@ -11,11 +17,9 @@
                         Ajouter un jeu
                     </button>
                 </div>
-                {{--
-                <div class="box-body"> --}}
+                <div class="box-body">
                     <table id="jeux" class="table table-hover">
                         <thead>
-                            <th>#</th>
                             <th>Nom</th>
                             <th>Description</th>
                             <th>Nombre Joueur</th>
@@ -25,7 +29,6 @@
                         <tbody>
                             @foreach ($jeux as $key => $jeu)
                             <tr>
-                                <td> {{$key+1}} </td>
                                 <td> {{ $jeu->nom }} </td>
                                 <td> {{ $jeu->description }} </td>
                                 <td> {{ $jeu->nb_jeu }} </td>
