@@ -73,8 +73,14 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
             Route::get('/joueurs/{id}/delete', 'JoueurController@destroy');
     });
 
-    Route::get('/equipes', 'AdminController@equipes'); // Liste des joueurs
-    Route::get('/equipes/{id_joueur}/delete', 'EquipeController@destroy'); // Suppression d'une equipe
+
+    //Equipes
+    Route::resource('/equipes', 'EquipeController', ['only' => ['index', 'edit', 'store']]);
+    
+    Route::middleware('auth')->group(function(){
+            Route::post('/equipes/{id}', 'EquipeController@update');
+            Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
+    });
 
     Route::get('/tournois', 'AdminController@tournois'); // Liste des tournois 
     Route::get('/tournois/inscrits', 'AdminController@listeInscrits'); // Liste des équipes inscrites pour la prochaine LAN

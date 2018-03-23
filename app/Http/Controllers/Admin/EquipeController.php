@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\EquipeRequest;
-use App\Http\Requests\AppartenanceRequest;
 use \App\Models\Equipe;
 use Auth;
 
@@ -17,13 +16,9 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
         $equipes = Equipe::all();
 
-        return view('equipe.index')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
+        return view('admin.equipe.index')
                 ->with('equipes', $equipes);
     }
 
@@ -34,19 +29,7 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        $jeux = \App\Models\Jeu::all();
-
-        if (Auth::user()->getEquipe()) 
-        {
-            return redirect('equipes/'.Auth::user()->getEquipe()->id);
-        }
-
-        return view('equipe.create')
-                    ->with('partenaires', $partenaires)
-                    ->with('tournois', $tournois)
-                    ->with('jeux', $jeux);
+        //
     }
 
     /**
@@ -64,10 +47,8 @@ class EquipeController extends Controller
             $equipe->id_jeu = $request->input('jeu');
         $equipe->save();
 
-        $id_equipe = Equipe::where('nom_equipe', $request->input('nom'))->value('id');
-
-        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été créer !',[]);
-        return redirect('equipes/'. $id_equipe );
+        swal()->autoclose(2000)->success('Mise à jour',"L'équipe a bien été créer !",[]);
+        return redirect('admin/equipes');
     }
 
     /**
@@ -78,14 +59,7 @@ class EquipeController extends Controller
      */
     public function show($id)
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        $equipe = Equipe::find($id);
-
-        return view('equipe.show')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
-                ->with('equipe', $equipe);
+        //
     }
 
     /**
@@ -96,7 +70,13 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipe = Equipe::find($id);
+        $joueurs = \App\Models\User::where('admin', 0)
+                                    ->where('type', 'Joueur')
+                                    ->get();
+        return view('admin.equipe.edit')
+                ->with('equipe', $equipe)
+                ->with('joueurs', $joueurs);
     }
 
     /**
@@ -109,12 +89,13 @@ class EquipeController extends Controller
     public function update(Request $request, $id)
     {
         $equipe = Equipe::find($id);
+            $equipe->nom_equipe = $request->input('nom_equipe');
             $equipe->description = $request->input('description');
             $equipe->avatar_equipe = $request->input('avatar_equipe');
         $equipe->save();
 
-        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
-        return redirect('equipes/'. $id);
+        swal()->autoclose(2000)->success('Mise à jour',"L'équipe a bien été mise à jour !",[]);
+        return redirect('admin/equipes');
     }
 
     /**
@@ -130,34 +111,5 @@ class EquipeController extends Controller
         swal()->autoclose(2000)
               ->success('Mise à jour',"L'équipe à bien été supprimé !",[]);
             return redirect('/admin/equipes');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroyJoueur($id_equipe, $id_joueur)
-    {
-        \App\Models\Appartenance::where('id_equipe', $id_equipe)
-                         ->where('id_user', $id_joueur)
-                         ->delete();
-
-        foreach (\App\Models\Tournois::getTournois() as $tournois) 
-        {
-            $equipe = \App\Models\Participation::where('id_equipe', $id_equipe)
-                                        ->where('id_tournois', $tournois->id)
-                                        ->first();
-            if ($equipe) 
-            {
-                \App\Models\Participation::where('id_equipe', $id_equipe)
-                                  ->where('id_tournois', $tournois->id)
-                                  ->delete();
-                
-            }
-        }        
-        swal()->autoclose('2000')->success('Mise à jour', \App\Models\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
-        return redirect('equipes/'.$id_equipe);
     }
 }
