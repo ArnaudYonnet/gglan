@@ -50,18 +50,7 @@ class JoueurController extends Controller
      */
     public function show($id)
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        $ranks = \App\Models\Rank::all();
-
-        $joueur = User::find($id);
-
-        return view('joueur.show')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
-                ->with('ranks', $ranks)
-                ->with('joueur', $joueur);
-
+        //
     }
 
     /**
@@ -72,7 +61,9 @@ class JoueurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $joueur = User::find($id);
+        return view('admin.joueur.edit')
+                ->with('joueur', $joueur);
     }
 
     /**
@@ -82,34 +73,18 @@ class JoueurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $joueur = User::find($id);
-            $joueur->pseudo = $request->input('pseudo');
-            $joueur->avatar = $request->input('avatar');
-            $joueur->ville = $request->input('ville');
+            $joueur->nom = $request->input('nom');
+            $joueur->prenom = $request->input('prenom');
             $joueur->description = $request->input('description');
+            $joueur->pseudo = $request->input('pseudo');
         $joueur->save();
-
-        if ($joueur->getRank()) 
-        {
-            $entrainement = \App\Models\Entrainement::where('id_user', $id)->first();
-                $entrainement->id_rank = $request->input('rank');
-            $entrainement->save();
-        }
-        else
-        {
-            $rank = \App\Rank::find($request->input('rank'));
-            $entrainement = new \App\Models\Entrainement;
-                $entrainement->id_jeu = $rank->id_jeu;
-                $entrainement->id_user = $id;
-                $entrainement->id_rank = $request->input('rank');
-            $entrainement->save();
-        }
 
         swal()->autoclose(2000)
               ->success('Mise à jour','Votre profil a bien été mis à jour !',[]);
-        return redirect('joueurs/'. $id);
+        return redirect('admin/joueurs');
     }
     
 

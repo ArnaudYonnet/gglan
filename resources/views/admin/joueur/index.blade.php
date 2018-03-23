@@ -31,7 +31,7 @@
                                 <td> <a href="/joueurs/{{ $joueur->id }}" target="_blank">{{ $joueur->pseudo }}</a></td>
                                 <td> {{ $joueur->email }} </td>
                                 <td> {{ $joueur->description }} </td>
-                                <td> <a href="/admin/edit/joueurs/{{$joueur->id}}"><i class="fa fa-edit"></i></a> </td>
+                                <td> <a href="/admin/joueurs/{{$joueur->id}}/edit"><i class="fa fa-edit"></i></a> </td>
                                 <td> <a href="/admin/delete/joueurs/{{$joueur->id}}"><i class="fa fa-trash"></i></a> </td>
                             </tr>
                             @endforeach
