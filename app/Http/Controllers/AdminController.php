@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TournoisRequest;
-use App\Tournois;
+use App\Models\Tournois;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\ArticlesRequest;
 use App\Http\Requests\PartenairesRequest;
 
-use App\Articles;
-use App\Partenaires;
-use App\User;
+use App\Models\Articles;
+use App\Models\Partenaires;
+use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 
@@ -57,7 +57,7 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = \App\Tournois::all();
+        $tournois = \App\Models\Tournois::all();
 
         return view('admin.tournois.tournois')
                 ->with('inscrits', $inscrits)
@@ -70,7 +70,7 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $jeux = \App\Jeu::all();
+        $jeux = \App\Models\Jeu::all();
         return view('admin.tournois.create')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
@@ -114,8 +114,8 @@ class AdminController extends Controller
     {
         $inscrits = $this->infoInscrit()["inscrits"];
         $equipes = $this->infoInscrit()["equipes"];
-        $tournois = \App\Tournois::find($id_tournois);
-        $jeux = \App\Jeu::all();
+        $tournois = \App\Models\Tournois::find($id_tournois);
+        $jeux = \App\Models\Jeu::all();
         return view('admin.tournois.edit')
                 ->with('inscrits', $inscrits)
                 ->with('equipes', $equipes)
@@ -126,7 +126,7 @@ class AdminController extends Controller
 
     public function postEditTournois(TournoisRequest $request, $id_tournois)
     {
-        $tournois = \App\Tournois::find($id_tournois);
+        $tournois = \App\Models\Tournois::find($id_tournois);
 
         $tournois->nom_tournois = $request->input('nom');
         $tournois->date_deb = $request->input('date_deb');

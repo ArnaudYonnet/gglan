@@ -110,10 +110,12 @@ class ArticleController extends Controller
     public function showHome($id_article)
     {
         $article = Article::find($id_article);
-        $partenaires = DB::table('partenaire')->get();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
 
         return view('articles.show')
                 ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
                 ->with('article', $article);
     }
 

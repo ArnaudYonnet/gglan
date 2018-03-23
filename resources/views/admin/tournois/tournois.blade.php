@@ -39,7 +39,7 @@
                                     <td> {{ $tournoi->nom_tournois }} </td>
                                     <td> {{ $tournoi->description }} </td>
                                     <td> {{ $tournoi->place_equipe }} </td>
-                                    <td> {{ \App\Jeu::find($tournoi->id_jeu)->nom }} </td>
+                                    <td> {{ \App\Models\Jeu::find($tournoi->id_jeu)->nom }} </td>
                                     <td>
                                         <a id="edit" href="/admin/edit/tournois/{{$tournoi->id}}"><i class="fa fa-edit"></i></a>
                                     </td>

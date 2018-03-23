@@ -24,7 +24,7 @@
                     <label for="id_jeu" class="col-md-4 control-label">Jeu</label>
                     <div class="col-md-6">
                         <select id="id_jeu" class="form-control" name="id_jeu">
-                            <option value="{{ $rank->id_jeu }}" selected> {{ \App\Jeu::find($rank->id_jeu)->nom }} </option>
+                            <option value="{{ $rank->id_jeu }}" selected> {{ \App\Models\Jeu::find($rank->id_jeu)->nom }} </option>
                             @foreach ($jeux as $jeu)
                                 <option value="{{ $jeu->id }}"> {{ $jeu->nom }} </option>
                             @endforeach
