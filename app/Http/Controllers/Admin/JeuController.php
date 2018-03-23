@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Jeu;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Jeu;
 
 class JeuController extends Controller
 {
@@ -14,13 +15,9 @@ class JeuController extends Controller
      */
     public function index()
     {
-        $info = new AdminController();
-
         $jeux = Jeu::all();
 
-        return view('admin.jeux.index')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
+        return view('admin.jeu.index')
                 ->with('jeux', $jeux);
     }
 
@@ -31,11 +28,7 @@ class JeuController extends Controller
      */
     public function create()
     {
-        $info = new AdminController();
-
-        return view('admin.jeux.create')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"]);
+        //
     }
 
     /**
@@ -47,22 +40,19 @@ class JeuController extends Controller
     public function store(Request $request)
     {
         $jeu = New Jeu;
-
-        $jeu->nom = $request->input('nom');
-        $jeu->description = $request->input('description');
-        $jeu->nb_jeu = $request->input('nb_jeu');
-
+            $jeu->nom = $request->input('nom');
+            $jeu->description = $request->input('description');
+            $jeu->nb_jeu = $request->input('nb_jeu');
         $jeu->save();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le jeu à bien été ajouté !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le jeu à bien été ajouté !',[]);
         return redirect('admin/jeux');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Jeu  $jeu
+     * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
     public function show(Jeu $jeu)
@@ -73,56 +63,47 @@ class JeuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Jeu  $jeu
+     * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
     public function edit($id_jeu)
     {
         $jeu = Jeu::find($id_jeu);
 
-        $info = new AdminController();
-
-        return view('admin.jeux.edit')
-                ->with('inscrits', $info->infoInscrit()["inscrits"])
-                ->with('equipes', $info->infoInscrit()["equipes"])
+        return view('admin.jeu.edit')
                 ->with('jeu', $jeu);
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jeu  $jeu
+     * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id_jeu)
     {
         $jeu = Jeu::find($id_jeu);
-
-        $jeu->nom = $request->input('nom');
-        $jeu->description = $request->input('description');
-        $jeu->nb_jeu = $request->input('nb_jeu');
-
+            $jeu->nom = $request->input('nom');
+            $jeu->description = $request->input('description');
+            $jeu->nb_jeu = $request->input('nb_jeu');
         $jeu->save();
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le jeu à bien été mis à jour !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le jeu à bien été mis à jour !',[]);
         return redirect('admin/jeux');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Jeu  $jeu
+     * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
     public function destroy($id_jeu)
     {
         Jeu::destroy($id_jeu);
 
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Le jeu à bien été supprimé !',[]);
+        swal()->autoclose('2000')->success('Mise à jour','Le jeu à bien été supprimé !',[]);
         return redirect('admin/jeux');
     }
 }
