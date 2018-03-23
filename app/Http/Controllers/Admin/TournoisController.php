@@ -62,9 +62,16 @@ class TournoisController extends Controller
      * @param  \App\Tournois  $tournois
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tournois $tournois)
+    public function edit($id)
     {
-        //
+        $tournois = Tournois::find($id);
+        $jeux = \App\Models\Jeu::all();
+
+        return view('admin.tournois.edit')
+               ->with('jeux', $jeux)
+               ->with('tournois', $tournois);
+        
+        
     }
 
     /**
@@ -72,22 +79,22 @@ class TournoisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update($id_tournois, $id_equipe)
+    public function update(Request $request, $id)
     {
-        if (!Tournois::isInscrit($id_equipe)) 
-        {
-            $participation = New Participation;
-                $participation->id_equipe = $id_equipe;
-                $participation->id_tournois = $id_tournois;
-            $participation->save();
+        $tournois = Tournois::find($id);
+            $tournois->nom_tournois = $request->input('nom_tournois');
+            $tournois->date_deb = $request->input('date_deb');
+            $tournois->date_fin = $request->input('date_fin');
+            $tournois->description = $request->input('description');
+            $tournois->place_equipe = $request->input('place_equipe');
+            $tournois->id_jeu = $request->input('id_jeu');
+            $tournois->status = $request->input('status');
+        $tournois->save();
+            
 
-            swal()->autoclose('2000')
-              ->success('Mise à jour','Votre équipe est bien inscrite pour '. Tournois::find($id_tournois)->nom_tournois   ,[]);
-            return redirect('tournois');
-        }
-        swal()->autoclose('2000')
-              ->error('Erreur', 'Votre équipe est déjà inscrite pour un tournois...', []);
-        return redirect('tournois');
+        swal()->autoclose('2000')->success('Mise à jour','Le tournois à bien été modifié !',[]);
+        return redirect('admin/tournois');
+
     }
 
     /**
@@ -96,13 +103,11 @@ class TournoisController extends Controller
      * @param  \App\Tournois  $tournois
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_tournois, $id_equipe)
+    public function destroy($id)
     {
-        $participation = Participation::where('id_tournois', $id_tournois)
-                                      ->where('id_equipe', $id_equipe)
-                                      ->delete();
-        swal()->autoclose('2000')
-              ->success('Mise à jour','Votre équipe est bien désinscrite du tournois !',[]);
-        return redirect('tournois');
+        Tournois::destroy($id);
+
+        swal()->autoclose('2000')->success('Mise à jour','Le tournois à bien été supprimé !',[]);
+        return redirect('admin/tournois');
     }
 }
