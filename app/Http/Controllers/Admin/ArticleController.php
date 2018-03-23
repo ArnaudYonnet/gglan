@@ -20,7 +20,7 @@ class ArticleController extends Controller
     {
         $articles = Article::all();
 
-        return view('admin.articles.index')
+        return view('admin.article.index')
                 ->with('articles', $articles);
     }
 
@@ -31,7 +31,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.articles.create');
+        return view('admin.article.create');
     }
 
     /**
@@ -61,8 +61,7 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $article = Article::find($id);
+    {        $article = Article::find($id);
 
         return view('admin.articles.show')
                 ->with('article', $article);
@@ -75,8 +74,7 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $article = Article::find($id);
+    {        $article = Article::find($id);
 
         return view('admin.articles.edit')
                 ->with('article', $article);
