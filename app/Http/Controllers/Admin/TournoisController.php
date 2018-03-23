@@ -42,7 +42,19 @@ class TournoisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tournois = new Tournois;
+            $tournois->nom_tournois = $request->input('nom_tournois');
+            $tournois->date_deb = $request->input('date_deb');
+            $tournois->date_fin = $request->input('date_fin');
+            $tournois->description = $request->input('description');
+            $tournois->place_equipe = $request->input('place_equipe');
+            $tournois->id_jeu = $request->input('id_jeu');
+            $tournois->status = $request->input('status');
+        $tournois->save();
+
+        swal()->autoclose('2000')->success('Mise à jour','Le tournois à bien été créer',[]);
+            return redirect('admin/tournois');
+
     }
 
     /**
