@@ -57,12 +57,14 @@ class JoueurController extends Controller
     {
         $partenaires = \App\Models\Partenaire::all();
         $tournois = \App\Models\Tournois::getTournois();
+        $ranks = \App\Models\Rank::all();
 
         $joueur = User::find($id);
 
         return view('joueur.show')
                 ->with('partenaires', $partenaires)
                 ->with('tournois', $tournois)
+                ->with('ranks', $ranks)
                 ->with('joueur', $joueur);
 
     }
@@ -75,20 +77,7 @@ class JoueurController extends Controller
      */
     public function edit($id)
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        $jeux = \App\Models\Jeu::all();
-        $ranks = \App\Models\Rank::all();
-
-        $joueur = User::find($id);
-
-        return view('joueur.show')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
-                ->with('jeux', $jeux)
-                ->with('ranks', $ranks)
-                ->with('joueur', $joueur)
-                ->with('edit', true);
+        //
     }
 
     /**
