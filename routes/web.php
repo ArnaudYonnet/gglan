@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function(){
 | Admin
 |--------------------------------------------------------------------------
 */
-Route::prefix('/admin')->middleware('admin')->group(function(){
+Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function(){
     
     Route::get('/', 'AdminController@index'); //Page d'accueil du panel admin
     
