@@ -11,7 +11,9 @@
                 <p class="mt-1">{{ $equipe->description }}</p>
 
                 @if (Auth::check() && Auth::user()->id == $equipe->getCapitaine()->id)
-                    <a href="/equipes/{{ $equipe->id }}/edit" class="btn btn-danger mt-2 mb-4">Modifer les informations</a>
+                    <button type="button" class="btn btn-danger mt-2 mb-2" data-toggle="modal" data-target="#modal">
+                        Modifer les informations
+                    </button>
                 @endif
 
             </div>
@@ -77,10 +79,6 @@
             </table>
         </div>
 
-        @isset($edit)
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                @include('equipe.edit')
-            </div>
-        @endisset
+        @include('equipe.edit')
     </div>
 @endsection

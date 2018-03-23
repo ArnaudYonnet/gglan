@@ -96,15 +96,7 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        $equipe = Equipe::find($id);
-
-        return view('equipe.show')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois)
-                ->with('equipe', $equipe)
-                ->with('edit', true);
+        //
     }
 
     /**
