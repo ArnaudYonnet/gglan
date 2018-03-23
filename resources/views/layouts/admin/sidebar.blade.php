@@ -8,23 +8,8 @@
         <li><a href="/admin/joueurs"><i class="fa fa-user"></i>Joueurs</a></li>
         <li><a href="/admin/equipes"><i class="fa fa-users"></i>Equipes</a></li>
         <li><a href="/admin/tournois"><i class="fa fa-trophy"></i>Tournois</a></li>
-
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-gamepad"></i> <span>Jeux</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-
-          <ul class="treeview-menu">
-            <li><a href="/admin/jeux"><i class="fa fa-list-ul"></i>Liste des jeux</a></li>
-            <li><a href="/admin/jeux/create"><i class="fa fa-plus-circle"></i>Ajouter un jeu</a></li>
-            <li><a href="/admin/ranks"><i class="fa fa-list-ul"></i>Liste des ranks</a></li>
-            <li><a href="/admin/ranks/create"><i class="fa fa-plus-circle"></i>Ajouter un rank</a></li>
-          </ul>
-        </li>
+        <li><a href="/admin/jeux"><i class="fa fa-gamepad"></i>Jeux</a></li>
+        <li><a href="/admin/ranks"><i class="fa fa-angle-double-up"></i>Ranks</a></li>
 
         <li class="treeview">
             <a href="#">
