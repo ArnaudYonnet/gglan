@@ -6,19 +6,8 @@
 
         <li class="header">GGLAN</li>
         <li><a href="/admin/joueurs"><i class="fa fa-user"></i>Joueurs</a></li>
+        <li><a href="/admin/equipes"><i class="fa fa-users"></i>Equipes</a></li>
 
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-users"></i><span>Equipes</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="/admin/equipes"><i class="fa fa-list-ul"></i>Liste equipes</a></li>
-                <li><a href="#"><i class="fa fa-plus-circle"></i>Ajouter une equipe</a></li>
-            </ul>
-        </li>
 
         <li class="treeview">
             <a href="#">
