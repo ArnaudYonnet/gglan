@@ -96,8 +96,7 @@ class JoueurController extends Controller
             $joueur->pseudo = $request->input('pseudo');
         $joueur->save();
 
-        swal()->autoclose(2000)
-              ->success('Mise à jour','Votre profil a bien été mis à jour !',[]);
+        swal()->autoclose(2000)->success('Mise à jour','Votre profil a bien été mis à jour !',[]);
         return redirect('admin/joueurs');
     }
     
@@ -110,6 +109,9 @@ class JoueurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        swal()->autoclose(2000)->success('Mise à jour', "Le joueur à bien été supprimé !", []);
+        return redirect('admin/joueurs');
     }
 }
