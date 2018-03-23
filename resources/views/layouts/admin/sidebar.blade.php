@@ -7,21 +7,8 @@
         <li class="header">GGLAN</li>
         <li><a href="/admin/joueurs"><i class="fa fa-user"></i>Joueurs</a></li>
         <li><a href="/admin/equipes"><i class="fa fa-users"></i>Equipes</a></li>
+        <li><a href="/admin/tournois"><i class="fa fa-trophy"></i>Tournois</a></li>
 
-
-        <li class="treeview">
-            <a href="#">
-                <i class="fa fa-trophy"></i> <span>Tournois</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="/admin/tournois"><i class="fa fa-list-ul"></i>Liste tournois</a></li>
-                <li><a href="/admin/tournois/create"><i class="fa fa-plus-circle"></i>Créer un tournois</a></li>
-                <li><a href="/admin/tournois/inscrits"><i class="fa fa-edit"></i>Liste des inscrits</a></li>
-            </ul>
-        </li>
 
         <li class="treeview">
           <a href="#">
