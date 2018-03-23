@@ -66,9 +66,9 @@ class JeuController extends Controller
      * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_jeu)
+    public function edit($id)
     {
-        $jeu = Jeu::find($id_jeu);
+        $jeu = Jeu::find($id);
 
         return view('admin.jeu.edit')
                 ->with('jeu', $jeu);
@@ -81,9 +81,9 @@ class JeuController extends Controller
      * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_jeu)
+    public function update(Request $request, $id)
     {
-        $jeu = Jeu::find($id_jeu);
+        $jeu = Jeu::find($id);
             $jeu->nom = $request->input('nom');
             $jeu->description = $request->input('description');
             $jeu->nb_jeu = $request->input('nb_jeu');
@@ -99,9 +99,9 @@ class JeuController extends Controller
      * @param  \App\Models\Jeu  $jeu
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_jeu)
+    public function destroy($id)
     {
-        Jeu::destroy($id_jeu);
+        Jeu::destroy($id);
 
         swal()->autoclose('2000')->success('Mise à jour','Le jeu à bien été supprimé !',[]);
         return redirect('admin/jeux');
