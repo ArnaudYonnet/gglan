@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-success">
-                            Créer le tournois
+                            Modifier le rank
                         </button>
                     </div>
                 </div>
