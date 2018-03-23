@@ -22,7 +22,7 @@
                         <thead>
                             <th>Nom</th>
                             <th>Description</th>
-                            <th>Nombre Joueur</th>
+                            <th>Joueurs/Equipe</th>
                             <th>Modifier</th>
                             <th>Supprimer</th>
                         </thead>
