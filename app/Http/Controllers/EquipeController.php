@@ -36,7 +36,7 @@ class EquipeController extends Controller
     {
         $partenaires = \App\Models\Partenaire::all();
         $tournois = \App\Models\Tournois::getTournois();
-        $jeux = \App\Jeu::all();
+        $jeux = \App\Models\Jeu::all();
 
         if (Auth::user()->getEquipe()) 
         {
