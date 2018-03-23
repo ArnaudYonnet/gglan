@@ -74,9 +74,7 @@
                     
                 </div>
         
-                <div class="col-lg-5 col-md-10 col-sm-12">
-                    @include('joueur.edit')
-                </div>
+                @include('joueur.edit')
             </div>
         @else
             Compte visiteur

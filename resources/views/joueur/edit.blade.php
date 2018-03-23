@@ -31,7 +31,7 @@
                 
                     <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                         <label for="avatar" class="col-md-4 control-label">Avatar</label>
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <input id="avatar" type="text" class="form-control" name="avatar" value="{{ $joueur->avatar }}"> 
                             @if ($errors->has('avatar'))
                                 <span class="help-block">
@@ -67,7 +67,7 @@
                 
                     <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }}">
                         <label for="rank" class="col-md-4 control-label">Rank cs:go</label>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                 
                             <select id="rank" class="form-control" name="rank">
                                 @if ($joueur->getRank())
