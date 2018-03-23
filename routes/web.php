@@ -82,13 +82,14 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
             Route::get('/equipes/{id}/delete', 'EquipeController@destroy');
     });
 
-    Route::get('/tournois', 'AdminController@tournois'); // Liste des tournois 
-    Route::get('/tournois/inscrits', 'AdminController@listeInscrits'); // Liste des équipes inscrites pour la prochaine LAN
-    Route::get('/tournois/create', 'AdminController@getTournois'); //Formulaire de création d'un tournois
-    Route::post('/tournois/create', 'AdminController@postTournois'); // Création du tournois
-    Route::get('/delete/tournois/{id_tournois}', 'AdminController@deleteTournois'); // Suppression d'un tournois
-    Route::get('/edit/tournois/{id_tournois}', 'AdminController@getEditTournois'); // Formulaire de modification d'un tournois
-    Route::post('/edit/tournois/{id_tournois}', 'AdminController@postEditTournois'); // Modification d'un tournois
+
+    //Tournois
+    Route::resource('/tournois', 'TournoisController', ['only' => ['index', 'edit', 'store']]);
+    
+    Route::middleware('auth')->group(function(){
+            Route::post('/tournois/{id}', 'TournoisController@update');
+            Route::get('/tournois/{id}/delete', 'TournoisController@destroy');
+    });
 
 
     /*

@@ -1,4 +1,10 @@
 @extends('layouts.admin.template')
+@section('title')
+    Tournois
+@endsection
+@section('subtitle')
+    Gestion des tournois 
+@endsection
 
 @section('content')
 @include('sweetalert::view')
@@ -7,7 +13,10 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Tournois</h3>
-                    <a href="/admin/tournois/create" class="btn btn-primary">Ajouter un tournois</a>
+                    &nbsp &nbsp
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                        Ajouter un tournois
+                    </button>
                 </div>
                 <div class="box-body">
                     <table id="tournois" class="table table-hover">
@@ -41,10 +50,10 @@
                                     <td> {{ $tournoi->place_equipe }} </td>
                                     <td> {{ \App\Models\Jeu::find($tournoi->id_jeu)->nom }} </td>
                                     <td>
-                                        <a id="edit" href="/admin/edit/tournois/{{$tournoi->id}}"><i class="fa fa-edit"></i></a>
+                                        <a id="edit" href="/admin/tournois/{{$tournoi->id}}/edit"><i class="fa fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <a id="delete" href="/admin/delete/tournois/{{$tournoi->id}}"><i class="fa fa-trash"></i></a>
+                                        <a id="delete" href="/admin/tournois/{{$tournoi->id}}/delete"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,4 +63,5 @@
             </div>
         </div>
     </div>
+    @include('admin.tournois.create')
 @endsection

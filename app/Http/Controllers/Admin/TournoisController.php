@@ -1,6 +1,7 @@
 <?php
+namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use App\Models\Tournois;
 use App\Models\Participation;
@@ -15,11 +16,11 @@ class TournoisController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = Tournois::getTournois();
+        $tournois = Tournois::all();
+        $jeux = \App\Models\Jeu::all();
 
-        return view('tournois.index')
-               ->with('partenaires', $partenaires)
+        return view('admin.tournois.index')
+               ->with('jeux', $jeux)
                ->with('tournois', $tournois);
     }
 
