@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use \App\Participation;
+use \App\Models\Participation;
 
 class Tournois extends Model
 {

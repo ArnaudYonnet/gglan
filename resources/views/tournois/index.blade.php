@@ -32,10 +32,10 @@
                             --}}
                             {{--  Si une équipe & capitaine  --}}
                             @if (Auth::check() 
-                            && \App\Equipe::find(\App\User::find(Auth::id())->getEquipe())
-                            && Auth::id() == \App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id)
+                            && \App\Models\Equipe::find(\App\Models\User::find(Auth::id())->getEquipe())
+                            && Auth::id() == \App\Models\Equipe::find(\App\Models\User::find(Auth::id())->getEquipe()->id)->getCapitaine()->id)
 
-                                @if (\App\Tournois::isInscrit(\App\User::find(Auth::id())->getEquipe()->id))
+                                @if (\App\Models\Tournois::isInscrit(\App\Models\User::find(Auth::id())->getEquipe()->id))
 
                                     @if (\App\Equipe::find(\App\User::find(Auth::id())->getEquipe()->id)->getInscription()->id_tournois == $tournoi->id)
                                         <p class="lead">

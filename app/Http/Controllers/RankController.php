@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Rank;
+use App\Models\Rank;
 use Illuminate\Http\Request;
 
 class RankController extends Controller
@@ -31,7 +31,7 @@ class RankController extends Controller
      */
     public function create()
     {
-        $jeux = \App\Jeu::all();
+        $jeux = \App\Models\Jeu::all();
         $info = new AdminController();
 
         return view('admin.ranks.create')
@@ -82,7 +82,7 @@ class RankController extends Controller
     public function edit($id_rank)
     {
         $rank = Rank::find($id_rank);
-        $jeux = \App\Jeu::all();
+        $jeux = \App\Models\Jeu::all();
         $info = new AdminController();
 
         return view('admin.ranks.edit')

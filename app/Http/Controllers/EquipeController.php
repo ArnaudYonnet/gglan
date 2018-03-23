@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\EquipeRequest;
 use App\Http\Requests\AppartenanceRequest;
-use \App\Equipe;
+use \App\Models\Equipe;
 use Auth;
 
 class EquipeController extends Controller
@@ -17,8 +17,8 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         $equipes = Equipe::all();
 
         return view('equipe.index')
@@ -34,8 +34,8 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         $jeux = \App\Jeu::all();
 
         if (Auth::user()->getEquipe()) 
@@ -78,8 +78,8 @@ class EquipeController extends Controller
      */
     public function show($id)
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         $equipe = Equipe::find($id);
 
         return view('equipe.show')
@@ -96,8 +96,8 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        $partenaires = \App\Partenaire::all();
-        $tournois = \App\Tournois::getTournois();
+        $partenaires = \App\Models\Partenaire::all();
+        $tournois = \App\Models\Tournois::getTournois();
         $equipe = Equipe::find($id);
 
         return view('equipe.show')
@@ -148,24 +148,24 @@ class EquipeController extends Controller
      */
     public function destroyJoueur($id_equipe, $id_joueur)
     {
-        \App\Appartenance::where('id_equipe', $id_equipe)
+        \App\Models\Appartenance::where('id_equipe', $id_equipe)
                          ->where('id_user', $id_joueur)
                          ->delete();
 
-        foreach (\App\Tournois::getTournois() as $tournois) 
+        foreach (\App\Models\Tournois::getTournois() as $tournois) 
         {
-            $equipe = \App\Participation::where('id_equipe', $id_equipe)
+            $equipe = \App\Models\Participation::where('id_equipe', $id_equipe)
                                         ->where('id_tournois', $tournois->id)
                                         ->first();
             if ($equipe) 
             {
-                \App\Participation::where('id_equipe', $id_equipe)
+                \App\Models\Participation::where('id_equipe', $id_equipe)
                                   ->where('id_tournois', $tournois->id)
                                   ->delete();
                 
             }
         }        
-        swal()->autoclose('2000')->success('Mise à jour', \App\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
+        swal()->autoclose('2000')->success('Mise à jour', \App\Models\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
         return redirect('equipes/'.$id_equipe);
     }
 }

@@ -31,9 +31,9 @@
 
                     {{--  Ligne capitaine  --}}
                     <tr class="table-danger">
-                        @if (\App\User::find($equipe->getCapitaine()->id)->getRank())
-                            <th scope="row"> {{ \App\User::find($equipe->getCapitaine()->id)->getRank()->nom }} </th>
-                            <td><img src="{{ \App\User::find($equipe->getCapitaine()->id)->getRank()->image }}" alt=""></td>
+                        @if (\App\Models\User::find($equipe->getCapitaine()->id)->getRank())
+                            <th scope="row"> {{ \App\Models\User::find($equipe->getCapitaine()->id)->getRank()->nom }} </th>
+                            <td><img src="{{ \App\Models\User::find($equipe->getCapitaine()->id)->getRank()->image }}" alt=""></td>
                         @else
                             <th scope="row">Non renseigné...</th>
                             <th scope="row"></th>
@@ -51,9 +51,9 @@
                     {{--  Lignes joueurs  --}}
                     @foreach ($equipe->getJoueurs() as $key=>$joueur)
                         <tr>
-                            @if (\App\User::find($joueur->id)->getRank())
-                                <th scope="row"> {{ \App\User::find($joueur->id)->getRank()->nom }} </th>
-                                <td><img src="{{ \App\User::find($joueur->id)->getRank()->image }}" alt=""></td>
+                            @if (\App\Models\User::find($joueur->id)->getRank())
+                                <th scope="row"> {{ \App\Models\User::find($joueur->id)->getRank()->nom }} </th>
+                                <td><img src="{{ \App\Models\User::find($joueur->id)->getRank()->image }}" alt=""></td>
                             @else
                                 <th scope="row">Non renseigné...</th>
                                 <th scope="row"></th>
