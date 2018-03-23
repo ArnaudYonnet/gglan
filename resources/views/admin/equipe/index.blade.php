@@ -22,6 +22,7 @@
                 <table id="equipes" class="table table-hover">
                     <thead>
                         <th>Nom</th>
+                        <th>Description</th>
                         <th>Joueurs</th>
                         <th>Inscrit</th>
                         <th>Modifier</th>
@@ -31,6 +32,7 @@
                         @foreach ($equipes as $key => $equipe)
                         <tr>
                             <td><a href="/equipes/{{ $equipe->id }}" target="_blank">{{ $equipe->nom_equipe }}</a></td>
+                            <td>{{ $equipe->description }}</td>
                             <td>{{ count($equipe->getJoueurs())+1 }} / 5</td>
                             @if (\App\Models\Tournois::isInscrit($equipe->id))
                             <td><span class="label label-success">Inscrit</span></td>
