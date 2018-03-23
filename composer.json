@@ -30,7 +30,7 @@
             "App\\": "app/"
         }
     },
-    "autoload-dev": {
+    "autolo²-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         }
