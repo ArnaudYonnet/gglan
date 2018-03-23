@@ -91,7 +91,13 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipe = Equipe::find($id);
+        $joueurs = \App\Models\User::where('admin', 0)
+                                    ->where('type', 'Joueur')
+                                    ->get();
+        return view('admin.equipe.edit')
+                ->with('equipe', $equipe)
+                ->with('joueurs', $joueurs);
     }
 
     /**
@@ -104,12 +110,13 @@ class EquipeController extends Controller
     public function update(Request $request, $id)
     {
         $equipe = Equipe::find($id);
+            $equipe->nom_equipe = $request->input('nom_equipe');
             $equipe->description = $request->input('description');
             $equipe->avatar_equipe = $request->input('avatar_equipe');
         $equipe->save();
 
-        swal()->autoclose(2000)->success('Mise à jour','Votre équipe a bien été mise à jour !',[]);
-        return redirect('equipes/'. $id);
+        swal()->autoclose(2000)->success('Mise à jour',"L'équipe a bien été mise à jour !",[]);
+        return redirect('admin/equipes');
     }
 
     /**
