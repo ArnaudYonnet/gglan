@@ -35,18 +35,24 @@
                 @slot('stats')
                     <div class="progress-group">
                         <span class="progress-text">Joueurs dans une équipe</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                    
-                        <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        <span class="progress-number"><b> {{ count($joueurs)-(\App\Models\User::sansEquipe()) }} </b>/ {{ count($joueurs) }} </span>
+                        
+                        <div class="progress sm active">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                aria-valuemax="100" 
+                                style="width: {{ ((count($joueurs)-(\App\Models\User::sansEquipe())) / count($joueurs))*100 }}%">
+                            </div>
                         </div>
                     </div>
                     <div class="progress-group">
                         <span class="progress-text">Joueurs sans équipe</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                    
-                        <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        <span class="progress-number"><b> {{ \App\Models\User::sansEquipe() }} </b>/ {{ count($joueurs) }} </span>
+                        
+                        <div class="progress sm active">
+                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                aria-valuemax="100" 
+                                style="width: {{ ((\App\Models\User::sansEquipe()) / count($joueurs))*100 }}%">
+                            </div>
                         </div>
                     </div>
                 @endslot
