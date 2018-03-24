@@ -38,4 +38,11 @@ class Tournois extends Model
         }
     }
 
+    static function equipes_inscrites($id_tournois)
+    {
+        $equipes = Participation::where('id_tournois', $id_tournois)->get();
+
+        return count($equipes);
+    }
+
 }

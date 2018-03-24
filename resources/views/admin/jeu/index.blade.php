@@ -1,4 +1,4 @@
-@extends('layouts.admin.template')
+@extends('admin.layouts.template')
 @section('title')
     Jeux
 @endsection
@@ -18,7 +18,7 @@
                     </button>
                 </div>
                 <div class="box-body table-responsive">
-                    <table id="jeux" class="table table-hover">
+                    <table id="table" class="table table-hover">
                         <thead>
                             <th>Nom</th>
                             <th>Description</th>
