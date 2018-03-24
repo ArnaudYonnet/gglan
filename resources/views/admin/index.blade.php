@@ -4,13 +4,13 @@
     {{--  Joueurs  --}}
     <section class="col-sm-12">
         @component('admin.layouts.rowInfo')
-                @slot('box_color')
-                    box-danger
-                @endslot
-                @slot('title')
-                    <a href="/admin/joueurs">Joueurs</a>
-                @endslot
-                @slot('table')
+            @slot('box_color')
+                box-danger
+            @endslot
+            @slot('title')
+                <a href="/admin/joueurs">Joueurs</a>
+            @endslot
+            @slot('table')
                     <table id="joueurs" class="table table-hover">
                         <thead>
                             <th>Pseudo</th>
@@ -31,44 +31,44 @@
                             @endforeach
                         </tbody>
                     </table>
-                @endslot
-                @slot('stats')
-                    <div class="progress-group">
-                        <span class="progress-text">Joueurs dans une équipe</span>
-                        <span class="progress-number"><b> {{ count($joueurs)-(\App\Models\User::sansEquipe()) }} </b>/ {{ count($joueurs) }} </span>
-                        
-                        <div class="progress sm active">
-                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                aria-valuemax="100" 
-                                style="width: {{ ((count($joueurs)-(\App\Models\User::sansEquipe())) / count($joueurs))*100 }}%">
-                            </div>
+            @endslot
+            @slot('stats')
+                <div class="progress-group">
+                    <span class="progress-text">Joueurs dans une équipe</span>
+                    <span class="progress-number"><b> {{ count($joueurs)-(\App\Models\User::sansEquipe()) }} </b>/ {{ count($joueurs) }} </span>
+                    
+                    <div class="progress sm active">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" 
+                            style="width: {{ ((count($joueurs)-(\App\Models\User::sansEquipe())) / count($joueurs))*100 }}%">
                         </div>
                     </div>
-                    <div class="progress-group">
-                        <span class="progress-text">Joueurs sans équipe</span>
-                        <span class="progress-number"><b> {{ \App\Models\User::sansEquipe() }} </b>/ {{ count($joueurs) }} </span>
-                        
-                        <div class="progress sm active">
-                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                aria-valuemax="100" 
-                                style="width: {{ ((\App\Models\User::sansEquipe()) / count($joueurs))*100 }}%">
-                            </div>
+                </div>
+                <div class="progress-group">
+                    <span class="progress-text">Joueurs sans équipe</span>
+                    <span class="progress-number"><b> {{ \App\Models\User::sansEquipe() }} </b>/ {{ count($joueurs) }} </span>
+                    
+                    <div class="progress sm active">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" 
+                            style="width: {{ ((\App\Models\User::sansEquipe()) / count($joueurs))*100 }}%">
                         </div>
                     </div>
-                @endslot
+                </div>
+            @endslot
         @endcomponent
     </section>
         
     {{--  Equipes  --}}
     <section class="col-sm-12">
         @component('admin.layouts.rowInfo')
-                @slot('box_color')
-                    box-warning
-                @endslot
-                @slot('title')
-                    <a href="/admin/equipes">Equipes</a>
-                @endslot
-                @slot('table')
+            @slot('box_color')
+                box-warning
+            @endslot
+            @slot('title')
+                <a href="/admin/equipes">Equipes</a>
+            @endslot
+            @slot('table')
                     <table id="equipes" class="table table-hover">
                         <thead>
                             <th>Nom</th>
@@ -89,33 +89,42 @@
                             @endforeach
                         </tbody>
                     </table>
-                @endslot
-                @slot('stats')
-                    <div class="progress-group">
-                        <span class="progress-text">Equipe inscrite</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                    
-                        <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+            @endslot
+            @slot('stats')
+                <div class="progress-group">
+                    <span class="progress-text">Equipe inscrite</span>
+                    <span class="progress-number"><b> {{ \App\Models\Equipe::inscrit() }} </b>/ {{ count($equipes) }} </span>
+                
+                    <div class="progress sm active">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" 
+                            style="width: {{ (\App\Models\Equipe::inscrit() / count($equipes))*100 }}%">
                         </div>
                     </div>
-                    <div class="progress-group">
-                        <span class="progress-text">Equipe non-inscrite</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                    
-                        <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                </div>
+                <div class="progress-group">
+                    <span class="progress-text">Equipe incomplète</span>
+                    <span class="progress-number"><b> {{ \App\Models\Equipe::incomplet() }} </b>/ {{ count($equipes) }} </span>
+                
+                    <div class="progress sm active">
+                        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" 
+                            style="width: {{ (\App\Models\Equipe::incomplet() / count($equipes))*100 }}%">
                         </div>
                     </div>
-                    <div class="progress-group">
-                        <span class="progress-text">Equipe incomplète</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                    
-                        <div class="progress sm">
-                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                </div>
+                <div class="progress-group">
+                    <span class="progress-text">Equipe non-inscrite</span>
+                    <span class="progress-number"><b> {{ \App\Models\Equipe::non_inscrit() }} </b>/ {{ count($equipes) }} </span>
+                
+                    <div class="progress sm active">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                            aria-valuemax="100" 
+                            style="width: {{ (\App\Models\Equipe::non_inscrit() / count($equipes))*100 }}%">
                         </div>
                     </div>
-                @endslot
+                </div>
+            @endslot
         @endcomponent
     </section>
         
