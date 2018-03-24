@@ -83,15 +83,16 @@
                 
                 $('#equipes').DataTable({
                     'paging'      : true,
-                    'lengthChange': true,
+                    'lengthChange': false,
                     'searching'   : true,
-                    'ordering'    : true,
+                    'ordering'    : false,
                     'info'        : false,
                     'autoWidth'   : true
                     })
+
                 $('#joueurs').DataTable({
                     'paging'      : true,
-                    'lengthChange': true,
+                    'lengthChange': false,
                     'searching'   : true,
                     'ordering'    : true,
                     'info'        : false,
@@ -100,21 +101,39 @@
                     
                 $('#tournois').DataTable({
                     'paging'      : true,
-                    'lengthChange': true,
+                    'lengthChange': false,
                     'searching'   : true,
-                    'ordering'    : true,
+                    'ordering'    : false,
                     'info'        : false,
                     'autoWidth'   : true
                     })
 
-                    $('#table').DataTable({
+                $('#jeux').DataTable({
+                    'paging'      : true,
+                    'lengthChange': false,
+                    'searching'   : true,
+                    'ordering'    : false,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+                
+                $('#ranks').DataTable({
+                    'paging'      : true,
+                    'lengthChange': false,
+                    'searching'   : true,
+                    'ordering'    : false,
+                    'info'        : false,
+                    'autoWidth'   : true
+                    })
+
+                $('#table').DataTable({
                     'paging'      : true,
                     'lengthChange': true,
                     'searching'   : true,
                     'ordering'    : true,
                     'info'        : false,
                     'autoWidth'   : true
-                    })
+                })
 
                     CKEDITOR.replace('contenu')
             });
