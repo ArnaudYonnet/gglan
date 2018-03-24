@@ -1,4 +1,4 @@
-@extends('layouts.admin.template') 
+@extends('admin.layouts.template')
 @section('content')
     @include('sweetalert::view')
 <div class="row">
