@@ -172,10 +172,12 @@
                     @foreach ($tournois as $tournoi)
                         <div class="progress-group">
                             <span class="progress-text"> {{ $tournoi->nom_tournois }} | Equipe inscrite </span>
-                            <span class="progress-number"><b>160</b>/200</span>
+                            <span class="progress-number"><b> {{ \App\Models\Tournois::equipes_inscrites($tournoi->id) }} </b>/ {{ $tournoi->place_equipe }} </span>
                         
-                            <div class="progress sm">
-                                <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                            <div class="progress sm active">
+                                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: {{ (\App\Models\Tournois::equipes_inscrites($tournoi->id) / $tournoi->place_equipe)*100 }}%">
+                                </div>
                             </div>
                         </div>
                     @endforeach
