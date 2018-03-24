@@ -38,11 +38,41 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    @yield('title')
-                    <small>@yield('subtitle')</small>
+                    Dashboard | GG-LAN
+                    <small>Administration</small>
                 </h1>
             </section>
             <section class="content">
+                <div class="row">
+                    {{--  Compte joueurs  --}}
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3> {{ count($joueurs) }} </h3>
+                                <p>Joueurs</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <a href="/admin/joueurs" class="small-box-footer">Accéder à la page joueurs <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    {{--  Compte equipes  --}}
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h3> {{ count($equipes) }} </h3>
+                                <p>Equipes</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <a href="/admin/equipes" class="small-box-footer">Accéder à la page équipes <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     @yield('content')
                 </div>
