@@ -19,7 +19,7 @@
                     </button>
                 </div>
                 <div class="box-body table-responsive">
-                    <table id="tournois" class="table table-hover">
+                    <table id="table" class="table table-hover">
                         <thead>
                             <th>Etat</th>
                             <th>Date</th>

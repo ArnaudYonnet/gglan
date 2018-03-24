@@ -80,52 +80,6 @@
 
         <script>
             $(function () {
-                
-                $('#equipes').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : true,
-                    'ordering'    : false,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-
-                $('#joueurs').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : true,
-                    'ordering'    : true,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-                    
-                $('#tournois').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : true,
-                    'ordering'    : false,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-
-                $('#jeux').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : true,
-                    'ordering'    : false,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-                
-                $('#ranks').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : true,
-                    'ordering'    : false,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-
                 $('#table').DataTable({
                     'paging'      : true,
                     'lengthChange': true,
@@ -134,8 +88,7 @@
                     'info'        : false,
                     'autoWidth'   : true
                 })
-
-                    CKEDITOR.replace('contenu')
+                CKEDITOR.replace('contenu')
             });
         </script>
     </body>

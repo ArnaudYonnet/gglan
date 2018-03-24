@@ -1,4 +1,15 @@
 @extends('admin.layouts.template')
+@section('title')
+    Ranks
+@endsection
+@section('subtitle')
+    Gestion des ranks 
+@endsection 
+@section('title') Partenaires
+@endsection
+ 
+@section('subtitle') Gestion des partenaires
+@endsection
 @section('content')
     @include('sweetalert::view')
 <div class="row">

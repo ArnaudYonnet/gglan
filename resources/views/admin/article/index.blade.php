@@ -16,7 +16,7 @@
                 <a href="/admin/articles/create" class="btn btn-primary">Ecrire un article</a>
             </div>
             <div class="box-body table-responsive">
-                <table id="equipes" class="table table-hover">
+                <table id="table" class="table table-hover">
                     <thead>
                         <th>Titre</th>
                         <th>Ecrit le</th>
