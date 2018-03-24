@@ -2,10 +2,15 @@
 
       <!-- Logo -->
       <a href="/admin" class="logo">
+        
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>GG-LAN</b></span>
+        <span class="logo-mini">
+          <img src="/img/logov3.min.png" alt="GG" style="width: 50px"></img>
+        </span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>GG-LAN</b></span>
+        <span class="logo-lg">
+          <img src="/img/logov3.png" alt="GG-LAN" style="width: 150px"></img>
+        </span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->
