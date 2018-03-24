@@ -10,8 +10,14 @@ class EquipeTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
-        for ($i=1; $i <= 5; $i++) 
+    {
+        DB::table('equipe')->insert([
+            'nom_equipe' => 'Zigoto',
+            'id_capitaine' => 1,
+            'id_jeu' => 1,
+        ]);
+        
+        for ($i=2; $i <= 5; $i++) 
         { 
             DB::table('appartenance')->insert([
                 'id_equipe' => 1,
