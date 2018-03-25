@@ -37,8 +37,8 @@
     </head>
     <body class="hold-transition skin-red sidebar-mini">
         <div class="wrapper">
-        @include('layouts.admin.header')
-        @include('layouts.admin.sidebar')
+        @include('admin.layouts.header')
+        @include('admin.layouts.sidebar')
 
         <div class="content-wrapper">
         <section class="content-header">
@@ -53,7 +53,7 @@
         </section>
         </div>
 
-        @include('layouts.admin.footer')
+        @include('admin.layouts.footer')
 
         <!-- jQuery 3 -->
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -80,43 +80,15 @@
 
         <script>
             $(function () {
-                
-                $('#equipes').DataTable({
+                $('#table').DataTable({
                     'paging'      : true,
                     'lengthChange': true,
                     'searching'   : true,
                     'ordering'    : true,
                     'info'        : false,
                     'autoWidth'   : true
-                    })
-                $('#joueurs').DataTable({
-                    'paging'      : true,
-                    'lengthChange': true,
-                    'searching'   : true,
-                    'ordering'    : true,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-                    
-                $('#tournois').DataTable({
-                    'paging'      : true,
-                    'lengthChange': true,
-                    'searching'   : true,
-                    'ordering'    : true,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-
-                    $('#table').DataTable({
-                    'paging'      : true,
-                    'lengthChange': true,
-                    'searching'   : true,
-                    'ordering'    : true,
-                    'info'        : false,
-                    'autoWidth'   : true
-                    })
-
-                    CKEDITOR.replace('contenu')
+                })
+                CKEDITOR.replace('contenu')
             });
         </script>
     </body>

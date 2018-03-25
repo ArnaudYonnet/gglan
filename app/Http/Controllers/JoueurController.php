@@ -104,7 +104,7 @@ class JoueurController extends Controller
         }
         else
         {
-            $rank = \App\Rank::find($request->input('rank'));
+            $rank = \App\Models\Rank::find($request->input('rank'));
             $entrainement = new \App\Models\Entrainement;
                 $entrainement->id_jeu = $rank->id_jeu;
                 $entrainement->id_user = $id;

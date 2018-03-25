@@ -13,9 +13,7 @@ class Equipe extends Model
 
     public function getJoueurs()
     {
-        $ids = \App\Models\Appartenance::where('id_equipe', $this->id)
-                                ->where('id_user', '!=', $this->getCapitaine()->id)
-                                ->get();
+        $ids = \App\Models\Appartenance::where('id_equipe', $this->id)->get();
         $joueurs = array();
         foreach ($ids as $id) 
         {
@@ -42,5 +40,50 @@ class Equipe extends Model
         }
         
         return $inscrit;
+    }
+
+    static function inscrit()
+    {
+        $equipes = Equipe::all();
+
+        $i=0;
+        foreach ($equipes as $equipe) 
+        {
+            if (\App\Models\Tournois::isInscrit($equipe->id)) 
+            {
+                $i++;
+            }
+        }
+        return $i;
+    }
+
+    static function incomplet()
+    {
+        $equipes = Equipe::all();
+
+        $i=0;
+        foreach ($equipes as $equipe) 
+        {
+            if (count($equipe->getJoueurs()) != 4) 
+            {
+                $i++;
+            }
+        }
+        return $i;
+    }
+
+    static function non_inscrit()
+    {
+        $equipes = Equipe::all();
+
+        $i=0;
+        foreach ($equipes as $equipe) 
+        {
+            if (!\App\Models\Tournois::isInscrit($equipe->id)) 
+            {
+                $i++;
+            }
+        }
+        return $i;
     }
 }

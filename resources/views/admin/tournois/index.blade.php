@@ -1,4 +1,4 @@
-@extends('layouts.admin.template')
+@extends('admin.layouts.template')
 @section('title')
     Tournois
 @endsection
@@ -18,10 +18,9 @@
                         Ajouter un tournois
                     </button>
                 </div>
-                <div class="box-body">
-                    <table id="tournois" class="table table-hover">
+                <div class="box-body table-responsive">
+                    <table id="table" class="table table-hover">
                         <thead>
-                            <th>#</th>
                             <th>Etat</th>
                             <th>Date</th>
                             <th>Tournois</th>
@@ -34,7 +33,6 @@
                         <tbody>
                             @foreach ($tournois as $key => $tournoi)
                                 <tr>
-                                    <td> {{ $key+1 }} </td>
                                     @if ($tournoi->status == "ouvert")
                                         <td><span class="label label-success">Ouvert</span></td>
                                     @else

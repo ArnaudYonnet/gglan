@@ -62,5 +62,17 @@ class User extends Authenticatable
         return false;
     }
 
-    
+    static function sansEquipe()
+    {
+        $joueurs = User::where('type', "Joueur")->get();
+        $i=0;
+        foreach ($joueurs as $joueur) 
+        {
+            if (!$joueur->getEquipe()) 
+            {
+                $i++;
+            }
+        }
+        return $i;
+    }
 }

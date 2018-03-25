@@ -14,9 +14,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $joueurs = User::where('admin', 0)
-                        ->where('type', 'Joueur')
-                        ->get();
+        $joueurs = User::where('type', 'Joueur')->get();
         $equipes = Equipe::all();
         $tournois = Tournois::all();
         $jeux = Jeu::all();

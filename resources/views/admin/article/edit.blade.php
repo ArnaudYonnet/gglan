@@ -1,4 +1,4 @@
-@extends('layouts.admin.template')
+@extends('admin.layouts.template')
 @section('title')
     {{ $article->titre_article }}
 @endsection
