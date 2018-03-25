@@ -2,6 +2,11 @@
 @section('content')
 @include('sweetalert::view')
     <div class="row">
+        <div class="col mb-4">
+            <a href="#search" class="btn btn-danger mx-auto">Rechercher une équipe</a>
+        </div>
+    </div>
+    <div class="row">
         @foreach ($equipes as $equipe)
             <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
                 <div class="card">
@@ -28,4 +33,12 @@
             </div>
         @endforeach
     </div>
+    @component('layouts.search')
+        @slot('type')
+            equipes
+        @endslot
+        @slot('message')
+            Tapez un nom d'équipe
+        @endslot
+    @endcomponent
 @endsection

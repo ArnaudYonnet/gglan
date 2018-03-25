@@ -128,4 +128,28 @@ class JoueurController extends Controller
     {
         //
     }
+
+    /**
+     * Search a player that match with the entry
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->input('search') == null) 
+        {
+            return back();
+        }
+
+        try {
+            $joueur = User::where('pseudo', $request->input('search'))->firstOrFail();
+            return redirect("joueurs/". $joueur->id);
+        }
+        catch (\Exception $e)
+        {
+            swal()->autoclose('2000')->error('Erreur', "Ce joueur n'existe pas");
+            return back();
+        }
+    }
 }

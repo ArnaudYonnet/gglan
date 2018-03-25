@@ -160,4 +160,29 @@ class EquipeController extends Controller
         swal()->autoclose('2000')->success('Mise à jour', \App\Models\User::find($id_joueur)->pseudo.' à bien été supprimé !',[]);
         return redirect('equipes/'.$id_equipe);
     }
+
+
+    /**
+     * Search a team that match with the entry
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        if ($request->input('search') == null) 
+        {
+            return back();
+        }
+
+        try {
+            $equipe = Equipe::where('nom_equipe', $request->input('search'))->firstOrFail();
+            return redirect("equipes/". $equipe->id);
+        }
+        catch (\Exception $e)
+        {
+            swal()->autoclose('2000')->error('Erreur', "Cette équipe n'existe pas");
+            return back();
+        }
+    }
 }
