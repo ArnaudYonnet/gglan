@@ -4,10 +4,6 @@
     <div class="row">
         <div class="col mb-4">
             <a href="#search" class="btn btn-danger mx-auto">Rechercher un joueur</a>
-            <br />
-            @isset($message)
-                <h4>{{ $message }}</h4>
-            @endisset
         </div>
     </div>
     <div class="row">
@@ -41,6 +37,9 @@
         @endforeach
     </div>
     @component('layouts.search')
+        @slot('type')
+            joueurs
+        @endslot
         @slot('message')
             Tapez un pseudo
         @endslot

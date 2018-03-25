@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function(){
 |--------------------------------------------------------------------------
 */
 Route::resource('/equipes', 'EquipeController', ['except' => ['destroy', 'update']]);
+Route::post('/equipes/search', 'EquipeController@search');
 
 Route::middleware('auth')->group(function(){
     Route::post('/equipes/{id}', 'EquipeController@update');
