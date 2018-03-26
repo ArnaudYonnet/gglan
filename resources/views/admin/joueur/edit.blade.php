@@ -53,6 +53,18 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                            <label for="avatar" class="col-md-4 control-label">Avatar</label>
+                            <div class="col-md-6">
+                                <input id="avatar" type="text" class="form-control" name="avatar" value="{{ $joueur->avatar}}" >
+                                @if ($errors->has('avatar'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
             
                         <div class="form-group{{ $errors->has('pseudo') ? ' has-error' : '' }}">
                             <label for="pseudo" class="col-md-4 control-label">Pseudo</label>

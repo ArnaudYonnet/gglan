@@ -93,6 +93,7 @@ class JoueurController extends Controller
             $joueur->nom = $request->input('nom');
             $joueur->prenom = $request->input('prenom');
             $joueur->description = $request->input('description');
+            $joueur->avatar = $request->input('avatar');
             $joueur->pseudo = $request->input('pseudo');
         $joueur->save();
 
