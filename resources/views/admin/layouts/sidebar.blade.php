@@ -9,6 +9,7 @@
             <li><a href="/admin/ranks"><i class="fa fa-angle-double-up"></i>Ranks</a></li>
             <li><a href="/admin/articles"><i class="fa fa-newspaper-o"></i>Articles</a></li>
             <li><a href="/admin/partenaires"><i class="fa fa-globe"></i>Partenaires</a></li>
+            <li><a href="/admin/infos"><i class="fa fa-info"></i>Infos Pratiques</a></li>
         </ul>
     </section>
 </aside>
