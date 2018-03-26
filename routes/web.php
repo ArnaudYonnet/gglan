@@ -101,5 +101,9 @@ Route::prefix('/admin')->middleware('admin')->namespace('Admin')->group(function
     Route::resource('/partenaires', 'PartenaireController', ['only' => ['index', 'edit', 'store']]);
     Route::post('/partenaires/{id}/edit', 'PartenaireController@update');
     Route::get('/partenaires/{id}/delete', 'PartenaireController@destroy');
+
+    //Infos Pratiques
+    Route::get('/infos', 'InfoPratiqueController@show');
+    Route::post('/infos', 'InfoPratiqueController@update');
 });
 

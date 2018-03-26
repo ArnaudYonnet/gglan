@@ -36,9 +36,11 @@ class HomeController extends Controller
     {
         $partenaires = DB::table('partenaire')->get();
         $tournois = \App\Models\Tournois::getTournois();
+        $info = \App\Models\InfoPratique::find(1);
         
         return view('infos')
                 ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois);
+                ->with('tournois', $tournois)
+                ->with('info', $info);
     }
 }
