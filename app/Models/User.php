@@ -75,4 +75,10 @@ class User extends Authenticatable
         }
         return $i;
     }
+
+    static function search($pseudo)
+    {
+        $joueur = User::where('pseudo', 'like', '%'.$pseudo.'%')->get();
+        return $joueur;
+    }
 }
