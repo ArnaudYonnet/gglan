@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-@include('sweetalert::view')
     <div class="row">
         <div class="col-lg-12">
             <div class="box box-danger">
@@ -67,14 +66,3 @@
         </div>
     </div>
 @endsection
-
-<div class="col-lg-12">
-    <div class="box box-danger">
-        <div class="box-header">
-            <div class="box-title"></div>
-        </div>
-        <div class="box-body">
-            
-        </div>
-    </div>
-</div>
