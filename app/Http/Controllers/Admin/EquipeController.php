@@ -75,8 +75,7 @@ class EquipeController extends Controller
                                     ->where('type', 'Joueur')
                                     ->get();
         return view('admin.equipe.edit')
-                ->with('equipe', $equipe)
-                ->with('joueurs', $joueurs);
+                ->with('equipe', $equipe);
     }
 
     /**
