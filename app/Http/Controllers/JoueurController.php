@@ -142,11 +142,22 @@ class JoueurController extends Controller
             return back();
         }
 
-        try {
-            $joueur = User::where('pseudo', $request->input('search'))->firstOrFail();
-            return redirect("joueurs/". $joueur->id);
+        $joueur = User::search($request->input('search'));
+        if (count($joueur) == 1) 
+        {
+            return redirect("joueurs/". $joueur[0]->id);
         }
-        catch (\Exception $e)
+        else if (count($joueur) > 1)
+        {
+            $partenaires = \App\Models\Partenaire::all();
+            $tournois = \App\Models\Tournois::getTournois();
+
+            return view('joueur.index')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
+                ->with('joueurs', $joueur);
+        }
+        else
         {
             swal()->autoclose('2000')->error('Erreur', "Ce joueur n'existe pas");
             return back();

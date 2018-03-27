@@ -86,4 +86,10 @@ class Equipe extends Model
         }
         return $i;
     }
+
+    static function search($nom)
+    {
+        $equipe = Equipe::where('nom_equipe', 'like', '%'.$nom.'%')->get();
+        return $equipe;
+    }
 }

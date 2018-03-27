@@ -175,11 +175,22 @@ class EquipeController extends Controller
             return back();
         }
 
-        try {
-            $equipe = Equipe::where('nom_equipe', $request->input('search'))->firstOrFail();
-            return redirect("equipes/". $equipe->id);
+        $equipe = Equipe::search($request->input('search'));
+        if (count($equipe) == 1) 
+        {
+            return redirect("equipes/". $equipe[0]->id);
         }
-        catch (\Exception $e)
+        else if (count($equipe) > 1)
+        {
+            $partenaires = \App\Models\Partenaire::all();
+            $tournois = \App\Models\Tournois::getTournois();
+
+            return view('equipe.index')
+                ->with('partenaires', $partenaires)
+                ->with('tournois', $tournois)
+                ->with('equipes', $equipe);
+        }
+        else
         {
             swal()->autoclose('2000')->error('Erreur', "Cette équipe n'existe pas");
             return back();
