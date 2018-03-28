@@ -24,7 +24,8 @@ Route::get('/infos', 'HomeController@infos');
 */
 Route::resource('/joueurs', 'JoueurController', ['only' => ['index', 'show']]);
 Route::post('/joueurs/search', 'JoueurController@search');
-    
+Route::get('/joueurs/{id}/salutmonpote', 'JoueurController@salutmonpote');
+
 Route::middleware('auth')->group(function(){
         Route::get('/joueurs/{id}/edit', 'JoueurController@edit');
         Route::post('/joueurs/{id}', 'JoueurController@update');

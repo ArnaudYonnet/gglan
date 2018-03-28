@@ -163,4 +163,10 @@ class JoueurController extends Controller
             return back();
         }
     }
+
+    public function salutMonPote($id)
+    {
+        swal()->error('#Drucker', "Salut mon pote !");
+        return redirect('joueurs/'. $id);
+    }
 }
