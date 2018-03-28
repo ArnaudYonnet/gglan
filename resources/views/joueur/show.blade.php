@@ -26,7 +26,7 @@
                         <a href="/equipes/create" class="btn btn-danger" style="margin-top: 2vh;">Créer mon équipe</a>
                     @endif
                     <br />
-                    @if (strtolower(Auth::user()->pseudo) == "digitaldrakos")
+                    @if (Auth::check() && strtolower(Auth::user()->pseudo) == "digitaldrakos")
                         <a href="/joueurs/{{ $joueur->id }}/salutmonpote" class="btn btn-danger" style="margin-top: 2vh;">Salut</a>
                         
                     @endif
