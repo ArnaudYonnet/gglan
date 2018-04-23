@@ -15,25 +15,22 @@
                     <hr class="my-4">
                     <p>Jeux: <b>{{ \App\Models\Jeu::find($tournoi->id_jeu)->nom }}</b> </p>
                     <p>Equipes inscrites:</p>
-                    <div class="col-lg-2">
                         <ul class="list-unstyled list-inline">
+                            @php 
+                                $i = 0;
+                            @endphp
                             @foreach ($tournoi->getInscrits() as $equipe)
-                                <li class="list-inline-item">
-                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
-                                </li>
+                                @if ($i++ >= 4)
+                                    <br />
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                @endif
                                 <li class="list-inline-item">
                                     <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
-
                     @guest
                     @else
                         {{--  Tournois complet  --}}
