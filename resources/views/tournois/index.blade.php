@@ -14,6 +14,25 @@
                     <p class="lead">{{ $tournoi->description }}</p>
                     <hr class="my-4">
                     <p>Jeux: <b>{{ \App\Models\Jeu::find($tournoi->id_jeu)->nom }}</b> </p>
+                    <p>Equipes inscrites:</p>
+                    <div class="col-lg-2">
+                        <ul class="list-unstyled list-inline">
+                            @foreach ($tournoi->getInscrits() as $equipe)
+                                <li class="list-inline-item">
+                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/equipes/{{ $equipe->id_equipe }}" class="text-danger">{{ \App\Models\Equipe::find($equipe->id_equipe)->nom_equipe }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
                     @guest
                     @else
