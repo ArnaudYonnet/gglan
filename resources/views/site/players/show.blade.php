@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-4 col-md-4">
-            <h2 class="text-dark"> {{ $player->pseudo }} </h2>
+            <h2 class="text-danger"> {{ $player->pseudo }} </h2>
             @if ($player->avatar == null)
                 <img src="{{ asset('img/avatar-default.png') }}" style="width: 250px;" alt="No avatar foud...">
             @else
@@ -23,7 +23,7 @@
             @if ($player->twitter)
                 <p>
                     <i class="text-primary fab fa-twitter"></i>
-                    <a href="https://twitter.com/{{ str_after($player->twitter, '@') }} ">
+                    <a href="https://twitter.com/{{ str_after($player->twitter, '@') }} " class="text-danger">
                         {{ $player->twitter }}
                     </a>
                 </p>
@@ -49,7 +49,7 @@
         <div class="col-lg-8 table-responsive">
 
             <h3> {{ __('Games') }}: </h3>
-            <table class="table table-dark table-striped table-hover text-center">
+            <table class="table table table-striped table-hover text-center">
                 <thead>
                     <th> {{ __('Game') }} </th>
                     <th> {{ __('Rank') }} </th>
@@ -92,7 +92,7 @@
         <div class="col-lg-8 table-responsive">
 
             <h3> {{ __('Teams') }}: </h3>
-            <table class="table table-dark table-striped table-hover">
+            <table class="table table table-striped table-hover">
                 <thead>
                     <th> {{ __('Team') }} </th>
                     <th> {{ __('Game') }} </th>
@@ -106,7 +106,7 @@
                         @foreach ($player->teams as $team)
                             <tr>
                                 <td>
-                                    <a href="/teams/{{ $team->id }}"> {{ $team->name }} </a>
+                                    <b> <a href="/teams/{{ $team->id }}" class="text-danger"> {{ $team->name }} </a> </b>
                                 </td>
                                 <td>{{ $team->game->name }}</td>
                             </tr>
