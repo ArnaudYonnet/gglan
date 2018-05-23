@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href=" {{ route('home') }} "> {{ config('app.name') }} </a>
+        {{-- <a class="navbar-brand" href=" {{ route('home') }} "> {{ config('app.name') }} </a> --}}
+        <a class="navbar-brand" href=" {{ route('home') }} ">
+            <img src=" {{ asset('img/logo.png') }} " alt="{{ config('app.name') }}" style="width: 130px;">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +33,7 @@
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <b>{{ Auth::user()->pseudo }}</b> <span class="caret"></span>
                         </a>
             
