@@ -10,6 +10,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-<link rel="stylesheet" href=" {{ asset('css/style.css') }} ">
-
 <link rel="stylesheet" href=" {{ asset('css/search.css') }} ">
+
+<link rel="stylesheet" href=" {{ asset('css/darkly.min.css') }}">
+
+<link rel="stylesheet" href=" {{ asset('css/style.css') }} ">

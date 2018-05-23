@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-4 col-md-5 col-sm-5">
-            <h2 class="text-dark"> {{ $team->name }} </h2>
+            <h2 class="text-danger"> {{ $team->name }} </h2>
             @if ($team->avatar == null)
                 <img src="{{ asset('img/avatar-default.png') }}" style="width: 250px;" alt="No avatar found...">
             @else
@@ -16,7 +16,7 @@
             @include('site.layouts.joinTeamButton')
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 table-responsive">
-            <table class="table table-dark table-striped table-hover text-center">
+            <table class="table table-striped table-hover text-center">
                 <thead>
                     <th>Pseudo</th>
                     <th>{{ __('Rank') }}</th>

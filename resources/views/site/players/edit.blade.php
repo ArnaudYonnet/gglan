@@ -173,7 +173,7 @@
                     <i class="fas fa-plus"></i> {{ __('Add game') }} 
                 </button>
 
-                <table class="table table-dark table-striped table-hover text-center">
+                <table class="table table-striped table-hover text-center">
                     <thead>
                         <th>Game</th>
                         <th>Rank</th>

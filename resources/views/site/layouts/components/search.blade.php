@@ -7,7 +7,7 @@
                 <input type="text" name="name" class="form-control" placeholder=" {{ __('Search a '. str_singular($search)) }} " required/>
 
                 <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-danger">
                         <span class="fas fa-search" aria-hidden="true"></span>
                     </button>
                 </div>

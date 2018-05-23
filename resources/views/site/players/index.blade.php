@@ -16,7 +16,7 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
                 <div class="card">
                     <h5 class="card-header">
-                        <a href="/players/{{ $player->id }}">{{ $player->pseudo }}</a>
+                        <a href="/players/{{ $player->id }}" class="text-danger">{{ $player->pseudo }}</a>
                     </h5>
                     <div class="card-body">
                         <a href="/players/{{ $player->id }}">

@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h4>
-                        <a href="/teams/{{ $team->id }}"> {{ $team->name }} </a>
+                        <a href="/teams/{{ $team->id }}" class="text-danger"> {{ $team->name }} </a>
                     </h4>
                 </div>
                 
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-lg-8 mt-lg-0 mt-md-4 mt-sm-4 mt-4 table-responsive">
-                        <table class="table table-dark table-striped table-hover text-center">
+                        <table class="table table-striped table-hover text-center">
                             <thead>
                                 <th>Pseudo</th>
                                 <th>{{ __('Rank') }}</th>
