@@ -14,7 +14,7 @@ class SearchController extends Controller
 
         if ($players->count() == 0) 
         {
-            flash('No player matching with this name...')->error();
+            flash('No player found...')->error();
             return view('site.players.index')->with('players', User::paginate(12));
         }
 
@@ -33,7 +33,7 @@ class SearchController extends Controller
 
         if ($teams->count() == 0) 
         {
-            flash('No team matching with this name...')->error();
+            flash('No team found...')->error();
             return view('site.teams.index')->with('teams', Team::paginate(12));
         }
 
