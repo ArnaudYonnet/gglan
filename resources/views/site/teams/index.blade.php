@@ -16,7 +16,7 @@
             <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
                 <div class="card">
                     <h5 class="card-header">
-                        <a href="/teams/{{ $team->id }}">{{ $team->name }}</a>
+                        <a href="/teams/{{ $team->id }}" class="text-danger">{{ $team->name }}</a>
                         @if ($team->players->count() == $team->game->players_team)
                             <span class="badge badge-success"> {{ __('Full') }} </span>
                         @else
