@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -40,16 +40,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm()
-    {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        
-        return view('auth.register')
-                ->with('partenaires', $partenaires)
-                ->with('tournois', $tournois);
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -58,35 +48,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
-        if ($data['type'] == "Joueur") 
-        {
-            return Validator::make($data, [
-                'id_public' => 'string',
-                'pseudo' => 'required|string|max:255',
-                'nom' => 'required|string|max:255',
-                'prenom' => 'required|string|max:255',
-                'description' => 'string|max:255',
-                'date_naissance' => 'required|date',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
-                'type' => 'required|string',
-            ]);
-        }
-        else
-        {
-            return Validator::make($data, [
-                'id_public' => 'string',
-                'pseudo' => 'max:255',
-                'nom' => 'required|string|max:255',
-                'prenom' => 'required|string|max:255',
-                'description' => 'max:255',
-                'date_naissance' => 'required|date',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
-                'type' => 'required|string',
-            ]);
-        }
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'pseudo' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     }
 
     /**
@@ -97,40 +65,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['type'] == "Joueur") 
-        {
-            return User::create([
-                'id_public' => $data['id_public'],
-                'pseudo' => $data['pseudo'],
-                'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
-                'avatar' => $data['avatar'],
-                'description' => $data['description'],
-                'date_naissance' => $data['date_naissance'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'type' => $data['type']
-            ]);
-        }
-        else
-        {
-            if (trim($data['avatar']) == null)  
-            {
-                $data['avatar'] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdFBZbl_qSONKU9QF_c_hIIpEJON0YLUnbLWQy78kLfa_rwZs_g";
-            }
-            return User::create([
-                'id_public' => $data['id_public'],
-                'pseudo' => $data['pseudo'],
-                'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
-                'avatar' => $data['avatar'],
-                'description' => $data['description'],
-                'date_naissance' => $data['date_naissance'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'type' => $data['type']
-            ]);
-        }
-        
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'pseudo' => $data['pseudo'],
+            'birth_date' => $data['birth_date'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }

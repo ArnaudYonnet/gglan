@@ -1,0 +1,84 @@
+{
+    "Players": "Joueurs",
+    "Teams": "Equipes",
+    "Tournaments": "Tournois",
+    "Rules": "Reglements",
+    "Game": "Jeu",
+    "Games": "Jeux",
+    "Posts": "Articles",
+    "Meetings": "Réunions",
+    "Partners": "Partenaires",
+    "Rank": "Grade",
+    "Team": "Equipe",
+    "No team": "Aucune équipe",
+    "No game": "Aucun jeu",
+    "No rank": "Aucun grade",
+    "Role": "Rôle",
+    "Roles": "Rôles",
+    "Select a role": "Choisir un rôle",
+    "Manage your admins": "Gérez vos admins",
+    "Manage your roles": "Gérez les rôles",
+    "Manage your games": "Gérez vos jeux",
+    "since": "depuis",
+    "Players per team": "Joueurs par équipe",
+    
+
+    "Login": "Connexion",
+    "Register": "Inscription",
+    "Remember Me": "Se souvenir de moi",
+    "E-Mail Address": "Email",
+    "Password": "Mot de passe",
+    "Forgot Your Password ?": "Mot de passe oublié ?",
+
+    
+    "Create": "Créer",
+    "Update": "Mettre à jour",
+    "Delete": "Supprimer",
+    "Edit": "Modifier",
+    "Close": "Fermer",
+    "Read": "Voir",
+    "Add game": "Ajouter un jeu",
+    "Add rank": "Ajouter un grade",
+    "Choose a game": "Choisir un jeu",
+    "Choose a rank": "Choisir un grade",
+    
+
+    "Create team": "Créer une équipe",
+    "Leave": "Quitter",
+    "Accept": "Accepter",
+    "Refuse": "Refuser",
+    "Full": "Complet",
+    "You cannot manage this team": "Vous ne pouvez pas gérer cette équipe",
+    "The captain of this team has not answered to your request yet": "Le capitaine de cette équipe n'a pas encore répondu à votre demande",
+    "Ask to join the team": "Rejoindre l'équipe",
+    "Your demand has been refused": "Votre demande à été refusé",
+    "You already ask to enter in this team": "Vous avez déjà envoyé une demande à cette équipe",
+    
+
+    "My account": "Mon compte",
+    "My Profile": "Mon profil",
+    "My teams": "Mes équipes",
+    "Settings": "Paramètres",
+    "Logout": "Déconnexion",
+    "Personnal information": "Informations personnelle",
+    "Name": "Nom",
+    "Birth date": "Date de naissance",
+    "Player information": "Informations du joueur",
+    "Game information": "Informations des jeux",
+
+
+    "Last update": "Dernière mise à jour",
+    "Posted on": "Posté le",
+    "By": "Par",
+    "The last news of": "Les derniers articles de",
+
+
+    "Registered teams": "Equipes inscrites",
+    "Unsubscribe your team": "Désinscrire votre équipe",
+    "Register your team": "Inscrire votre équipe",
+    "Your team is not complete": "Votre équipes est incomplète",
+    "The tournament is full, thank you all !": "Le tournois est complet, merci à tous!",
+    "Search a player": "Rechercher un joueur",
+    "Search a team": "Rechercher une équipe"
+
+}

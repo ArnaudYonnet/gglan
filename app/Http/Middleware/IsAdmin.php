@@ -16,11 +16,11 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->admin == 1)
+        if(Auth::guard('admin')->check())
         {
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect()->route('admin.login');
     }
 }
