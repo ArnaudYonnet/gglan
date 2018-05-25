@@ -27,11 +27,18 @@ class CheckRole
 
         foreach (config('role.pageRole') as $role) 
         {
-            if (str_contains($route, $role['route'])) 
+            if (str_contains($route, 'settings')) 
             {
-                if ($admin[$role['role']]) 
+                return $next($request);
+            }
+            else 
+            {
+                if (str_contains($route, $role['route'])) 
                 {
-                    return $next($request);
+                    if ($admin[$role['role']]) 
+                    {
+                        return $next($request);
+                    }
                 }
             }
         }

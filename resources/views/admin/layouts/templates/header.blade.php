@@ -96,7 +96,7 @@
                         <li class="user-header">
                             <img src="{{ asset('adminlte/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
                             <p>
-                                {{ Auth::guard('admin')->user()->name }} - CEO
+                                {{ Auth::guard('admin')->user()->name }}
                             </p>
                         </li>
                         <li class="user-body">
@@ -117,7 +117,7 @@
                                 <a href="#" class="btn btn-default btn-flat"> {{ __('Profile') }} </a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">{{ __('Settings') }}</a>
+                                <a href="/admin/settings" class="btn btn-default btn-flat">{{ __('Settings') }}</a>
                             </div>
                         </li>
                     </ul>

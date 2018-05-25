@@ -19,6 +19,7 @@
     "Manage your admins": "Gérez vos admins",
     "Manage your roles": "Gérez les rôles",
     "Manage your games": "Gérez vos jeux",
+    "Manage your settings": "Gérez vos paramètres",
     "since": "depuis",
     "Players per team": "Joueurs par équipe",
 
@@ -47,6 +48,7 @@
     "Remember Me": "Se souvenir de moi",
     "E-Mail Address": "Email",
     "Password": "Mot de passe",
+    "Confirm Password": "Confirmer le mot de passe",
     "Forgot Your Password ?": "Mot de passe oublié ?",
 
     
