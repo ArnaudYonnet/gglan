@@ -9,5 +9,7 @@
 @endsection
 
 @section('content')
-    Hello !
+    <h1>
+        {{ __('Hello') }}, {{ Auth::guard('admin')->user()->name }} !
+    </h1>
 @endsection
