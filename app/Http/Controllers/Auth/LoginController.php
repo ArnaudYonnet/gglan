@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\DB;
+
+use Auth; 
 
 class LoginController extends Controller
 {
@@ -38,13 +39,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm()
-    {
-        $partenaires = \App\Models\Partenaire::all();
-        $tournois = \App\Models\Tournois::getTournois();
-        
-        return view('auth.login')
-               ->with('partenaires', $partenaires)
-               ->with('tournois', $tournois);
-    }
+    public function logout() 
+    { 
+        Auth::guard('web')->logout(); 
+        return redirect('/'); 
+    } 
 }

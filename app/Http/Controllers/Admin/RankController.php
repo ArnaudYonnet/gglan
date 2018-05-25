@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-use App\Models\Rank;
+use App\Rank;
+use Illuminate\Support\Facades\Storage;
 
 class RankController extends Controller
 {
@@ -16,22 +17,7 @@ class RankController extends Controller
      */
     public function index()
     {
-        $ranks = Rank::all();
-        $jeux = \App\Models\Jeu::all();
-
-        return view('admin.rank.index')
-                ->with('ranks', $ranks)
-                ->with('jeux', $jeux);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('admin.ranks.index')->with('ranks', Rank::all());
     }
 
     /**
@@ -42,23 +28,30 @@ class RankController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
         $rank = New Rank;
-            $rank->id_jeu = $request->input('id_jeu');
-            $rank->nom = $request->input('nom');
-            $rank->image = $request->input('image');
+            $rank->game_id = $request->game_id;
+            $rank->name = $request->name;
+            if ($request->logo){
+                $rank->logo = $request->logo->store('public/ranks');
+            }
         $rank->save();
 
-        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été ajouté !',[]);
-        return redirect('admin/ranks');
+        flash('The rank has been successfully added')->success();
+        return redirect()->route('admin.ranks.index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rank  $rank
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Rank $rank)
+    public function show($id)
     {
         //
     }
@@ -66,49 +59,60 @@ class RankController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rank  $rank
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_rank)
+    public function edit($id)
     {
-        $rank = Rank::find($id_rank);
-        $jeux = \App\Models\Jeu::all();
-
-        return view('admin.rank.edit')
-                ->with('rank', $rank)
-                ->with('jeux', $jeux);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rank  $rank
+     * @param  Rank  $rank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_rank)
+    public function update(Request $request, Rank $rank)
     {
-        $rank = Rank::find($id_rank);
-            $rank->id_jeu = $request->input('id_jeu');
-            $rank->nom = $request->input('nom');
-            $rank->image = $request->input('image');
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $rank->game_id = $request->game_id;
+        $rank->name = $request->name;
+        if ($request->logo){
+            $rank->logo = $this->upload($rank->logo, $request->logo, 'public/ranks');
+        }
         $rank->save();
 
-        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été mis à jour !',[]);
-        return redirect('admin/ranks');
+        flash('The rank has been successfully updated')->success();
+        return redirect()->route('admin.ranks.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rank  $rank
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_rank)
+    public function destroy(Rank $rank)
     {
-        Rank::destroy($id_rank);
+        $rank->logo ? Storage::delete($rank->logo) : true;
+        $rank->delete();
 
-        swal()->autoclose('2000')->success('Mise à jour','Le rank à bien été supprimé !',[]);
-        return redirect('admin/ranks');
+        flash('The rank has been successfully deleted')->success();
+        return redirect()->route('admin.ranks.index');
+    }
+
+    private function upload($avatar, $existingAvatar, $path)
+    {
+        if ($avatar != $existingAvatar) 
+        {
+            Storage::delete($avatar);
+        }
+        $filePath = $existingAvatar->store($path);
+        return $filePath;
     }
 }

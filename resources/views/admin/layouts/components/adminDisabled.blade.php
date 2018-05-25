@@ -1,0 +1,1 @@
+{{ ($admin->id == Auth::guard('admin')->user()->id) ? 'disabled' : '' }}
