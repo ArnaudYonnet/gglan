@@ -1,3 +1,7 @@
+@if (Route::currentRouteName() != "home")
+    @include('site.layouts.partners')
+@endif
+
 <footer class="footer bg-light">
     <div class="container text-white text-center">
         <i class="far fa-copyright"></i>
