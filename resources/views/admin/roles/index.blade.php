@@ -13,9 +13,8 @@
         @slot('title')
             {{ __('Roles') }}
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#roleCreate">
-                <i class="fas fa-plus"></i> {{ __('Create') }}
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'roleCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
