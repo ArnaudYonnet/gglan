@@ -13,9 +13,8 @@
         @slot('title')
             Posts
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#postCreate">
-                <i class="fas fa-plus"></i> Create
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'postCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -43,18 +42,20 @@
                     <td style="text-align: center;">
                         <form action="{{ $post->url->delete }}" method="POST">
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#post{{ $post->id }}">
-                                <i class="fa fa-eye"></i> Read
-                            </button>
-                            &nbsp
+                            @component('admin.layouts.readButton')
+                                @slot('target')
+                                   post{{ $post->id }}
+                                @endslot
+                            @endcomponent
+
                             <a href=" {{ $post->url->edit }} " class="btn btn-primary">
-                                <i class="fa fa-edit"></i> Edit
+                                <i class="fa fa-edit"></i> {{ __('Edit') }}
                             </a>
                             &nbsp
+
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash"></i> Delete
-                            </button>
+                            @component('admin.layouts.deleteButton')
+                            @endcomponent
                         </form>
                     </td>
                 </tr>
