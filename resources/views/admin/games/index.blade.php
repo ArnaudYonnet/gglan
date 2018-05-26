@@ -14,9 +14,8 @@
         @slot('title')
             {{ __('Games') }}
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gameCreate">
-                <i class="fas fa-plus"></i> {{ __('Create') }}
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'gameCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -36,15 +35,15 @@
                         
                         <td style="text-align: center;">
                             <form action="{{ $game->url->delete }}" method="POST">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gameEdit{{ $game->id }}">
-                                    <i class="fa fa-edit"></i> {{ __('Edit') }}
-                                </button>
-                                &nbsp
+                                @component('admin.layouts.editButton')
+                                    @slot('target')
+                                        gameEdit{{ $game->id }}
+                                    @endslot
+                                @endcomponent
+                                
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i> {{ __('Delete') }}
-                                </button>
-
+                                @component('admin.layouts.deleteButton')
+                                @endcomponent
                             </form>
                         </td>
                     </tr>
