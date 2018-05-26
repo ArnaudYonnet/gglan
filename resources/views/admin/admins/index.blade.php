@@ -14,9 +14,8 @@
         @slot('title')
             Admins
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#adminCreate">
-                <i class="fas fa-plus"></i> {{ __('Create') }}
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'adminCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -39,18 +38,26 @@
                         <td style="text-align: center;">
                             <form action="{{ $admin->url->delete }}" method="POST">
 
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#admin{{ $admin->id }}">
-                                    <i class="fa fa-eye"></i> {{ __('Read') }}
-                                </button>
-                                &nbsp
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adminEdit{{ $admin->id }}">
-                                    <i class="fa fa-edit"></i> {{ __('Edit') }}
-                                </button>
-                                &nbsp
+                                @component('admin.layouts.readButton')
+                                    @slot('target')
+                                        admin{{ $admin->id }}
+                                    @endslot
+                                @endcomponent
+
+                                @component('admin.layouts.editButton')
+                                    @slot('target')
+                                        adminEdit{{ $admin->id }}
+                                    @endslot
+                                @endcomponent
+
+                                @component('admin.layouts.deleteButton')
+                                @endcomponent
+
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger @adminDisabled" @adminDisabled>
                                     <i class="fa fa-trash"></i> {{ __('Delete') }}
                                 </button>
+                                
 
                                 {{-- @if (Auth::guard('admin')->user()->role->id == 1 && $admin->id != Auth::guard('admin')->user()->id)
                                     @if (App\Admin::where('role_id', 1)->count() > 1)

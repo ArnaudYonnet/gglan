@@ -13,9 +13,8 @@
         @slot('title')
             Meetings
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#meetingCreate">
-                <i class="fas fa-plus"></i> Create
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'meetingCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -37,18 +36,21 @@
                     <td style="text-align: center;">
                         <form action="{{ $meeting->url->delete }}" method="POST">
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#meeting{{ $meeting->id }}">
-                                <i class="fa fa-eye"></i> Read
-                            </button>
-                            &nbsp
-                            <a href=" {{ $meeting->url->edit }} " class="btn btn-primary">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            &nbsp
+                            @component('admin.layouts.readButton')
+                                @slot('target')
+                                    meeting{{ $meeting->id }}
+                                @endslot
+                            @endcomponent
+
+                            @component('admin.layouts.editButton')
+                                @slot('target')
+                                    meetingEdit{{ $meeting->id }}
+                                @endslot
+                            @endcomponent
+
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash"></i> Delete
-                            </button>
+                            @component('admin.layouts.deleteButton')
+                            @endcomponent
                         </form>
                     </td>
                 </tr>

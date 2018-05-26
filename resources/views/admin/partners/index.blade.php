@@ -13,9 +13,8 @@
         @slot('title')
             Partners
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#partnerCreate">
-                <i class="fas fa-plus"></i> Create
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'partnerCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -37,18 +36,21 @@
                     <td style="text-align: center;">
                         <form action="{{ $partner->url->delete }}" method="POST">
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#partner{{ $partner->id }}">
-                                <i class="fa fa-eye"></i> Read
-                            </button>
-                            &nbsp
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#partnerEdit{{ $partner->id }}">
-                                <i class="fa fa-edit"></i> Edit
-                            </button>
-                            &nbsp
+                            @component('admin.layouts.readButton')
+                                @slot('target')
+                                    partner{{ $partner->id }}
+                                @endslot
+                            @endcomponent
+                            
+                            @component('admin.layouts.editButton')
+                                @slot('target')
+                                   partnerEdit{{ $partner->id }}
+                                @endslot
+                            @endcomponent
+
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash"></i> Delete
-                            </button>
+                            @component('admin.layouts.deleteButton')
+                            @endcomponent
                         </form>
                     </td>
                 </tr>

@@ -13,9 +13,8 @@
         @slot('title')
             Teams
             &nbsp
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#teamCreate">
-                <i class="fas fa-plus"></i> Create
-            </button>
+            @component('admin.layouts.createButton', ['target' => 'teamCreate'])
+            @endcomponent
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
@@ -39,18 +38,21 @@
                     <td style="text-align: center;">
                         <form action="{{ $team->url->delete }}" method="POST">
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#team{{ $team->id }}">
-                                <i class="fa fa-eye"></i> Read
-                            </button>
-                            &nbsp
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teamEdit{{ $team->id }}">
-                                <i class="fa fa-edit"></i> Edit
-                            </button>
-                            &nbsp
+                            @component('admin.layouts.readButton')
+                                @slot('target')
+                                   team{{ $team->id }}
+                                @endslot
+                            @endcomponent
+
+                            @component('admin.layouts.editButton')
+                                @slot('target')
+                                   teamEdit{{ $team->id }}
+                                @endslot
+                            @endcomponent
+
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-trash"></i> Delete
-                            </button>
+                            @component('admin.layouts.deleteButton')
+                            @endcomponent
                         </form>
                     </td>
                 </tr>
