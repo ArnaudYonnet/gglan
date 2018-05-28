@@ -50,9 +50,6 @@
                                     @endslot
                                 @endcomponent
 
-                                @component('admin.layouts.deleteButton')
-                                @endcomponent
-
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger @adminDisabled" @adminDisabled>
                                     <i class="fa fa-trash"></i> {{ __('Delete') }}
