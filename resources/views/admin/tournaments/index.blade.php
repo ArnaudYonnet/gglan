@@ -81,7 +81,7 @@
             &nbsp
         @endslot
 
-        @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
+        @component('admin.layouts.components.table', ['id' => 'table1', 'class' => 'table-striped'])
             @slot('headers')
                 <th>Tournament</th>
                 <th>Team</th>
