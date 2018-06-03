@@ -9,7 +9,7 @@ use App\User;
 class Team extends Model
 {
     protected $table = "teams";
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $appends = [
         'url'
