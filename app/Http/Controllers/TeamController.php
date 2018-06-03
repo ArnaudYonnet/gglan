@@ -202,4 +202,14 @@ class TeamController extends Controller
             return redirect()->back();
         }
     }
+
+    private function upload($avatar, $existingAvatar, $path)
+    {
+        if ($avatar != $existingAvatar) 
+        {
+            Storage::delete($avatar);
+        }
+        $filePath = $existingAvatar->store($path);
+        return $filePath;
+    }
 }
