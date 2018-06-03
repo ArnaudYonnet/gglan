@@ -59,6 +59,9 @@ class TeamController extends Controller
         // Create relation
         $team->players()->attach(Auth::user()->id);
 
+        // Log team
+        LogController::logCreateTeam($team);
+
         flash('Your team has been successfully created !')->success()->important();
         return redirect()->back();
     }
