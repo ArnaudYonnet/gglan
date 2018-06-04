@@ -14,7 +14,21 @@ class LogController extends Controller
         $file = file_get_contents($path);
 
         $log = 
-            "ID:". $team->id.
+            "CREATE | ID:". $team->id.
+            "|Name: ". $team->name.
+            "| IP of creator: ". LogController::getIp(). "\n\r";
+
+        file_put_contents($path, $log, FILE_APPEND | LOCK_EX);
+    }
+
+    public static function logUpdateTeam(Team $team)
+    {
+        $path = 'team.txt';
+
+        $file = file_get_contents($path);
+
+        $log = 
+            "UPDATE | ID:". $team->id.
             "|Name: ". $team->name.
             "| IP of creator: ". LogController::getIp(). "\n\r";
 

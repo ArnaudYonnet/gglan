@@ -110,6 +110,9 @@ class TeamController extends Controller
         }
         $team->save();
 
+        // Log team
+        LogController::logUpdateTeam($team);
+
         flash('Your team has been updated')->success()->important();
         return redirect()->back();
     }
