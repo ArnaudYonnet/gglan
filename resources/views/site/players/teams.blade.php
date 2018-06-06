@@ -166,14 +166,14 @@
                             </div>
                         </form>
                         
-                        {{-- <div class="pt-4">
+                        <div class="pt-4">
                             <form action="/teams/{{ $team->id }}" method="POST"> 
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i> Delete
                                 </button>
                             </form>
-                        </div> --}}
+                        </div>
                     </div>
                 @endif
             </div>
