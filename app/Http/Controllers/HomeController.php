@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Rule;
+use App\Tournament;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('site.home')
-            ->with('posts',Post::where('visibility', 'public')->orderBy('id', 'desc')->take(4)->get());
+            ->with('posts',Post::where('visibility', 'public')->orderBy('id', 'desc')->take(4)->get())
+            ->with('tournaments', Tournament::where('status', 'open')->get());
     }
 
     public function rules()
