@@ -28,6 +28,28 @@
             </ul>
             
             <ul class="navbar-nav ml-auto">
+
+                <ul class="list-unstyled list-inline">
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/GGLanBrest" target="_blank">
+                            <img src="{{ asset('img/twitter.png ') }}" alt="Twitter" style="height: 35px;">
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/GGLANBREST/" target="_blank">
+                            <img src="{{ asset('img/facebook.png ') }}" alt="Facebook" style="height: 35px;">
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="https://discord.gg/mApqnDW" target="_blank">
+                            <img src="{{ asset('img/discord.png ') }}" alt="Discord" style="height: 35px;">
+                        </a>
+                    </li>
+                </ul>
+
+
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
