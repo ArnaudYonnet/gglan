@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 use \Carbon\Carbon;
 
-// Model
-use App\User;
-
-use App\Mail\RefuseRequest;
-
 //Job
 use App\Jobs\SendJoinRequest;
 use App\Jobs\SendAcceptRequest;
+use App\Jobs\SendRefuseRequest;
 
 class MailController extends Controller
 {
@@ -26,8 +22,6 @@ class MailController extends Controller
 
     static public function refuse($user_id)
     {
-        $user = User::find($user_id);
-
-        Mail::to($user)->send(new RefuseRequest());
+        SendRefuseRequest::dispatch($user_id)->delay(Carbon::now()->addSeconds(5));     
     }
 }
