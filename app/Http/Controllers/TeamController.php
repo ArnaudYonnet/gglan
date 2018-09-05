@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Team;
 use App\User;
+use App\Log;
 use App\JoinRequest;
 use Auth;
 use Illuminate\Support\Facades\Storage;
@@ -60,7 +61,12 @@ class TeamController extends Controller
         $team->players()->attach(Auth::user()->id);
 
         // Log team
-        LogController::logCreateTeam($team);
+        Log::create([
+            'type' => 'Create',
+            'team_id' => $team->id,
+            'ip'=> Log::getIp()
+        ]);
+
 
         flash('Your team has been successfully created !')->success()->important();
         return redirect()->back();
@@ -111,7 +117,11 @@ class TeamController extends Controller
         $team->save();
 
         // Log team
-        LogController::logUpdateTeam($team);
+        Log::create([
+            'type' => 'Update',
+            'team_id' => $team->id,
+            'ip'=> Log::getIp()
+        ]);
 
         flash('Your team has been updated')->success()->important();
         return redirect()->back();
@@ -125,6 +135,13 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
+        // Log team
+        Log::create([
+            'type' => 'Delete',
+            'team_id' => $team->id,
+            'ip'=> Log::getIp()
+        ]);
+
         $team->avatar ? Storage::delete($team->avatar) : true;
         $team->players()->detach();
         $team->delete();
