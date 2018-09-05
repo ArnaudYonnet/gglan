@@ -208,7 +208,7 @@ class TeamController extends Controller
 
             Team::find($joinrequest->team_id)->players()->attach($joinrequest->user_id);
 
-            MailController::acceptrequest($joinrequest->user_id);
+            MailController::accept($joinrequest->user_id);
 
             flash('The player has been successfully added to the team !')->success()->important();
             return redirect()->back(); 
@@ -219,7 +219,7 @@ class TeamController extends Controller
                 $joinrequest->status = "refused";
             $joinrequest->save();
 
-            MailController::refuserequest($joinrequest->user_id);
+            MailController::refuse($joinrequest->user_id);
 
             flash('The player has been successfully refused !')->success()->important();
             return redirect()->back();
