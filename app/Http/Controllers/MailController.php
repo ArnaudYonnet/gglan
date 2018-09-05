@@ -1,27 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use \Carbon\Carbon;
 
 // Model
 use App\User;
-use App\Team;
 
 // Mail
-use App\Mail\JoinRequest;
 use App\Mail\AcceptRequest;
 use App\Mail\RefuseRequest;
+
+//Job
+use App\Jobs\SendJoinRequest;
 
 class MailController extends Controller
 {
     static public function joinrequest($user_id, $team_id)
     {
-        $user = User::find($user_id);
-        $team = Team::find($team_id);
-
-        Mail::to($team->captain())->send(new JoinRequest($user, $team));
+        SendJoinRequest::dispatch($user_id, $team_id)->delay(Carbon::now()->addSeconds(5));
     }
 
     static public function accept($user_id)
