@@ -19,9 +19,6 @@ class CreateLogsTable extends Migration
             $table->integer('team_id');
             $table->string('ip');
             $table->timestamps();
-
-            $table->foreign('team_id')
-                  ->references('id')->on('teams');
         });
     }
 
