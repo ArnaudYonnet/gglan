@@ -24,14 +24,14 @@ class MailController extends Controller
         Mail::to($team->captain())->send(new JoinRequest($user, $team));
     }
 
-    static public function acceptrequest($user_id)
+    static public function accept($user_id)
     {
         $user = User::find($user_id);
 
         Mail::to($user)->send(new AcceptRequest());
     }
 
-    static public function refuserequest($user_id)
+    static public function refuse($user_id)
     {
         $user = User::find($user_id);
 
