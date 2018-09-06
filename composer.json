@@ -9,6 +9,7 @@
         "ecrmnn/laravel-https": "^1.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
+        "imtigger/laravel-job-status": "^0.1.14",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0"
