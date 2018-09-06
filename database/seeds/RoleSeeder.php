@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
             'posts' => 1,
             'partners' => 1,
             'admins' => 1,
+            'queues' => 1,
             'important' => 1,
         ]);
     }
