@@ -7,6 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Imtigger\LaravelJobStatus\Trackable;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -18,7 +19,7 @@ use App\Mail\RefuseRequest;
 
 class SendRefuseRequest implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Trackable;
 
     private $user;
 
@@ -36,6 +37,8 @@ class SendRefuseRequest implements ShouldQueue
      */
     public function __construct($user)
     {
+        $this->prepareStatus();
+        
         $this->user = User::find($user);
     }
 
