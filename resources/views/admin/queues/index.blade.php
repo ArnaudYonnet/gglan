@@ -12,7 +12,15 @@
 
    @component('admin.layouts.components.box', ['col' => 'col-xs-12', 'color' => 'info', 'class' => 'table-responsive'])
         @slot('title')
-            Jobs
+            <form action=" {{ route('admin.queues.deleteAll') }} " method="POST">
+                Jobs
+                @csrf
+                &nbsp
+
+                <button type="submit" class="btn btn-danger">
+                    {{ __('Clear All') }} 
+                </button>
+            </form>
         @endslot
 
         @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])

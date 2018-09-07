@@ -13,4 +13,15 @@ class QueueController extends Controller
     {
         return view('admin.queues.index')->with('jobs', JobStatus::all());
     }
+
+    public function deleteAll()
+    {
+        foreach (JobStatus::all() as $jobstatus) 
+        {
+            $jobstatus->delete();
+        }
+
+        flash('All clear !')->success();
+        return redirect()->route('admin.queues.index');
+    }
 }

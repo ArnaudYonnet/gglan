@@ -85,4 +85,5 @@ Route::resource('posts', 'PostController')->only('show');
         Route::put('rules/{rule}', 'RuleController@update')->name('admin.rules.update');
 
         Route::get('queues', 'QueueController@index')->name('admin.queues.index');
+        Route::post('queues/deleteAll', 'QueueController@deleteAll')->name('admin.queues.deleteAll');
     });
