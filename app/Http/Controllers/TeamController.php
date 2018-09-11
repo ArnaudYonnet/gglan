@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Carbon\Carbon;
 
 use App\Team;
 use App\User;
@@ -10,6 +11,11 @@ use App\Log;
 use App\JoinRequest;
 use Auth;
 use Illuminate\Support\Facades\Storage;
+
+//Jobs
+use App\Jobs\SendJoinRequest;
+use App\Jobs\SendAcceptRequest;
+use App\Jobs\SendRefuseRequest;
 
 class TeamController extends Controller
 {
@@ -181,7 +187,7 @@ class TeamController extends Controller
             $join->team_id = $request->team_id;
         $join->save();
 
-        MailController::joinrequest($request->user_id, $request->team_id);
+        SendJoinRequest::dispatch($request->user_id, $request->team_id)->delay(Carbon::now()->addSeconds(5));
 
         // en
         flash('The mail has been successfully send! You will receive a response when the captain has decided !')->success()->important(); 
@@ -208,7 +214,7 @@ class TeamController extends Controller
 
             Team::find($joinrequest->team_id)->players()->attach($joinrequest->user_id);
 
-            MailController::accept($joinrequest->user_id);
+            SendAcceptRequest::dispatch($joinrequest->user_id)->delay(Carbon::now()->addSeconds(5)); 
 
             flash('The player has been successfully added to the team !')->success()->important();
             return redirect()->back(); 
@@ -219,7 +225,7 @@ class TeamController extends Controller
                 $joinrequest->status = "refused";
             $joinrequest->save();
 
-            MailController::refuse($joinrequest->user_id);
+            SendRefuseRequest::dispatch($joinrequest->user_id)->delay(Carbon::now()->addSeconds(5)); 
 
             flash('The player has been successfully refused !')->success()->important();
             return redirect()->back();
