@@ -26,8 +26,7 @@ class JobTest extends TestCase
 
         // Faking a new job
         Queue::fake();
-        SendAcceptRequest::dispatch($user->id)
-                                ->onQueue('default');
+        SendAcceptRequest::dispatch($user->id)->onQueue('default');
         
         // Assert a job was pushed to a given queue
         Queue::assertPushedOn('default', SendAcceptRequest::class);
@@ -43,8 +42,7 @@ class JobTest extends TestCase
 
         // Faking a new job
         Queue::fake();
-        SendRefuseRequest::dispatch($user->id)
-                                ->onQueue('default');
+        SendRefuseRequest::dispatch($user->id)->onQueue('default');
         
         // Assert a job was pushed to a given queue
         Queue::assertPushedOn('default', SendRefuseRequest::class);
@@ -58,12 +56,10 @@ class JobTest extends TestCase
         // Get a user & team
         $user = User::find(2);
         $team = Team::find(1);
-        
 
         // Faking a new job
         Queue::fake();
-        SendJoinRequest::dispatch($user->id, $team->id)
-                                ->onQueue('default');
+        SendJoinRequest::dispatch($user->id, $team->id)->onQueue('default');
         
         // Assert a job was pushed to a given queue
         Queue::assertPushedOn('default', SendJoinRequest::class);
