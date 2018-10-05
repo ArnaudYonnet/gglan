@@ -76,6 +76,12 @@ return [
             'role' => 'admins',
             'route' => 'admin.rules',
         ],
+
+        // Queues
+        'queues' => [
+            'role' => 'admins',
+            'route' => 'admin.queues',
+        ],
     ]
 
 ];

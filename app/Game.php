@@ -14,6 +14,15 @@ class Game extends Model
         'url'
     ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'description', 'players_team',
+    ];
+
     public function getUrlAttribute()
     {
         return new GamePresenter($this);

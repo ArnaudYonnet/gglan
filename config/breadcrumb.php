@@ -98,4 +98,12 @@ return [
         'edit' => '',
     ],
 
+    // Queues
+    'queues' => [
+        'name' => 'Queues Manager',
+        'icon' => 'fas fa-stopwatch',
+        'index' => 'admin.queues.index',
+        'edit' => '',
+    ],
+
 ];

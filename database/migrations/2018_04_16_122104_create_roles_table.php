@@ -24,6 +24,7 @@ class CreateRolesTable extends Migration
             $table->boolean('posts');
             $table->boolean('partners');
             $table->boolean('admins');
+            $table->boolean('queues');
             $table->boolean('important')->default(0);
         });
     }

@@ -15,6 +15,15 @@ class Team extends Model
         'url'
     ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'user_id', 'avatar', 'game_id'
+    ];
+
     public function getUrlAttribute()
     {
         return new TeamPresenter($this);

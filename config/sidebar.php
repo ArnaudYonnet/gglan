@@ -111,4 +111,12 @@ return [
         ],
     ],
 
+    // Queues Manager
+    'queues' => [
+        'group' => 0,
+        'name' => 'Queues',
+        'icon' => 'fas fa-stopwatch',
+        'url' => '/admin/queues',
+    ],
+
 ];

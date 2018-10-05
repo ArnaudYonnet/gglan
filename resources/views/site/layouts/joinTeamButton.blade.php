@@ -26,8 +26,8 @@
                                     {{ __('Your demand has been refused') }}
                                 </button>
                             @else
-                                <button class="btn btn-success" disabled>
-                                    {{ __('You already ask to enter in this team') }}
+                                <button class="btn btn-success" disabled title="Vous avez déjà fait une demande à cette équipe">
+                                    {{ __('Ask to join the team') }}
                                 </button>
                             @endif
                         @endif
