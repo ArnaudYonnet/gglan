@@ -14,3 +14,10 @@
 <script>
     $('div.alert').not('.alert-important').delay(3000).slideUp(350);
 </script>
+
+<script>
+    $('#joinRequest').submit(function() {
+        $('#sendJoinRequest').prop("disabled", true);
+        $('#sendJoinRequest').text('Envoi en cours ...');
+    })
+</script>
