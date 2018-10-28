@@ -1,13 +1,13 @@
-<div class="row">
+{{-- <div class="row">
     <h1 class="my-4">{{ __('Next tournament') }}:</h1>
-</div>
+</div> --}}
 
 {{-- @if ($tournaments->count() == 0)
     <h4> No tournaments are plan right now </h4>
 @endif --}}
 
 {{-- @foreach ($tournaments as $tournament) --}}
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-4">
             <img src="https://gglan.fr/storage/posts/PQFWJMExxQSRTO4tC4qNQ9eN1R9UKATjvsKOJ82u.png" alt="Image not found" class="img-fluid rounded">
         </div>
@@ -38,7 +38,7 @@
                     width="600" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
             </ul>
         </div>
-    </div>
+    </div> --}}
 
     {{-- <hr> --}}
 {{-- @endforeach --}}
