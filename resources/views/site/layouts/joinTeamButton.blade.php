@@ -1,13 +1,13 @@
 @auth
     @if ($team->players->count() != $team->game->players_team)
-        <form action="/teams/joinrequest" method="post">
+        <form action="/teams/joinrequest" method="post" id="joinRequest">
             @csrf
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <input type="hidden" name="team_id" value="{{ $team->id }}">
             
             {{-- If the player has no team --}}
             @if (Auth::user()->teams->count() == 0 && !Auth::user()->joinrequests->where('team_id', $team->id)->first())
-                <button class="btn btn-success" type="submit">
+                <button class="btn btn-success" type="submit" id="sendJoinRequest">
                     {{ __('Ask to join the team') }}
                 </button>
             @else
