@@ -1,8 +1,6 @@
 @auth
     @if (Auth::user()->hasTeamWithGame($tournament->game->id))
         @if (Auth::user()->hasTeamWithGame($tournament->game->id)->captain()->id == Auth::user()->id)
-
-
             @if ($tournament->isFull())
                 <button class="btn btn-warning btn-lg" disabled>
                     {{ __('The tournament is full, thank you all !') }}

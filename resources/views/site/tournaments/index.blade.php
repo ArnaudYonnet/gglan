@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         @foreach ($tournaments as $tournament)
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="jumbotron">
                     <h1 class="display-4"> 
                         {{ $tournament->name }}
