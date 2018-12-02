@@ -14,7 +14,7 @@
 Auth::routes(); 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/rules', 'HomeController@rules');
+Route::get('/rules', 'HomeController@rules')->name('rules');
 Route::resource('posts', 'PostController')->only('show');
 
 
