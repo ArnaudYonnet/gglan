@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\TournamentPlace;
 use App\Tournament;
 
 class TournamentController extends Controller
@@ -16,7 +17,10 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        return view('admin.tournaments.index')->with('tournaments', Tournament::all());
+        $players = TournamentPlace::all()->where('payed', true);
+        return view('admin.tournaments.index')
+                ->with('tournaments', Tournament::all())
+                ->with('players', $players);
     }
 
     /**

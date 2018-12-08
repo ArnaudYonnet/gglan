@@ -29,5 +29,16 @@
         'autoWidth'   : true,
         "columnDefs": [ { "orderable": false, "targets": -1 } ]
         })
+</script>
 
+<script>
+    $('#table2').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : false,
+        'autoWidth'   : true,
+        "columnDefs": [ { "orderable": false, "targets": -1 } ]
+        })
 </script>
