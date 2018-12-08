@@ -99,6 +99,37 @@
             @endslot
         @endcomponent
     @endcomponent
+
+    @component('admin.layouts.components.box', ['col' => 'col-lg-6 col-xs-12', 'color' => 'info', 'class' => 'table-responsive'])        
+        @slot('title')        
+            Payed players
+            &nbsp
+        @endslot
+
+        @component('admin.layouts.components.table', ['id' => 'table2', 'class' => 'table-striped'])
+            @slot('headers')
+                <th> Tournament </th>
+                <th> Team </th>
+                <th> Player </th>
+            @endslot
+
+            @slot('content')
+                @foreach ($players as $player)
+                    @if (App\Tournament::find($player->tournament_id)->status == "Open")
+                        <tr>
+                            <td> {{ App\Tournament::find($player->tournament_id)->name }} </td>
+                            <td>
+                                <a href=" {{ route('teams.show', ['team' => $player->team_id]) }} " target="_blank"> {{ App\Team::find($player->team_id)->name }} </a> 
+                            </td>
+                            <td>
+                                <a href=" {{ route('players.show', ['player' => $player->user_id]) }} " target="_blank"> {{ App\User::find($player->user_id)->pseudo }} </a>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            @endslot
+        @endcomponent
+    @endcomponent
     
     {{-- Create tournament --}}
     @include('admin.tournaments.create')

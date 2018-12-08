@@ -14,7 +14,7 @@
 Auth::routes(); 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/rules', 'HomeController@rules');
+Route::get('/rules', 'HomeController@rules')->name('rules');
 Route::resource('posts', 'PostController')->only('show');
 
 
@@ -40,6 +40,10 @@ Route::resource('posts', 'PostController')->only('show');
     Route::put('tournaments/register', 'TournamentController@register');
     Route::delete('tournaments/unregister', 'TournamentController@unregister');
     Route::resource('tournaments', 'TournamentController');
+
+    Route::get('tournaments/buy/success', 'TournamentController@buySuccess')->name('tournaments.buy.success');
+    Route::get('tournaments/buy/fail', 'TournamentController@buyFail')->name('tournaments.buy.fail');
+
 
 
 // Admin Auth

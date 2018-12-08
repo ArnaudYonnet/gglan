@@ -88,7 +88,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
+                        
+                        <input type="checkbox" class="" name="cgu" id="cgu" required>
+                        <label for="cgu">
+                            Je certifie avoir lu et accepté les
+                            <a href=" {{ route('rules') }} " target="_blank">CGU</a>
+                        </label>
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
