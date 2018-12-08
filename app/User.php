@@ -72,7 +72,7 @@ class User extends Authenticatable
             ->where('team_id', $team)
             ->first();
     }
-
+    
     public function hasTeamWithGame($game_id)
     {
         foreach ($this->teams as $team) {
@@ -81,5 +81,10 @@ class User extends Authenticatable
             }
         }
         return false;
+    }
+
+    public function tournamentPlace()
+    {
+        return $this->hasOne('App\TournamentPlace');
     }
 }

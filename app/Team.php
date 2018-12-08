@@ -54,6 +54,11 @@ class Team extends Model
         return $this->hasMany('App\JoinRequest');
     }
 
+    public function tournamentPlace()
+    {
+        return $this->hasMany('App\JoinRequest');
+    }
+
     public function isSubscribeTournament($tournament_id)
     {
         foreach ($this->tournaments as $tournament) 
