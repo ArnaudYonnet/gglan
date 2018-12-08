@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
+use App\JoinRequest;
 use App\Team;
 
 class TeamSeeder extends Seeder
@@ -25,10 +27,15 @@ class TeamSeeder extends Seeder
         $team->players()->attach(1);
 
         // Attach other players to the team
-        $team->players()->attach(2);
-        $team->players()->attach(3);
-        $team->players()->attach(4);
-        $team->players()->attach(5);
+        $players = [2, 3, 4, 5];
+        foreach ($players as $player) {
+            $team->players()->attach($player);
+            JoinRequest::create([
+                'user_id' => $player,
+                'team_id' => $team->id,
+                'status'  => 'accepted',
+            ]);
+        }
 
         //Create another team
         $team = Team::create([
@@ -43,9 +50,14 @@ class TeamSeeder extends Seeder
         $team->players()->attach(6);
 
         // Attach other players to the team
-        $team->players()->attach(7);
-        $team->players()->attach(8);
-        $team->players()->attach(9);
-        $team->players()->attach(10);
+        $players = [7, 8, 9, 10];
+        foreach ($players as $player) {
+            $team->players()->attach($player);
+            JoinRequest::create([
+                'user_id' => $player,
+                'team_id' => $team->id,
+                'status'  => 'accepted',
+            ]);
+        }
     }
 }
