@@ -41,6 +41,10 @@ Route::resource('posts', 'PostController')->only('show');
     Route::delete('tournaments/unregister', 'TournamentController@unregister');
     Route::resource('tournaments', 'TournamentController');
 
+    Route::get('tournaments/buy/success', 'TournamentController@buySuccess')->name('tournaments.buy.success');
+    Route::get('tournaments/buy/fail', 'TournamentController@buyFail')->name('tournaments.buy.fail');
+
+
 
 // Admin Auth
     Route::prefix('admin')->namespace('Auth')->group(function()

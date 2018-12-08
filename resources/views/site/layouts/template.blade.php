@@ -19,5 +19,7 @@
     @include('site.layouts.footer')
 
     @include('site.layouts.assets.script')
+
+    @yield('script')
 </body>
 </html>

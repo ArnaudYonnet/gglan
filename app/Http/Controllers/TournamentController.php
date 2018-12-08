@@ -69,4 +69,31 @@ class TournamentController extends Controller
         flash('You have been successfully unregistered for this tournament !')->success();
         return redirect()->back();
     }
+    
+    /**
+     * Redirect to the success page after purchasing a place to a tournament
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function buySuccess()
+    {   
+        // Update the payed field for this player
+        $userPlace = TournamentPlace::where('user_id', Auth::id())->first();
+        $userPlace->payed = 1;
+        $userPlace->save();
+
+        flash('Vos achat a bien été enregistré, nous vous attendons au tournois !')->success();
+        return redirect()->route('tournaments.index');
+    }
+
+    /**
+     * Redirect to the fail page after attempting to purchase a place in a tournament
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function buyFail()
+    {
+        flash('Une erreur est survenu lors de votre achat :/')->error();
+        return redirect()->back();
+    }
 }
