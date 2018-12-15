@@ -45,5 +45,6 @@
             CKEDITOR.replace('content');
         })
     </script>
+    @yield('script')
 </body>
 </html>

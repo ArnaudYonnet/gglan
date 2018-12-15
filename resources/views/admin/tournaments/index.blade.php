@@ -17,7 +17,7 @@
             @endcomponent
         @endslot
 
-        @component('admin.layouts.components.table', ['id' => 'table', 'class' => 'table-striped'])
+        @component('admin.layouts.components.table', ['id' => 'tournaments', 'class' => 'table-striped'])
             @slot('headers')
                 <th>ID</th>
                 <th>Name</th>
@@ -137,4 +137,21 @@
     {{-- Edit tournament --}}
     @include('admin.tournaments.edit')
 
+@endsection
+
+@section('script')
+    <script>
+        $( document ).ready(function() { 
+            $('#tournaments').DataTable({
+                'paging'      : true,
+                'lengthChange': true,
+                'searching'   : true,
+                'ordering'    : true,
+                'info'        : false,
+                'autoWidth'   : true,
+                "columnDefs": [ { "orderable": false, "targets": -1 } ],
+                "order": [[ 0, "desc" ]]
+            });
+        });
+    </script>
 @endsection
