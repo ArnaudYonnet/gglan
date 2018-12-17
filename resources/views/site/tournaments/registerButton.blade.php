@@ -1,5 +1,7 @@
 @auth
     @if (Auth::user()->hasTeamWithGame($tournament->game->id))
+
+        {{-- Tournament full --}}
         @if (Auth::user()->hasTeamWithGame($tournament->game->id)->captain()->id == Auth::user()->id)
             @if ($tournament->isFull())
                 <button class="btn btn-warning btn-lg" role="button" disabled>
@@ -7,11 +9,13 @@
                 </button>
 
             @else
+                {{-- Team not complete --}}
                 @if (Auth::user()->hasTeamWithGame($tournament->game->id)->players->count() != $tournament->game->players_team)
                     <button class="btn btn-warning btn-lg" role="button" disabled>
                         {{ __('Your team is not complete') }} 
                     </button>
                 @else
+                    {{-- Unsubscribe team --}}
                     @if (Auth::user()->hasTeamWithGame($tournament->game->id)->isSubscribeTournament($tournament->id))
                         <form action="/tournaments/unregister" method="POST">
                             @csrf @method('DELETE')
@@ -24,6 +28,7 @@
                             </button>
                         </form>
                     @else
+                        {{-- Register team --}}
                         <form action="/tournaments/register" method="POST">
                             @csrf @method('PUT')
                             <input type="hidden" name="tournament_id" value="{{ $tournament->id }}">
