@@ -59,12 +59,12 @@ return [
     ],
     
     // Meetings Manager
-    'meetings' => [
-        'group' => 0,
-        'name' => 'Meetings',
-        'icon' => 'fas fa-comments',
-        'url' => '/admin/meetings',
-    ],
+    // 'meetings' => [
+    //     'group' => 0,
+    //     'name' => 'Meetings',
+    //     'icon' => 'fas fa-comments',
+    //     'url' => '/admin/meetings',
+    // ],
 
     // Posts Manager
     'posts' => [
@@ -112,11 +112,11 @@ return [
     ],
 
     // Queues Manager
-    'queues' => [
-        'group' => 0,
-        'name' => 'Queues',
-        'icon' => 'fas fa-stopwatch',
-        'url' => '/admin/queues',
-    ],
+    // 'queues' => [
+    //     'group' => 0,
+    //     'name' => 'Queues',
+    //     'icon' => 'fas fa-stopwatch',
+    //     'url' => '/admin/queues',
+    // ],
 
 ];
