@@ -149,7 +149,7 @@
                         <b> {{ __('Description') }}: </b>
                     </label>
                     <div class="">
-                        <textarea name="description" id="description" rows="5" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}">{{ $player->description }}</textarea>
+                        <textarea name="description" id="description" rows="5" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" required>{{ $player->description }}</textarea>
                         @if($errors->has('description'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('description') }}</strong>

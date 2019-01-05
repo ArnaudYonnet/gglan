@@ -61,7 +61,8 @@ class PlayerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'pseudo' => 'required|string|max:255',
-            'avatar' => 'image|max:5000'
+            'avatar' => 'image|max:5000',
+            'description' => 'required',
         ]);
 
         $player->name = $request->name;
