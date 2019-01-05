@@ -150,4 +150,35 @@ class PlayerTest extends TestCase
         $response->assertSee($team2->name);
         $response->assertSee($game2->name);
     }
+
+    /**
+     * Assert that we get our parameter page
+     *
+     * @return void
+     */
+    public function test_get_player_parameter_page()
+    {
+        $player = factory('App\User')->create();
+
+        $response = $this->actingAs($player)->get('/players/' . $player->id . '/edit');
+
+        $response->assertStatus(200);
+        $response->assertSee($player->pseudo);
+        $response->assertSee($player->email);
+    }
+
+    /**
+     * Assert that we are redirected if we try to access to the parameter page of another player that us
+     *
+     * @return void
+     */
+    public function test_get_not_player_parameter_page()
+    {
+        $player = factory('App\User')->create();
+        $player2 = factory('App\User')->create();
+
+        $response = $this->actingAs($player)->get('/players/' . $player2->id . '/edit');
+
+        $response->assertStatus(302);
+    }
 }
