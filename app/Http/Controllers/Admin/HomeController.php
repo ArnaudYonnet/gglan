@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Tournament;
 use App\Admin;
+use App\User;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $players = User::all()->count();
+
+        $tournaments = Tournament::where('status', 'open')->get();
+        $tournaments_count = 0;
+        foreach ($tournaments as $tournament) {
+            $tournaments_count += $tournament->teams()->count();
+        }
+
+        $posts = Post::where('visibility', 'public')->count();
+        return view('admin.index')
+                ->with('players', $players)
+                ->with('tournaments', $tournaments_count)
+                ->with('posts', $posts);
     }
 
     public function settings()

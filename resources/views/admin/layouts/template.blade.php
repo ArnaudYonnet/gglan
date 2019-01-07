@@ -27,6 +27,9 @@
 
             <section class="content container-fluid">
                 <div class="row">
+                    @yield('info')
+                </div>
+                <div class="row">
                     <div class="col-xs-12">
                         @include('flash::message')
                         @yield('content')
