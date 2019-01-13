@@ -37,6 +37,7 @@ class TournamentController extends Controller
             'finish' => 'required|date',
             'description' => 'required|string|max:255',
             'teams_place' => 'required|numeric',
+            'cashprize' => 'required|numeric',
         ]);
 
         $tournament = new Tournament;
@@ -46,6 +47,7 @@ class TournamentController extends Controller
             $tournament->finish = $request->finish;
             $tournament->description = $request->description;
             $tournament->teams_place = $request->teams_place;
+            $tournament->cashprize = $request->cashprize;
         $tournament->save();
 
         flash('The tournament has been successfully created !')->success();
@@ -67,6 +69,7 @@ class TournamentController extends Controller
             'finish' => 'required|date',
             'description' => 'required|string|max:255',
             'teams_place' => 'required|numeric',
+            'cashprize' => 'required|numeric',
             'status' => 'required|string',
         ]);
         
@@ -76,6 +79,7 @@ class TournamentController extends Controller
         $tournament->finish = $request->finish;
         $tournament->description = $request->description;
         $tournament->teams_place = $request->teams_place;
+        $tournament->cashprize = $request->cashprize;
         $tournament->status = $request->status;
         $tournament->save();
 

@@ -24,6 +24,7 @@
                 <th>Game</th>
                 <th>Date</th>
                 <th>Team place</th>
+                <th>Cashprize</th>
                 <th>Status</th>
                 <th></th>
             @endslot
@@ -40,6 +41,11 @@
                             {{ \Carbon\Carbon::parse($tournament->finish)->format('d/m/Y') }}
                         </td>
                         <td> {{ $tournament->teams_place }} </td>
+                        @if ($tournament->cashprize)
+                            <td> {{ $tournament->cashprize }} €</td>
+                        @else
+                            <td> N/A </td>
+                        @endif
                         <td>
                             @switch($tournament->status)
                                 @case("Open")
