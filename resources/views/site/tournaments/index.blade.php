@@ -15,9 +15,9 @@
                         Cashprize actuel:
                         <span class="badge badge-danger">
                             @if ($tournament->cashprize)
-                                N/A
-                            @else
                                 {{ $tournament->cashprize }} €
+                            @else
+                                N/A
                             @endif
                         </span> 
                     </h1>
