@@ -11,6 +11,16 @@
                             {{ $tournament->teams->count() }} / {{ $tournament->teams_place }}
                         </span> 
                     </h1>
+                    <h2> 
+                        Cashprize actuel:
+                        <span class="badge badge-danger">
+                            @if ($tournament->cashprize)
+                                N/A
+                            @else
+                                {{ $tournament->cashprize }} €
+                            @endif
+                        </span> 
+                    </h1>
                     <p class="lead">{{ $tournament->description }}</p>
     
                     <hr class="my-4">
