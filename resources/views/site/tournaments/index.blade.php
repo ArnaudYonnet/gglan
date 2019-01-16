@@ -67,7 +67,7 @@
                 // When the customer clicks on the button, redirect
                 // them to Checkout.
                 stripe.redirectToCheckout({
-                    items: [{ sku: 'sku_E55Ehj3dsZwcI5', quantity: 1 }],
+                    items: [{ sku: 'sku_E55FcZvgbF7K5F', quantity: 1 }],
     
                     // Note that it is not guaranteed your customers will be redirected to this
                     // URL *100%* of the time, it's possible that they could e.g. close the
