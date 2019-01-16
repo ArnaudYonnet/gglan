@@ -86,6 +86,18 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="form-group{{ $errors->has('teams_place') ? ' has-error' : '' }}">
+                        <div class="col-xs-12">
+                            <label for="cashprize" class="control-label">Cashprize</label>
+                            <input id="cashprize" type="number" class="form-control" name="cashprize" value="{{ old('cashprize') }}" min="1" placeholder="XXX €" required>
+                            @if ($errors->has('cashprize'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('cashprize') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -93,7 +105,6 @@
                     <button class="btn btn-success" type="submit">Save</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
