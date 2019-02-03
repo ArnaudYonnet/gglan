@@ -19,7 +19,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/tournaments" class="nav-link {{ (str_contains(URL::current(), 'tournaments')) ? 'active':'' }}"> {{ __('Tournaments') }} </a>
+                    <a href="/tournaments" class="nav-link {{ (str_contains(URL::current(), 'tournaments')) ? 'active':'' }}"> Inscription au tournois</a>
                 </li>
 
                 <li class="nav-item">
