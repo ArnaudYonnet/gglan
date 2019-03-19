@@ -2,7 +2,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('adminlte/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p> {{ Auth::guard('admin')->user()->name }} </p>

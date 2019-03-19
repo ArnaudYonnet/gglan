@@ -60,6 +60,7 @@ Route::resource('posts', 'PostController')->only('show');
     {
         Route::get('/settings', 'HomeController@settings')->name('admin.settings');
         Route::post('/settings', 'HomeController@update');
+        Route::put('/settings/avatar', 'HomeController@updateAvatar')->name('admin.settings.update.avatar');
     });
 
 // Admin Dashboard

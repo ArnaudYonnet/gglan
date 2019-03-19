@@ -48,4 +48,25 @@
             <button class="btn btn-success" type="submit"> {{ __('Update') }} </button>
         </form>
     @endcomponent
+
+    @component('admin.layouts.components.box', ['title' => 'Update Avatar', 'col' => 'col-xs-12', 'color' => 'info', 'class' => ''])
+        <form action="{{ route('admin.settings.update.avatar') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group row">
+                <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+                <div class="col-md-6">
+                    <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
+                    @if ($errors->has('avatar'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('avatar') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <button class="btn btn-success" type="submit"> {{ __('Update') }} </button>
+        </form>
+    @endcomponent
 @endsection

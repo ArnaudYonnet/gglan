@@ -89,12 +89,12 @@
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('adminlte/img/user3-128x128.jpg') }}" class="user-image" alt="User Image">
+                        <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}" class="user-image" alt="User Image">
                         <span class="hidden-xs"> {{ Auth::guard('admin')->user()->name }} </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="{{ asset('adminlte/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                            <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}" class="img-circle" alt="User Image">
                             <p>
                                 {{ Auth::guard('admin')->user()->name }}
                             </p>

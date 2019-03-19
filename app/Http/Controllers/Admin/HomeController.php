@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 use Auth;
 use App\Tournament;
 use App\Admin;
@@ -63,6 +65,39 @@ class HomeController extends Controller
 
         flash('Your account has been successfully updated !')->success();
         return redirect()->back();
+    }
 
+    /**
+     * Update admin avatar
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:5240'
+        ]);
+
+        // Get the current admin
+        $admin = Auth::guard('admin')->user();
+
+        // Truncate path to fit with the Storage exists & delete method
+        $url = str_replace('/storage', '', $admin->avatar);
+
+        // Check & delete if an avatar already exist in the storage folder
+        if (Storage::disk('public')->exists($url)) {
+            Storage::disk('public')->delete($url);
+        }
+
+        // Upload the new avatar
+        $path = Storage::putFile('public/avatars', $request->avatar);
+        $admin->avatar = Storage::url($path);
+
+        // Save the modification
+        $admin->save();
+
+        flash('Your avatar has been successfully updated')->success();
+        return redirect()->back();
     }
 }
