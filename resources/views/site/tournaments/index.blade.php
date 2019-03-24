@@ -55,7 +55,7 @@
                     <p class="lead">
                         <div class="btn-group" role="group">
                             @include('site.tournaments.registerButton')
-                            @include('site.tournaments.buyButton')
+                            {{-- @include('site.tournaments.buyButton') --}}
                         </div>
                     </p>
                 </div>
@@ -64,7 +64,7 @@
     </div>
 @endsection
 
-@section('script')
+{{-- @section('script')
     <script src="https://js.stripe.com/v3"></script>
 
     <script>
@@ -95,4 +95,4 @@
                     });
             });
     </script>
-@endsection
+@endsection --}}
