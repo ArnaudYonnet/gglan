@@ -55,7 +55,7 @@
                     <p class="lead">
                         <div class="btn-group" role="group">
                             @include('site.tournaments.registerButton')
-                            {{-- @include('site.tournaments.buyButton') --}}
+                            @include('site.tournaments.buyButton')
                         </div>
                     </p>
                 </div>
@@ -64,7 +64,7 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
     <script src="https://js.stripe.com/v3"></script>
 
     <script>
@@ -77,7 +77,7 @@
                 // When the customer clicks on the button, redirect
                 // them to Checkout.
                 stripe.redirectToCheckout({
-                    items: [{ sku: 'sku_E55FcZvgbF7K5F', quantity: 1 }],
+                    items: [{ sku: 'sku_FJbYYC8TATFD5F', quantity: 1 }],
     
                     // Note that it is not guaranteed your customers will be redirected to this
                     // URL *100%* of the time, it's possible that they could e.g. close the
@@ -95,4 +95,4 @@
                     });
             });
     </script>
-@endsection --}}
+@endsection
