@@ -13,7 +13,7 @@
 
     <div class="row">
         @foreach ($players as $player)
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6 mb-4">
+            <div class="col-lg-2 col-md-3 col-sm-3 col-4 mb-4">
                 <div class="card">
                     <h5 class="card-header">
                         <a href="/players/{{ $player->id }}" class="text-danger">{{ $player->pseudo }}</a>
