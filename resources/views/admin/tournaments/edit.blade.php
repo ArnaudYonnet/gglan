@@ -94,7 +94,7 @@
                         <div class="form-group{{ $errors->has('cashprize') ? ' has-error' : '' }}">
                             <div class="col-xs-12">
                                 <label for="cashprize" class="control-label">Cashprize</label>
-                                <input id="cashprize" type="number" class="form-control" name="cashprize" value="{{ $tournament->cashprize }}" min="1" placeholder="XXX €" required>
+                                <input id="cashprize" type="text" class="form-control" name="cashprize" value="{{ $tournament->cashprize }}" placeholder="XXX €" required>
                                 @if ($errors->has('cashprize'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('cashprize') }}</strong>

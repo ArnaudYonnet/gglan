@@ -42,7 +42,7 @@
                         </td>
                         <td> {{ $tournament->teams_place }} </td>
                         @if ($tournament->cashprize)
-                            <td> {{ $tournament->cashprize }} €</td>
+                            <td> {{ $tournament->cashprize }}</td>
                         @else
                             <td> N/A </td>
                         @endif

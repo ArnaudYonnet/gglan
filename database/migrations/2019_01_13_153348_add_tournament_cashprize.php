@@ -14,7 +14,7 @@ class AddTournamentCashprize extends Migration
     public function up()
     {
         Schema::table('tournaments', function (Blueprint $table) {
-            $table->integer('cashprize')->nullable();
+            $table->string('cashprize')->nullable();
         });
     }
 

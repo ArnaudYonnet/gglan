@@ -37,7 +37,7 @@ class TournamentController extends Controller
             'finish' => 'required|date',
             'description' => 'required|string|max:255',
             'teams_place' => 'required|numeric',
-            'cashprize' => 'required|numeric',
+            'cashprize' => 'required|string',
         ]);
 
         $tournament = new Tournament;
@@ -69,7 +69,7 @@ class TournamentController extends Controller
             'finish' => 'required|date',
             'description' => 'required|string|max:255',
             'teams_place' => 'required|numeric',
-            'cashprize' => 'required|numeric',
+            'cashprize' => 'required|string',
             'status' => 'required|string',
         ]);
         
