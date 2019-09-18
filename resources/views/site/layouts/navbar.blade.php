@@ -25,6 +25,10 @@
                 <li class="nav-item">
                     <a href="/rules" class="nav-link {{ (str_contains(URL::current(), 'rules')) ? 'active':'' }}"> {{ __('Rules') }} </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="https://www.youtube.com/watch?v=T8Y5bo1U1bo&feature=youtu.be" target="_blank" class="nav-link text-danger"> Comment s'inscrire ?</a>
+                </li>
             </ul>
             
             <ul class="navbar-nav ml-auto">
