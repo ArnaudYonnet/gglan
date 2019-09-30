@@ -34,6 +34,12 @@
             <ul class="navbar-nav ml-auto">
                 <ul class="list-unstyled list-inline">
                     <li class="list-inline-item">
+                        <a href="https://www.instagram.com/gglanbrest" target="_blank">
+                            <img src="{{ asset('img/instagram.png ') }}" alt="Instagram" style="height: 35px;">
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item">
                         <a href="https://twitter.com/GGLanBrest" target="_blank">
                             <img src="{{ asset('img/twitter.png ') }}" alt="Twitter" style="height: 35px;">
                         </a>
